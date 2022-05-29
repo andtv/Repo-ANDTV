@@ -476,7 +476,7 @@ def convert_special(url, over=False):
     logging.log("[Convertir Rutas en Especiales Completas")
     if not over:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]Convertir Rutas en Especiales:[/COLOR] [COLOR azure]Completo![/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Convertir Rutas en Especiales:[/COLOR] [COLOR gold]Completo![/COLOR]".format(CONFIG.COLOR2))
 
 
 def redo_thumbs():

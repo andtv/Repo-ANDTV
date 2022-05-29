@@ -179,7 +179,7 @@ class Restore:
                 return
 
         skin.skin_to_default("Restore")
-        self.progress_dialog.create(CONFIG.ADDONTITLE, '[COLOR {0}]Instalando {1} Backup'.format(CONFIG.COLOR2, external) + '\n' + 'Espere por Favor[/COLOR]')
+        self.progress_dialog.create(CONFIG.ADDONTITLE, '[COLOR {0}]Instalando {1} Copia de Seguridad'.format(CONFIG.COLOR2, external) + '\n' + 'Espere por Favor[/COLOR]')
 
         self._from_file(file, location)
 
