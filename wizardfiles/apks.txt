@@ -102,7 +102,7 @@ fanart="https://i.imgur.com/tZQgtbH.jpg"
 adult="no"
 description="Aplicación NordVPN (modificada) para dispositivos TVBox - SmarTV"
 
-name="[COLOR midnightblue]OXPVPN [COLOR white]Premium 4.0.33 b83 (sólo Android)[/COLOR]"
+name="[COLOR mediumorchid]OXPVPN [COLOR white]Premium 4.0.33 b83 (sólo Android)[/COLOR]"
 section="no"
 url="https://github.com/andtv/andtv.github.io/releases/download/1.0/OXP.VPN.Premium.4.0.33.b83.AndroidApkData.net.apk"
 icon="https://i.imgur.com/QC8X5Je.png" 
