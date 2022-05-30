@@ -56,7 +56,7 @@ description="ES File Explorer Pro"
  
 name="[COLOR gold]X-plore File Manager [COLOR white]Mod 4.28.40[/COLOR]"
 section="no"
-url="https://github.com/andtv/andtv.github.io/releases/download/1.0/X-plore.File.Manager.Mod.4.28.40.AndroidApkData.net.apk"
+url="https://github.com/andtv/andtv.github.io/releases/download/1.0/X_plore_File_Manager_v4.28.40_MOD_mundoperfecto.net.apk"
 icon="https://i.imgur.com/S9VFhQE.png" 
 fanart="https://i.imgur.com/GaNccM4.jpg"
 adult="no"
