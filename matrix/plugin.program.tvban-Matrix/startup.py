@@ -405,7 +405,7 @@ else:
     logging.log('[Notifications] Not Enabled', level=xbmc.LOGINFO)
 
 # INSTALLED BUILD CHECK
-if CONFIG.get_setting('instalADO') == 'true':
+if CONFIG.get_setting('instalado') == 'true':
     logging.log("[Build Instalado Check] Started", level=xbmc.LOGINFO)
     installed_build_check()
 else:
