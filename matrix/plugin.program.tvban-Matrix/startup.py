@@ -119,7 +119,7 @@ def show_notification():
                 window.show_notification(msg)
             else:
                 logging.log('[Notifications] No hay notificaciones nuevas.', level=xbmc.LOGINFO)
-        elif note_id > CONFIG.NOTEID:
+        elif note_id == CONFIG.NOTEID:
             logging.log('[Notifications] Mostrando Notificación {0}'
                         .format(note_id))
             CONFIG.set_setting('noteid', '{}'.format(note_id))
