@@ -239,7 +239,7 @@ class Config:
         self.INCLUDETHECREW = self.get_setting('includethecrew')
         self.INCLUDEYODA = self.get_setting('includeyoda')
         self.INCLUDEVENOM = self.get_setting('includevenom')
-        self.NOTEID = int(self.get_setting('noteid'))        # anterior self.INCLUDENUMBERS = self.get_setting('includenumbers')
+        self.INCLUDENUMBERS = int(self.get_setting('noteid'))        
         self.INCLUDESCRUBS = self.get_setting('includescrubs')
         
         # Notification variables
