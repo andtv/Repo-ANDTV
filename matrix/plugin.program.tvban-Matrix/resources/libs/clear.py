@@ -236,15 +236,15 @@ def clear_function_cache(over=False):
                             '[COLOR {0}]Le gustaria eliminar las caches de la función de resolución?[/COLOR]'.format(CONFIG.COLOR2),
                             nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
                             yeslabel='[B][COLOR cyan]Eliminar Cache[/COLOR][/B]'):
-            clear = True
+            clear = False
     else:
-        clear = True
+        clear = False   
         
-    if clear:
+    if 'clear':
         if xbmc.getCondVisibility('System.HasAddon(script.module.resolveurl)'):
                 xbmc.executebuiltin('RunPlugin(plugin://script.module.resolveurl/?mode=reset_cache)')
         if xbmc.getCondVisibility('System.HasAddon(script.module.urlresolver)'):
-            xbmc.executebuiltin('RunPlugin(plugin://script.module.urlresolver/?mode=reset_cache)')
+                xbmc.executebuiltin('RunPlugin(plugin://script.module.urlresolver/?mode=reset_cache)')
 
 
 def clear_cache(over=None):
