@@ -465,11 +465,7 @@ def split_notify(notify):
         if msg.startswith('[CR]'):
             msg = msg[4:]
             
-<<<<<<< HEAD
         return int(_id), msg
-=======
-        return int(_id), msg    
->>>>>>> 855b20ea4303bfdd6c1a255faa859e020f715b4e
     else:
         return False, False
 
