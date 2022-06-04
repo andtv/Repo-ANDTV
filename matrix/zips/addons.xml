@@ -370,7 +370,11 @@
     </extension>
 </addon>
 
+<<<<<<< HEAD
+<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="3.6" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+=======
 <addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="2.6" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+>>>>>>> 855b20ea4303bfdd6c1a255faa859e020f715b4e
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
