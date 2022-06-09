@@ -1,4 +1,4 @@
-3
+1
 |||
 
 [COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN MATRIX!!![B][/COLOR]
@@ -12,12 +12,11 @@ Seleccionamos la Build que deseas instalar [COLOR yellowgreen][B]19.x[/B][/COLOR
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
 
-[COLOR gold][B]06/05/2022 ¡¡¡PARCHE ACTUALIZADOR MATRIX!!![/B][/COLOR]
+[COLOR gold][B]09/06/2022 ¡¡¡ACTUALIZADOR PARCHE TVBAN MATRIX!!![/B][/COLOR]
 
-[COLOR red][B]* NUEVOS COLORES EN EL SKIN Y NUEVO ICONO EN LA ESQUINA SUPERIOR DERECHA.[/B][/COLOR]
-[COLOR red][B]* CAMBIADO EL AUTOWIDGET HHDFULLS POR CINECALIDAD, EN PELICULAS[/B][/COLOR]
-[COLOR red][B]* AÑADIDO SECCION DE APLICACIONES DENTRO DE AJUSTES - BUILDS, PULSANDO OK ENCIMA DE LOS TRES PUNTOS.[/B][/COLOR]
-[COLOR red][B]* NUEVOS COLORES DENTRO DE MANTENIMIENTO.[/B][/COLOR]
+[COLOR red][B]* ARREGLOS DEL MANTENIMIENTO DE LIMPIEZA.DEL PROGRAM.INSTALADOR.[/B][/COLOR]
+[COLOR red][B]* ACTUALIZADO EL SKIN.AURAMOD.TVBAN.MATRIX.[/B][/COLOR]
+[COLOR red][B]* ACTUALIZADO LA BUSQUEDA EN CRISTAL AZUL.[/B][/COLOR]
 
 
 [COLOR aquamarine][B]INSTALACIÓN DE PARCHE:[/B][/COLOR]

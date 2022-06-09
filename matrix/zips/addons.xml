@@ -370,7 +370,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="4.6" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="9.6" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -397,6 +397,9 @@
         <source>https://andtv.github.io/tvban/</source>
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]tvban[/B][/COLOR]-[COLOR lime][B]Matrix[/B][/COLOR]
+
+• 09/06/2022
+- Corregido Herramienta de Limpieza.
 
 • 25/05/2022
 - Corregido Copia de Seguridad.
@@ -964,7 +967,7 @@
     </extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Matrix" version="2.5.22" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Matrix" version="1.1.8" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>

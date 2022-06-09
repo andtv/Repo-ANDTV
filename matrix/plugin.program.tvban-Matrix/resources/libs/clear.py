@@ -228,7 +228,7 @@ def clear_archive():
             tools.clean_house(CONFIG.ARCHIVE_CACHE)
 
 
-def clear_function_cache(over=False):
+def clear_function_cache(over=True):
     dialog = xbmcgui.Dialog()
 
     if not over:
@@ -236,9 +236,9 @@ def clear_function_cache(over=False):
                             '[COLOR {0}]Le gustaria eliminar las caches de la función de resolución?[/COLOR]'.format(CONFIG.COLOR2),
                             nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
                             yeslabel='[B][COLOR cyan]Eliminar Cache[/COLOR][/B]'):
-            clear = False
+            clear = True
     else:
-        clear = False   
+        clear = True
         
     if 'clear':
         if xbmc.getCondVisibility('System.HasAddon(script.module.resolveurl)'):

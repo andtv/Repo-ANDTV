@@ -61,7 +61,16 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/ndsVGj0.jpg)</onfocus>
                         </control>
 						
-			            <control type="radiobutton" id="9003" description="WINNER 2">
+			            <control type="radiobutton" id="9003" description="Horus">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Horus</label>
+							<selected>System.HasAddon(script.module.horus)</selected>
+                            <onclick>InstallAddon(script.module.horus)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/zOhCSGc.png)</onfocus>
+                        </control>
+						
+						<control type="radiobutton" id="9004" description="WINNER 2">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>WINNER 2</label>
@@ -69,15 +78,6 @@
                             <onclick>InstallAddon(plugin.video.winner)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/NXo6UBd.jpg)</onfocus>
                         </control>
-			            
-                        <control type="radiobutton" id="9004" description="Horus">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Horus</label>
-							<selected>System.HasAddon(script.module.horus)</selected>
-                            <onclick>InstallAddon(script.module.horus)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/zOhCSGc.png)</onfocus>
-                        </control>					
 					
 						<control type="radiobutton" id="9005" description="Alfa">
                             <include>Dialog_Standard_ListButton</include>

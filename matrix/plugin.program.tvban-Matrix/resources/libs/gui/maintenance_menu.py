@@ -64,7 +64,7 @@ class MaintenanceMenu:
                            {'mode': 'clearcache'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         if xbmc.getCondVisibility('System.HasAddon(script.module.urlresolver)') or xbmc.getCondVisibility(
                 'System.HasAddon(script.module.resolveurl)'):
-            directory.add_file('Borrar Cache de Función de Resolución', {'mode': 'clearfunctioncache'}, icon=CONFIG.ICONMAINT,
+            directory.add_file('Borrar Cache de Función de Resolver', {'mode': 'clearfunctioncache'}, icon=CONFIG.ICONMAINT,
                                themeit=CONFIG.THEME3)
         directory.add_file('Borrar Paquetes: [COLOR azure][B]{0}[/B][/COLOR]'.format(tools.convert_size(sizepack)),
                            {'mode': 'clearpackages'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)

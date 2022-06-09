@@ -196,7 +196,7 @@
                                 <control type="textbox">
                                     <top>30</top>
                                     <label>$INFO[Window.Property(next.plot)]</label>
-                                    <height>270</height>
+                                    <height>170</height>
                                     <aligny>top</aligny>
                                     <align>center</align>
                                     <textcolor>main_fg_70</textcolor>
@@ -206,7 +206,7 @@
                                 <control type="textbox">
                                     <top>30</top>
                                     <label>$LOCALIZE[20370]</label>
-                                    <height>270</height>
+                                    <height>70</height>
                                     <aligny>top</aligny>
                                     <align>center</align>
                                     <textcolor>main_fg_70</textcolor>

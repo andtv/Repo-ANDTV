@@ -124,7 +124,7 @@
                             <onclick condition="!String.IsEmpty(Window(Home).Property(RunWizard))">ReplaceWindow(1125)</onclick>
 	                    <onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/viewmodes/netflixalt.jpg)</onfocus>
                         </control>
-                        <control type="radiobutton" id="9004" description="Enable Mixed Netflix Home  Spotlight">
+                        <control type="radiobutton" id="9004" description="Enable Mixed Netflix Home Spotlight">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>$LOCALIZE[31440]</label>
