@@ -222,7 +222,7 @@ def clear_archive():
     if dialog.yesno(CONFIG.ADDONTITLE,
                         '[COLOR {0}]Le gustaria Eliminar la carpeta \'[B]Cache_Archivo[/B]\'?[/COLOR]'.format(CONFIG.COLOR2),
                         nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
-                        yeslabel='[B][COLOR cyan]Si Eliminar[/COLOR][/B]'):
+                        yeslabel='[B][COLOR cyan]Si, Eliminar[/COLOR][/B]'):
         if os.path.exists(CONFIG.ARCHIVE_CACHE):
             from resources.libs.common import tools
             tools.clean_house(CONFIG.ARCHIVE_CACHE)
