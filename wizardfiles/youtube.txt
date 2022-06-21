@@ -12,6 +12,13 @@ icon="https://i.ytimg.com/vi/s8ylIkuYllI/sddefault.jpg"
 fanart="http://"
 description="Pink Floyd."
 
+name="[B][COLOR red]80's Rare Mix[/COLOR] [COLOR white]Recordando la Musica de los 80[/COLOR][/B]"
+section="no"
+url="https://www.youtube.com/watch?v=8uCi2vWq1Yw"
+icon="https://i.ytimg.com/vi/8uCi2vWq1Yw/maxresdefault.jpg"
+fanart="http://"
+description="80's Rare Mix."
+
 name="[B][COLOR gray]Rick Astley[/COLOR] [COLOR white]- Never Gonna Give You Up (Official Music Video)[/COLOR][/B]"
 section="no"
 url="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
