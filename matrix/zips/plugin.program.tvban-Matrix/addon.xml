@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="11.10" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="12.10" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -27,7 +27,7 @@
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]tvban[/B][/COLOR]-[COLOR lime][B]Matrix[/B][/COLOR]
 
-• 11/10/2022
+• 12/10/2022
 - Corregido Herramienta de Addons.
 
 • 09/06/2022
