@@ -699,7 +699,7 @@ def remove_addon_menu():
         logging.log_notify(CONFIG.ADDONTITLE,
                            "[COLOR {0}]No hay Addons Para Eliminar[/COLOR]".format(CONFIG.COLOR2))
         return
-    selected = dialog.multiselect("{0}: Seleccione los Addons que desea eliminar.".format(CONFIG.ADDONTITLE), addonnames)
+    selected = dialog.multiselect("{0}}[B]   Seleccione los Addons                       [/B]".format(CONFIG.ADDONTITLE), addonnames)
     if not selected:
         return
     if len(selected) > 0:
