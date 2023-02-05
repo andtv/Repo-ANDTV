@@ -775,7 +775,7 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
     </extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Nexux" version="1.1.9" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Nexus" version="1.1.9" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
@@ -791,7 +791,7 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">Mod [COLOR FF7cfc00]TVBAN[/COLOR] de Auramod para Kodi 20 / Nexus, Minimalista, Personalizable, Multiple Widgets. </summary>
+        <summary lang="es">Mod [COLOR FF7cfc00]TVBAN[/COLOR] de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets. </summary>
         <description lang="es">Mod [COLOR FF7cfc00]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
 		<news>Nuevos cambios:
 		- Skin modificada para Kodi 20 Nexus y [COLOR FF7cfc00]TVBAN[/COLOR]
