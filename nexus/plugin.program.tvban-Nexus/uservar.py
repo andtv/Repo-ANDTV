@@ -13,9 +13,9 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR lime][B]Nexus[/B][/COLOR]'
+ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR lime][B]Matrix[/B][/COLOR]'
 BUILDERNAME = 'JoseAndTEBA & Andtv'
-EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
+EXCLUDES = [ADDON_ID, 'repository.Andtv-Matrix']
 # Text File with build info in it.
 BUILDFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/wizardfiles/builds.txt'
 # How often you would like it to check for build updates in days
@@ -103,11 +103,11 @@ WIZARDFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/wizardfi
 # Enable Auto Install 'Yes' or 'No'
 AUTOINSTALL = 'Yes'
 # Addon ID for the repository
-REPOID = 'repository.Andtv-Nexus'
+REPOID = 'repository.Andtv-Matrix'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/repository.Andtv-Nexus/'
+REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/repository.Andtv-Matrix/'
 #########################################################
 
 #########################################################
@@ -121,7 +121,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/wizard
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR lime][B]NEXUS[/B][/COLOR]'
+HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR lime][B]MATRIX[/B][/COLOR]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/7wJW9zd.png'
 # Font for Notification Window

@@ -91,7 +91,7 @@ class BuildMenu:
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             return
             
-        total, count20, adultcount, hidden = check.build_count()
+        total, count19, adultcount, hidden = check.build_count()
 
         match = re.compile('name="(.+?)".+?ersion="(.+?)".+?rl="(.+?)".+?ui="(.+?)".+?odi="(.+?)".+?heme="(.+?)".+?con="(.+?)".+?anart="(.+?)".+?dult="(.+?)".+?escription="(.+?)"').findall(link)
         
@@ -113,11 +113,11 @@ class BuildMenu:
             if CONFIG.SEPARATE == 'true':
                 self._list_all(match)
             else:
-                if count20 > 0:
+                if count19 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR lime]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR lime]NEXUS[/B][/COLOR]'.format(state, count19), {'mode': 'togglesetting',
                                        'name': 'show20'}, themeit=CONFIG.THEME3)
-                    if CONFIG.SHOW20 == 'true':
+                    if CONFIG.SHOW19 == 'true':
                         self._list_all(match, kodiv=20)
         elif hidden > 0:
             if adultcount > 0:

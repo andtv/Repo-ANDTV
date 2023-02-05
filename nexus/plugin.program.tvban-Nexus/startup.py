@@ -62,7 +62,7 @@ def auto_install_repo():
                 if repo_response:
                     progress_dialog = xbmcgui.DialogProgress()
                     
-                    progress_dialog.create(CONFIG.ADDONTITLE, 'Descargando Repo...' + '\n' + 'Espere por Favor')
+                    progress_dialog.create(CONFIG.ADDONTITLE, 'Downloading Repo...' + '\n' + 'Please Wait')
                     tools.ensure_folders(CONFIG.PACKAGES)
                     lib = os.path.join(CONFIG.PACKAGES, installzip)
 
@@ -94,15 +94,15 @@ def auto_install_repo():
 
                     logging.log("[Auto Install Repo] Instalado exitosamente", level=xbmc.LOGINFO)
                 else:
-                    logging.log_notify("[COLOR {0}][COLOR gold] Error de Instalación del Repositorio[/COLOR]".format(CONFIG.COLOR1),
-                                       "[COLOR {0}][COLOR gold] URL No válida para zip![/COLOR]".format(CONFIG.COLOR2))
-                    logging.log("[Auto Install Repo] [COLOR gold]No se pudo crear una URL funcional para el repositorio. {0}".format(
+                    logging.log_notify("[COLOR {0}]Error de Instalación del Repositorio[/COLOR]".format(CONFIG.COLOR1),
+                                       "[COLOR {0}]URL No válida para zip![/COLOR]".format(CONFIG.COLOR2))
+                    logging.log("[Auto Install Repo] No se pudo crear una URL funcional para el repositorio. {0}".format(
                         url), level=xbmc.LOGERROR)
             else:
                 logging.log("URL No válida para el zip del Repositorio", level=xbmc.LOGERROR)
         else:
-            logging.log_notify("[COLOR {0}] [COLOR gold]Error de Instalación del repositorio[/COLOR]".format(CONFIG.COLOR1),
-                               "[COLOR {0}] [COLOR gold]Invalido addon.xml file![/COLOR]".format(CONFIG.COLOR2))
+            logging.log_notify("[COLOR {0}]Error de Instalación del repositorio[/COLOR]".format(CONFIG.COLOR1),
+                               "[COLOR {0}]Invalido addon.xml file![/COLOR]".format(CONFIG.COLOR2))
             logging.log("[Auto Install Repo] Incapaz de leer el addon.xml file.", level=xbmc.LOGERROR)
     elif not CONFIG.AUTOINSTALL == 'Yes':
         logging.log("[Auto Install Repo] No habilitado", level=xbmc.LOGINFO)
@@ -168,7 +168,7 @@ def installed_build_check():
             if not response:
                 logging.log("[Build Installed Check] Guifix estaba configurado para http://", level=xbmc.LOGINFO)
                 dialog.ok(CONFIG.ADDONTITLE,
-                          "[COLOR {0}] Parece que la configuración de la máscara no se aplicó a la build.".format(CONFIG.COLOR2)
+                          "[COLOR {0}]Parece que la configuración de la máscara no se aplicó a la build.".format(CONFIG.COLOR2)
                           +'\n'+"Lamentablemente, no se adjuntó ninguna corrección de interfaz gráfica de usuario a la  build"
                           +'\n'+"Deberá reinstalar la build y asegurarse de hacer un cierre forzado[/COLOR]")
             else:
@@ -213,7 +213,7 @@ def build_update_check():
         if CONFIG.SKIN in ['skin.confluence', 'skin.estuary', 'skin.estouchy'] and not CONFIG.DEFAULTIGNORE == 'true':
             check.check_skin()
 
-        logging.log("[Build Check] Build Instalado: [COLOR gold]Comprobando Actualizaciones[/COLOR]", level=xbmc.LOGINFO)
+        logging.log("[Build Check] Build Instalado: [COLOR gold]Comprobando Actualizaciones", level=xbmc.LOGINFO)
         check.check_build_update()
 
     CONFIG.set_setting('nextbuildcheck', tools.get_date(days=CONFIG.UPDATECHECK, formatted=True))
@@ -229,7 +229,7 @@ def save_trakt():
         traktit.auto_update('all')
         CONFIG.set_setting('traktnextsave', tools.get_date(days=3, formatted=True))
     else:
-        logging.log("[Trakt Data] El Próximo Guardado automático no es hasta: {0} / HOY es: {1}".format(CONFIG.get_setting('traktnextsave'),
+        logging.log("[Trakt Data] Next Auto Save isn't until: {0} / TODAY is: {1}".format(CONFIG.get_setting('traktnextsave'),
                                                                                           tools.get_date(formatted=True)),
                     level=xbmc.LOGINFO)
 
@@ -240,11 +240,11 @@ def save_debrid():
     
     if next_save <= current_time:
         from resources.libs import debridit
-        logging.log("[Debrid Data] Guardar todos los Datos", level=xbmc.LOGINFO)
+        logging.log("[Debrid Data] Saving all Data", level=xbmc.LOGINFO)
         debridit.auto_update('all')
         CONFIG.set_setting('debridnextsave', tools.get_date(days=3, formatted=True))
     else:
-        logging.log("[Debrid Data] El Próximo Guardado automático no es hasta: {0} / HOY es: {1}".format(CONFIG.get_setting('debridnextsave'),
+        logging.log("[Debrid Data] Next Auto Save isn't until: {0} / TODAY is: {1}".format(CONFIG.get_setting('debridnextsave'),
                                                                                            tools.get_date(formatted=True)),
                     level=xbmc.LOGINFO)
 
@@ -259,7 +259,7 @@ def save_login():
         loginit.auto_update('all')
         CONFIG.set_setting('loginnextsave', tools.get_date(days=3, formatted=True))
     else:
-        logging.log("[Login Info] El Próximo Guardado automático no es hasta: {0} / HOY es: {1}".format(CONFIG.get_setting('loginnextsave'),
+        logging.log("[Login Info] Next Auto Save isn't until: {0} / TODAY is: {1}".format(CONFIG.get_setting('loginnextsave'),
                                                                                           tools.get_date(formatted=True)),
                     level=xbmc.LOGINFO)
 
