@@ -220,7 +220,7 @@ def clear_archive():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria Eliminar la carpeta \'Archivo_Cache \'?[/COLOR]'.format(CONFIG.COLOR2),
+                        '[COLOR {0}]Le gustaria Eliminar la carpeta [COLOR darkturquoise][B]\'Archivo_Cache\'[/B] [/COLOR]?'.format(CONFIG.COLOR2),
                         nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
                         yeslabel='[B][COLOR cyan]Si Eliminar[/COLOR][/B]'):
         if os.path.exists(CONFIG.ARCHIVE_CACHE):
@@ -233,7 +233,7 @@ def clear_function_cache(over=False):
 
     if not over:
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar las caches de la función de resolución?[/COLOR]'.format(CONFIG.COLOR2),
+                            '[COLOR {0}]Le gustaria eliminar las [COLOR darkturquoise][B]Caches de la Función de Resolución[/B] [/COLOR]?'.format(CONFIG.COLOR2),
                             nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
                             yeslabel='[B][COLOR cyan]Eliminar Cache[/COLOR][/B]'):
             clear = True
@@ -462,7 +462,7 @@ def clear_crash():
         dialog = xbmcgui.Dialog()
 
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar el Crash logs?'.format(CONFIG.COLOR2)
+                            '[COLOR {0}]Le gustaria eliminar el [COLOR darkturquoise][B]Crash Logs[/B] [/COLOR]?'.format(CONFIG.COLOR2)
                             +'\n'+'[COLOR {0}]{1}[/COLOR] Archivos Encontrados[/COLOR]'.format(CONFIG.COLOR1, len(files)),
                             yeslabel="[B][COLOR cyan]Eliminar Logs[/COLOR][/B]",
                             nolabel="[B][COLOR red]Mantener Logs[/COLOR][/B]"):
@@ -510,7 +510,7 @@ def total_clean():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria eliminar la cache, los paquetes y las miniaturas?[/COLOR]'.format(CONFIG.COLOR2),
+                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, los Paquetes y las Miniaturas[/B] [/COLOR]?'.format(CONFIG.COLOR2),
                         nolabel='[B][COLOR red]Cancelar Proceso[/COLOR][/B]',
                         yeslabel='[B][COLOR cyan]Eliminar Todo[/COLOR][/B]'):
         clear_archive()
@@ -533,7 +533,7 @@ def clear_thumbs(type=None):
     if type is not None:
         choice = 1
     else:
-        choice = dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Le gustaria eliminar {1} y las carpetas de miniaturas relacionadas?'.format(CONFIG.COLOR2, latest) + '\n' + "Ellas se repoblarán en la próxima puesta en marcha.[/COLOR]", nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Eliminar Miniaturas[/COLOR][/B]')
+        choice = dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Le gustaria eliminar [COLOR darkturquoise][B]{1}[/B][/COLOR] y las Carpetas de Miniaturas relacionadas?'.format(CONFIG.COLOR2, latest) + '\n' + "Ellas se repoblarán en la próxima puesta en marcha.[/COLOR]", nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Eliminar Miniaturas[/COLOR][/B]')
     if choice == 1:
         try:
             tools.remove_file(os.path.join(CONFIG.DATABASE, latest))

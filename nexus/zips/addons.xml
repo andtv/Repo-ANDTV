@@ -1,376 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.autocompletion" name="AutoCompletion for virtual keyboard" version="2.0.3" provider-name="Philipp Temminghoff (phil65),sualfred">
-    <requires>
-        <import addon="xbmc.python" version="3.0.0" />
-        <import addon="script.module.autocompletion" version="2.0.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="plugin.py" />
-    <extension point="xbmc.python.script" library="default.py">
-        <provides>executable</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en_GB">AutoCompletion for the virtual keyboard (needs skin support)</summary>
-        <description lang="en_GB">AutoCompletion for the virtual keyboard (needs skin support)</description>
-        <platform>all</platform>
-        <license>GPL-2.0-or-later</license>
-        <source>https://github.com/phil65/plugin.program.autocompletion</source>
-        <assets>
-            <icon>resources/icon.png</icon>
-            <screenshot>resources/screenshot-01.jpg</screenshot>
-            <screenshot>resources/screenshot-02.jpg</screenshot>
-            <screenshot>resources/screenshot-03.jpg</screenshot>
-        </assets>
-    </extension>
-</addon>
-
-<addon id="plugin.program.autowidget" name="AutoWidget" version="3.4.2" provider-name="drinfernoo">
-    <requires>
-        <import addon="script.module.pil" />
-        <import addon="script.module.six" />
-    </requires>
-
-    <extension point="xbmc.python.pluginsource" library="main.py">
-        <provides>executable video music</provides>
-    </extension>
-
-    <extension point="xbmc.service" library="service.py" />
-
-    <extension point="kodi.context.item">
-        <menu id="kodi.core.main">
-            <item library="context_add.py">
-                <label>$ADDON[plugin.program.autowidget 30003]</label>
-                <visible>String.IsEqual(Window(10000).Property(context.autowidget),true)</visible>
-            </item>
-            <item library="context_refresh.py">
-                <label>$ADDON[plugin.program.autowidget 30006]</label>
-                <visible>String.Contains(ListItem.FolderPath, plugin://plugin.program.autowidget)</visible>
-            </item>
-			<item library="context_refresh_single.py">
-                <label>$ADDON[plugin.program.autowidget 30047]</label>
-                <visible>!String.IsEmpty(ListItem.Property(autoID)) + [!String.IsEqual(ListItem.Property(autoAction),static) + !String.IsEqual(ListItem.Property(autoAction),merged)]</visible>
-            </item>
-			<item library="clear_cache_single.py">
-                <label>$ADDON[plugin.program.autowidget 30117]</label>
-                <visible>!String.IsEmpty(ListItem.Property(autoCache))</visible>
-            </item>
-        </menu>
-    </extension>
-
-    <extension point="xbmc.addon.metadata">
-        <reuselanguageinvoker>true</reuselanguageinvoker>
-        <summary lang="en_GB">Automatically changes out widgets</summary>
-        <description lang="en_GB">Automatically changes out widgets on the homescreen for a more interesting browsing experience.</description>
-	<summary lang="es_ES">Cambia los widgets automáticamente</summary>
-	<description lang="es_ES">Cambia los widgets en la pantalla de inicio automáticamente para una experiencia de navegación más interesante.</description>
-	<platform>all</platform>
-        <license>LGPL-3.0</license>
-        <website>https://www.github.com/drinfernoo/</website>
-        <source>https://www.github.com/drinfernoo/plugin.program.autowidget/</source>
-        <news>
-3.4.2
- - Some fixes for constant notification
-3.4.1
- - Fix clearing cache from settings
-3.4.0
- - Rework caching mechanism
- - Add more notifications of progress
- - Add placeholder items when no content is loaded
-3.3.7
- - Delay widget updates during library scans or when in media views
- - Fix widget cleaning scan for skins which don't use Skin Shortcuts
- - Fix refreshing widgets created before 3.3.0
- - Add more content type choices in editor dialog
-3.3.6
- - Fix "Next Page" for Python 2.7
-3.3.5
- - Better handling of error and empty states
- - Better handling of "Next Page" items
- - Fix "Active Widgets" menu
- - Delay library updates when inside media views
-3.3.4
- - Fix "Next Page" localizations
-3.3.3
- - Fix "Clear Cache"
-3.3.2
- - Fix bug when paths return no items
-3.3.1
- - Fix bug when Skin Shortcuts is not installed
- - More improvements to page item handling
-3.3.0
- - Add "Copy Group" in group context menu
- - Add "Create New ... Group" in "My Groups" menu
- - Add "Clear Cache" in "Tools" menu
- - Add "Refresh Widget" to widget context menu
- - Add "Clear Cache" to widget context menu
- - Add rudimentary error item for failed widgets
- - Add "Icon Packs" for library widgets from genres, studios, and countries
- - Remove dependency on Kodi Six
- - Allow editing content type
- - Allow Cycling Widgets to pull from a subset of paths
- - Support cast thumbnails for Kodi N
- - Fix translatePath reference again
- - Faster and more robust item creation
- - Make `.widget` files much simpler
- - Better support for library paths
- - Better support for music
-3.2.3
- - Add English (US) and Portugese localizations
-3.2.2
- - Add more localizations
- - Better "Next Page" detection
- - Support for "Next Page" items in other languages
-3.2.1
- - Fix for items with no artwork
-3.2.0
- - Add setting to prefer episodes/shows when removing duplicates
- - Rework duplicate removal
- - Fix bug in Active Widgets editor dialog
- - Fix landscape art for some items
- - Fix paged widgets not resetting on boot
- - Format with black
-3.1.9
- - Fix error with translatePath
-3.1.8
- - Fix resume progress on items
-3.1.7
- - Fix widget cleaning
- - Fix Active Widgets menu
-3.1.6
- - Fix detection of JSON-RPC version
-3.1.5
- - Fix editor dialog
-3.1.4
- - Fix settings shortcuts
- - Fix some Unicode errors
- - Fix some dialog labels in editor
-3.1.3
- - Fix hashing in Matrix
-3.1.2
- - Fix "Clear Cache"
-3.1.1
- - Fixes for cache mechanism
- - Add "Force Refresh Widgets" to context menu for AutoWidget items
-3.1.0
- - Improved background caching for paths that change frequently
- - Fix unneeded refreshes
- - Fix caching on merged widgets
- - Fix more Unicode errors
-3.0.2
- - Fix bug in background caching
-3.0.1
- - Fix bug when adding paths
-3.0.0
- - Huge speed improvements thanks to @djay's background caching implementation
- - Fix merged widget duplicate removal
-2.3.7
- - Unicode fixes
- - Fix method calls
- - Fix separator in menus
- - Fix logging in Kodi 19
- - Update Spanish translation
-2.3.6
- - Fix separator in shortcut groups
-2.3.5
- - Fix various shortcut- and refresh-related bugs
- - Fix error when path contained no items
- - Add more debug logging
- - Add widget ID as ListItem property (autoID)
- - Reduce library updates (again)
-2.3.4
- - Fix logging error
-2.3.3
- - Fix shortcuts to Android apps
-2.3.2
- - Fix error in debug logging logic
-2.3.1
- - Fix editing and adding new groups
- - Overall cleanup
- - Trim as many library updates as possible
-2.3.0
- - Huge simplification of plugin paths
- - Speed improvements
- - Better detection for "Next Page" items in various add-ons
- - Add dedicated debug log
- - Allow 'path' to be editing for static widgets
-2.2.0
- - Reduce library updates to improve overall speed
- - Sort "Active Widgets" by most recently refreshed
- - Fix any straggling widget errors, I hope :D
-2.1.6
- - Fix "Next Page" error
-2.1.5
- - Fix non-merged paths :D
-2.1.4
- - Support more add-ons' "Next Page" items
- - Fix merged paths
-2.1.3
-- Fixes for Unicode characters in path labels
-- Fix for viewing groups in Kodi 17.x
-- Change "Icon Color" to a per-path basis
-2.1.2
- - Add per-widget icon color
-2.1.1
- - Fix "Icon Color"
-2.1.0
- - New artwork for add-on
- - Add icon coloring
- - Improved "Active Widgets" menu
- - Added "Clean Old Widget Files" shortcut in Tools
- - Fix shortcut paths
- - Fix missing InfoLabels
-2.0.2
- - Make artwork for groups and paths more consistent
-2.0.1
- - Add "Toggle Skin Debugging" shortcut
-2.0.0
- - Rewrite most of add-on functions
- - Add "Static Path" option
- - Add "Merged Path" option
- - Add "Paged Widgets"
- - Revamp editor dialog
- - More complete skin compatibility
- - More miscellaneous fixes
-1.6.8
- - Add setting for notification sound
-1.6.7
- - Fix crash when window cannot be detected. Notably fixes Disney+ support.
-1.6.6
- - Fix extract location
-1.6.5
- - Add backup/restore features
-1.6.4
- - Fix more rogue refreshes
- - Fix wording in Spanish translation (again, thanks to @roliverosc)
-1.6.3
- - Update settings localizations
-1.6.2
- - Fix bug that caused Skin Shortcuts to not be able to rebuild the skin
-1.6.1
- - Fix bug with shortcut widgets being "converted"
-1.6.0
- - Android App shortcut support (thanks to @Sandmann79)
- - Add Spanish translation (thanks to @roliverosc)
- - Fix bug with empty action nodes
- - Reduce refreshes
- - Prettify .props file output
-1.5.5
- - Fix regex for labels in some skins
-1.5.4
- - Fix recursion crash during refresh
-1.5.3
- - Fix indent error
-1.5.2
- - Fix shortcut calls for YouTube
-1.5.1
- - Fix error in editor dialog
- - Fix changelog
-1.5.0
- - Add "Active Widgets" menu
- - Consistency fixes during initialization and refresh
- - Allow adding playable items as shortcuts
- - Fix crashes in Krypton
- - Fix crashes from invalid group/widget files
- - Fix Unicode compatibility
-1.4.5
- - Refresh Shortcut widgets Automatically
- - Add "Next Path" widget action
- - Add "Clone" and "Explode" widget modes
- - Allow refreshing between 15m-2h, at 15m intervals
-1.4.3
- - Add context menu on more items
- - Fix some log spam
- - Catch more errors from invalid files
- - Fix "Settings" shortcuts
- - Gracefully handle remote artwork
- - Use special paths for artwork
-1.4.2
- - Fix bug in conversion
-1.4.1
- - Fix bug in migration
-1.4.0
- - Add "Clean Old References" shortcuts
- - Change main menu layout
-1.3.9
- - Fix label bug in Embuary (and maybe elsewhere)
-1.3.8
- - Add "Wipe Add-on Data" shortcuts
- - Allow Unicode characters in labels
-1.3.7
- - Fix typo in path handling
-1.3.6
- - Fix error handling
-1.3.5
- - Add extra error checking for file operations
-1.3.4
- - Add proper migration from old JSON to current
-1.3.3
- - Rewrite editor dialog
- - Fix path conversion for skin string paths
-1.3.2
- - Fixes and cleanup in editor dialog
-1.3.1
- - Cleanup skin string conversion
-1.3.0
- - Add group editing dialog
- - Non-Skin Shortcuts skin support
- - Fix issues with groups and paths with the same name
- - Fix settings shortcuts
- - Add rudimentary JSON migration
-1.2.5
- - Update some skin localizations
- - Add more widget artwork
- - Update documentation
-1.2.3
- - Fix paths made from add-on browser
- - Add ability to set plot
-1.2.2
- - Fix group dialog calls
-1.2.1
- - Fix imports
-1.2.0
- - Better handling of art
- - Better add-on art added
- - Redesigned path addition dialog
- - Settings shortcuts added
-1.1.2
- - Add art editing for paths
- - Add group renaming
-1.1.1
- - Add setting to disable notification
-1.1.0
- - Remove Skin Shortcuts dependency
- - Expand context menu options
- - Add support for skins with "basic" Skin Shortcuts integration
- - Add setting to pause AutoWidget's service
-1.0.7
- - Fix context menu option not showing
-1.0.6
- - Fix paths not saving
-1.0.5
- - Raise required Skin Shortcuts version to  1.0.19
-1.0.4
- - Allow custom labels
- - Add removal notifications
-1.0.3
- - Fix shortcuts and widgets added from context menu
-1.0.2
- - Fix crash from non-XML files
-1.0.1
- - Fix crash from non-existent context menu setting
-1.0.0
- - First stable release
-        </news>
-        <assets>
-            <icon>resources/media/icon.png</icon>
-            <fanart>resources/media/fanart.png</fanart>
-            <poster>resources/media/poster.png</poster>
-            <banner>resources/media/banner.png</banner>
-            <clearlogo>resources/media/clearlogo.png</clearlogo>
-        </assets>
-    </extension>
-</addon>
-
 <addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]NEXUS[/COLOR][/B]" version="5.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
@@ -412,37 +41,54 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.palantir2" name="[COLOR gold]Palantir 2[/COLOR]" version="2.1.16" provider-name="TierraMedia">
-  <requires>
-    <import addon="script.module.six" version="1.11.0"/>
-    <import addon="script.module.resolveurl" version="5.0.00" optional="true"/>
-    <import addon="script.module.pycryptodome"/>
-    <import addon="script.embuary.info"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.repository" name="Palantir Repo">
-        <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <description>Visualiza el contenido de la nube, series, películas.</description>
-    <disclaimer>[B][COLOR red]Todo el contenido disponible en este Addon esta sacado de servidores gratuitos, disponible en la red para todos los usuarios.[/B][/COLOR]</disclaimer>
-    <platform>all</platform>
-    <assets>
-        <icon>icon.png</icon>
-        <fanart>fanart.gif</fanart>
-        <screenshot>resources/media/Captura1.png</screenshot>
-        <screenshot>resources/media/Captura2.png</screenshot>
-        <screenshot>resources/media/Captura3.png</screenshot>
-        <screenshot>resources/media/Captura4.png</screenshot>
-    </assets>
-    <news>- Añadidos nuevos servidores
-    </news>
-    <forum>https://t.me/addon_palantir</forum>
-  </extension>
+<addon id="plugin.video.alfa" name="Alfa" version="3.8.5" provider-name="Alfa Addon">
+	<requires>
+		<import addon="script.module.requests"></import>
+		<import addon="script.module.beautifulsoup4" version="4.5.3"></import>
+		<import addon="script.module.html5lib" version="0.999.0"></import>
+		<import addon="script.alfa-update-helper" optional="true"></import>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="ca">Navega amb Kodi per pàgines web.</summary>
+		<summary lang="en">Browse web pages using Kodi</summary>
+		<summary lang="es">Navega con Kodi por páginas web.</summary>
+		<summary lang="it">Sfoglia le pagine web con Kodi.</summary>
+		<summary lang="pt">Navegue por páginas da web com Kodi.</summary>
+		<description lang="ca">Navega amb Kodi per pàgines web per veure els vídeos de manera fàcil.</description>
+		<description lang="en">Browse web pages using Kodi to easily watch their video content.</description>
+		<description lang="es">Navega con Kodi por páginas web para ver sus videos de manera fácil.</description>
+		<description lang="it">Sfoglia le pagine web con Kodi per guardare facilmente i tuoi video.</description>
+		<description lang="pt">Navegue pelas páginas da web com Kodi para assistir seus vídeos facilmente.</description>
+		<disclaimer lang="ca">[COLOR red]Els propietaris i distribuïdors d'aquest complemento no proveeixen ni distribueixen cap contingut mostrat pel complemento ni tenen affiliación alguna amb els proveïdors de l'contingut.[/COLOR]</disclaimer>
+		<disclaimer lang="en">[COLOR red]The owners and submitters to this addon do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.[/COLOR]</disclaimer>
+		<disclaimer lang="es">[COLOR red]Los propietarios y distribuidores de este addon no proveen ni distribuyen ningún contenido mostrado por el addon ni tienen affiliación alguna con los proveedores del contenido.[/COLOR]</disclaimer>
+		<disclaimer lang="it">[COLOR red]I proprietari e i distributori di questo addon aggiuntivo non forniscono o distribuiscono alcun contenuto visualizzato dal addon aggiuntivo né hanno alcuna affiliazione con i fornitori di contenuti.[/COLOR]</disclaimer>
+		<disclaimer lang="pt">[COLOR red]Os proprietários e distribuidores deste addon não fornecem ou distribuem qualquer conteúdo exibido pelo addon nem têm qualquer afiliação com os provedores de conteúdo.[/COLOR]</disclaimer>
+		<platform>all</platform>
+		<license>GNU GPL v3</license>
+		<source>https://github.com/alfa-addon/addon</source>
+		<news>[B]Estos son los cambios para esta versión:[/B]
+
+      [COLOR green][B]Arreglos[/B][/COLOR]
+      ¤ Cuevana3                          ¤ Dilo                             ¤ Dontorrent
+      ¤ Hdfull                                ¤ Magnetpelis               ¤ Newpct1
+      ¤ Seriesmetro                     ¤ Sololatino                    ¤ Zonaleros
+      ¤ +18
+
+      [COLOR green][B]Novedades[/B][/COLOR]</news>
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.jpg</fanart>
+			<screenshot>resources/media/screenshots/1.jpg</screenshot>
+			<screenshot>resources/media/screenshots/2.jpg</screenshot>
+			<screenshot>resources/media/screenshots/3.jpg</screenshot>
+			<screenshot>resources/media/screenshots/4.jpg</screenshot>
+		</assets>
+	</extension>
+	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
 <addon id="plugin.video.tacones" name="[COLOR red]TACONES[/COLOR]" version="3.0.0" provider-name="La Mala de la Novela">
@@ -488,136 +134,27 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.torrest" name="Torrest" provider-name="i96751414" version="0.0.12">
-    <requires>
-        <!--<import addon="xbmc.python" version="3.0.0"/>-->
-        <import addon="script.module.requests" version="2.22.0"/>
-        <import addon="script.module.routing" version="0.2.3"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="navigation.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py"/>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <license>See https://github.com/i96751414/plugin.video.torrest/blob/master/LICENSE</license>
-        <source>https://github.com/i96751414/plugin.video.torrest</source>
-        <summary lang="en">Torrest on Kodi</summary>
-        <description lang="en">Torrest is a service with a rest API which allows torrent streaming.</description>
-        <news>
-        </news>
-        <assets>
-            <icon>icon.png</icon>
-            <screenshot>resources/screenshots/screenshot-1.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-2.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-3.jpg</screenshot>
-            <screenshot>resources/screenshots/screenshot-4.jpg</screenshot>
-        </assets>
-        <reuselanguageinvoker>true</reuselanguageinvoker>
-    </extension>
-</addon>
-
-<addon id="plugin.video.winner" name="[B][/B][COLOR aqua][/COLOR]WINNER" version="1.0.7" provider-name="Camaradas">
-    <requires>
-        <import addon="script.module.requests" />
-        <import addon="script.module.pysocks" />
-        <import addon="script.module.six" />
-        <import addon="plugin.video.youtube" />
-        <import addon="script.module.horus" optional="true" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.repository" name="Hiraya Software Repo">
-        <info>https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary lang="en">WINNER</summary>
-        <description lang="en">Live Sports Addon.
-
-Development: George, Alex303, Picapau
-Development support: Jesus, Toni
-Contributions: SuperTopo, Jesus
-Artwork: Bojbit
-Translation: Lou
-Content: Lou, Alex303, MiKeL, Chikiry, Bojbit, Luisma, Lucas, Nano, K0S, Manujaz, MrYayi
-Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Alex, Luar team
-        </description>
-        <disclaimer lang="en">WINNER Addon - Live Sports Addon</disclaimer>
-        <summary lang="es">WINNER</summary>
-        <description lang="es">Addon con eventos deportivos en directo.
-
-Desarrollo: George, Alex303, Picapau
-Soporte desarrollo: Jesus, Toni
-Aportaciones: SuperTopo, Jesus
-Artwork: Bojbit
-Traducciones: Lou
-Contenido: Lou, Alex303, MiKeL, Chikiry, Bojbit, Luisma, Lucas, Nano, K0S, Manujaz, MrYayi
-Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Alex, equipo Luar
-        </description>
-        <disclaimer lang="es">Addon WINNER - Eventos Deportivos en directo</disclaimer>
-        <platform>all</platform>
-        <assets>
-            <icon>icon.gif</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-    </extension>
-</addon>
-
-<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR limegreen][B]NEXUS[/B][/COLOR]" version="5.2.23" provider-name="andtv_tvban, JoseAnd">
-    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR limegreen][B]NEXUS[/B][/COLOR]">
-        <dir minversion="18.0" maxversion="18.9.0">
-            <info>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/</datadir>
-        </dir>
-        <dir minversion="18.9.0">
-            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/</datadir>
-        </dir>
-        <dir minversion="18.9.0">
-            <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
-        </dir>
-    </extension>
-
-    <extension point="xbmc.addon.metadata">
-        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR azure]Andtv[/COLOR] [COLOR limegreen]Nexus[/COLOR]</summary>
-        <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR].
-[B][COLOR lime]CREDITOS:
-[COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description>
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons válidos para [COLOR azure]Kodi 20 [COLOR limegreen]NEXUS.[/COLOR]</disclaimer>
-        <platform>all</platform>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-		<source>https://andtv.github.io/tvban</source>
-    </extension>
-</addon>
-
-<addon id="repository.arxtic-ape" name="arxtic-ape repository" version="1.0.0" provider-name="arxtic-ape">
-	<extension point="xbmc.addon.repository" name="Arxtic Ape Addon Repository">
-		<dir>
-			<info compressed="false">https://raw.githubusercontent.com/arxtic-ape/repo.arxtic-ape/master/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/arxtic-ape/repo.arxtic-ape/master/addons.xml.md5</checksum>
-			<datadir zip="false">https://raw.github.com/arxtic-ape/repo.arxtic-ape/master/</datadir>
+<addon id="repository.auramod.aio" name="Auramod Repo AIO" version="1.0" provider-name="SerpentDrago">
+	<extension point="xbmc.addon.repository" name="Auramod Repo AIO">
+		<dir minversion="18.0" maxversion="18.9.9">
+			<info compressed="false">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/leia/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/leia/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com//SerpentDrago/repository.auramod.aio/master/repo/leia/zips/</datadir>
 		</dir>
-
-		<dir>
-		    <info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
-		    <checksum>https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml.md5</checksum>
-		    <datadir zip="true">https://raw.githubusercontent.com/Gujal00/smrzips/master/zips/</datadir>
+		<dir minversion="19">
+			<info compressed="false">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/</datadir>
 		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install Arxtic Ape Addons</summary>
-		<description>Install Arxtic Ape Addons</description>
+		<summary>Auramod All In One Kodi Repo</summary>
+		<description>Auramod Repo Contianing SerpentDrago's versions of Auramod for both Kodi Leia and Matrix </description>
 		<platform>all</platform>
+        <assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
 	</extension>
 </addon>
 
@@ -640,51 +177,108 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
     </extension>
 </addon>
 
-<addon id="repository.camaradas.repo" name="[COLOR orangered]camaradas.repo[/COLOR]" version="2.0" provider-name="Team Camaradas">
-    <extension point="xbmc.addon.repository" name="camaradas.repo">
-        <info>https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/camaradas/camaradas.repo/master/Repositorio/</datadir>
+<addon id="repository.balandro" name="Balandro Repo" version="3.0.0" provider-name="Balandro Team">
+
+    <extension point="xbmc.addon.repository" name="balandro repo">
+        <dir>
+            <info>https://raw.githubusercontent.com/balandro-tk/balandro/main/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/balandro-tk/balandro/main/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/balandro-tk/balandro/main/</datadir>
+        </dir>
     </extension>
+
     <extension point="xbmc.addon.metadata">
-        <summary>Repositorio camaradas.repo</summary>
-        <description></description>
-        <disclaimer></disclaimer>
-        <platform>all</platform>
+       <summary>Repositorio de Balandro</summary>
+       <assets>
+          <icon>icon.png</icon>
+       </assets>
+       <news>
+       [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.0[/COLOR][COLOR red]  Enero 2023[/B][/COLOR]
+
+       [COLOR goldenrod][B]Media Centers soportados[COLOR plum][I]  20.x,  19.x,  18.x  y  17.x[/I][/B][/COLOR]
+
+       [COLOR springgreen][B]Fuentes:[/COLOR]  [COLOR cyan]balandro-tk.github.io/balandro/[/B][/COLOR]
+       </news>
+       <description>[COLOR yellow][B]Balandro es desde el año [COLOR cyan]2018[COLOR yellow] MOD derivado de Pelisalacarta y Alfa,[COLOR mediumaquamarine] y Tiene Como Objeto, Permitir Visualizar Películas, Series y Documentales, Todo a Través de Internet y Directamente Desde su Sistema Media Center. [COLOR orchid]Este Add-On es Tan Solo un Mero Ejercicio de Aprendizaje Del Lenguaje de Programación Python y se Distribuye Sin Ningún Contenido Multimedia Adjunto al Mismo [COLOR lightgrey][I]En Consecuencia Solo Las Webs Son Plenamente Responsables de Los Contenidos Que Publiquen.[/I][/B][/COLOR]</description>
+       <disclaimer>[COLOR tan][B]Está Prohibida su Distribución, Solo o Junto Con Contenidos Multimedia Protegidos Por Los Derechos de Autor. [COLOR chocolate]Si Este Tipo de Contenido Está Prohibido en su País, Solamente Usted Será el Responsable de su Uso. [COLOR white]La Vulneración de Estas Prohibiciones Exonerarán de Cualquier Culpa a sus Autores, [COLOR red]Siendo el Único Responsable Quien lo Haya Distribuido o Utilizado Ilegalmente.[/B][/COLOR]</disclaimer>
+       <platform>all</platform>
+       <license>GNU GPL v3</license>
+       <source>https://balandro-tk.github.io/balandro/</source>
+       <forum>https://www.mimediacenter.info/foro/</forum>
     </extension>
+
+    <extension point="xbmc.service" library="service.py" start="login|startup" />
 </addon>
 
-<addon id="repository.github" name="GitHub Add-on repository" provider-name="i96751414" version="0.0.6">
-    <requires>
-        <!--<import addon="xbmc.python" version="3.0.0"/>-->
-    </requires>
-    <extension point="xbmc.addon.repository">
-        <info>http://127.0.0.1:61234/addons.xml</info>
-        <checksum>http://127.0.0.1:61234/addons.xml.md5</checksum>
-        <datadir>http://127.0.0.1:61234/</datadir>
+<addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.3" provider-name="jurialmunkey">
+    <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
+        <dir>
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/</datadir>
+        </dir>
+		<dir minversion="18.0" maxversion="18.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/leia/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/leia/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/leia/zips/</datadir>
+        </dir>
+        <dir minversion="18.9.0" maxversion="19.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/matrix/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/matrix/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/matrix/zips/</datadir>
+        </dir>
+        <dir minversion="19.9.1">
+            <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/nexusrepo/zips/</datadir>
+        </dir>
     </extension>
-    <extension point="xbmc.python.script" library="default.py"/>
-    <extension point="xbmc.service" library="service.py"/>
     <extension point="xbmc.addon.metadata">
+        <summary>jurialmunkey Alpha Repository</summary>
+        <description>A repository for alpha releases of jurialmunkey's skins.</description>
+        <disclaimer></disclaimer>
         <platform>all</platform>
-        <license>See https://github.com/i96751414/repository.github/blob/master/LICENSE</license>
-        <source>https://github.com/i96751414/repository.github</source>
-        <summary lang="en">GitHub virtual Add-on repository for TORREST and others</summary>
-        <description lang="en">Customizable repository which acts as a proxy for defined GitHub users' add-ons updates, like TORREST.</description>
-        <summary lang="es">Repositorio GitHub virtual para el Add-on TORREST y otros</summary>
-        <description lang="es">Repositorio configurable que actúa como un proxy para add-ons disponibles en GitHub, como TORREST.</description>
-        <news>
-            - Add support to Kodi 19
-        </news>
         <assets>
             <icon>icon.png</icon>
         </assets>
     </extension>
 </addon>
 
+<addon id="repository.marcelveldt" version="1.0.3" name="Marcelveldt's BETA repository" provider-name="marcelveldt, finkleandeinhorn">
+	<requires>
+		<import addon="xbmc.addon" version="12.0.0"/>
+	</requires>
+	<extension point="xbmc.addon.repository" name="Marcelveldt's BETA repository">
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/repository/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/repository/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/repository/</datadir>
+		</dir>
+		<dir minversion="18.9.700">
+			<info compressed="false">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/matrix/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/matrix/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/matrix/</datadir>
+		</dir>
+		<dir maxversion="18.9.0">
+			<info compressed="false">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/olderversions/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/olderversions/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/kodi-community-addons/repository.marcelveldt/master/olderversions/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Kodi repository for beta/test versions of Marcelveldt's addons</summary>
+		<description lang="en">Kodi repository for beta/test versions of Marcelveldt's addons, for stable versions please just use the official Kodi repository. This repo is for test/beta versions of my work only</description>
+		<platform>all</platform>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+		</assets>
+	</extension>
+</addon>
+
 <addon id="script.kelebek"
        name="KELEBEK"
-       version="3.5"
+       version="3.6"
        provider-name="Iron Butterfly">
   <requires>
     <import addon="script.module.pyxbmct" version="1.1.4" />
@@ -696,7 +290,7 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary>KELEBEK V3.5</summary>
+    <summary>KELEBEK V3.6</summary>
     <description>Scan Sources searching changes and addons</description>
     <language></language>
     <license></license>
@@ -711,7 +305,7 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
 </addon>
 
 <addon id="script.luar"
-  version="0.8.1"
+  version="0.9.5"
   name="Luar"
   provider-name="The Dreamers">
   <requires>
@@ -723,16 +317,11 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>executable</provides>
   </extension>
-  <extension point="xbmc.addon.repository" name="Luar Repo">
-    <info>https://raw.githubusercontent.com/Masterwine/Luar/master/repor/addons.xml</info>
-    <checksum>https://raw.githubusercontent.com/Masterwine/Luar/master/repor/addons.xml.md5</checksum>
-    <datadir zip="true">https://raw.githubusercontent.com/Masterwine/Luar/master/repor/</datadir>
-  </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary lang="es">Script instalador de complementos para Kodi.</summary>
     <description lang="es">Selecciona, instala y disfruta.</description>
-    <disclaimer lang="es"></disclaimer>
+    <disclaimer>Este es un software [COLOR red][B]gratuito[/B][/COLOR][CR]No obstante, [COLOR red][B]no se permite[/B][/COLOR] su distribuición preinstalada en ningún tipo de dispositivo ni tampoco su inclusión total o parcial en cualquier paquete de software y/o hardware por el que el usuario final deba [COLOR red][B]pagar o hacer una donación[/B][/COLOR], por su adquisición, uso o asistencia.[CR]Si cree que alguna de estas normas no se está cumpliendo póngase en contacto con nosotros.</disclaimer>
     <assets>
       <icon>icon.gif</icon>
       <fanart>fanart.jpg</fanart>
@@ -772,6 +361,35 @@ Testers: Luisma, Toni, Zarat, SuperTopo, Jorge, Bojbit, MiKeL, Chikiry, Pau, Ale
         </news>
         <forum>https://t.me/KodiManiac
         https://t.me/acestream_spanish</forum>
+    </extension>
+</addon>
+
+<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.87" provider-name="gujal">
+    <requires>
+        <!-- <import addon="xbmc.python" version="3.0.0" /> -->
+        <import addon="script.module.six" />
+        <import addon="script.module.kodi-six" />
+        <import addon="plugin.video.youtube" optional="true" />
+        <import addon="script.module.python.twitch" optional="true" />
+        <import addon="plugin.googledrive" optional="true" />
+    </requires>
+    <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.python.pluginsource" library="lib/default.py" />
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en_GB">Resolve common video host URL's to be playable in XBMC/Kodi.</summary>
+        <summary lang="es_ES">Resolver enlaces a videos de sitios populares para poder reproducirlos en XBMC/Kodi.</summary>
+        <summary lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju.</summary>
+        <summary lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi.</summary>
+        <description lang="en_GB">Resolve common video host URL's to be playable in XBMC/Kodi, simplify addon development of video plugins requiring multi video hosts.</description>
+        <description lang="el_GR">Επίλυση συνδέσμων κοινών εξυπηρετητών σε μορφή βίντεο ικανό για αναπαραγωγή στο XBMC/Kodi, απλοποίηση της ανάπτυξης των προσθέτων που χρησιμοποιούν πολλαπλούς εξυπηρετητές για υλικό βίντεο</description>
+        <description lang="hr_HR">Prilagodi najčešće URL-ove video izvora kako bi radili u XBMC/Kodiju, pojednostavnjuje razvoj priključaka za video dodatke koji zahtjevaju višestruke video izvore.</description>
+        <disclaimer lang="en_GB">This script only resolves video content from legitimate file lockers without prejudice. If this script is being used by 3rd parties to resolve content that you feel infringes upon your Intellectual Property then please take your complaints to the actual website or developer linking to such content and not here. This script in no way searches for any content whatsoever.</disclaimer>
+        <disclaimer lang="el_GR">Το ανωτέρο σενάριο το μόνο που κάνει είναι να επιλύει οπτικοακουστικό περιεχόμενο από νόμιμες πηγές χωρίς προκατάληψη. Εάν το ανωτέρο σενάριο χρησιμοποιηθεί από τρίτους ώστε να επιλύσει περιεχόμενο το οποίο σας προκαλεί αντίδραση ότι παραβιάζει την πνευματική σας ιδιοκτησία παρακαλώ μεταφέρετε τα παραπονά σας στον ιστότοπο τον οποίο βρίσκεται το εν λόγω περιεχόμενο η τον δημιουργό ο οποίος πραγματοποιεί την σύνδεση και όχι εδω. Το σενάριο αυτό ουδεμία περίπτωση πραγματοποιεί αναζήτηση περιεχομένου.</disclaimer>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
     </extension>
 </addon>
 
