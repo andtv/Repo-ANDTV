@@ -469,19 +469,19 @@ def clear_crash():
             for f in files:
                 os.remove(f)
             logging.log_notify('[COLOR {0}]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]{1} Crash Logs Eliminado[/COLOR]'.format(CONFIG.COLOR2, len(files)))
+                               '[COLOR {0}]{1} º            Crash Logs Eliminado[/COLOR]'.format(CONFIG.COLOR2, len(files)))
         else:
             logging.log_notify(CONFIG.ADDONTITLE,
-                               '[COLOR {0}]Eliminar Crash Logs Cancelado[/COLOR]'.format(CONFIG.COLOR2))
+                               '[COLOR {0}][COLOR gold]Eliminar Crash Logs Cancelado[/COLOR]'.format(CONFIG.COLOR2))
     else:
-        logging.log_notify('[COLOR {0}]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
-                           '[COLOR {0}]No se Encontraron Crash Logs[/COLOR]'.format(CONFIG.COLOR2))
+        logging.log_notify('[COLOR {0}] [COLOR white]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
+                           '[COLOR {0}][COLOR gold]No se Encontraron Crash Logs[/COLOR]'.format(CONFIG.COLOR2))
 
 
 def force_text():
     tools.clean_house(CONFIG.TEXTCACHE)
     logging.log_notify(CONFIG.ADDONTITLE,
-                       '[COLOR {0}]Archivos de Texto Descargados![/COLOR]'.format(CONFIG.COLOR2))
+                       '[COLOR {0}][COLOR gold]Archivos de Texto Descargados![/COLOR]'.format(CONFIG.COLOR2))
 
 
 def toggle_cache(state):
@@ -543,7 +543,7 @@ def clear_thumbs(type=None):
         for i in thumb_locations:
             tools.remove_folder(i)
         logging.log_notify(CONFIG.ADDONTITLE,
-            '[COLOR {0}]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
+            '[COLOR {0}][COLOR gold]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
     else:
         logging.log('Eliminar nombres en miniatura cancelados')
 
