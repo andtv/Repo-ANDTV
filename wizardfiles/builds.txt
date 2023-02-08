@@ -27,7 +27,7 @@ info="http://"
 description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI 19.X Matrix.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
 
 name="ANDTV Nexus"
-version=""
+version="1.0"
 url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/andtv.nexus.zip"
 minor="http://"
 gui="http://"
