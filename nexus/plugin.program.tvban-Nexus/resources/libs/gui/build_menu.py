@@ -49,7 +49,7 @@ class BuildMenu:
                 if float(kodi) == 20.0:
                     directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
                     directory.add_separator()
-                elif float(kodi) == 19.0:
+#                elif float(kodi) == 19.0:
                     directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
 #                    directory.add_separator()
                 else:
