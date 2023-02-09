@@ -14,7 +14,7 @@ description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]NEXUS[/B][/COLOR] pa
 
 name="GRACIAS POR INSTALAR ANDTV_TVBAN"
 version="1.0"
-url=""
+url="gracias"
 minor="http://"
 gui="http://"
 kodi="19"
