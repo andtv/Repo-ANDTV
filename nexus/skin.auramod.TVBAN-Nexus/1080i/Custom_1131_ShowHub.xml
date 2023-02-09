@@ -97,7 +97,16 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/WlWLdLl.png)</onfocus>
                         </control> 
 						
-						<control type="radiobutton" id="9007" description="Balandro">
+						<control type="radiobutton" id="9007" description="Tacones">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Tacones</label>
+							<selected>System.HasAddon(plugin.video.tacones)</selected>
+                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
+                        </control>
+						
+						<control type="radiobutton" id="9008" description="Balandro">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Balandro</label>
@@ -106,7 +115,7 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/lpckOAp.png)</onfocus>
                         </control>
 						
-						<control type="radiobutton" id="9008" description="Apex Sports">
+						<control type="radiobutton" id="9009" description="Apex Sports">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Apex Sports</label>
@@ -115,7 +124,7 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/p7hOgnd.png)</onfocus>
                         </control>
 						
-						<control type="radiobutton" id="9009" description="Sport HD">
+						<control type="radiobutton" id="9010" description="Sport HD">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Sport HD</label>
@@ -124,14 +133,14 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/0TjmyAX.png)</onfocus>
                         </control>
 					
-						<control type="radiobutton" id="9010" description="Red Bull TV">
+						<!--<control type="radiobutton" id="9010" description="Red Bull TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Red Bull TV</label>
 							<selected>System.HasAddon(plugin.video.redbull.tv)</selected>							
                             <onclick>InstallAddon(plugin.video.redbull.tv)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/bcDpZOc.png)</onfocus>
-                        </control>
+                        </control>-->
 						
 						<control type="radiobutton" id="9011" description="Samsung TV+">
                             <include>Dialog_Standard_ListButton</include>
@@ -141,16 +150,7 @@
                             <onclick>InstallAddon(slyguy.samsung.tv.plus)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
                         </control>
-		
-					 <!--<control type="radiobutton" id="9004" description="Instalar Tacones">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Tacones</label>
-							<selected>System.HasAddon(plugin.video.tacones)</selected>
-                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
-                        </control> oculto -->
-						
+								
 						<control type="radiobutton" id="9012" description="Pluto TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
