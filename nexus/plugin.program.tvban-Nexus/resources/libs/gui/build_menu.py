@@ -138,7 +138,7 @@ class BuildMenu:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW19 == 'false' else '[COLOR azure]-[/COLOR]'
                     directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR lime]MATRIX[/B][/COLOR]'.format(state, count19), {'mode': 'togglesetting', 'name': 'show19'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW19 == 'true':
-                        self._list_all(match, kodiv=19)-->
+                        self._list_all(match, kodiv=19)
         elif hidden > 0:
             if adultcount > 0:
                 directory.add_file('[COLOR azure]Actualmente Solo hay Builds para Adultos[COLOR]', icon=CONFIG.ICONBUILDS,
