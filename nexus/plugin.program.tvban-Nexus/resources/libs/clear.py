@@ -510,7 +510,7 @@ def total_clean():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, los Paquetes y las Miniaturas[/B] [/COLOR]?'.format(CONFIG.COLOR2),
+                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, los Paquetes y  Miniaturas[/B][/COLOR] ?'.format(CONFIG.COLOR2),
                         nolabel='[B][COLOR red]Cancelar Proceso[/COLOR][/B]',
                         yeslabel='[B][COLOR cyan]Eliminar Todo[/COLOR][/B]'):
         clear_archive()
