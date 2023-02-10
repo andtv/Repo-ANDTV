@@ -1,0 +1,6 @@
+﻿<settings>
+  <category label="Contacto">
+	 <setting type="lsep" label="konectas@gmail.com" />
+	 <setting id="debug" type="bool" label="Activar Modo Depuración" default="false" visible="false"/>
+  </category>
+</settings>
