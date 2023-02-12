@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="5.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="12.2.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -15,7 +15,7 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
 
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR lime]Nexus[/COLOR] tu Wizard para KODI 20.x !!</summary>
+		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20.x !!</summary>
 
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -26,7 +26,7 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
 		<news>
-• [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR lime][B]Nexus[/B][/COLOR]
+• [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR darkviolet][B]Nexus[/B][/COLOR]
 
 • 05/02/2023
 - Nuevo Instalador a la versión  5.2.23
@@ -413,30 +413,6 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         </assets>
 		<source>https://andtv.github.io/tvban</source>
     </extension>
-</addon>
-
-<addon id="repository.auramod.aio" name="Auramod Repo AIO" version="1.0" provider-name="SerpentDrago">
-	<extension point="xbmc.addon.repository" name="Auramod Repo AIO">
-		<dir minversion="18.0" maxversion="18.9.9">
-			<info compressed="false">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/leia/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/leia/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com//SerpentDrago/repository.auramod.aio/master/repo/leia/zips/</datadir>
-		</dir>
-		<dir minversion="19">
-			<info compressed="false">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/addons.xml</info>
-			<checksum>https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/addons.xml.md5</checksum>
-			<datadir zip="true">https://raw.githubusercontent.com/SerpentDrago/repository.auramod.aio/master/repo/matrix/zips/</datadir>
-		</dir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Auramod All In One Kodi Repo</summary>
-		<description>Auramod Repo Contianing SerpentDrago's versions of Auramod for both Kodi Leia and Matrix </description>
-		<platform>all</platform>
-        <assets>
-			<icon>icon.png</icon>
-			<fanart>fanart.jpg</fanart>
-		</assets>
-	</extension>
 </addon>
 
 <addon id="repository.autowidget" name="AutoWidget Repository" version="1.1" provider-name="drinfernoo">
