@@ -12,7 +12,7 @@ adult="no"
 info="http://"
 description="[COLOR azure][B]ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
 
-name="Gracias por elegir la Build TVBAN."
+name="𝓖𝓻𝓪𝓬𝓲𝓪𝓼 𝓹𝓸𝓻 𝓮𝓵𝓮𝓰𝓲𝓻 𝓮 𝓲𝓷𝓼𝓽𝓪𝓵𝓪𝓻 𝓵𝓪 𝓑𝓾𝓲𝓵𝓭 𝓣𝓥𝓑𝓐𝓝." 
 version="1.0"
 url=""
 minor="http://"
