@@ -24,5 +24,4 @@ fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 preview="http://"
 adult="no"
 info="http://"
-<<<<<<< HEAD
 description="[COLOR azure][B]ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] para [COLOR teal][B]KODI: 20 Matrix.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
