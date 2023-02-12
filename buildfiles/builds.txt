@@ -1,4 +1,4 @@
-name="ANDTV NEXUS"
+name="BUILD ANDTV NEXUS"
 version="1.0"
 url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/Build.andtvban.zip"
 minor="http://"
