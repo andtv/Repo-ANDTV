@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.Andtv-Tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR limegreen][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TVBAN[/B][/COLOR]" version="12.2.23" provider-name="andtv_tvban, JoseAnd">
+<addon id="repository.Andtv-Tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR violet][B]TVBAN[/B][/COLOR]" version="12.2.23" provider-name="andtv_tvban, JoseAnd">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR limegreen][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TVBAN[/B][/COLOR]">
         <dir minversion="18.0" maxversion="18.9.0">
             <info>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml</info>
