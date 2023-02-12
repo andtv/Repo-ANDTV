@@ -1,18 +1,18 @@
 1
 |||
 
-[COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN MATRIX!!![B][/COLOR]
+[COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN NEXUS !!![B][/COLOR]
 
 [COLOR aquamarine][B]INSTALACIÓN:[B][/COLOR]
 
 [COLOR deepskyblue]* Para realizar la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el plugin instalador (Wizard).
 
 En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
-Seleccionamos la Build que deseas instalar [COLOR yellowgreen][B]19.x[/B][/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
+Seleccionamos la Build que deseas instalar [COLOR yellowgreen][B]20.x[/B][/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
 Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
 Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
 
-[COLOR gold][B]20/06/2022 ¡¡¡ACTUALIZADOR PARCHE TVBAN MATRIX!!![/B][/COLOR]
+[COLOR gold][B]20/06/2022 ¡¡¡ACTUALIZADOR PARCHE TVBAN NEXUS!!![/B][/COLOR]
 
 [COLOR red][B]* AGREGADO TACONES EN EL BUSCADOR[/B][/COLOR]
 
@@ -27,4 +27,4 @@ Después de la instalacion del parche, una vez cargado KODI se tiene que ir a la
   
 [COLOR dodgerblue]https://t.me/beelinkking[/COLOR]
 
-[COLOR white][B]GRACIAS POR UTILIZAR [COLOR dodgerblue]TVBAN [COLOR lime]MATRIX![/B][/COLOR]
+[COLOR white][B]GRACIAS POR UTILIZAR [COLOR dodgerblue]TVBAN [COLOR lime]NEXUS![/B][/COLOR]
