@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="12.10" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+	<requires>
+    	<import addon="xbmc.python" version="3.0.0"/>
+    	<import addon="script.module.requests" />
+        <import addon="script.module.six" />
+        <import addon="script.kodi.android.update" optional="true" version="1.1.7" />
+	</requires>
+	
+	<extension point="xbmc.python.pluginsource" library="default.py">
+    	<provides>executable</provides>
+    </extension>
+  
+	<extension point="xbmc.service" library="startup.py" start="startup" />
+  
+	<extension point="xbmc.addon.metadata">
+		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR lime]Matrix[/COLOR] tu Wizard para KODI 19.x !!</summary>
+		
+    	<description lang="es">
+[COLOR lime][B]CREDITOS:[/COLOR][/B] 
+[COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
+		<platform>all</platform>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <source>https://andtv.github.io/tvban/</source>
+		<news>
+• [B]plugin.program[/B] [COLOR azure][B]tvban[/B][/COLOR]-[COLOR lime][B]Matrix[/B][/COLOR]
+
+• 12/10/2022
+- Corregido Herramienta de Addons.
+
+• 09/06/2022
+- Corregido Herramienta de Limpieza.
+
+• 25/05/2022
+- Corregido Copia de Seguridad.
+
+• 20/05/2022
+- Edición.
+
+• 20/04/2022
+- Edición.
+
+• 20/05/2022
+- Edición.
+
+• 17/04/2022
+- Arreglos.
+
+• 8/1/2022
+- Edición.
+
+• 16/12/2021
+- Cambios nuevos.
+
+• 26/09/2021
+- Tradución en Limpieza.
+
+• 26/08/2021
+- Finalizadas las pruebas con Build TVBAN MATRIX.
+
+• 10/07/2021
+- Instalador renombrado a la versión 1.0
+- Añadidas notificaciones para actualizar el parche de la Build.
+
+• 05/03/2021
+- Instalador actualizado a la versión 3.0.4
+- Inciada la compatibilidad con Kodi 19.0 Matrix</news>
+	<assets>
+	    <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+	</assets>
+    </extension>
+</addon>
