@@ -142,16 +142,16 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
                         </control>
 		
-					 <!--<control type="radiobutton" id="9004" description="Instalar Tacones">
+					 <control type="radiobutton" id="9012" description="Tacones">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Tacones</label>
 							<selected>System.HasAddon(plugin.video.tacones)</selected>
                             <onclick>InstallAddon(plugin.video.tacones)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
-                        </control> oculto -->
+                        </control> 
 						
-						<control type="radiobutton" id="9012" description="Pluto TV">
+						<control type="radiobutton" id="9013" description="Pluto TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Pluto TV</label>
@@ -159,8 +159,17 @@
                             <onclick>InstallAddon(slyguy.pluto.tv.provider)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/vy04p7L.png)</onfocus>
                         </control>
+						
+						<control type="radiobutton" id="9014" description="Documental">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>doqmental</label>
+							<selected>System.HasAddon(plugin.video.doqmental)</selected>							
+                            <onclick>InstallAddon(plugin.video.doqmental)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/L4l8HcL.png)</onfocus>
+                        </control>
 		
-                       <control type="radiobutton" id="9013" description="Continuar">
+                       <control type="radiobutton" id="9015" description="Continuar">
                             <include>Dialog_Standard_ListButton</include>
                             <label>Continuar</label>
                             <onclick condition="String.IsEmpty(Window(Home).Property(RunWizard))">ReloadSkin()</onclick>
@@ -168,7 +177,7 @@
                             <onclick condition="!String.IsEmpty(Window(Home).Property(RunWizard))">ReplaceWindow(1120)</onclick>
 							<onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/firstrun.jpg)</onfocus>
                         </control>
-                        <control type="button" id="9014" description="Finalizar">
+                        <control type="button" id="9016" description="Finalizar">
                             <include>Dialog_Standard_ListButton</include>
                             <label>Finalizar</label>
                             <onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/viewmodes/persmen.jpg)</onfocus>
