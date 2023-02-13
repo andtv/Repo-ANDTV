@@ -23,7 +23,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.autowidget" name="AutoWidget" version="3.4.2" provider-name="drinfernoo">
+<addon id="plugin.program.autowidget" name="AutoWidget" version="3.6.1" provider-name="drinfernoo">
     <requires>
         <import addon="script.module.pil" />
         <import addon="script.module.six" />
@@ -46,11 +46,11 @@
                 <visible>String.Contains(ListItem.FolderPath, plugin://plugin.program.autowidget)</visible>
             </item>
 			<item library="context_refresh_single.py">
-                <label>$ADDON[plugin.program.autowidget 30047]</label>
+                <label>$ADDON[plugin.program.autowidget 30046]</label>
                 <visible>!String.IsEmpty(ListItem.Property(autoID)) + [!String.IsEqual(ListItem.Property(autoAction),static) + !String.IsEqual(ListItem.Property(autoAction),merged)]</visible>
             </item>
 			<item library="clear_cache_single.py">
-                <label>$ADDON[plugin.program.autowidget 30117]</label>
+                <label>$ADDON[plugin.program.autowidget 30116]</label>
                 <visible>!String.IsEmpty(ListItem.Property(autoCache))</visible>
             </item>
         </menu>
@@ -67,6 +67,20 @@
         <website>https://www.github.com/drinfernoo/</website>
         <source>https://www.github.com/drinfernoo/plugin.program.autowidget/</source>
         <news>
+3.6.1
+ - Fix playing direct shortcuts for some items
+ - Fix cache clearing again
+3.6.0
+ - Convert all file and path handling to xbmcvfs
+ - Add more feedback and granular controls during backup/restore
+3.5.1
+ - Fix sorting bug with higher group counts
+3.5.0
+ - Allow bulk operations in some groups
+ - More informative dialogs
+ - Allow manually sorting groups in "My Groups"
+ - Fixes for direct shortcuts
+ - Update "version" attribute in metafiles when updating
 3.4.2
  - Some fixes for constant notification
 3.4.1
@@ -600,7 +614,7 @@
   </extension>
 </addon>
 
-<addon id="plugin.video.palantir2" name="[COLOR gold]Palantir 2[/COLOR]" version="2.2.4" provider-name="TierraMedia">
+<addon id="plugin.video.palantir2" name="[COLOR gold]Palantir 2[/COLOR]" version="2.3.3" provider-name="TierraMedia">
   <requires>
     <import addon="script.module.six" version="1.11.0"/>
     <import addon="plugin.video.duffyou" version="0.1.3" optional="true"/>
@@ -611,11 +625,6 @@
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.repository" name="Palantir Repo">
-        <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
-        <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
   </extension>
   <extension point="xbmc.addon.metadata">
     <description>Visualiza el contenido de la nube, series, películas.[CR][COLOR red]Todo el contenido disponible en este Addon esta sacado de servidores gratuitos, disponible en la red para todos los usuarios.[/COLOR]</description>
@@ -721,6 +730,21 @@
             <screenshot>resources/screenshots/screenshot-4.jpg</screenshot>
         </assets>
         <reuselanguageinvoker>true</reuselanguageinvoker>
+    </extension>
+</addon>
+
+<addon id="plugin.video.vavooto" name="VAVOO.TO" version="5.3" provider-name="michaz">
+    <requires>
+        <import addon="script.module.requests"/>
+        <import addon="inputstream.ffmpegdirect" optional="true" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="lib/main.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
     </extension>
 </addon>
 
@@ -938,7 +962,7 @@
 
 <addon id="script.kelebek"
        name="KELEBEK"
-       version="3.5"
+       version="3.6"
        provider-name="Iron Butterfly">
   <requires>
     <import addon="script.module.pyxbmct" version="1.1.4" />
@@ -950,7 +974,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary>KELEBEK V3.5</summary>
+    <summary>KELEBEK V3.6</summary>
     <description>Scan Sources searching changes and addons</description>
     <language></language>
     <license></license>
