@@ -142,14 +142,14 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
                         </control>
 		
-					 <!--<control type="radiobutton" id="9004" description="Instalar Tacones">
+					 <control type="radiobutton" id="9004" description="Tacones">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Tacones</label>
 							<selected>System.HasAddon(plugin.video.tacones)</selected>
                             <onclick>InstallAddon(plugin.video.tacones)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
-                        </control> oculto -->
+                        </control> 
 						
 						<control type="radiobutton" id="9012" description="Pluto TV">
                             <include>Dialog_Standard_ListButton</include>

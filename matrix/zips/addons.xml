@@ -464,6 +464,107 @@
     </extension>
 </addon>
 
+<addon id="plugin.video.alfa" name="Alfa" version="3.8.5" provider-name="Alfa Addon">
+	<requires>
+		<import addon="script.module.requests"></import>
+		<import addon="script.module.beautifulsoup4" version="4.5.3"></import>
+		<import addon="script.module.html5lib" version="0.999.0"></import>
+		<import addon="script.alfa-update-helper" optional="true"></import>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="ca">Navega amb Kodi per pàgines web.</summary>
+		<summary lang="en">Browse web pages using Kodi</summary>
+		<summary lang="es">Navega con Kodi por páginas web.</summary>
+		<summary lang="it">Sfoglia le pagine web con Kodi.</summary>
+		<summary lang="pt">Navegue por páginas da web com Kodi.</summary>
+		<description lang="ca">Navega amb Kodi per pàgines web per veure els vídeos de manera fàcil.</description>
+		<description lang="en">Browse web pages using Kodi to easily watch their video content.</description>
+		<description lang="es">Navega con Kodi por páginas web para ver sus videos de manera fácil.</description>
+		<description lang="it">Sfoglia le pagine web con Kodi per guardare facilmente i tuoi video.</description>
+		<description lang="pt">Navegue pelas páginas da web com Kodi para assistir seus vídeos facilmente.</description>
+		<disclaimer lang="ca">[COLOR red]Els propietaris i distribuïdors d'aquest complemento no proveeixen ni distribueixen cap contingut mostrat pel complemento ni tenen affiliación alguna amb els proveïdors de l'contingut.[/COLOR]</disclaimer>
+		<disclaimer lang="en">[COLOR red]The owners and submitters to this addon do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.[/COLOR]</disclaimer>
+		<disclaimer lang="es">[COLOR red]Los propietarios y distribuidores de este addon no proveen ni distribuyen ningún contenido mostrado por el addon ni tienen affiliación alguna con los proveedores del contenido.[/COLOR]</disclaimer>
+		<disclaimer lang="it">[COLOR red]I proprietari e i distributori di questo addon aggiuntivo non forniscono o distribuiscono alcun contenuto visualizzato dal addon aggiuntivo né hanno alcuna affiliazione con i fornitori di contenuti.[/COLOR]</disclaimer>
+		<disclaimer lang="pt">[COLOR red]Os proprietários e distribuidores deste addon não fornecem ou distribuem qualquer conteúdo exibido pelo addon nem têm qualquer afiliação com os provedores de conteúdo.[/COLOR]</disclaimer>
+		<platform>all</platform>
+		<license>GNU GPL v3</license>
+		<source>https://github.com/alfa-addon/addon</source>
+		<news>[B]Estos son los cambios para esta versión:[/B]
+
+      [COLOR green][B]Arreglos[/B][/COLOR]
+      ¤ Cuevana3                          ¤ Dilo                             ¤ Dontorrent
+      ¤ Hdfull                                ¤ Magnetpelis               ¤ Newpct1
+      ¤ Seriesmetro                     ¤ Sololatino                    ¤ Zonaleros
+      ¤ +18
+
+      [COLOR green][B]Novedades[/B][/COLOR]</news>
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.jpg</fanart>
+			<screenshot>resources/media/screenshots/1.jpg</screenshot>
+			<screenshot>resources/media/screenshots/2.jpg</screenshot>
+			<screenshot>resources/media/screenshots/3.jpg</screenshot>
+			<screenshot>resources/media/screenshots/4.jpg</screenshot>
+		</assets>
+	</extension>
+	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
+</addon>
+
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.1" provider-name="Balandro Team">
+  <requires>
+     <import addon="script.module.requests"/>
+  </requires>
+
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+    <summary>Balandro es un Navegador de páginas Webs</summary>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
+    <news>
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.1[/COLOR][COLOR red]  Febrero de 2023[/B][/COLOR]
+
+    [COLOR goldenrod][B]Media Centers Soportados[/COLOR][COLOR plum]  20.x,  19.x,  18.x  y  17.x[/B][/COLOR]
+
+    [COLOR springgreen][B]Fuente:[/COLOR]  [COLOR cyan]balandro-tk.github.io/balandro/[/B][/COLOR]
+
+    [COLOR limegreen][B]Contacto:[/B][/COLOR]
+        Foro  mimediacenter.info/foro/
+        Telegram  t.me/balandro_asesor
+
+    [COLOR blue][B]Agradecimientos:[/B][/COLOR]
+        Cita destacada a los miembros de Balandro Team
+        Mención especial al grupo de Balandro Checkers
+
+    [COLOR cyan][B]Canales:[/B][/COLOR]
+        Revisión Generalizada
+        Nuevos - Sin novedades
+        Anulados - Las webs cerradas
+
+    [COLOR springgreen][B]Servidores:[/B][/COLOR]
+        Revisión Generalizada
+        Nuevos - Sin novedades
+        Anulados - Las webs cerradas
+    </news>
+    <summary>Balandro es un navegador de páginas webs</summary>
+    <description>[COLOR yellow][B]Balandro es desde el año [COLOR cyan]2018[COLOR yellow] un MOD derivado de Pelisalacarta y Alfa,[COLOR mediumaquamarine] y tiene como objeto, permitir visualizar Películas, Series y Documentales, todo a través de Internet y directamente desde su sistema Media Center. [COLOR orchid]Este Add-On es tan solo un mero Ejercicio de Aprendizaje del Lenguaje de Programación Python y se distribuye sin Ningún Contenido Multimedia adjunto al mismo [COLOR lightgrey][I]En consecuencia solo las Webs son Plenamente Responsables de los contenidos que publiquen.[/I][/B][/COLOR]</description>
+    <disclaimer>[COLOR tan][B]Está Prohibida su distribución, solo ó junto con Contenidos Multimedia Protegidos por los Derechos de Autor. [COLOR chocolate]Si este tipo de contenido está Prohibido en su País, solamente Usted será el Responsable de su uso. [COLOR white]La vulneración de estas prohibiciones Exonerarán de cualquier Culpa a sus Autores, [COLOR red]Siendo el unico Responsable quien lo haya Distribuido ó Utilizado Ilegalmente.[/B][/COLOR]</disclaimer>
+    <platform>all</platform>
+    <license>GNU GPL v3</license>
+    <source>https://balandro-tk.github.io/balandro/</source>
+    <forum>https://www.mimediacenter.info/foro/</forum>
+  </extension>
+
+  <extension point="xbmc.service" library="services.py" start="login|startup"/>
+</addon>
+
 <addon id="plugin.video.cristalazul" name="[B][/B][COLOR aqua]CRISTAL AZUL 3.0.6[/COLOR]" version="3.0.6" provider-name="PICAPAU, LOURDES, SUPERTOPO, LUISMA, GEORGE">
     <requires>
         <import addon="script.module.simplecache"/>
@@ -1053,7 +1154,7 @@
     </extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Matrix" version="1.1.8" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Matrix" version="1.1.9" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
