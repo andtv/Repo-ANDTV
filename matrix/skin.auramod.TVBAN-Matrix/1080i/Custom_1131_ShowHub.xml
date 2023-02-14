@@ -106,52 +106,7 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/lpckOAp.png)</onfocus>
                         </control>
 						
-						<control type="radiobutton" id="9008" description="Apex Sports">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Apex Sports</label>
-							<selected>System.HasAddon(plugin.video.apex_sports)</selected>
-                            <onclick>InstallAddon(plugin.video.apex_sports)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/p7hOgnd.png)</onfocus>
-                        </control>
-						
-						<control type="radiobutton" id="9009" description="Sport HD">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Sport HD</label>
-							<selected>System.HasAddon(plugin.video.sporthdme)</selected>
-                            <onclick>InstallAddon(plugin.video.sporthdme)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/0TjmyAX.png)</onfocus>
-                        </control>
-					
-						<control type="radiobutton" id="9010" description="Red Bull TV">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Red Bull TV</label>
-							<selected>System.HasAddon(plugin.video.redbull.tv)</selected>							
-                            <onclick>InstallAddon(plugin.video.redbull.tv)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/bcDpZOc.png)</onfocus>
-                        </control>
-						
-						<control type="radiobutton" id="9011" description="Samsung TV+">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Samsung TV+</label>
-							<selected>System.HasAddon(slyguy.samsung.tv.plus)</selected>							
-                            <onclick>InstallAddon(slyguy.samsung.tv.plus)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
-                        </control>
-		
-					 <control type="radiobutton" id="9012" description="Tacones">
-                            <include>Dialog_Standard_ListButton</include>
-                            <radioposx>630</radioposx>
-                            <label>Tacones</label>
-							<selected>System.HasAddon(plugin.video.tacones)</selected>
-                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
-                        </control> 
-						
-						<control type="radiobutton" id="9013" description="Pluto TV">
+						<control type="radiobutton" id="9008" description="Pluto TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>Pluto TV</label>
@@ -160,7 +115,52 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/vy04p7L.png)</onfocus>
                         </control>
 						
-						<control type="radiobutton" id="9014" description="Documental">
+						<!--<control type="radiobutton" id="9008" description="Apex Sports">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Apex Sports</label>
+							<selected>System.HasAddon(plugin.video.apex_sports)</selected>
+                            <onclick>InstallAddon(plugin.video.apex_sports)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/p7hOgnd.png)</onfocus>
+                        </control> -->
+						
+						<!--<control type="radiobutton" id="9009" description="Sport HD">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Sport HD</label>
+							<selected>System.HasAddon(plugin.video.sporthdme)</selected>
+                            <onclick>InstallAddon(plugin.video.sporthdme)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/0TjmyAX.png)</onfocus>
+                        </control> -->
+					
+						<control type="radiobutton" id="9009" description="Red Bull TV">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Red Bull TV</label>
+							<selected>System.HasAddon(plugin.video.redbull.tv)</selected>							
+                            <onclick>InstallAddon(plugin.video.redbull.tv)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/bcDpZOc.png)</onfocus>
+                        </control>
+						
+						<control type="radiobutton" id="9010" description="Samsung TV+">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Samsung TV+</label>
+							<selected>System.HasAddon(slyguy.samsung.tv.plus)</selected>							
+                            <onclick>InstallAddon(slyguy.samsung.tv.plus)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
+                        </control>
+		
+					 <control type="radiobutton" id="9011" description="Tacones">
+                            <include>Dialog_Standard_ListButton</include>
+                            <radioposx>630</radioposx>
+                            <label>Tacones</label>
+							<selected>System.HasAddon(plugin.video.tacones)</selected>
+                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
+                        </control> 
+																	
+						<control type="radiobutton" id="9012" description="Documental">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
                             <label>doqmental</label>
@@ -169,7 +169,7 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/L4l8HcL.png)</onfocus>
                         </control>
 		
-                       <control type="radiobutton" id="9015" description="Continuar">
+                       <control type="radiobutton" id="9013" description="Continuar">
                             <include>Dialog_Standard_ListButton</include>
                             <label>Continuar</label>
                             <onclick condition="String.IsEmpty(Window(Home).Property(RunWizard))">ReloadSkin()</onclick>
@@ -177,7 +177,7 @@
                             <onclick condition="!String.IsEmpty(Window(Home).Property(RunWizard))">ReplaceWindow(1120)</onclick>
 							<onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/firstrun.jpg)</onfocus>
                         </control>
-                        <control type="button" id="9016" description="Finalizar">
+                        <control type="button" id="9014" description="Finalizar">
                             <include>Dialog_Standard_ListButton</include>
                             <label>Finalizar</label>
                             <onfocus>SetProperty(Image_Preview,special://skin/extras/backgrounds/viewmodes/persmen.jpg)</onfocus>
