@@ -376,8 +376,8 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
             self.new = kwargs['nuevo']
             self.icon = kwargs['icon']
             self.fanart = kwargs['fanart']
-            self.msgupdate = "[B]Actualización disponible para instalar la Build:[/B]\n[COLOR {0}]{1}[/COLOR]\n\nVersión Actual: v[COLOR {2}]{3}[/COLOR]\nUltima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
-            self.msgcurrent = "Ejecutando la última versión de la Build instalada:\n[COLOR {0}]{1}[/COLOR]\n\nVersión Actual: v[COLOR {2}]{3}[/COLOR]\nUltima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
+            self.msgupdate = "[B][COLOR white]Actualización disponible para instalar la Build:[/B]\n[COLOR {0}]{1}[/COLOR]\n\n[COLOR white]Versión Actual: v[COLOR {2}]{3}[/COLOR]\n[COLOR white]Ultima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
+            self.msgcurrent = "[COLOR white]Ejecutando la última versión de la Build instalada:\n[COLOR {0}]{1}[/COLOR]\n\n[COLOR white]Versión Actual: v[COLOR {2}]{3}[/COLOR]\n[COLOR white]Ultima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
 
         def onInit(self):
             self.imagefanart = 101
@@ -395,7 +395,7 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
             self.setProperty('dialog.imageicon', self.icon)
 
         def do_fresh_install(self):
-            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Version Actual: {1}] [Usuario Seleccionado: Instalación de la Nueva Build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
+            logging.log("[Revisa Actualizaciones] [[COLOR white]Versión Instalada:[/COLOR] {0}] [[COLOR white]Version Actual:[/COLOR]  {1}] [Usuario Seleccionado: Instalación de la Nueva Build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
             logging.log("[Revisa Actualizaciones] [Siguiente    Verificación: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
             url = 'plugin://{0}/?mode=install&name={1}&action=fresh'.format(CONFIG.ADDON_ID, quote_plus(CONFIG.BUILDNAME))
             xbmc.executebuiltin('RunPlugin({0})'.format(url))
@@ -430,10 +430,10 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
     # update.doModal()
     # del update
     msgcurrent = 'Ejecutando la última versión de la Build instalada: '
-    msgupdate = '[B]Actualización disponible para instalar la Build:[/B] '
+    msgupdate = '[B][COLOR white]Actualización disponible para instalar la Build:[/COLOR][/B] '
     build_name = '[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, name)
-    current_version = 'Versión Actual: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, current)
-    latest_version = 'Ultima Versión: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, new)
+    current_version = '[COLOR white]Versión Actual: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, current)
+    latest_version = '[COLOR white]Ultima Versión: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, new)
     
     final_msg = '{0}{1}\n{2}\n{3}\n'.format(msgcurrent if current >= new else msgupdate,
                                         build_name, current_version, latest_version)

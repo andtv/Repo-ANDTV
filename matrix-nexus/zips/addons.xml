@@ -402,7 +402,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="15.2" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Matrix" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]" version="16.2" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -429,11 +429,6 @@
         <source>https://andtv.github.io/tvban/</source>
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]tvban[/B][/COLOR]-[COLOR lime][B]Matrix[/B][/COLOR]
-
-• 11/02/2023
-- Corregido Limpieza de Miniaturas.
-- Color en Notificaciones.
-
 
 • 07/10/2022
 - Corregido Herramienta de Addons.
