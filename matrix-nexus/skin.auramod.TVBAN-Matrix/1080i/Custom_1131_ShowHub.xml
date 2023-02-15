@@ -106,14 +106,14 @@
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/lpckOAp.png)</onfocus>
                         </control>
 						
-						<control type="radiobutton" id="9008" description="Tacones">
+						<control type="radiobutton" id="9008" description="Pluto TV">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
-                            <label>Tacones</label>
-							<selected>System.HasAddon(plugin.video.tacones)</selected>
-                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
-                        </control> 
+                            <label>Pluto TV</label>
+							<selected>System.HasAddon(slyguy.pluto.tv.provider)</selected>							
+                            <onclick>InstallAddon(slyguy.pluto.tv.provider)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/vy04p7L.png)</onfocus>
+                        </control>
 						
 						<!--<control type="radiobutton" id="9008" description="Apex Sports">
                             <include>Dialog_Standard_ListButton</include>
@@ -150,16 +150,16 @@
                             <onclick>InstallAddon(slyguy.samsung.tv.plus)</onclick>	
 							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/uwEvfRF.png)</onfocus>
                         </control>
-								
-						<control type="radiobutton" id="9011" description="Pluto TV">
+		
+					   <!-- <control type="radiobutton" id="9011" description="Tacones">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>
-                            <label>Pluto TV</label>
-							<selected>System.HasAddon(slyguy.pluto.tv.provider)</selected>							
-                            <onclick>InstallAddon(slyguy.pluto.tv.provider)</onclick>	
-							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/vy04p7L.png)</onfocus>
-                        </control>
-						
+                            <label>Tacones</label>
+							<selected>System.HasAddon(plugin.video.tacones)</selected>
+                            <onclick>InstallAddon(plugin.video.tacones)</onclick>	
+							<onfocus>SetProperty(Image_Preview,https://i.imgur.com/aciSu1i.png)</onfocus>
+                           </control> -->
+	
 						<control type="radiobutton" id="9012" description="Documental">
                             <include>Dialog_Standard_ListButton</include>
                             <radioposx>630</radioposx>

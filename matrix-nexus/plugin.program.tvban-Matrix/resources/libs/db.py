@@ -98,7 +98,7 @@ def force_check_updates(auto=False, over=False):
     
     if not over:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           '[COLOR {0}][COLOR gold]Forzar la Comprobación de Actualizaciones[/COLOR]'.format(CONFIG.COLOR2))
+                           '[COLOR {0}]Forzar la Comprobación de Actualizaciones[/COLOR]'.format(CONFIG.COLOR2))
 
     dbfile = latest_db('Addons')
     dbfile = os.path.join(CONFIG.DATABASE, dbfile)
@@ -120,10 +120,10 @@ def force_check_updates(auto=False, over=False):
         checked_time = 0
         for repo in installed_repos.fetchall():
             repo = repo[0]
-            logging.log('[COLOR gold]Comprobación forzada[/COLOR] {0}...'.format(repo), level=xbmc.LOGDEBUG)
+            logging.log('Comprobación forzada {0}...'.format(repo), level=xbmc.LOGDEBUG)
             while checked_time < start_time:
                 if time.time() >= start_time + 20:
-                    logging.log('{0} [COLOR gold]se agotó el tiempo durante la verificación forzada del repo.[/COLOR]'.format(repo), level=xbmc.LOGDEBUG)
+                    logging.log('{0} se agotó el tiempo durante la verificación forzada del repo.'.format(repo), level=xbmc.LOGDEBUG)
                     break
                 
                 lastcheck = sqlexe.execute('SELECT lastcheck FROM repo WHERE addonID = ?', (repo,))
@@ -134,9 +134,9 @@ def force_check_updates(auto=False, over=False):
                     
                 xbmc.sleep(1000)
             checked_time = 0
-            logging.log('{0} [COLOR gold]comprobación forzada con éxito.[/COLOR]'.format(repo), level=xbmc.LOGDEBUG)
+            logging.log('{0} comprobación forzada con éxito.'.format(repo), level=xbmc.LOGDEBUG)
             logging.log_notify('[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, CONFIG.ADDONTITLE),
-                               "[COLOR {0}]{1} [COLOR gold]comprobación forzada con éxito.[/COLOR]".format(CONFIG.COLOR2, repo))
+                               "[COLOR {0}]{1} comprobación forzada con éxito.[/COLOR]".format(CONFIG.COLOR2, repo))
             
     sqlexe.close()
                     
@@ -151,12 +151,12 @@ def purge_db_file(name):
             textdb = database.connect(name)
             textexe = textdb.cursor()
         except Exception as e:
-            logging.log("[COLOR gold]DB Error de Conexión:[/COLOR] {0}".format(str(e)), level=xbmc.LOGERROR)
+            logging.log("DB Error de Conexión: {0}".format(str(e)), level=xbmc.LOGERROR)
             return False
     else:
-        logging.log('{0} [COLOR gold]no encontrado.[/COLOR] '.format(name), level=xbmc.LOGERROR)
+        logging.log('{0} no encontrado.'.format(name), level=xbmc.LOGERROR)
         return False
-    textexe.execute("SELECT name FROM sqlite_master WHERE type = 'table'")
+    textexe.execute("SELECCIONE el nombre de sqlite_master DONDE tipo = 'tabla'")
     for table in textexe.fetchall():
         if table[0] == 'version':
             logging.log('Datos de la tabla `{0}` omitido.'.format(table[0]))
@@ -170,7 +170,7 @@ def purge_db_file(name):
     textexe.close()
     logging.log('{0} Purga DB Completa.'.format(name))
     show = name.replace('\\', '/').split('/')
-    logging.log_notify("[COLOR {0}][COLOR gold]Purgar Database[/COLOR]".format(CONFIG.COLOR1),
+    logging.log_notify("[COLOR {0}]Purgar Database[/COLOR]".format(CONFIG.COLOR1),
                        "[COLOR {0}]{1} Completa[/COLOR]".format(CONFIG.COLOR2, show[len(show)-1]))
 
 
@@ -203,8 +203,8 @@ def purge_db():
                 display.append('({0}) {1}'.format(dir[len(dir)-2], dir[len(dir)-1]))
     choice = dialog.multiselect("[COLOR {0}]Seleccione el archivo DB para Purgar[/COLOR]".format(CONFIG.COLOR2), display)
     if choice is None or len(choice) == 0:
-        logging.log_notify("[COLOR {0}][COLOR gold]Purge Database[/COLOR]".format(CONFIG.COLOR1),
-                           "[COLOR {0}][COLOR gold]Cancelado[/COLOR]".format(CONFIG.COLOR2))
+        logging.log_notify("[COLOR {0}]Purge Database[/COLOR]".format(CONFIG.COLOR1),
+                           "[COLOR {0}]Cancelado[/COLOR]".format(CONFIG.COLOR2))
     else:
         for purge in choice:
             purge_db_file(DB[purge])
@@ -228,14 +228,14 @@ def kodi_17_fix():
                     addonid = fold
             except:
                 try:
-                    logging.log("{0} [COLOR gold]estaba deshabilitado[/COLOR]".format(aid[0]))
+                    logging.log("{0} estaba deshabilitado".format(aid[0]))
                     disabledAddons.append(addonid)
                 except:
-                    logging.log("[COLOR gold]No se puede habilitar:[/COLOR] {0}".format(folder), level=xbmc.LOGERROR)
+                    logging.log("No se puede habilitar: {0}".format(folder), level=xbmc.LOGERROR)
     if len(disabledAddons) > 0:
         addon_database(disabledAddons, 1, True)
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}][COLOR gold]Habilitación de Addons Completa![/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Habilitación de Addons Completa![/COLOR]".format(CONFIG.COLOR2))
     update.force_update()
     xbmc.executebuiltin("ReloadSkin()")
 
@@ -258,7 +258,7 @@ def toggle_addon(id, value, over=None):
             if len(tid) > 0:
                 addonid = tid
             if tservice == 'xbmc.service':
-                logging.log("[COLOR gold]Tenemos uno en vivo, deteniendo script:[/COLOR] {0}".format(tid))
+                logging.log("Tenemos uno en vivo, deteniendo script: {0}".format(tid))
                 xbmc.executebuiltin('StopScript({0})'.format(os.path.join(CONFIG.ADDONS, addonid)))
                 xbmc.executebuiltin('StopScript({0})'.format(addonid))
                 xbmc.executebuiltin('StopScript({0})'.format(os.path.join(CONFIG.ADDONS, addonid, tservice[0])))
