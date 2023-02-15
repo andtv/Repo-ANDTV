@@ -13,9 +13,9 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR lime][B]Matrix [COLOR darkviolet]Nexus[/B][/COLOR]'
+ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR lime][B]Nexus[/B][/COLOR]'
 BUILDERNAME = 'JoseAndTEBA & Andtv'
-EXCLUDES = [ADDON_ID, 'repository.Andtv-Tvban']
+EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
 # Text File with build info in it.
 BUILDFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/builds.txt'
 # How often you would like it to check for build updates in days
@@ -61,7 +61,8 @@ SPACER = '<->'
 
 # You can edit these however you want, just make sure that you have a %s in each of the
 # THEME's so it grabs the text from the menu item
-COLOR1 = 'limegreen'
+#COLOR1 = 'limegreen'
+COLOR1 = 'blueviolet'
 COLOR2 = 'white'
 COLOR3 = 'dodgerblue'
 COLOR4 = 'turquoise'
@@ -103,11 +104,11 @@ buildfiles = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfil
 # Enable Auto Install 'Yes' or 'No'
 AUTOINSTALL = 'Yes'
 # Addon ID for the repository
-REPOID = 'repository.Andtv-Tvban'
+REPOID = 'repository.Andtv-Nexus'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix-nexus/zips/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix-nexus/zips/repository.Andtv-Tvban/'
+REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/repository.Andtv-Nexus/'
 #########################################################
 
 #########################################################

@@ -47,10 +47,10 @@ class BuildMenu:
                     directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} (v{1})[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
                     directory.add_separator()
                 if float(kodi) == 20.0:
-                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} (v{1})[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
-                    directory.add_separator()
-                elif float(kodi) == 19.0:
-                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} (v{1})[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
+                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
+#                    directory.add_separator()
+#               elif float(kodi) == 19.0:
+#                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
 #                    directory.add_separator()
                 else:
                     directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen] {1} - v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
@@ -131,7 +131,7 @@ class BuildMenu:
                         self._list_all(match, kodiv=21)
                 if count20 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting', 'name': 'show20'}, themeit=CONFIG.THEME3)
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting', 'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
                 if count19 > 0:
@@ -211,7 +211,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2 )
+                directory.add_separator('[B]MOTOR PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2 )
 
                 response = tools.open_url(themefile)
                 theme = response.text
