@@ -1113,7 +1113,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 	</extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Nexus" version="1.1.9" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Nexus" version="1.1.11" name="AuraMod [COLOR FF7cfc00]TVBAN[/COLOR]" provider-name="Auramod,[COLOR FF7cfc00]andtv_tvban, JoseAnd[/COLOR]">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
