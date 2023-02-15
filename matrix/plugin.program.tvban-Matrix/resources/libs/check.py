@@ -175,12 +175,12 @@ def check_build_update():
         CONFIG.set_setting('latestversion', version)
         if version > CONFIG.BUILDVERSION:
             if CONFIG.DISABLEUPDATE == 'false':
-                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] Abrir Ventana de Actualización".format(CONFIG.BUILDVERSION, version))
+                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR] {1}] Abrir Ventana de Actualización".format(CONFIG.BUILDVERSION, version))
                 window.show_update_window(CONFIG.BUILDNAME, CONFIG.BUILDVERSION, version, icon, fanart)
             else:
-                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] Ventana de Actualización Deshabilitada".format(CONFIG.BUILDVERSION, version))
+                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR] Ventana de Actualización Deshabilitada".format(CONFIG.BUILDVERSION, version))
         else:
-            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}]".format(CONFIG.BUILDVERSION, version))
+            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR]".format(CONFIG.BUILDVERSION, version))
     else:
         logging.log("[Revisa Actualizaciones] ERROR: No se puede encontrar la versión de la Build en el archivo de texto", level=xbmc.LOGERROR)
 
@@ -384,12 +384,14 @@ def build_count():
     response = tools.open_url(CONFIG.BUILDFILE)
 
     total = 0
+    count21 = 0
+    count20 = 0
     count19 = 0
     hidden = 0
     adultcount = 0
 
     if not response:
-        return total, count19, adultcount, hidden
+        return total, count21, count20, count19, adultcount, hidden
 
     link = response.text.replace('\n', '').replace('\r', '').replace('\t', '')
     match = re.compile('name="(.+?)".+?odi="(.+?)".+?dult="(.+?)"').findall(link)
@@ -405,8 +407,12 @@ def build_count():
                 continue
             kodi = int(float(kodi))
             total += 1
+            if kodi == 21:
+                count21 += 1
+            if kodi == 20:
+                count20 += 1
             if kodi == 19:
                 count19 += 1
-    return total, count19, adultcount, hidden
+    return total, count21, count20, count19, adultcount, hidden
 
 
