@@ -162,8 +162,9 @@ class BuildMenu:
             themecheck = tools.open_url(themefile, check=True)
             
             if updatecheck:
-                build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
-                
+                #build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '{0} [COLOR red][ACTUAL - v1][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+				
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
             directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)

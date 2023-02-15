@@ -14,7 +14,7 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
   
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR lime]Matrix[/COLOR] tu Wizard para KODI 19 !!</summary>
+		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR lime]Matrix[/COLOR] tu Wizard para KODI 19.x !!</summary>
 		
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
@@ -27,12 +27,7 @@
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]tvban[/B][/COLOR]-[COLOR lime][B]Matrix[/B][/COLOR]
 
-• 11/02/2023
-- Corregido Limpieza de Miniaturas.
-- Color en Notificaciones.
-
-
-• 12/10/2022
+• 07/10/2022
 - Corregido Herramienta de Addons.
 
 • 09/06/2022

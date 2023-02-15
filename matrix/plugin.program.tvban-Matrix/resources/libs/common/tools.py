@@ -397,12 +397,12 @@ def platform():
 
 
 def kodi_version():
-    if 19.0 <= CONFIG.KODIV <= 19.9:
+    if 17.0 <= CONFIG.KODIV <= 17.9:
+        vername = 'Krypton'
+    elif 18.0 <= CONFIG.KODIV <= 18.9:
+        vername = 'Leia'
+    elif 19.0 <= CONFIG.KODIV <= 19.9:
         vername = 'Matrix'
-    if 20.0 <= CONFIG.KODIV <= 20.9:
-        vername = 'Nexus'
-    if 21.0 <= CONFIG.KODIV <= 21.9:
-        vername = 'Omega'
     else:
         vername = "Unknown"
     return vername
