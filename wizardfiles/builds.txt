@@ -13,7 +13,7 @@
 #description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 19 Matrix.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
 
 name="ANDTV_O Matrix"
-version="1.2"
+version="1.3"
 url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/andtvO.tvban.zip"
 minor="http://"
 gui="http://"
