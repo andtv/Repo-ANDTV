@@ -163,7 +163,7 @@ class BuildMenu:
             
             if updatecheck:
                 #build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
-                build = '{0} [COLOR red][ACTUAL - v1][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '{0} [COLOR red][ACTUAL - v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
 				
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
@@ -192,7 +192,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]MOTOR PARCHES BUILD ANDTV[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2 )
+                directory.add_separator('[B]MOTOR PARCHES BUILD[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2 )
 
                 response = tools.open_url(themefile)
                 theme = response.text
