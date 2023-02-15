@@ -175,12 +175,12 @@ def check_build_update():
         CONFIG.set_setting('latestversion', version)
         if version > CONFIG.BUILDVERSION:
             if CONFIG.DISABLEUPDATE == 'false':
-                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR] {1}] Abrir Ventana de Actualización".format(CONFIG.BUILDVERSION, version))
+                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] Abrir Ventana de Actualización".format(CONFIG.BUILDVERSION, version))
                 window.show_update_window(CONFIG.BUILDNAME, CONFIG.BUILDVERSION, version, icon, fanart)
             else:
-                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR] Ventana de Actualización Deshabilitada".format(CONFIG.BUILDVERSION, version))
+                logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] Ventana de Actualización Deshabilitada".format(CONFIG.BUILDVERSION, version))
         else:
-            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [COLOR red][Versión Actual:[/COLOR]".format(CONFIG.BUILDVERSION, version))
+            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}]".format(CONFIG.BUILDVERSION, version))
     else:
         logging.log("[Revisa Actualizaciones] ERROR: No se puede encontrar la versión de la Build en el archivo de texto", level=xbmc.LOGERROR)
 
