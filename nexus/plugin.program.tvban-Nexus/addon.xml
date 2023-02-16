@@ -14,7 +14,7 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
   
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20.x !!</summary>
+		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20</summary>
 		
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
