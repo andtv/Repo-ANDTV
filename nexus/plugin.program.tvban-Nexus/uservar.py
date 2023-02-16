@@ -62,7 +62,8 @@ SPACER = '<->'
 # You can edit these however you want, just make sure that you have a %s in each of the
 # THEME's so it grabs the text from the menu item
 #COLOR1 = 'limegreen'
-COLOR1 = 'blueviolet'
+#COLOR1 = 'blueviolet'
+COLOR1 = 'orchid'
 COLOR2 = 'white'
 COLOR3 = 'dodgerblue'
 COLOR4 = 'turquoise'
