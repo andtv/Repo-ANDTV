@@ -771,7 +771,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="repository.andtv-tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]" version="15.2.23" provider-name="andtv_tvban, JoseAnd">
+<addon id="repository.andtv-tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]" version="18.2.23" provider-name="andtv_tvban, JoseAnd">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]">
         <dir minversion="19.0" maxversion="19.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml</info>
