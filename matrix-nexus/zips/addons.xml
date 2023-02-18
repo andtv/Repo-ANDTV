@@ -1048,21 +1048,26 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 
 <addon id="repository.andtv-tvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]" version="15.2.23" provider-name="andtv_tvban, JoseAnd">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]TV[COLOR limegreen]BAN[/B][/COLOR]">
-        <dir minversion="18.0" maxversion="18.9.0">
-            <info>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/</datadir>
+        <dir minversion="19.0" maxversion="19.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/</datadir>
         </dir>
-        <dir minversion="18.9.0">
-            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix-nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/matrix-nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix-nexus/zips/</datadir>
+		<dir minversion="19.9.0" maxversion="20.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips</datadir>
         </dir>
-        <dir minversion="18.9.0">
+        <dir minversion="20.9.1"> <!--maxversion="21.9.0">-->
             <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
             <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
         </dir>
+		<!--<dir minversion="21.9.1">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/</datadir>
+        </dir>-->
     </extension>
 
     <extension point="xbmc.addon.metadata">
