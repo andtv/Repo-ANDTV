@@ -1054,9 +1054,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/matrix/zips/</datadir>
         </dir>
 		<dir minversion="19.9.0" maxversion="20.9.0">
-            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips</datadir>
         </dir>
         <dir minversion="20.9.1"> <!--maxversion="21.9.0">-->
             <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
