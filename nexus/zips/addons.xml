@@ -771,7 +771,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]NEXUS[/B][/COLOR]" version="19.2.23" provider-name="andtv_tvban, JoseAnd">
+<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]NEXUS[/B][/COLOR]" version="20.2.23" provider-name="andtv_tvban, JoseAnd">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet][B]NEXUS[/B][/COLOR]">
 		<dir minversion="20.0" maxversion="20.9.0">
             <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
@@ -915,6 +915,25 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
 		</assets>
+	</extension>
+</addon>
+
+<addon id="repository.palantir2" name="[COLOR gold]Repositorio Palantir 2[/COLOR]" version="2.0.2" provider-name="TierraMedia">
+    <extension point="xbmc.addon.repository" name="Palantir 2 official Repo">
+    	<dir minversion="18.9.0">
+    	    <info compressed="false">https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
+		    <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
+		    <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
+	    </dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+   		<description lang="en">[COLOR gold]Instala Palantir 2[/COLOR]</description>
+		<platform>all</platform>
+		<assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.gif</fanart>
+        </assets>
 	</extension>
 </addon>
 
