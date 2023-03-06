@@ -5,7 +5,7 @@ fanart="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 adult="no"
 description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 19 Matrix.[/B][/COLOR]"
 
-name="[B][COLOR white]ELIGE EL TUYO/COLOR][/B]"
+name="<<<<<>>>>>>>"
 url="https://"
 icon="https://"
 fanart="https://"
