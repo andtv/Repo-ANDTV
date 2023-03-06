@@ -6,6 +6,11 @@ adult="no"
 description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 19 Matrix.[/B][/COLOR]"
 
 name="[B][COLOR white]ELIGE EL TUYO/COLOR][/B]"
+url="https://"
+icon="https://"
+fanart="https://"
+adult="no"
+description="https://"
 
 name="[B][COLOR orange]MOTOR: [COLOR white]Elementum-[COLOR dodgerblue]Android_arm_32[/COLOR][/B]"
 url="https://github.com/andtv/andtv.github.io/releases/download/20.5/Elementum_Android_v0.187.zip"
