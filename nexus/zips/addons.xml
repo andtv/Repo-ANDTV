@@ -1279,7 +1279,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.87" provider-name="gujal">
+<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.95~nightly2" provider-name="gujal">
     <requires>
         <!-- <import addon="xbmc.python" version="3.0.0" /> -->
         <import addon="script.module.six" />
@@ -1287,6 +1287,8 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <import addon="plugin.video.youtube" optional="true" />
         <import addon="script.module.python.twitch" optional="true" />
         <import addon="plugin.googledrive" optional="true" />
+        <!-- for remote debug -->
+        <import addon="script.module.pydevd" optional="true"/>
     </requires>
     <extension point="xbmc.python.module" library="lib" />
     <extension point="xbmc.python.pluginsource" library="lib/default.py" />

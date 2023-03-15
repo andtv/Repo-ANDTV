@@ -1,6 +1,6 @@
 """
     Plugin for ResolveURL
-    Copyright (C) 2021 shellc0de
+    Copyright (C) 2023 shellc0de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,28 +22,26 @@ from resolveurl.lib import helpers
 from resolveurl.resolver import ResolveUrl, ResolverError
 
 
-class UploadFlixResolver(ResolveUrl):
-    name = 'UploadFlix'
-    domains = ['uploadflix.org', 'uploadflix.com']
-    pattern = r'(?://|\.)(uploadflix\.(?:org|com))/([0-9a-zA-Z]+)'
+class DesiuploadResolver(ResolveUrl):
+    name = 'Desiupload'
+    domains = ['desiupload.co', 'desiupload.to']
+    pattern = r'(?://|\.)(desiupload\.[ct]o)/([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'User-Agent': common.RAND_UA}
-        r = self.net.http_GET(web_url, headers=headers)
-        html = r.content
-        if '>No such file<' in html or '>File Not Found<' in html:
-            raise ResolverError('No such file available')
-        url = r.get_url()
+        rurl = 'https://{}/'.format(host)
+        headers = {
+            'Origin': rurl[:-1],
+            'Referer': rurl,
+            'User-Agent': common.RAND_UA
+        }
         payload = {
             'op': 'download2',
             'id': media_id,
-            'rand': '',
-            'referer': url
+            'referer': rurl
         }
-        headers.update({'Origin': web_url.rsplit('/', 1)[0], 'Referer': url})
-        html = self.net.http_POST(url, form_data=payload, headers=headers).content
-        source = re.search(r'href="([^"]+)"\s*class="downloadbtn', html)
+        html = self.net.http_POST(web_url, form_data=payload, headers=headers).content
+        source = re.search(r'direct_link".+?href="([^"]+)', html)
         if source:
             headers['verifypeer'] = 'false'
             return source.group(1).replace(' ', '%20') + helpers.append_headers(headers)
@@ -51,4 +49,4 @@ class UploadFlixResolver(ResolveUrl):
         raise ResolverError('File Not Found or Removed')
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/{media_id}')
+        return self._default_get_url(host, media_id, template='https://desiupload.co/{media_id}')

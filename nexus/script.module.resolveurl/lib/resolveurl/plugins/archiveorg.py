@@ -1,6 +1,6 @@
 """
     Plugin for ResolveURL
-    Copyright (C) 2020 gujal
+    Copyright (c) 2023 gujal
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,26 +16,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import re
 from resolveurl import common
-from resolveurl.resolver import ResolveUrl, ResolverError
 from resolveurl.lib import helpers
+from resolveurl.resolver import ResolveUrl, ResolverError
 
 
-class PKSpeedResolver(ResolveUrl):
-    name = 'PKSpeed'
-    domains = ['pkspeed.net', 'pkembed.com']
-    pattern = r'(?://|\.)(pk(?:speed|embed)\.(?:net|com))/(?:embed-)?([A-Za-z0-9]+)'
+class ArchiveResolver(ResolveUrl):
+    name = 'Archive'
+    domains = ['archive.org']
+    pattern = r'(?://|\.)(archive\.org)/embed/([0-9a-zA-Z-_\.]+)'
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'Cookie': 'ref_url=http%3A%2F%2Fwww.movieswatch.com.pk%2F',
-                   'User-Agent': common.RAND_UA}
+        headers = {'User-Agent': common.FF_USER_AGENT}
         html = self.net.http_GET(web_url, headers=headers).content
-        sources = helpers.scrape_sources(html)
+        sources = re.findall(r'"file":"(?P<url>[^"]+)[^}]+?label":"(?P<label>[\d]+p?)', html)
         if sources:
-            headers.pop('Cookie')
-            return helpers.pick_source(sources) + helpers.append_headers(headers)
-        raise ResolverError('File not found')
+            sources = [(x[1], x[0]) for x in sources]
+            surl = 'https://' + host + helpers.pick_source(helpers.sort_sources_list(sources)).replace('/download/', '/serve/').replace(' ', '%20')
+            return surl + helpers.append_headers(headers)
+        raise ResolverError('Video Link Not Found')
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/embed-{media_id}.html')
+        return self._default_get_url(host, media_id, template='https://{host}/embed/{media_id}')

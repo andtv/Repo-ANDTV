@@ -1,6 +1,6 @@
 """
     Plugin for ResolveURL
-    Copyright (C) 2021 shellc0de
+    Copyright (C) 2023 shellc0de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -22,33 +22,33 @@ from resolveurl.lib import helpers
 from resolveurl.resolver import ResolveUrl, ResolverError
 
 
-class UploadFlixResolver(ResolveUrl):
-    name = 'UploadFlix'
-    domains = ['uploadflix.org', 'uploadflix.com']
-    pattern = r'(?://|\.)(uploadflix\.(?:org|com))/([0-9a-zA-Z]+)'
+class Streama2zResolver(ResolveUrl):
+    name = 'Streama2z'
+    domains = ['streama2z.com', 'streama2z.xyz']
+    pattern = r'(?://|\.)(streama2z\.(?:com|xyz))/(?:embed-)?([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'User-Agent': common.RAND_UA}
-        r = self.net.http_GET(web_url, headers=headers)
-        html = r.content
-        if '>No such file<' in html or '>File Not Found<' in html:
-            raise ResolverError('No such file available')
-        url = r.get_url()
-        payload = {
-            'op': 'download2',
-            'id': media_id,
-            'rand': '',
-            'referer': url
+        rurl = 'https://streama2z.xyz/'
+        headers = {
+            'Origin': rurl[:-1],
+            'Referer': rurl,
+            'User-Agent': common.RAND_UA
         }
-        headers.update({'Origin': web_url.rsplit('/', 1)[0], 'Referer': url})
-        html = self.net.http_POST(url, form_data=payload, headers=headers).content
-        source = re.search(r'href="([^"]+)"\s*class="downloadbtn', html)
+        payload = {
+            'op': 'embed',
+            'streama2z': '1',
+            'id': media_id,
+            'file_code': media_id,
+            'referer': rurl
+        }
+        html = self.net.http_POST(web_url, form_data=payload, headers=headers).content
+        html += helpers.get_packed_data(html)
+        source = re.search(r'''sources:\s*\[{\s*src:\s*["']([^"']+)''', html)
         if source:
-            headers['verifypeer'] = 'false'
-            return source.group(1).replace(' ', '%20') + helpers.append_headers(headers)
+            return source.group(1) + helpers.append_headers(headers)
 
         raise ResolverError('File Not Found or Removed')
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/{media_id}')
+        return self._default_get_url(host, media_id, template='https://streama2z.com/embed-{media_id}.html')
