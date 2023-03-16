@@ -27,13 +27,15 @@
         <source>https://andtv.github.io/tvban/</source>
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR lime][B]tvban[/B][/COLOR]
+• Para Kodi 19.0 Matrix - Kodi 20.0 Nexus
 
 • 05/02/2023
+- Inciada la compatibilidad con Kodi 20.0 Nexus
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
 + Limpieza de Miniaturas.
 + Color en Notificaciones.
-- Inciada la compatibilidad con Kodi 20.0 Nexus</news>
+</news>
 	<assets>
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
@@ -492,7 +494,7 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
 
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20.x !!</summary>
+		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20</summary>
 
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
@@ -645,7 +647,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.duffyou" name="Duff You" version="0.1.3" provider-name="La Taberna">
+<addon id="plugin.video.duffyou" name="Duff You" version="0.2.1" provider-name="La Taberna">
     <requires>
         <import addon="script.module.six" version="1.11.0" />
         <import addon="script.module.simplecache" />
@@ -1203,17 +1205,17 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 	</extension>
 </addon>
 
-<addon id="repository.slyguy" name="SlyGuy Repository" provider-name="SlyGuy" version="0.0.3">
-  <extension point="xbmc.addon.repository" name="SlyGuy Repository">
+<addon id="repository.slyguy" name="SlyGuy Repository (slyguy.uk)" provider-name="SlyGuy" version="0.0.4">
+  <extension point="xbmc.addon.repository" name="SlyGuy Repository (slyguy.uk)">
     <dir>
-      <info compressed="false">https://k.slyguy.xyz/.repo/addons.xml</info>
-      <checksum>https://k.slyguy.xyz/.repo/addons.xml.md5</checksum>
-      <datadir zip="true">https://k.slyguy.xyz/.repo/</datadir>
+      <info compressed="false">https://slyguy.uk/.repo/addons.xml</info>
+      <checksum>https://slyguy.uk/.repo/addons.xml.md5</checksum>
+      <datadir zip="true">https://slyguy.uk/.repo/</datadir>
     </dir>
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <description lang="en">Addons by SlyGuy</description>
+    <description lang="en">Addons by SlyGuy (slyguy.uk)</description>
     <license></license>
     <language></language>
     <website></website>

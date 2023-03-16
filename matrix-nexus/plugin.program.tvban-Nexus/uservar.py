@@ -13,7 +13,7 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR lime][B]Nexus[/B][/COLOR]'
+ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR blueviolet][B]Nexus[/B][/COLOR]'
 BUILDERNAME = 'JoseAndTEBA & Andtv'
 EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
 # Text File with build info in it.
@@ -62,7 +62,8 @@ SPACER = '<->'
 # You can edit these however you want, just make sure that you have a %s in each of the
 # THEME's so it grabs the text from the menu item
 #COLOR1 = 'limegreen'
-COLOR1 = 'blueviolet'
+#COLOR1 = 'blueviolet'
+COLOR1 = 'orchid'
 COLOR2 = 'white'
 COLOR3 = 'dodgerblue'
 COLOR4 = 'turquoise'
@@ -122,7 +123,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildf
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR lime][B]NEXUS[/B][/COLOR]'
+HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR blueviolet][B]NEXUS[/B][/COLOR]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/7wJW9zd.png'
 # Font for Notification Window

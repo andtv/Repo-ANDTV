@@ -26,13 +26,15 @@
         <source>https://andtv.github.io/tvban/</source>
 		<news>
 • [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR lime][B]tvban[/B][/COLOR]
+• Para Kodi 19.0 Matrix - Kodi 20.0 Nexus
 
 • 05/02/2023
+- Inciada la compatibilidad con Kodi 20.0 Nexus
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
 + Limpieza de Miniaturas.
 + Color en Notificaciones.
-- Inciada la compatibilidad con Kodi 20.0 Nexus</news>
+</news>
 	<assets>
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
