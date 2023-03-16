@@ -10,21 +10,21 @@ url="https://github.com/andtv/andtv.github.io/releases/download/20.5/NX_Elementu
 icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
 adult="no"
-description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 19.5 Matrix.[/B][/COLOR]"
+description="[B][COLOR orange]MOTOR:[/COLOR] Elementum-[COLOR white]Android_ARM[/COLOR][/B] para [COLOR teal][B]TVBox 32 bits.[/B][/COLOR]"
 
 name="[B][COLOR orange]MOTOR:[/COLOR] Elementum-[COLOR limegreen]Android_ARM_64_Nvidia[/COLOR][/B]"
 url="https://github.com/andtv/andtv.github.io/releases/download/20.5/NX_Elementum_Android_x64_v0.187.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
 adult="no"
-description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 19.5 Matrix.[/B][/COLOR]"
+description="[B][COLOR orange]MOTOR:[/COLOR] Elementum-[COLOR limegreen]Android_ARM_64_Nvidia[/COLOR] para [COLOR teal][B]TVBox 64 bits y Nvidia.[/B][/COLOR]"
 
 name="[B][COLOR orange]MOTOR:[/COLOR] Elementum-[COLOR dodgerblue]Windows[/COLOR][/B]"
 url="https://github.com/andtv/andtv.github.io/releases/download/20.5/NX_Elementum_Windows_v0.187.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
 adult="no"
-description="[COLOR azure][B]TVBAN[/COLOR] [COLOR darkviolet]]NEXUS[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus[/B][/COLOR]"
+description="[B][COLOR orange]MOTOR:[/COLOR] Elementum-[COLOR dodgerblue]Windows[/COLOR][/B] para [COLOR teal][B]Windows 32 y 64 bits[/B][/COLOR]"
 
 
 
