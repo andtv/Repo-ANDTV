@@ -1,23 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<addons>
-<addon
-  id="inputstream.adaptive"
-  version="2.4.8"
-  name="InputStream Adaptive"
-  provider-name="peak3d">
+<?xml version='1.0' encoding='utf-8'?>
+<root><addon id="inputstream.adaptive" version="2.4.8" name="InputStream Adaptive" provider-name="peak3d">
   <requires>
-<import addon="kodi.binary.global.main" version="1.0.14"/>
-<import addon="kodi.binary.global.general" version="1.0.3"/>
-<import addon="kodi.binary.global.filesystem" version="1.0.2"/>
-<import addon="kodi.binary.instance.inputstream" version="2.0.8"/>
-<import addon="kodi.binary.instance.videocodec" version="1.0.1"/></requires>
-  <extension
-    point="kodi.inputstream"
-    name="adaptive"
-    extension=""
-    tags="true"
-    listitemprops="license_type|license_key|license_data|license_flags|manifest_type|server_certificate|stream_headers|manifest_update_parameter|original_audio_language|media_renewal_url|media_renewal_time|max_bandwidth|play_timeshift_buffer"
-    library_windows="inputstream.adaptive.dll"/>
+<import addon="kodi.binary.global.main" version="1.0.14" />
+<import addon="kodi.binary.global.general" version="1.0.3" />
+<import addon="kodi.binary.global.filesystem" version="1.0.2" />
+<import addon="kodi.binary.instance.inputstream" version="2.0.8" />
+<import addon="kodi.binary.instance.videocodec" version="1.0.1" /></requires>
+  <extension point="kodi.inputstream" name="adaptive" extension="" tags="true" listitemprops="license_type|license_key|license_data|license_flags|manifest_type|server_certificate|stream_headers|manifest_update_parameter|original_audio_language|media_renewal_url|media_renewal_time|max_bandwidth|play_timeshift_buffer" library_windows="inputstream.adaptive.dll" />
   <extension point="xbmc.addon.metadata">
     <summary lang="en">InputStream client for adaptive streams</summary>
 	<summary lang="es">Cliente InputStream para flujo de datos adaptativos</summary>
@@ -98,11 +87,9 @@ v2.3.14 (2019-02-10)
 - Add WebM container parser
 	</news>
   </extension>
-</addon>
-
-<addon id="plugin.program.tvban" name="TVBAN [COLOR dodgerblue]WIZARD[/COLOR]" version="6.1.21" provider-name="tvban">
+</addon><addon id="plugin.program.tvban" name="TVBAN [COLOR dodgerblue]WIZARD[/COLOR]" version="6.1.21" provider-name="tvban">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="xbmc.python" version="2.1.0" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>executable</provides>
@@ -112,16 +99,16 @@ v2.3.14 (2019-02-10)
     <summary lang="en">TVBAN [COLOR dodgerblue]WIZARD[/COLOR]</summary>
     <description lang="en">BUILD aura-tvban para Kodi 18
 Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
-<news>- BUILD [COLOR limegreen]aura-tvban[/COLOR]
+<news>- BUILD [COLOR limegreen]aura-tvban[/COLOR] 
 06/01/21
 - Corregido Notify
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 07/11/2020
-- Añadido Elementum All-One
+- Añadido Elementum All-One 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-- Mejoras en buffer.
+- Mejoras en buffer. 
 - Cambio color de springgreen a dodgerblue.
 - Incluido Forzar Cierre en menú de apagado.
 - Test de Velolcidad.
@@ -130,12 +117,9 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
  </news>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon
-	id="plugin.video.koditv" version="2" name="[B][COLOR white]kodi[COLOR aqua]tv[/COLOR][/B]" provider-name="equipo tvchopo">
+</addon><addon id="plugin.video.koditv" version="2" name="[B][COLOR white]kodi[COLOR aqua]tv[/COLOR][/B]" provider-name="equipo tvchopo">
 <requires>
-    <import addon="plugin.video.youtube" />
+    <import addon="plugin.video.youtube" /> 
     <import addon="script.module.requests" />
     <import addon="script.module.resolveurl" />
     <import addon="script.module.six" />
@@ -143,20 +127,20 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
-
+	
 	 <extension point="xbmc.addon.repository" name="tvchopo">
         <info>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
         <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
         <datadir zip="true">https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/</datadir>
     </extension>
-
-
+	
+	
 	<extension point="xbmc.addon.metadata">
                 <platform>all</platform>
-		<summary lang="en"></summary>
-		<summary lang="da"></summary>
-		<description lang="en"></description>
-		<website></website>
+		<summary lang="en" />
+		<summary lang="da" />
+		<description lang="en" />
+		<website />
 		<license>GPL 2.0</license>
 		<platform>all</platform>
 <assets>
@@ -167,29 +151,24 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
   <screenshot>resources/screenshots/screenshot4.jpg</screenshot>
   <screenshot>resources/screenshots/screenshot5.jpg</screenshot>
         <fanart>fanart.png</fanart>
-    </assets>
+    </assets>        
 		<language>es</language>
 	</extension>
-</addon>
-
-<addon id="plugin.video.tacones"
-       name="[COLOR red]TACONES[/COLOR]"
-       version="1.2"
-       provider-name="La Mala de la Novela">
+</addon><addon id="plugin.video.tacones" name="[COLOR red]TACONES[/COLOR]" version="1.2" provider-name="La Mala de la Novela">
   <requires>
-     <import addon="xbmc.python" version="2.1.0"/>
-     <import addon="script.module.beautifulsoup" version="3.2.1"/>
-     <import addon="script.module.simple.downloader" version="0.9.4"/>
+     <import addon="xbmc.python" version="2.1.0" />
+     <import addon="script.module.beautifulsoup" version="3.2.1" />
+     <import addon="script.module.simple.downloader" version="0.9.4" />
      <import addon="script.module.beautifulsoup4" />
      <import addon="script.module.requests" />
      <import addon="script.module.httplib2" />
-     <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
-     <import addon="script.module.youtube.dl" optional="true"/>
+     <import addon="script.module.liveresolver" version="0.1.24" optional="true" />
+     <import addon="script.module.youtube.dl" optional="true" />
      <import addon="plugin.video.youtube" optional="true" />
-     <import addon="script.module.urlresolver" optional="true"/>
-     <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-     <import addon="script.module.pyamf" optional="true"/>
+     <import addon="script.module.urlresolver" optional="true" />
+     <import addon="script.module.simplejson" />    
+     <import addon="script.module.livestreamer" optional="true" />
+     <import addon="script.module.pyamf" optional="true" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
@@ -201,15 +180,13 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
         <checksum>https://raw.githubusercontent.com/lamalanovela/Repo/master/Repositorio/addons.xml.md5</checksum>
         <datadir zip="true">https://raw.githubusercontent.com/lamalanovela/Repo/master/Repositorio/</datadir>
     </extension>
-
+  
   <extension point="xbmc.addon.metadata">
     <summary>TACONES</summary>
     <description>Addon sin ánimo de lucro y con fines exclusivamente educativos</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="repository.GTKing-Leia" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B][/COLOR] [COLOR limegreen][B]LEIA[/B][/COLOR]" version="5.12.21" provider-name="ANDTV, DeTEBA">
+</addon><addon id="repository.GTKing-Leia" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B][/COLOR] [COLOR limegreen][B]LEIA[/B][/COLOR]" version="5.12.21" provider-name="ANDTV, DeTEBA">
     <extension point="xbmc.addon.repository" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B][/COLOR] [COLOR limegreen][B]LEIA[/B][/COLOR]">
         <dir minversion="18.0" maxversion="18.9.0">
             <info>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/leia/zips/addons.xml</info>
@@ -227,11 +204,11 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
             <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
         </dir>
     </extension>
-
+    
     <extension point="xbmc.addon.metadata">
         <summary>[COLOR steelblue]Repo[/COLOR] [COLOR azure]ANDTV[/COLOR] [COLOR limegreen]LEIA[/COLOR]</summary>
         <description>Repositorio de addons [COLOR dodgerblue]ANDTV[/COLOR].
-[COLOR gold]Developers:[/COLOR] JoseAnDeTEBA crea ANDTV</description>
+[COLOR gold]Developers:[/COLOR] JoseAnDeTEBA crea ANDTV</description> 		             
         <disclaimer>Éste repositorio sólo recoge Add-ons válidos para Kodi 18.x LEIA.</disclaimer>
         <platform>all</platform>
         <assets>
@@ -240,9 +217,7 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
         </assets>
 		<source>https://github.com/gtkingbuild/Repo-GTKing/</source>
     </extension>
-</addon>
-
-<addon id="repository.balandro" name="Balandro Repo" version="2.0.0" provider-name="Balandro Team">
+</addon><addon id="repository.balandro" name="Balandro Repo" version="2.0.0" provider-name="Balandro Team">
 
 	<extension point="xbmc.addon.repository" name="balandro repo">
 		<info>https://raw.githubusercontent.com/balandro-tk/balandro/main/addons.xml</info>
@@ -270,15 +245,10 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
         <source>https://balandro-tk.github.io/balandro/</source>
         <forum>https://www.mimediacenter.info/foro/viewforum.php?f=44</forum>
 	</extension>
-</addon>
-
-<addon id="script.kelebek"
-       name="KELEBEK"
-       version="3.5"
-       provider-name="Iron Butterfly">
+</addon><addon id="script.kelebek" name="KELEBEK" version="3.5" provider-name="Iron Butterfly">
   <requires>
-    <import addon="script.module.pyxbmct" version="1.1.4" />
-    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.pyxbmct" version="1.1.4" />  
+    <import addon="script.module.beautifulsoup4" />	
     <import addon="script.module.requests" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="main.py">
@@ -288,27 +258,22 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
     <platform>all</platform>
     <summary>KELEBEK V3.5</summary>
     <description>Scan Sources searching changes and addons</description>
-    <language></language>
-    <license></license>
-    <source></source>
-    <forum></forum>
-    <website></website>
+    <language />
+    <license />
+    <source />
+    <forum />
+    <website />
 	<assets>
 		<icon>resources/icon.png</icon>
 		<fanart>resources/fanart.jpg</fanart>
 	</assets>
   </extension>
-</addon>
-
-<addon id="script.luar"
-  version="0.8.1"
-  name="Luar"
-  provider-name="The Dreamers">
+</addon><addon id="script.luar" version="0.8.1" name="Luar" provider-name="The Dreamers">
   <requires>
-    <import addon="script.module.six" version="1.11.0"/>
-    <import addon="script.module.requests"/>
-    <import addon="resource.language.es_es"/>
-    <import addon="script.module.pycryptodome" optional="true"/>
+    <import addon="script.module.six" version="1.11.0" />
+    <import addon="script.module.requests" />
+    <import addon="resource.language.es_es" />
+    <import addon="script.module.pycryptodome" optional="true" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>executable</provides>
@@ -322,7 +287,7 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
     <platform>all</platform>
     <summary lang="es">Script instalador de complementos para Kodi.</summary>
     <description lang="es">Selecciona, instala y disfruta.</description>
-    <disclaimer lang="es"></disclaimer>
+    <disclaimer lang="es" />
     <assets>
       <icon>icon.gif</icon>
       <fanart>fanart.jpg</fanart>
@@ -331,24 +296,22 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
       <screenshot>resources/screenshot002.jpg</screenshot>
     </assets>
   </extension>
-</addon>
-
-<addon id="skin.auramodtvban" version="1.8.20" name="AuraMod [COLOR limegreen]TVBAN[/COLOR]" provider-name="auramod,tvban">
+</addon><addon id="skin.auramodtvban" version="1.8.20" name="AuraMod [COLOR limegreen]TVBAN[/COLOR]" provider-name="auramod,tvban">
     <requires>
-        <import addon="xbmc.gui" version="5.14.0"/>
-        <import addon="repository.marcelveldt" version="1.0.2"/>
-        <import addon="repository.jurialmunkey" version="1.2"/>
-        <import addon="script.skin.helper.service" version="1.1.24"/>
-        <import addon="script.skin.helper.widgets" version="1.0.0"/>
-        <import addon="script.skinshortcuts" version="1.0.20"/>
-        <import addon="script.image.resource.select" version="0.0.5"/>
-        <import addon="plugin.program.autocompletion" version="1.0.1"/>
-        <import addon="resource.images.studios.white" version="0.0.10"/>
-        <import addon="resource.images.studios.coloured" version="0.0.18"/>
-        <import addon="resource.images.moviegenreicons.transparent" version="0.0.6"/>
+        <import addon="xbmc.gui" version="5.14.0" />
+        <import addon="repository.marcelveldt" version="1.0.2" />
+        <import addon="repository.jurialmunkey" version="1.2" />
+        <import addon="script.skin.helper.service" version="1.1.24" />
+        <import addon="script.skin.helper.widgets" version="1.0.0" />
+        <import addon="script.skinshortcuts" version="1.0.20" />
+        <import addon="script.image.resource.select" version="0.0.5" />
+        <import addon="plugin.program.autocompletion" version="1.0.1" />
+        <import addon="resource.images.studios.white" version="0.0.10" />
+        <import addon="resource.images.studios.coloured" version="0.0.18" />
+        <import addon="resource.images.moviegenreicons.transparent" version="0.0.6" />
     </requires>
     <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
-        <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
+        <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
     </extension>
     <extension point="xbmc.addon.metadata">
          <summary lang="en">Mod TVBAN de AuraMod, Minimalista, Personalizable, Multiple Widgets.</summary>
@@ -358,8 +321,8 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
 		</news>
 		<platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
-        <forum/>
-        <source/>
+        <forum />
+        <source />
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
@@ -370,5 +333,4 @@ Telegram: [COLOR lime]t.me/beelinkking[/COLOR]</description>
             <screenshot>resources/screenshot-05.jpg</screenshot>
         </assets>
     </extension>
-</addon>
-</addons>
+</addon></root>
