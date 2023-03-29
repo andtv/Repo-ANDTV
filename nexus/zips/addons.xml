@@ -1,16 +1,17 @@
-<?xml version='1.0' encoding='utf-8'?>
-<root><addon id="plugin.program.autowidget" name="AutoWidget" version="3.6.1" provider-name="drinfernoo">
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.program.autowidget" name="AutoWidget" version="3.6.1" provider-name="drinfernoo">
     <requires>
         <import addon="script.module.pil" />
         <import addon="script.module.six" />
     </requires>
-    
+
     <extension point="xbmc.python.pluginsource" library="main.py">
         <provides>executable video music</provides>
     </extension>
-    
+
     <extension point="xbmc.service" library="service.py" />
-    
+
     <extension point="kodi.context.item">
         <menu id="kodi.core.main">
             <item library="context_add.py">
@@ -31,7 +32,7 @@
             </item>
         </menu>
     </extension>
-    
+
     <extension point="xbmc.addon.metadata">
         <reuselanguageinvoker>true</reuselanguageinvoker>
         <summary lang="en_GB">Automatically changes out widgets</summary>
@@ -340,7 +341,7 @@
  - Raise required Skin Shortcuts version to  1.0.19
 1.0.4
  - Allow custom labels
- - Add removal notifications    
+ - Add removal notifications
 1.0.3
  - Fix shortcuts and widgets added from context menu
 1.0.2
@@ -358,25 +359,27 @@
             <clearlogo>resources/media/clearlogo.png</clearlogo>
         </assets>
     </extension>
-</addon><addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="26.3.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+</addon>
+
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="26.3.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
-    	<import addon="xbmc.python" version="3.0.0" />
+    	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
         <import addon="script.module.six" />
         <import addon="script.kodi.android.update" optional="true" version="1.1.7" />
 	</requires>
-	
+
 	<extension point="xbmc.python.pluginsource" library="default.py">
     	<provides>executable</provides>
     </extension>
-  
+
 	<extension point="xbmc.service" library="startup.py" start="startup" />
-  
+
 	<extension point="xbmc.addon.metadata">
 		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20</summary>
-		
+
     	<description lang="es">
-[COLOR lime][B]CREDITOS:[/COLOR][/B] 
+[COLOR lime][B]CREDITOS:[/COLOR][/B]
 [COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
@@ -397,12 +400,14 @@
         <fanart>fanart.jpg</fanart>
 	</assets>
     </extension>
-</addon><addon id="plugin.video.alfa" name="Alfa" version="3.8.5" provider-name="Alfa Addon">
+</addon>
+
+<addon id="plugin.video.alfa" name="Alfa" version="3.8.5" provider-name="Alfa Addon">
 	<requires>
-		<import addon="script.module.requests" />
-		<import addon="script.module.beautifulsoup4" version="4.5.3" />
-		<import addon="script.module.html5lib" version="0.999.0" />
-		<import addon="script.alfa-update-helper" optional="true" />
+		<import addon="script.module.requests"></import>
+		<import addon="script.module.beautifulsoup4" version="4.5.3"></import>
+		<import addon="script.module.html5lib" version="0.999.0"></import>
+		<import addon="script.alfa-update-helper" optional="true"></import>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -444,10 +449,12 @@
 			<screenshot>resources/media/screenshots/4.jpg</screenshot>
 		</assets>
 	</extension>
-	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup" />
-</addon><addon id="plugin.video.balandro" name="Balandro" version="3.0.1" provider-name="Balandro Team">
+	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
+</addon>
+
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.1" provider-name="Balandro Team">
   <requires>
-     <import addon="script.module.requests" />
+     <import addon="script.module.requests"/>
   </requires>
 
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -493,13 +500,15 @@
     <forum>https://www.mimediacenter.info/foro/</forum>
   </extension>
 
-  <extension point="xbmc.service" library="services.py" start="login|startup" />
-</addon><addon id="plugin.video.cristalazul" name="[B][/B][COLOR aqua]CRISTAL AZUL 3.0.6[/COLOR]" version="3.0.6" provider-name="PICAPAU, LOURDES, SUPERTOPO, LUISMA, GEORGE">
+  <extension point="xbmc.service" library="services.py" start="login|startup"/>
+</addon>
+
+<addon id="plugin.video.cristalazul" name="[B][/B][COLOR aqua]CRISTAL AZUL 3.0.6[/COLOR]" version="3.0.6" provider-name="PICAPAU, LOURDES, SUPERTOPO, LUISMA, GEORGE">
     <requires>
-        <import addon="script.module.simplecache" />
-        <import addon="script.module.six" />
-        <import addon="script.module.kodi-six" />
-        <import addon="script.module.requests" />
+        <import addon="script.module.simplecache"/>
+        <import addon="script.module.six"/>
+        <import addon="script.module.kodi-six"/>
+        <import addon="script.module.requests"/>
         <import addon="script.module.youtube.dl" optional="true" />
         <import addon="plugin.video.youtube" />
 		<import addon="plugin.video.duffyou" optional="true" />
@@ -546,10 +555,15 @@
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon><addon id="plugin.video.doqmental" name="DOQMENTAL" version="1.1" provider-name="LASER">
+</addon>
+
+<addon id="plugin.video.doqmental"
+	name="DOQMENTAL"
+	version="1.1"
+	provider-name="LASER">
   <requires>
     <import addon="script.module.six" />
-    <import addon="plugin.video.youtube" version="5.0.0" />
+    <import addon="plugin.video.youtube" version="5.0.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
@@ -564,13 +578,15 @@
         <fanart>fanart.jpg</fanart>
     </assets>
     </extension>
-</addon><addon id="plugin.video.duffyou" name="Duff You" version="0.2.1" provider-name="La Taberna">
+</addon>
+
+<addon id="plugin.video.duffyou" name="Duff You" version="0.2.1" provider-name="La Taberna">
     <requires>
         <import addon="script.module.six" version="1.11.0" />
         <import addon="script.module.simplecache" />
         <import addon="script.module.inputstreamhelper" version="0.5.0" />
     </requires>
-    
+
     <extension point="xbmc.python.pluginsource" library="libs/plugin.py">
         <provides>video</provides>
     </extension>
@@ -587,25 +603,27 @@
         <news>- Añadida opción de reproducción externa de playlists[CR]- Correcciones menores
         </news>
     </extension>
-</addon><addon id="plugin.video.kodispaintv" name="[COLOR red]Kodi[/COLOR][COLOR yellow]Spain[/COLOR][COLOR red]Tv[/COLOR]" version="3.0.0" provider-name="joheos11">
+</addon>
+
+<addon id="plugin.video.kodispaintv" name="[COLOR red]Kodi[/COLOR][COLOR yellow]Spain[/COLOR][COLOR red]Tv[/COLOR]" version="3.0.0" provider-name="joheos11">
 	<requires>
 		<import addon="script.module.six" />
 		<import addon="script.module.kodi-six" />
-		<import addon="script.module.requests" optional="true" />
-		<import addon="script.module.websocket" version="0.50.0" optional="true" />
-		<import addon="script.module.youtube.dl" optional="true" />
+		<import addon="script.module.requests" optional="true"/>
+		<import addon="script.module.websocket" version="0.50.0"  optional="true"/>
+		<import addon="script.module.youtube.dl" optional="true"/>
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.module.dateutil" optional="true" />
-		<import addon="script.module.resolveurl" optional="true" />
-		<import addon="script.module.urlresolver" optional="true" />
-		<import addon="script.module.cloudscraper" optional="true" />
-		<import addon="script.module.inputstreamhelper" optional="true" />
-		<import addon="script.module.slproxy" optional="true" />
+		<import addon="script.module.resolveurl" optional="true"/>
+		<import addon="script.module.urlresolver" optional="true"/>
+		<import addon="script.module.cloudscraper" optional="true"/>
+		<import addon="script.module.inputstreamhelper" optional="true"/>
+		<import addon="script.module.slproxy" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
-	
+
 	<extension point="xbmc.addon.repository" name="KodiSpain repository">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/joheos11/repository.kodispain/master/addons.xml</info>
@@ -638,12 +656,14 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 		</assets>
 		<news>Primera versión también compatible con Kodi 19 Matrix</news>
 	</extension>
-</addon><addon id="plugin.video.moestv" name="Moe's TV" version="0.2.1" provider-name="La Taberna">
+</addon>
+
+<addon id="plugin.video.moestv" name="Moe's TV" version="0.2.1" provider-name="La Taberna">
   <requires>
-    <import addon="script.module.six" version="1.11.0" />
-    <import addon="script.module.simplecache" />
-    <import addon="script.module.inputstreamhelper" version="0.5.0" />
-    <import addon="plugin.video.duffyou" version="0.1.2" />
+    <import addon="script.module.six" version="1.11.0"/>
+    <import addon="script.module.simplecache"/>
+    <import addon="script.module.inputstreamhelper" version="0.5.0"/>
+    <import addon="plugin.video.duffyou" version="0.1.2"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
@@ -676,14 +696,16 @@ No se acepta ninguna responsabilidad por el uso de este addon.
       [CR]- Versión inicial 0.0.7
     </news>
   </extension>
-</addon><addon id="plugin.video.palantir2" name="[COLOR gold]Palantir 2[/COLOR]" version="2.3.3" provider-name="TierraMedia">
+</addon>
+
+<addon id="plugin.video.palantir2" name="[COLOR gold]Palantir 2[/COLOR]" version="2.3.3" provider-name="TierraMedia">
   <requires>
-    <import addon="script.module.six" version="1.11.0" />
-    <import addon="plugin.video.duffyou" version="0.1.3" optional="true" />
-    <import addon="script.module.resolveurl" version="5.0.00" optional="true" />
-    <import addon="script.module.inputstreamhelper" version="0.5.0" />
-    <import addon="script.module.pycryptodome" />
-    <import addon="script.embuary.info" />
+    <import addon="script.module.six" version="1.11.0"/>
+    <import addon="plugin.video.duffyou" version="0.1.3" optional="true"/>
+    <import addon="script.module.resolveurl" version="5.0.00" optional="true"/>
+    <import addon="script.module.inputstreamhelper" version="0.5.0"/>
+    <import addon="script.module.pycryptodome"/>
+    <import addon="script.embuary.info"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
@@ -700,28 +722,30 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <screenshot>resources/media/Captura3.png</screenshot>
         <screenshot>resources/media/Captura4.png</screenshot>
     </assets>
-    <news />
+    <news></news>
     <forum>https://t.me/addon_palantir</forum>
   </extension>
-</addon><addon id="plugin.video.tacones" name="[COLOR red]TACONES[/COLOR]" version="3.0.0" provider-name="La Mala de la Novela">
+</addon>
+
+<addon id="plugin.video.tacones" name="[COLOR red]TACONES[/COLOR]" version="3.0.0" provider-name="La Mala de la Novela">
 	<requires>
 		<import addon="script.module.six" />
 		<import addon="script.module.kodi-six" />
-		<import addon="script.module.requests" optional="true" />
-		<import addon="script.module.websocket" version="0.50.0" optional="true" />
-		<import addon="script.module.youtube.dl" optional="true" />
+		<import addon="script.module.requests" optional="true"/>
+		<import addon="script.module.websocket" version="0.50.0"  optional="true"/>
+		<import addon="script.module.youtube.dl" optional="true"/>
 		<import addon="plugin.video.youtube" optional="true" />
 		<import addon="script.module.dateutil" optional="true" />
-		<import addon="script.module.resolveurl" optional="true" />
-		<import addon="script.module.urlresolver" optional="true" />
-		<import addon="script.module.cloudscraper" optional="true" />
-		<import addon="script.module.inputstreamhelper" optional="true" />
-		<import addon="script.module.slproxy" optional="true" />
+		<import addon="script.module.resolveurl" optional="true"/>
+		<import addon="script.module.urlresolver" optional="true"/>
+		<import addon="script.module.cloudscraper" optional="true"/>
+		<import addon="script.module.inputstreamhelper" optional="true"/>
+		<import addon="script.module.slproxy" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
-	
+
 	<extension point="xbmc.addon.repository" name="KodiSpain repository">
 		<dir>
 			<info compressed="false">https://raw.githubusercontent.com/lamalanovela/Repo/master/Repositorio/addons.xml</info>
@@ -744,10 +768,12 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 		</assets>
 		<news>Primera versión también compatible con Kodi 19 Matrix</news>
 	</extension>
-</addon><addon id="plugin.video.vavooto" name="VAVOO.TO" version="5.3" provider-name="michaz">
+</addon>
+
+<addon id="plugin.video.vavooto" name="VAVOO.TO" version="5.3" provider-name="michaz">
     <requires>
-        <import addon="script.module.requests" />
-        <import addon="inputstream.ffmpegdirect" optional="true" /> 
+        <import addon="script.module.requests"/>
+        <import addon="inputstream.ffmpegdirect" optional="true" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="lib/main.py">
         <provides>video</provides>
@@ -757,11 +783,13 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <icon>icon.png</icon>
         </assets>
     </extension>
-</addon><addon id="plugin.video.winner" name="[COLOR orange]WINNER 2[/COLOR]" version="2.8.1" provider-name="La Taberna and Camaradas">
+</addon>
+
+<addon id="plugin.video.winner" name="[COLOR orange]WINNER 2[/COLOR]" version="2.8.1" provider-name="La Taberna and Camaradas">
     <requires>
         <import addon="script.module.six" version="1.11.0" />
         <import addon="plugin.video.duffyou" />
-        <import addon="script.module.simplecache" />
+        <import addon="script.module.simplecache"/>
         <import addon="script.module.horus" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
@@ -779,21 +807,23 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <fanart>resources/media/fanart.jpg</fanart>
         </assets>
 
-        <news />
+        <news></news>
     </extension>
-</addon><addon id="plugin.video.youtube" name="YouTube" version="7.0.1" provider-name="anxdpanic, bromix">
+</addon>
+
+<addon id="plugin.video.youtube" name="YouTube" version="7.0.1" provider-name="anxdpanic, bromix">
     <requires>
-        <import addon="xbmc.python" version="3.0.1" />
-        <import addon="script.module.requests" version="2.12.4" />
-        <import addon="inputstream.adaptive" version="20.3.1" />
-        <import addon="script.module.inputstreamhelper" version="0.2.2" optional="true" />
-        <import addon="script.module.infotagger" version="0.0.5" />
+        <import addon="xbmc.python" version="3.0.1"/>
+        <import addon="script.module.requests" version="2.12.4"/>
+        <import addon="inputstream.adaptive" version="20.3.1"/>
+        <import addon="script.module.inputstreamhelper" version="0.2.2" optional="true"/>
+        <import addon="script.module.infotagger" version="0.0.5"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="resources/lib/default.py">
         <provides>video</provides>
     </extension>
-    <extension point="xbmc.service" library="resources/lib/startup.py" />
-    <extension point="xbmc.python.module" library="resources/lib/" />
+    <extension point="xbmc.service" library="resources/lib/startup.py"/>
+    <extension point="xbmc.python.module" library="resources/lib/"/>
     <extension point="xbmc.addon.metadata">
         <news>
 [fix] video duration not showing in lists
@@ -843,7 +873,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <description lang="es_ES">YouTube es uno de los sitios web más grande del mundo para compartir vídeos.</description>
         <description lang="es_MX">YouTube es uno de los más grandes sitios web de intercambio de videos del mundo.</description>
         <description lang="fi_FI">YouTube on yksi maailman suurimmista videoiden jakosivustoista.</description>
-        <description lang="fr_FR">YouTube est l'un des plus grands sites de partage vidéos du monde.</description>
+        <description lang="fr_FR">YouTube est l&apos;un des plus grands sites de partage vidéos du monde.</description>
         <description lang="he_IL">YouTube הוא אחד מאתרי שיתוף הווידאו הגדולים בעולם.</description>
         <description lang="hr_HR">YouTube je jedna od najvećih stranica za dijeljenje video sadržaja na svijetu.</description>
         <description lang="hu_HU">A YouTube világ egyik legnagyobb videómegosztó weboldala.</description>
@@ -867,7 +897,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <disclaimer lang="es_ES">Este add-on no está respaldado por Google</disclaimer>
         <disclaimer lang="es_MX">Este complemento no está respaldado por Google</disclaimer>
         <disclaimer lang="fi_FI">Google ei tue tätä lisäosaa</disclaimer>
-        <disclaimer lang="fr_FR">Ce module n'est pas validé par Google</disclaimer>
+        <disclaimer lang="fr_FR">Ce module n&apos;est pas validé par Google</disclaimer>
         <disclaimer lang="hr_HR">Ovaj dodatak nije podržan od strane Googlea</disclaimer>
         <disclaimer lang="id_ID">Plugin ini tidak didukung oleh Google</disclaimer>
         <disclaimer lang="it_IT">Questo plugin non è approvato da Google</disclaimer>
@@ -881,36 +911,11 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <disclaimer lang="zh_CN">此插件未被谷歌认可</disclaimer>
         <disclaimer lang="zh_TW">此附加元件未由Google支持</disclaimer>
     </extension>
-</addon><addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]NEXUS[/B][/COLOR]" version="27.2.23" provider-name="andtv_tvban, JoseAnd">
-    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet][B]NEXUS[/B][/COLOR]">
-		<dir minversion="20.0" maxversion="20.9.0">
-            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips</datadir>
-        </dir>
-        <dir minversion="20.9.0"> 
-            <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
-        </dir>	
-    </extension>
-    
-    <extension point="xbmc.addon.metadata">
-        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR azure]Andtv[/COLOR] [COLOR blueviolet]Nexus[/COLOR]</summary>
-        <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR].
-[B][COLOR lime]CREDITOS:
-[COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description> 		             
-        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons válidos para [COLOR azure]Kodi 20 [COLOR blueviolet]NEXUS.[/COLOR]</disclaimer>
-        <platform>all</platform>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-        </assets>
-		<source>https://andtv.github.io/tvban</source>
-    </extension>
-</addon><addon id="repository.alfa-addon" name="[COLOR red]Alfa Add-on[/COLOR] Repo" version="1.0.8" provider-name="Alfa Development Group">
+</addon>
+
+<addon id="repository.alfa-addon" name="[COLOR red]Alfa Add-on[/COLOR] Repo" version="1.0.8" provider-name="Alfa Development Group">
     <requires>
-        <import addon="xbmc.addon" version="12.0.0" />
+        <import addon="xbmc.addon" version="12.0.0"/>
     </requires>
     <extension point="xbmc.addon.repository" name="Alfa Add-on Repo">
         <dir>
@@ -942,7 +947,38 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         </assets>
         <source>https://github.com/alfa-addon/alfa-repo</source>
     </extension>
-</addon><addon id="repository.autowidget" name="AutoWidget Repository" version="1.1" provider-name="drinfernoo">
+</addon>
+
+<addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [/COLOR][COLOR blueviolet][B]NEXUS[/B][/COLOR]" version="27.2.23" provider-name="andtv_tvban, JoseAnd">
+    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet][B]NEXUS[/B][/COLOR]">
+		<dir minversion="20.0" maxversion="20.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips</datadir>
+        </dir>
+        <dir minversion="20.9.0"> <!--maxversion="21.9.0">-->
+            <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
+        </dir>
+    </extension>
+
+    <extension point="xbmc.addon.metadata">
+        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR azure]Andtv[/COLOR] [COLOR blueviolet]Nexus[/COLOR]</summary>
+        <description>Repositorio de addons para [COLOR azure]ANDTV[/COLOR].
+[B][COLOR lime]CREDITOS:
+[COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description>
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons válidos para [COLOR azure]Kodi 20 [COLOR blueviolet]NEXUS.[/COLOR]</disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+		<source>https://andtv.github.io/tvban</source>
+    </extension>
+</addon>
+
+<addon id="repository.autowidget" name="AutoWidget Repository" version="1.1" provider-name="drinfernoo">
     <extension point="xbmc.addon.repository" name="AutoWidget Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/drinfernoo/plugin.program.autowidget/repo/zips/addons.xml</info>
@@ -950,7 +986,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <datadir zip="true">https://raw.githubusercontent.com/drinfernoo/plugin.program.autowidget/repo/zips/</datadir>
         </dir>
     </extension>
-    
+
     <extension point="xbmc.addon.metadata">
         <summary>AutoWidget</summary>
         <description>The official home of AutoWidget.</description>
@@ -959,7 +995,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <icon>icon.png</icon>
         </assets>
     </extension>
-</addon><addon id="repository.balandro" name="Balandro Repo" version="3.0.0" provider-name="Balandro Team">
+</addon>
+
+<addon id="repository.balandro" name="Balandro Repo" version="3.0.0" provider-name="Balandro Team">
 
     <extension point="xbmc.addon.repository" name="balandro repo">
         <dir>
@@ -990,7 +1028,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 
     <extension point="xbmc.service" library="service.py" start="login|startup" />
-</addon><addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.3" provider-name="jurialmunkey">
+</addon>
+
+<addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.3" provider-name="jurialmunkey">
     <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
         <dir>
             <info compressed="false">https://raw.githubusercontent.com/jurialmunkey/repository.jurialmunkey/master/repo/zips/addons.xml</info>
@@ -1016,15 +1056,17 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     <extension point="xbmc.addon.metadata">
         <summary>jurialmunkey Alpha Repository</summary>
         <description>A repository for alpha releases of jurialmunkey's skins.</description>
-        <disclaimer />
+        <disclaimer></disclaimer>
         <platform>all</platform>
         <assets>
             <icon>icon.png</icon>
         </assets>
     </extension>
-</addon><addon id="repository.marcelveldt" version="1.0.3" name="Marcelveldt's BETA repository" provider-name="marcelveldt, finkleandeinhorn">
+</addon>
+
+<addon id="repository.marcelveldt" version="1.0.3" name="Marcelveldt's BETA repository" provider-name="marcelveldt, finkleandeinhorn">
 	<requires>
-		<import addon="xbmc.addon" version="12.0.0" />
+		<import addon="xbmc.addon" version="12.0.0"/>
 	</requires>
 	<extension point="xbmc.addon.repository" name="Marcelveldt's BETA repository">
 		<dir>
@@ -1052,7 +1094,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<fanart>fanart.jpg</fanart>
 		</assets>
 	</extension>
-</addon><addon id="repository.palantir2" name="[COLOR gold]Repositorio Palantir 2[/COLOR]" version="2.0.2" provider-name="TierraMedia">
+</addon>
+
+<addon id="repository.palantir2" name="[COLOR gold]Repositorio Palantir 2[/COLOR]" version="2.0.2" provider-name="TierraMedia">
     <extension point="xbmc.addon.repository" name="Palantir 2 official Repo">
     	<dir minversion="18.9.0">
     	    <info compressed="false">https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
@@ -1061,7 +1105,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 	    </dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary />
+		<summary></summary>
    		<description lang="en">[COLOR gold]Instala Palantir 2[/COLOR]</description>
 		<platform>all</platform>
 		<assets>
@@ -1069,7 +1113,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <fanart>fanart.gif</fanart>
         </assets>
 	</extension>
-</addon><addon id="repository.resolveurl" name="ResolveURL Repository" provider-name="gujal" version="1.0.0">
+</addon>
+
+<addon id="repository.resolveurl" name="ResolveURL Repository" provider-name="gujal" version="1.0.0">
   <extension point="xbmc.addon.repository" name="ResolveURL Repository">
     <dir>
       <info compressed="false">https://raw.githubusercontent.com/Gujal00/smrzips/master/addons.xml</info>
@@ -1080,16 +1126,18 @@ No se acepta ninguna responsabilidad por el uso de este addon.
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <description lang="en_GB">ResolveURL and Link Tester</description>
-    <license />
-    <language />
-    <website />
-    <news />
+    <license></license>
+    <language></language>
+    <website></website>
+    <news></news>
     <assets>
       <icon>icon.png</icon>
       <fanart>fanart.jpg</fanart>
-    </assets> 
+    </assets>
   </extension>
-</addon><addon id="repository.slyguy" name="SlyGuy Repository (slyguy.uk)" provider-name="SlyGuy" version="0.0.4">
+</addon>
+
+<addon id="repository.slyguy" name="SlyGuy Repository (slyguy.uk)" provider-name="SlyGuy" version="0.0.4">
   <extension point="xbmc.addon.repository" name="SlyGuy Repository (slyguy.uk)">
     <dir>
       <info compressed="false">https://slyguy.uk/.repo/addons.xml</info>
@@ -1100,16 +1148,18 @@ No se acepta ninguna responsabilidad por el uso de este addon.
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <description lang="en">Addons by SlyGuy (slyguy.uk)</description>
-    <license />
-    <language />
-    <website />
-    <news />
+    <license></license>
+    <language></language>
+    <website></website>
+    <news></news>
     <assets>
       <icon>icon.png</icon>
       <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
-</addon><addon id="repository.tvchopo" name="[COLOR lime]tvchopo[/COLOR] Repo" version="3" provider-name="torete">
+</addon>
+
+<addon id="repository.tvchopo" name="[COLOR lime]tvchopo[/COLOR] Repo" version="3" provider-name="torete">
     <extension point="xbmc.addon.repository" name="tvchoco Jose">
         <info>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml</info>
         <checksum>https://raw.githubusercontent.com/elchocolate/repotvchopo/master/Repositorio/addons.xml.md5</checksum>
@@ -1122,11 +1172,16 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary>Repositorio para familia chopo</summary>
-        <description />
-        <disclaimer />
+        <description></description>
+        <disclaimer></disclaimer>
         <platform>all</platform>
     </extension>
-</addon><addon id="repository.vstream" name="vStream Repository" version="0.0.6" provider-name="Venom">
+</addon>
+
+<addon id="repository.vstream"
+       name="vStream Repository"
+        version="0.0.6"
+        provider-name="Venom">
     <extension point="xbmc.addon.repository" name="vStream XBMC Addon Repository">
     <dir>
         <info compressed="false">https://raw.githubusercontent.com/Kodi-vStream/venom-xbmc-addons/master/addons.xml</info>
@@ -1142,19 +1197,23 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <description lang="en">Download and install vStream</description>
         <platform>all</platform>
     </extension>
-</addon><addon id="resource.images.weathericons.white" name="Weather Icons - White" version="0.0.6" provider-name="Team Kodi">
+</addon>
+
+<addon id="resource.images.weathericons.white" name="Weather Icons - White" version="0.0.6" provider-name="Team Kodi">
 	<extension point="kodi.resource.images" compile="true" type="weather" />
 	<requires>
-		<import addon="kodi.resource" version="1.0.0" />
+		<import addon="kodi.resource" version="1.0.0"/>
 	</requires>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">White Weather Icons</summary>
 		<description lang="en">White Weather Icons</description>
 		<platform>all</platform>
 	</extension>
-</addon><addon id="script.colorbox" name="colorbox Script" version="2.0.8" provider-name="BADMS, drinfernoo">
+</addon>
+
+<addon id="script.colorbox" name="colorbox Script" version="2.0.8" provider-name="BADMS, drinfernoo">
 	<requires>
-		<import addon="script.module.pil" />
+		<import addon="script.module.pil"/>
 	</requires>
     <extension point="xbmc.python.script" library="default.py">
         <provides>executable</provides>
@@ -1173,10 +1232,15 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<screenshot>resources/fanart.jpg</screenshot>
 		</assets>
 	</extension>
-</addon><addon id="script.kelebek" name="KELEBEK" version="3.6" provider-name="Iron Butterfly">
+</addon>
+
+<addon id="script.kelebek"
+       name="KELEBEK"
+       version="3.6"
+       provider-name="Iron Butterfly">
   <requires>
-    <import addon="script.module.pyxbmct" version="1.1.4" />  
-    <import addon="script.module.beautifulsoup4" />	
+    <import addon="script.module.pyxbmct" version="1.1.4" />
+    <import addon="script.module.beautifulsoup4" />
     <import addon="script.module.requests" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="main.py">
@@ -1186,22 +1250,27 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     <platform>all</platform>
     <summary>KELEBEK V3.6</summary>
     <description>Scan Sources searching changes and addons</description>
-    <language />
-    <license />
-    <source />
-    <forum />
-    <website />
+    <language></language>
+    <license></license>
+    <source></source>
+    <forum></forum>
+    <website></website>
 	<assets>
 		<icon>resources/icon.png</icon>
 		<fanart>resources/fanart.jpg</fanart>
 	</assets>
   </extension>
-</addon><addon id="script.luar" version="0.9.5" name="Luar" provider-name="The Dreamers">
+</addon>
+
+<addon id="script.luar"
+  version="0.9.5"
+  name="Luar"
+  provider-name="The Dreamers">
   <requires>
-    <import addon="script.module.six" version="1.11.0" />
-    <import addon="script.module.requests" />
-    <import addon="resource.language.es_es" />
-    <import addon="script.module.pycryptodome" optional="true" />
+    <import addon="script.module.six" version="1.11.0"/>
+    <import addon="script.module.requests"/>
+    <import addon="resource.language.es_es"/>
+    <import addon="script.module.pycryptodome" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>executable</provides>
@@ -1219,7 +1288,9 @@ No se acepta ninguna responsabilidad por el uso de este addon.
       <screenshot>resources/screenshot002.jpg</screenshot>
     </assets>
   </extension>
-</addon><addon id="script.module.horus" name="Horus" version="1.1.8" provider-name="Caperucitaferoz">
+</addon>
+
+<addon id="script.module.horus" name="Horus" version="1.1.8" provider-name="Caperucitaferoz">
     <requires>
         <import addon="script.module.six" />
     </requires>
@@ -1249,16 +1320,18 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <forum>https://t.me/KodiManiac
         https://t.me/acestream_spanish</forum>
     </extension>
-</addon><addon id="script.module.resolveurl" name="ResolveURL" version="5.1.95~nightly2" provider-name="gujal">
+</addon>
+
+<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.95~nightly2" provider-name="gujal">
     <requires>
-        
+        <!-- <import addon="xbmc.python" version="3.0.0" /> -->
         <import addon="script.module.six" />
         <import addon="script.module.kodi-six" />
         <import addon="plugin.video.youtube" optional="true" />
         <import addon="script.module.python.twitch" optional="true" />
         <import addon="plugin.googledrive" optional="true" />
-        
-        <import addon="script.module.pydevd" optional="true" />
+        <!-- for remote debug -->
+        <import addon="script.module.pydevd" optional="true"/>
     </requires>
     <extension point="xbmc.python.module" library="lib" />
     <extension point="xbmc.python.pluginsource" library="lib/default.py" />
@@ -1278,10 +1351,12 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
-</addon><addon id="script.skin.helper.colorpicker" name="Skin Helper Service ColorPicker" version="2.0.2" provider-name="sualfred,marcelveldt">
+</addon>
+
+	<addon id="script.skin.helper.colorpicker" name="Skin Helper Service ColorPicker" version="2.0.2" provider-name="sualfred,marcelveldt">
 	<requires>
-		<import addon="xbmc.python" version="3.0.0" />
-		<import addon="script.module.pil" version="1.1.7" />
+		<import addon="xbmc.python" version="3.0.0"/>
+		<import addon="script.module.pil" version="1.1.7"/>
 	</requires>
 	<extension point="xbmc.python.library" library="default.py" />
 	<extension point="xbmc.addon.metadata">
@@ -1296,31 +1371,33 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<fanart>resources/fanart.jpg</fanart>
 		</assets>
 	</extension>
-</addon><addon id="skin.auramod.TVBAN-Nexus" version="1.1.11" name="AuraMod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod,[COLOR darkviolet]andtv_tvban, JoseAnd[/COLOR]">
+</addon>
+
+<addon id="skin.auramod.TVBAN-Nexus" version="1.1.11" name="AuraMod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod,[COLOR darkviolet]andtv_tvban, JoseAnd[/COLOR]">
     <requires>
-        <import addon="xbmc.gui" version="5.15.0" />
-        <import addon="script.skin.helper.service" version="1.1.24" />
-        <import addon="script.skin.helper.widgets" version="1.0.0" />
-        <import addon="script.skinshortcuts" version="1.0.20" />
-        <import addon="script.image.resource.select" version="0.0.5" />
-        <import addon="plugin.program.autocompletion" version="1.0.1" />
-        <import addon="resource.images.studios.white" version="0.0.10" />
-        <import addon="resource.images.studios.coloured" version="0.0.18" />
-        <import addon="resource.images.moviegenreicons.transparent" version="0.0.6" />
+        <import addon="xbmc.gui" version="5.15.0"/>
+        <import addon="script.skin.helper.service" version="1.1.24"/>
+        <import addon="script.skin.helper.widgets" version="1.0.0"/>
+        <import addon="script.skinshortcuts" version="1.0.20"/>
+        <import addon="script.image.resource.select" version="0.0.5"/>
+        <import addon="plugin.program.autocompletion" version="1.0.1"/>
+        <import addon="resource.images.studios.white" version="0.0.10"/>
+        <import addon="resource.images.studios.coloured" version="0.0.18"/>
+        <import addon="resource.images.moviegenreicons.transparent" version="0.0.6"/>
     </requires>
     <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
-        <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i" />
+        <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
         <summary lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets. </summary>
         <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
 		<news>Nuevos cambios:
 		- Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
-		</news> 
+		</news>
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
-        <forum />
-        <source />
+        <forum/>
+        <source/>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
@@ -1331,4 +1408,5 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <screenshot>resources/screenshot-05.jpg</screenshot>
         </assets>
     </extension>
-</addon></root>
+</addon>
+</addons>
