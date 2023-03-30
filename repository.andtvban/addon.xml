@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.andtvban" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDT[/B][/COLOR][COLOR limegreen][B]VBAN[/B][/COLOR]" version="17.2.23" provider-name="andtv_tvban, JoseAnd">
+    <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDT[COLOR limegreen]VBAN[/B][/COLOR]">
+        <dir minversion="19.0" maxversion="19.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/matrix/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/matrix/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/matrix/zips</datadir>
+        </dir>
+        <dir minversion="19.9.0" maxversion="20.9.0">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/nexus/zips</datadir>
+        </dir>
+        <dir minversion="20.9.0" maxversion="20.9.0">
+            <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
+        </dir>
+        <dir minversion="20.9.1">
+            <info compressed="false">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/repository.andtvban/master/repo/omega/zips/</datadir>
+        </dir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>[COLOR steelblue]Repo[/COLOR] [COLOR azure]Andt[/COLOR][COLOR limegreent]ban[/COLOR]</summary>
+        <description>Repositorio de addons para [COLOR azure]ANDTVBAN[/COLOR].
+[B][COLOR lime]CREDITOS:
+[COLOR white]• Developers:[/COLOR][/B] [COLOR gold]JoseAnd[/COLOR]</description> 		             
+        <disclaimer>[COLOR cyan]Éste repositorio sólo recoge Add-ons válidos para [COLOR azure]KODI: [COLOR limegreen]19 MATRIX [COLOR blueviolet]20 NEXUS [COLOR gold]21 OMEGA[/COLOR]</disclaimer>
+        <platform>all</platform>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+		<source>https://andtv.github.io/tvban</source>
+    </extension>
+</addon>
+
