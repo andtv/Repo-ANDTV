@@ -1,6 +1,6 @@
 name="Portab"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/portable_data.zip"
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/noportable_data.zip"
 minor="http://"
 gui="http://"
 kodi="20"
