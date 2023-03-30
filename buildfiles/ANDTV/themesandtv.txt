@@ -1,4 +1,4 @@
-name="[B][COLOR white]•• [COLOR limegreen]Parche: [COLOR white]TVban [COLOR darkviolet]Nexus [COLOR gold]0.0.00[/COLOR][/B]"
+name="[B][COLOR white]•• [COLOR limegreen]PARCHE: [COLOR white]TVban [COLOR darkviolet]Nexus [COLOR gold]0.0.00[/COLOR][/B]"
 url=""
 icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
