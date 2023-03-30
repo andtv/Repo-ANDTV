@@ -956,11 +956,6 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips</datadir>
         </dir>
-        <dir minversion="20.9.0"> <!--maxversion="21.9.0">-->
-            <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
-        </dir>
     </extension>
 
     <extension point="xbmc.addon.metadata">
