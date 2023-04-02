@@ -1,6 +1,6 @@
-name="2 ABRIL"
+name="30 marzo"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/build.nabvt.zip"
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/build.anbvt.zip"
 minor="http://"
 gui="http://"
 kodi="20"
