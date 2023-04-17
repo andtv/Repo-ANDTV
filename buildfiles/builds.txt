@@ -1,13 +1,3 @@
-<builds>
-  <build>
-   <name>[COLOR royalblue]----FUNS LATEST----[/COLOR]</name>
-   <version>[COLOR royalblue]Nexus K20[/COLOR]</version>
-   <url>http://funstersplace.net/Builds/steam.zip</url>
-   <icon>https://funstersplace.net/images/test.jpg</icon>
-   <fanart>https://funstersplace.net/images/test.jpg</fanart>
-   <description>Funstersplace Builds</description>
-  </build>
-</builds>
 name="tvban.andtv"
 version="1.0"
 url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban.zip"
