@@ -277,6 +277,9 @@ def get_system_platform():
             elif arquitectura != "x86":
                 plataforma = str(os.uname())
 
+        """elif xbmc.getCondVisibility('system.platform.uwp'):
+        plataforma = "uwp"""""
+
     elif xbmc.getCondVisibility('system.platform.windows'):
         plataforma = "windows"
 
@@ -327,6 +330,8 @@ def extractFile(source, dest):
 
 def install_acestream():
     ruta = ruta_zip = ruta_extract = url = None
+    set_setting("install_acestream", '')
+    set_setting("acestream_cachefolder", '')
 
     if not system_platform in ['linux', 'windows']:
         logger("install_acestream: system_platform = %s" % str((system_platform, arquitectura, root)))
@@ -336,19 +341,19 @@ def install_acestream():
         ruta = translatePath("special://home")
         ruta_zip = os.path.join(ruta, "userdata", "acestream_win.zip")
         ruta_extract = data_path
-        url = "https://tinyurl.com/68a4r5r6"  # acestream_win
+        url ="https://github.com/Carlesto/Horus/releases/download/ace/acestream_win.zip" # acestream_win
 
     elif arquitectura == "arm" or (arquitectura == "aarch" and root):
         ruta = translatePath("special://home")
         ruta_zip = os.path.join(ruta, "userdata", "acestream.tar.gz")
         ruta_extract = data_path
-        url = "https://tinyurl.com/47bd97xy" # linaroNDK
+        url = "https://github.com/Carlesto/Horus/releases/download/ace/acestream_elec.tar.gz" # linaroNDK
 
     elif arquitectura == "x86" and root:
         ruta = translatePath("special://home")
         ruta_zip = os.path.join(ruta, "userdata", "acestream.tar.gz")
         ruta_extract = data_path
-        url = "https://tinyurl.com/p5r8wpxp" # acestream_x86
+        url = "https://github.com/Carlesto/Horus/releases/download/ace/acestream_x86.tar.gz" # acestream_x86
 
     else:
         logger("install_acestream: motor externo system_platform = %s" % str((system_platform, arquitectura, root)))
@@ -359,6 +364,7 @@ def install_acestream():
     dp = xbmcgui.DialogProgress()
     dp.create(HEADING, translate(30000))
     logger("Descargando Acestream...")
+
     downloadFile(url, ruta_zip, dp)
     dp.update(0, translate(30001))
     logger("Descarga Completa: %s" %ruta_zip)
@@ -389,6 +395,7 @@ def install_acestream():
 
 
 system_platform, arquitectura, root = get_system_platform()
-
-from lib.acestream.server import Server
+logger((system_platform, arquitectura, root))
+from acestream.server import Server
 server = Server(host=get_setting("ip_addr"), port=get_setting("ace_port"))
+
