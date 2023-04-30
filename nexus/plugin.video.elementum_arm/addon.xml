@@ -31,7 +31,7 @@
         <language>en el es de fi fr he hr it nl pt ro sk sv</language>
         <platform>all</platform>
         <website>http://elementum.surge.sh/</website>
-        <source>https://github.com/andtv/plugin.video.elementum-arm</source>
+        <source>https://github.com/andtv/Repo-ANDTV/tree/master/nexus/plugin.video.elementum_arm</source>
         <forum></forum>
         <license>Non commercial. See https://github.com/elgatito/plugin.video.elementum/blob/master/LICENSE</license>
         <assets>
