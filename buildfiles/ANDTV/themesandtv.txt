@@ -6,7 +6,7 @@ adult="no"
 description="[COLOR azure][B]Andtv[/COLOR] [COLOR darkviolet]Nexus[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus[/B][/COLOR]"
 
 name="[B][COLOR white]•  [COLOR orange]Motor:[/COLOR] Elementum [COLOR white]ARM[/COLOR][/B]"
-url="https://github.com/andtv/andtv.github.io/releases/download/20.5/NX_Elementum_Android_v0.187.zip"
+url="https://github.com/andtv/andtv.github.io/releases/download/20.5/arm.v0.187.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
 adult="no"
