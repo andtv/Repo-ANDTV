@@ -34,6 +34,6 @@
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
         </assets>
-		<source>https://andtv.github.io/tvban</source>
+		<source>https://andtvban.github.io/andtv</source>
     </extension>
 </addon>

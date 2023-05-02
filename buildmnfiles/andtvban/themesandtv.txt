@@ -1,0 +1,36 @@
+name="[B][COLOR white]ANDTV [COLOR limegreen]Nexus [COLOR gold]00.0.00[/COLOR][/B]"
+url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/ParcheM.ANDTV.Nexus.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
+adult="no"
+description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]"
+
+name="[B][COLOR orange]MOTOR: [COLOR white]Elementum-[COLOR dodgerblue]Arm_32[/COLOR][/B]"
+url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/Elearm.v0.187.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
+adult="no"
+description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]"
+
+name="[B][COLOR orange]MOTOR: [COLOR white]Elementum-[COLOR limegreen]Arm_64_Nvidia[/COLOR][/B]"
+url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/Elenvidia_v0.187.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
+adult="no"
+description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]"
+
+name="[B][COLOR orange]MOTOR: [COLOR white]Elementum-[COLOR slategray]OSx[/COLOR][/B]"
+url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/NX_Elementum_OSx_64_v0.187.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
+adult="no"
+description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]"
+
+name="[B][COLOR orange]MOTOR: [COLOR white]Elementum-[COLOR slategray]Windows_32_64[/COLOR][/B]"
+url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/NX_Elementum_Windows_v0.187.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/elementum-All-One.png"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/elementum.jpg"
+adult="no"
+description="[COLOR azure][B]ANDTV[/COLOR] [COLOR limegreen]MATRIX[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]"
+
+
