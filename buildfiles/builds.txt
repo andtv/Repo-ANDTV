@@ -1,6 +1,6 @@
 name="tvban.andtv"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.andtv.zipp"
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.andtv.zip"
 minor="http://"
 gui="http://"
 kodi="20"
@@ -14,7 +14,7 @@ description="[COLOR azure][B]TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] p
 
 name="16.abril"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban.zipp"
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban.zip"
 minor="http://"
 gui="http://"
 kodi="20"
