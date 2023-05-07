@@ -2,6 +2,45 @@
 
 [COLOR yellow][B]2023[/B][/COLOR]
 
+3.0.4  [COLOR darkorange] 27 de Abril de 2023[/COLOR]
+    Correcciones: Bugs de la version anterior
+
+    Generos: Re-configurados
+
+    Canales:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
+    Servidores:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
+3.0.3  [COLOR darkorange] 13 de Abril de 2023[/COLOR]
+    Correcciones: Bugs de la version anterior
+
+    Generos: Re-configurados
+
+    Canales:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
+    Servidores:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
+3.0.2  [COLOR darkorange] 16 de Marzo de 2023[/COLOR]
+    Correcciones: Bugs de la version anterior
+
+    Generos: Re-configurados
+
+    Canales:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
+    Servidores:
+       Modificados: Revision generalizada
+       Anulados: Las webs cerradas
+
 3.0.1  [COLOR darkorange] 11 de Febrero de 2023[/COLOR]
     Correcciones: Bugs de la version anterior
 

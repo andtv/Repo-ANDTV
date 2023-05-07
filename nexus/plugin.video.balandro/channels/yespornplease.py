@@ -43,10 +43,10 @@ def configurar_proxies(item):
 
 
 def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
-    if not config.get_setting('channel_yespornplease_proxies', default=''): raise_weberror=False
-
-    # ~ data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
-    data = httptools.downloadpage_proxy('yespornplease', url, post=post, headers=headers, raise_weberror=raise_weberror).data
+    if not url.startswith(host):
+        data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
+    else:
+        data = httptools.downloadpage_proxy('yespornplease', url, post=post, headers=headers, raise_weberror=raise_weberror).data
 
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         try:
@@ -54,8 +54,11 @@ def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
             ck_name, ck_value = balandroresolver.get_sucuri_cookie(data)
             if ck_name and ck_value:
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
-                # ~ data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
-                data = httptools.downloadpage_proxy('yespornplease', url, post=post, headers=headers, raise_weberror=raise_weberror).data
+
+                if not url.startswith(host):
+                    data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
+                else:
+                    data = httptools.downloadpage_proxy('yespornplease', url, post=post, headers=headers, raise_weberror=raise_weberror).data
         except:
             pass
 
@@ -110,12 +113,12 @@ def canales(item):
     matches = re.compile('<a href="(.*?)">(.*?)</a>', re.DOTALL).findall(bloque)
 
     for url, title in matches:
-        itemlist.append(item.clone (action='list_all', title=title, url=url ))
+        itemlist.append(item.clone (action='list_all', title=title, url=url, text_color = 'orange' ))
 
     if itemlist:
-        itemlist.append(item.clone (action='list_all', title= 'BangBros', url = host + '/bangbros/' ))
-        itemlist.append(item.clone (action='list_all', title= 'Brazzers', url = host + '/brazzers/' ))
-        itemlist.append(item.clone (action='list_all', title= 'Reality Kings', url = host + '/reality-kings/' ))
+        itemlist.append(item.clone (action='list_all', title= 'BangBros', url = host + '/bangbros/', text_color = 'orange' ))
+        itemlist.append(item.clone (action='list_all', title= 'Brazzers', url = host + '/brazzers/', text_color = 'orange' ))
+        itemlist.append(item.clone (action='list_all', title= 'Reality Kings', url = host + '/reality-kings/', text_color = 'orange' ))
 
     return sorted(itemlist, key=lambda x: x.title)
 
@@ -126,10 +129,12 @@ def categorias(item):
 
     data = do_downloadpage(item.url)
 
-    matches = re.compile('<div class="box">.*?<a href="(.*?)".*?<img src="(.*?)".*?">(.*?)</a>', re.DOTALL).findall(data)
+    matches = re.compile('<div class="box">.*?<a href="(.*?)".*?src="(.*?)".*?">(.*?)</a>', re.DOTALL).findall(data)
 
     for url, thumb, title in matches:
-        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb) )
+        if title == 'All Videos': continue
+
+        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb, text_color = 'tan' ))
 
     return sorted(itemlist, key=lambda x: x.title)
 
@@ -140,15 +145,15 @@ def pornstars(item):
 
     data = do_downloadpage(item.url)
 
-    matches = re.compile('<div class="box">.*?<a href="(.*?)".*?<img src="(.*?)".*?">(.*?)</a>', re.DOTALL).findall(data)
+    matches = re.compile('<div class="box">.*?<a href="(.*?)".*?src="(.*?)".*?">(.*?)</a>', re.DOTALL).findall(data)
 
     for url, thumb, title in matches:
-        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb) )
+        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb, text_color='moccasin' ))
 
-    matches2 = re.compile('<figure class="gallery-item">.*?<img src="(.*?)".*?alt="(.*?)".*?<a href="(.*?)"', re.DOTALL).findall(data)
+    matches2 = re.compile('<figure class="gallery-item">.*?src="(.*?)".*?alt="(.*?)".*?<a href="(.*?)"', re.DOTALL).findall(data)
 
     for thumb, title, url in matches2:
-        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb) )
+        itemlist.append(item.clone (action='list_all', title=title, url=url, thumbnail=thumb, text_color='moccasin' ))
 
     return sorted(itemlist, key=lambda x: x.title)
 
@@ -159,13 +164,12 @@ def list_all(item):
 
     data = do_downloadpage(item.url)
 
-    matches = re.compile('<div class="post-preview-styling">.*?<a href="(.*?)".*?title="(.*?)".*?src="(.*?)"', re.DOTALL).findall(data)
+    matches = re.compile('<div class="post-preview-styling">.*?<a href="(.*?)".*?title="(.*?)".*?data-src="(.*?)"', re.DOTALL).findall(data)
 
     for url, title, thumb in matches:
         title = title.replace('&#8217;', '').replace('&#8211;', '&').replace('&#038;', '&')
 
-        itemlist.append(item.clone (action='findvideos', title=title, url=url, thumbnail=thumb, contentType = 'movie',
-                                    contentTitle = title, contentExtra='adults') )
+        itemlist.append(item.clone (action='findvideos', title=title, url=url, thumbnail=thumb, contentType = 'movie', contentTitle = title, contentExtra='adults') )
 
     if itemlist:
         next_page = scrapertools.find_single_match(data,'<link rel="next" href="(.*?)"')
@@ -183,7 +187,7 @@ def findvideos(item):
 
     data = do_downloadpage(item.url)
 
-    matches = re.compile('<iframe src="(.*?)"', re.DOTALL).findall(data)
+    matches = re.compile('<iframe.*?-src="(.*?)"', re.DOTALL).findall(data)
 
     for link in matches:
         if host in link:
@@ -200,6 +204,8 @@ def findvideos(item):
         servidor = servertools.corregir_servidor(servidor)
 
         link = servertools.normalize_url(servidor, link)
+
+        if not 'http' in link: link = 'https:' + link
 
         if not servidor == 'directo':
             itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = link, language = 'VO' ))

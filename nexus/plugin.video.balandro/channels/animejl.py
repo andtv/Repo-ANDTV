@@ -31,11 +31,13 @@ def mainlist_animes(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'animes', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host, search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host, search_type = 'tvshow', text_color = 'olive' ))
 
     itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'animes?estado%5B%5D=2&order=created', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'En emisión', action = 'list_all', url = host + 'animes?estado%5B%5D=0&order=created', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Finalizados', action = 'list_all', url = host + 'animes?estado%5B%5D=1&order=created', search_type = 'tvshow' ))
+
+    itemlist.append(item.clone( title = 'En Latino', action = 'list_all', url = host + 'animes?genre[]=46&order=created', search_type = 'tvshow' ))
 
     itemlist.append(item.clone( title = 'Por categorías', action = 'categorias', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
@@ -48,10 +50,10 @@ def categorias(item):
     logger.info()
     itemlist = []
 
-    itemlist.append(item.clone( title = 'Animes', action = 'list_all', url = host + 'animes?tipo%5B%5D=1&order=created', search_type = 'tvshow' ))
-    itemlist.append(item.clone( title = 'Donghuas', action = 'list_all', url = host + 'animes?tipo%5B%5D=7&order=created', search_type = 'tvshow' ))
-    itemlist.append(item.clone( title = 'Ovas', action = 'list_all', url = host + 'animes?tipo%5B%5D=2&order=created', search_type = 'tvshow' ))
-    itemlist.append(item.clone( title = 'Películas', action = 'list_all', url = host + 'animes?tipo%5B%5D=3&order=created', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Animes', action = 'list_all', url = host + 'animes?tipo%5B%5D=1&order=created', search_type = 'tvshow', text_color='springgreen' ))
+    itemlist.append(item.clone( title = 'Donghuas', action = 'list_all', url = host + 'animes?tipo%5B%5D=7&order=created', search_type = 'tvshow', text_color='springgreen' ))
+    itemlist.append(item.clone( title = 'Ovas', action = 'list_all', url = host + 'animes?tipo%5B%5D=2&order=created', search_type = 'tvshow', text_color='springgreen' ))
+    itemlist.append(item.clone( title = 'Películas', action = 'list_all', url = host + 'animes?tipo%5B%5D=3&order=created', search_type = 'tvshow', text_color = 'deepskyblue' ))
 
     return itemlist
 
@@ -68,9 +70,11 @@ def generos(item):
     matches = re.compile("<option value='(.*?)'.*?>(.*?)</option>").findall(bloque)
 
     for value, title in matches:
+        if title == 'Latino/Español': continue
+
         url = host + 'animes?genre%5B%5D=' + value + '&order=created'
 
-        itemlist.append(item.clone( title = title, action = 'list_all', url = url ))
+        itemlist.append(item.clone( title = title, action = 'list_all', url = url, text_color='springgreen' ))
 
     return sorted(itemlist,key=lambda x: x.title)
 
@@ -85,7 +89,7 @@ def anios(item):
     for x in range(current_year, 1989, -1):
         url = host + 'animes?year%5B%5D=' + str(x) + '&order=created'
 
-        itemlist.append(item.clone( title = str(x), url = url, action='list_all' ))
+        itemlist.append(item.clone( title = str(x), url = url, action='list_all', text_color='springgreen' ))
 
     return itemlist
 
@@ -189,7 +193,7 @@ def episodios(item):
 
     matches = scrapertools.find_multiple_matches(data, '\[(\d+),"([^"]+)","([^"]+)",[^\]]+\]')
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -200,6 +204,7 @@ def episodios(item):
                 platformtools.dialog_notification('AnimeJl', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -212,22 +217,27 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('AnimeJl', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('AnimeJl', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('AnimeJl', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('AnimeJl', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for epis, url, thumb in matches[item.page * item.perpage:]:
         title = 'Episodio %s' % epis
 
         url = "%s/%s" % (item.url, url)
 
-        itemlist.append(item.clone( action='findvideos', url = url, title = title, language='Vose',
-                                    contentType = 'episode', contentSeason = 1, contentEpisodeNumber=epis ))
+        itemlist.append(item.clone( action='findvideos', url = url, title = title, contentType = 'episode', contentSeason = 1, contentEpisodeNumber=epis ))
 
         if len(itemlist) >= item.perpage:
             break
@@ -270,7 +280,7 @@ def findvideos(item):
             if servidor == 'zplayer': url = url + '|' + host
 
             if not servidor == 'directo':
-                itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url ))
+                itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, language='Vose' ))
 
     # ~ descargas  no se tratan por anomizador
 

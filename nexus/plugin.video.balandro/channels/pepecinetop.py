@@ -51,9 +51,9 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'series-pepecine/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone ( title = 'Estrenos', action = 'list_all', url = host + 'ver/genero/estrenos/', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'ver/genero/estrenos/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone ( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
 
     return itemlist
 
@@ -61,6 +61,9 @@ def mainlist_series(item):
 def generos(item):
     logger.info()
     itemlist = []
+
+    if item.search_type == 'movie': text_color = 'deepskyblue'
+    else: text_color = 'hotpink'
 
     opciones = [
        ('accion', 'Acción'),
@@ -88,7 +91,7 @@ def generos(item):
     ]
 
     for opc, tit in opciones:
-        itemlist.append(item.clone( title=tit, url= host + 'ver/genero/' + opc + '/', action = 'list_all' ))
+        itemlist.append(item.clone( title=tit, url= host + 'ver/genero/' + opc + '/', action = 'list_all', text_color = text_color ))
 
     return itemlist
 
@@ -117,6 +120,8 @@ def list_all(item):
         if not year: year = '-'
 
         qlty = scrapertools.find_single_match(article, '</span><span class="Qlty">(.*?)</span>')
+
+        title = title.replace('&#8217;s', "'")
 
         tipo = 'tvshow' if '<span class="TpTv BgA">TV</span>' in article else 'movie'
         sufijo = '' if item.search_type != 'all' else tipo
@@ -167,7 +172,7 @@ def temporadas(item):
             itemlist = episodios(item)
             return itemlist
 
-        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, contentType = 'season', contentSeason = season ))
+        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, contentType = 'season', contentSeason = season, text_color = 'tan' ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -189,7 +194,7 @@ def episodios(item):
 
     matches = scrapertools.find_multiple_matches(bloque, '<span class="Num">(.*?)</span>.*?<img src="(.*?)".*?<a href="(.*?)".*?>(.*?)</a>')
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -200,6 +205,7 @@ def episodios(item):
                 platformtools.dialog_notification('PepeCineTop', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -212,22 +218,27 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('PepeCineTop', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('PepeCineTop', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('PepeCineTop', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('PepeCineTop', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for epis, thumb, url, title in matches[item.page * item.perpage:]:
         if thumb.startswith('//'): thumb = 'https:' + thumb
 
         titulo = '%sx%s %s' % (str(item.contentSeason), epis, title)
 
-        itemlist.append(item.clone( action = 'findvideos', title = titulo, thumbnail = thumb, url = url,
-                                    contentType = 'episode', contentEpisodeNumber = epis ))
+        itemlist.append(item.clone( action = 'findvideos', title = titulo, thumbnail = thumb, url = url, contentType = 'episode', contentEpisodeNumber = epis ))
 
         if len(itemlist) >= item.perpage:
             break
@@ -281,8 +292,7 @@ def findvideos(item):
 
             if servidor == 'zplayer': new_url = new_url + '|' + host
 
-            itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = new_url,
-                                  language = idioma, quality = qlty ))
+            itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = new_url, language = idioma, quality = qlty ))
 
             continue
 
@@ -304,8 +314,7 @@ def findvideos(item):
 
             if servidor == 'zplayer': link = link + '|' + host
 
-            itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = link,
-                                  language = idioma, quality = qlty ))
+            itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = link, language = idioma, quality = qlty ))
 
     if not itemlist:
         if not ses == 0:

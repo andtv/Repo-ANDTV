@@ -1099,7 +1099,7 @@ def downloadpage(url, **opt):
         
         if opt.get('timeout', None) is None and HTTPTOOLS_DEFAULT_DOWNLOAD_TIMEOUT is not None: 
             opt['timeout'] = HTTPTOOLS_DEFAULT_DOWNLOAD_TIMEOUT
-        if opt['timeout'] == 0:
+        if opt.get('timeout', 0) == 0:
             opt['timeout'] = None
 
         if len(url) > 0:

@@ -55,7 +55,7 @@ def _marcar_canales(item):
             return
 
     config.set_setting('status', item.estado, item.canal)
-	
+
     el_canal = ('Cambiado a [B][COLOR %s] %s [COLOR %s] ' + item.canal.capitalize() + '[/COLOR][/B]') % (color_exec, new_tipo, color_avis)
     platformtools.dialog_notification(config.__addon_name, el_canal)
 
@@ -318,15 +318,18 @@ def manto_params(item):
 
         config.set_setting('channel_animefenix_dominio', '')
         config.set_setting('channel_animeflv_dominio', '')
+
         config.set_setting('channel_caricaturashd_dominio', '')
         config.set_setting('channel_cinecalidad_dominio', '')
         config.set_setting('channel_cinecalidadla_dominio', '')
         config.set_setting('channel_cinecalidadlol_dominio', '')
-        config.set_setting('channel_cinetux_dominio', '')
+        config.set_setting('channel_cinecalidadmx_dominio', '')
         config.set_setting('channel_cuevana3_dominio', '')
         config.set_setting('channel_cuevana3video_dominio', '')
+
         config.set_setting('channel_divxtotal_dominio', '')
         config.set_setting('channel_dontorrents_dominio', '')
+
         config.set_setting('channel_elifilms_dominio', '')
         config.set_setting('channel_elitetorrent_dominio', '')
         config.set_setting('channel_entrepeliculasyseries_dominio', '')
@@ -339,10 +342,13 @@ def manto_params(item):
         config.set_setting('channel_hdfull_hdfull_login', False)
         config.set_setting('channel_hdfull_hdfull_password', '')
         config.set_setting('channel_hdfull_hdfull_username', '')
-
         config.set_setting('channel_hdfullse_dominio', '')
-        config.set_setting('channel_inkapelis_dominio', '')
-        config.set_setting('channel_kindor_dominio', '')
+
+        config.set_setting('channel_nextdede_nextdede_login', False)
+        config.set_setting('channel_nextdede_nextdede_email', '')
+        config.set_setting('channel_nextdede_nextdede_password', '')
+        config.set_setting('channel_nextdede_nextdede_username', '')
+
         config.set_setting('channel_pelis28_dominio', '')
         config.set_setting('channel_pelishouse_dominio', '')
         config.set_setting('channel_pelismaraton_dominio', '')
@@ -351,16 +357,18 @@ def manto_params(item):
         config.set_setting('channel_pelisplus_dominio', '')
         config.set_setting('channel_pelisplushd_dominio', '')
         config.set_setting('channel_pelisplushdlat_dominio', '')
-
+        config.set_setting('channel_pelisplushdnz_dominio', '')
         config.set_setting('channel_playdede_dominio', '')
         config.set_setting('channel_playdede_playdede_login', False)
         config.set_setting('channel_playdede_playdede_password', '')
         config.set_setting('channel_playdede_playdede_username', '')
 
-        config.set_setting('channel_repelishd_dominio', '')
         config.set_setting('channel_series24_dominio', '')
+        config.set_setting('channel_serieskao_dominio', '')
         config.set_setting('channel_seriesyonkis_dominio', '')
+        config.set_setting('channel_srnovelas_dominio', '')
         config.set_setting('channel_subtorrents_dominio', '')
+
         config.set_setting('channel_torrentpelis_dominio', '')
 
         config.set_setting('channels_proxies_memorized', '')
@@ -375,6 +383,9 @@ def manto_params(item):
 
         config.set_setting('proxysearch_excludes', '')
 
+        config.set_setting('proxysearch_process', '')
+        config.set_setting('proxysearch_process_proxies', '')
+
         config.set_setting('search_last_all', '')
         config.set_setting('search_last_movie', '')
         config.set_setting('search_last_tvshow', '')
@@ -384,7 +395,7 @@ def manto_params(item):
         download_path = filetools.join(config.get_data_path(), 'downloads')
         config.set_setting('downloadpath', download_path)
 
-        config.set_setting('chrome_last_version', '110.0.5481.63')
+        config.set_setting('chrome_last_version', '112.0.5615.138')
 
         config.set_setting('debug', '0')
 
@@ -583,6 +594,12 @@ def manto_addons_packages(item):
     existe = filetools.exists(path)
     if existe: hay_temporales = True
 
+    if existe:
+        packages = []
+        packages = os.listdir(path)
+
+        if not packages: hay_temporales = False
+
     if hay_temporales == False:
         platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]No hay ficheros en Addons/Packages[/COLOR][/B]' % color_alert)
         return
@@ -602,6 +619,12 @@ def manto_addons_temp(item):
 
     existe = filetools.exists(path)
     if existe: hay_temporales = True
+
+    if existe:
+        temps = []
+        temps = os.listdir(path)
+
+        if not temps: hay_temporales = False
 
     if hay_temporales == False:
         platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]No hay ficheros en Addons/Temp[/COLOR][/B]' % color_alert)
@@ -677,7 +700,7 @@ def manto_tmdb_sqlite(item):
         existe = filetools.exists(path)
         if existe == False:
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Aún no tiene Tmdb Sqlite[/COLOR][/B]' % color_exec)
-      
+
         if platformtools.dialog_yesno(config.__addon_name, '[COLOR red][B]¿ Confirma Eliminar el fichero Tmdb Sqlite ?[/B][/COLOR]'):
             filetools.remove(path)
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Fichero Tmdb Sqlite eliminado[/B][/COLOR]' % color_infor)
@@ -689,7 +712,7 @@ def manto_tmdb_sqlite(item):
         existe = filetools.exists(path)
         if existe == False:
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Aún no tiene Tmdb Sqlite Journal[/COLOR][/B]' % color_exec)
-      
+
         if platformtools.dialog_yesno(config.__addon_name, '[COLOR red][B]¿ Confirma Eliminar el fichero Tmdb Sqlite Journal?[/B][/COLOR]'):
             filetools.remove(path)
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Fichero Tmdb Sqlite Journal eliminado[/B][/COLOR]' % color_infor)
@@ -755,7 +778,7 @@ def adults_password(item):
         if len(password) != 4:
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Pin obligatorio 4 dígitos[/B][/COLOR]' % color_alert)
             return
-        
+
         if str(password) == '0000':
             platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Pin NO admitido[/COLOR][/B]' % color_avis)
             return
@@ -875,7 +898,7 @@ def test_internet(item):
 
     if your_ip:
         your_info = ''
-		
+
         try:
            your_info = httptools.downloadpage('https://ipinfo.io/json').data
         except:

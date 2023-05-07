@@ -128,6 +128,8 @@ def check_repo(force=False):
 def check_addon_updates(verbose=False, force=False):
     logger.info()
 
+    erase_cookies()
+
     check_repo()
 
     get_last_chrome_list()
@@ -234,7 +236,7 @@ def get_last_chrome_list():
         except:
             web_last_ver_chrome = ''
 
-        if not web_last_ver_chrome == '':  config.set_setting('chrome_last_version', web_last_ver_chrome)
+        if not web_last_ver_chrome == '': config.set_setting('chrome_last_version', web_last_ver_chrome)
 
 
 def check_addon_version():
@@ -250,3 +252,19 @@ def check_addon_version():
     if addon.get('version') == config.get_addon_version(False): return True
 
     return False
+
+
+def erase_cookies():
+    logger.info()
+
+    if config.get_setting('erase_cookies', default=False):
+        path = os.path.join(config.get_data_path(), 'cookies.dat')
+
+        existe = filetools.exists(path)
+
+        if existe:
+            try:
+                filetools.remove(path)
+                httptools.load_cookies()
+            except:
+                pass

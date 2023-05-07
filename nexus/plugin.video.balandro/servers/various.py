@@ -42,15 +42,12 @@ def get_video_url(page_url, url_referer=''):
 
         if 'tubeload' in page_url: txt_server = 'Tubeload'
         elif 'mvidoo' in page_url: txt_server = 'Mvidoo'
-        elif 'ninjastream' in page_url: txt_server = 'Ninjastream'
         elif 'rutube' in page_url: txt_server = 'Rutube'
-        elif 'videovard' in page_url: txt_server = 'Videovard'
 
         elif 'filemoon' in page_url:
               txt_server = 'Filemoon'
-              page_url = page_url.replace('/filemoon.link/', '/filemoon.sx/')
+              page_url = page_url.replace('/filemoon.top/', '/filemoon.sx/')
 
-        elif 'streamhide' in page_url: txt_server = 'Streamhide'
         elif 'streamhub' in page_url: txt_server = 'Streamhub'
         elif 'uploadever' in page_url: txt_server = 'Uploadever'
         elif 'videowood' in page_url: txt_server = 'Videowood'
@@ -60,7 +57,10 @@ def get_video_url(page_url, url_referer=''):
               page_url = page_url.replace('/yadi.sk/', '/disk.yandex.ru/')
               txt_server = 'Yandex'
 
-        platformtools.dialog_notification('Cargando ' + '[COLOR yellow]' + txt_server + '[/COLOR]', 'Espera requerida de %s segundos' % espera)
+        elif 'fastupload' in page_url: txt_server = 'Fastupload'
+        elif 'dropload' in page_url: txt_server = 'Dropload'
+
+        platformtools.dialog_notification('Cargando ' + '[COLOR cyan][B]' + txt_server + '[/B][/COLOR]', 'Espera requerida de %s segundos' % espera)
         time.sleep(int(espera))
 
         try:
@@ -70,7 +70,7 @@ def get_video_url(page_url, url_referer=''):
             resuelto = resolveurl.resolve(page_url)
 
             if resuelto:
-                video_urls.append(['mp4', resuelto + '|Referer=%s' % page_url])
+                video_urls.append(['mp4', resuelto])
                 return video_urls
 
             color_exec = config.get_setting('notification_exec_color', default='cyan')

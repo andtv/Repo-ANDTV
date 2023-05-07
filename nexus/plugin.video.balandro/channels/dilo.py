@@ -12,6 +12,7 @@ host = 'https://www.dilo.nu/'
 
 h_catalogue = host + 'catalogue'
 
+
 IDIOMAS = {'la': 'Lat', 'es': 'Esp', 'en_es': 'Vose', 'en': 'VO'}
 
 
@@ -49,10 +50,13 @@ def configurar_proxies(item):
 
 def do_downloadpage(url, post=None, headers=None, follow_redirects=True, only_headers=False, raise_weberror=True):
     headers = {'Referer': host}
+
     timeout = 30
 
-    # ~ resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
-    resp = httptools.downloadpage_proxy('dilo', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
+    if not url.startswith(host):
+        resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
+    else:
+        resp = httptools.downloadpage_proxy('dilo', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
 
     if '<title>You are being redirected...</title>' in resp.data or '<title>Just a moment...</title>' in resp.data:
         try:
@@ -60,8 +64,11 @@ def do_downloadpage(url, post=None, headers=None, follow_redirects=True, only_he
             ck_name, ck_value = balandroresolver.get_sucuri_cookie(resp.data)
             if ck_name and ck_value:
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
-                # ~ resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
-                resp = httptools.downloadpage_proxy('dilo', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
+
+                if not url.startswith(host):
+                    resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
+                else:
+                    resp = httptools.downloadpage_proxy('dilo', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror, timeout=timeout)
         except:
             pass
 
@@ -99,7 +106,7 @@ def mainlist_series(item):
     itemlist.append(item.clone( title = 'En emisión', action = 'list_all', url = h_catalogue+'?status=0', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Finalizadas', action = 'list_all', url = h_catalogue+'?status=1', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Películas', action = 'list_all', url = h_catalogue + '?genre[]=pelicula', group ='pelis', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Películas', action = 'list_all', url = h_catalogue + '?genre[]=pelicula', group ='pelis', search_type = 'tvshow', text_color = 'deepskyblue' ))
 
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Por año', action = 'anios', search_type = 'tvshow' ))
@@ -124,12 +131,17 @@ def generos(item):
     for valor, titulo in matches:
         if titulo == 'Libros': continue
         elif titulo == 'Pelicula': continue
+        elif titulo == 'Audiolibros': continue
+        elif titulo == 'Juegos PC': continue
+        elif titulo == 'Onlyfans': continue
+        elif titulo == 'Software Portable': continue
 
-        itemlist.append(item.clone( title = titulo.strip(), url = h_catalogue + '?genre[]=' + valor, action = 'list_all' ))
+        itemlist.append(item.clone( title = titulo.strip(), url = h_catalogue + '?genre[]=' + valor, action = 'list_all', text_color = 'hotpink' ))
 
     if not descartar_xxx:
-        itemlist.append(item.clone( action = 'list_all', title = 'xxx / adultos', url = host + 'search?s=adultos' ))
-        itemlist.append(item.clone( action = 'temporadas', title = 'xxx / adultos internacional', url = host + 'internacional-adultos/' ))
+        if itemlist:
+            itemlist.append(item.clone( action = 'list_all', title = 'xxx / adultos', url = host + 'search?s=adultos', text_color = 'hotpink' ))
+            itemlist.append(item.clone( action = 'temporadas', title = 'xxx / adultos internacional', url = host + 'internacional-adultos/', text_color = 'hotpink' ))
 
     return sorted(itemlist, key=lambda it: it.title)
 
@@ -142,7 +154,7 @@ def anios(item):
     current_year = int(datetime.today().year)
 
     for x in range(current_year, 1970, -1):
-        itemlist.append(item.clone( title = str(x), url = h_catalogue + '?year[]=' + str(x), action = 'list_all' ))
+        itemlist.append(item.clone( title = str(x), url = h_catalogue + '?year[]=' + str(x), action = 'list_all', text_color = 'hotpink' ))
 
     return itemlist
 
@@ -227,7 +239,7 @@ def paises(item):
         elif x[1] == 'Espa\xc3\xb1a': title = 'España'
         elif x[1] == 'Turqu\xc3\xada': title = 'Turquía'
 
-        itemlist.append(item.clone( title = title, url = h_catalogue + '?country[]=' + x[0], action = 'list_all' ))
+        itemlist.append(item.clone( title = title, url = h_catalogue + '?country[]=' + x[0], action = 'list_all', text_color = 'moccasin' ))
 
     return itemlist
 
@@ -244,6 +256,7 @@ def list_all(item):
 
     for article in matches:
         url = scrapertools.find_single_match(article, ' href="([^"]+)"')
+
         title = scrapertools.find_single_match(article, '<div class="text-white[^"]*">([^<]+)</div>').strip()
 
         if not url or not title: continue
@@ -251,8 +264,7 @@ def list_all(item):
         if descartar_xxx and ('/coleccion-adulto-espanol/' in url or '/internacional-adultos/' in url): continue
 
         year = scrapertools.find_single_match(article, '<div class="txt-gray-200 txt-size-\d+">(\d+)</div>')
-        if year:
-            title = title.replace('(' + year + ')', '').strip()
+        if year: title = title.replace('(' + year + ')', '').strip()
         else: year = '-'
 
         thumb = scrapertools.find_single_match(article, ' src="([^"]+)"')
@@ -271,6 +283,7 @@ def list_all(item):
 
     if itemlist:
         next_page = scrapertools.find_single_match(data, '<li class="page-item"><a href="([^"]+)" aria-label="(?:Netx|Next)"')
+
         if next_page:
             itemlist.append(item.clone( title='Siguientes ...', url = h_catalogue + next_page, action='list_all',  group = item.group, text_color='coral' ))
 
@@ -322,6 +335,7 @@ def last_epis(item):
         elif '/lecturas-' in url: continue
         elif '/gran-' in url: continue
         elif '/various-' in url: continue
+        elif '/muy-interesante-' in url: continue
 
         elif '-pc-' in url: continue
         elif '-magazine-' in url: continue
@@ -425,7 +439,7 @@ def temporadas(item):
             itemlist = episodios(item)
             return itemlist
 
-        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, item_id = item_id, contentType = 'season', contentSeason = numtempo ))
+        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, item_id = item_id, contentType = 'season', contentSeason = numtempo, text_color = 'tan' ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -453,7 +467,7 @@ def episodios(item):
     if item.group == 'pelis':
         if len(data) == 1: title_peli = item.contentSerieName
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(data)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -464,6 +478,7 @@ def episodios(item):
                 platformtools.dialog_notification('Dilo', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -476,14 +491,20 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('Dilo', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('Dilo', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('Dilo', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('Dilo', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for epi in data[item.page * item.perpage:]:
         titulo = '%sx%s %s' % (epi['season_number'], epi['number'], epi['name'])

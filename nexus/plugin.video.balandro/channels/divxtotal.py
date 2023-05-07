@@ -5,6 +5,7 @@ import sys
 PY3 = False
 if sys.version_info[0] >= 3: PY3 = True
 
+
 import re, os
 
 from platformcode import logger, config, platformtools
@@ -14,12 +15,13 @@ from core import httptools, scrapertools, tmdb
 from lib import decrypters
 
 
-host = 'https://www.divxtotal.pl/'
+host = 'https://www.divxtotal.wf/'
 
 
 # ~ por si viene de enlaces guardados
 ant_hosts = ['https://www.divxtotal.re/', 'https://www.divxtotal.ac/', 'https://www.divxtotal.dev/',
-             'https://www.divxtotal.ms/', 'https://www.divxtotal.fi/', 'https://www.divxtotal.cat/']
+             'https://www.divxtotal.ms/', 'https://www.divxtotal.fi/', 'https://www.divxtotal.cat/',
+             'https://www.divxtotal.pl/']
 
 
 domain = config.get_setting('dominio', 'divxtotal', default='')
@@ -67,8 +69,10 @@ def do_downloadpage(url, post=None, headers=None):
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
-    # ~ data = httptools.downloadpage(url, post=post, headers=headers).data
-    data = httptools.downloadpage_proxy('divxtotal', url, post=post, headers=headers).data
+    if not url.startswith(host):
+        data = httptools.downloadpage(url, post=post, headers=headers).data
+    else:
+        data = httptools.downloadpage_proxy('divxtotal', url, post=post, headers=headers).data
 
     return data
 
@@ -127,6 +131,8 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Últimas', action = 'list_all', url = host, group = 'lasts', search_type = 'movie' ))
 
+    itemlist.append(item.clone( title = 'Españolas', action = 'list_all', url = host + 'peliculas/?category_name=espanolas', search_type = 'movie', text_color = 'moccasin' ))
+
     itemlist.append(item.clone( title = 'Por calidad', action = 'calidades',  search_type = 'movie' ))
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'movie', tipo = 'genero' ))
 
@@ -152,9 +158,9 @@ def calidades(item):
     logger.info()
     itemlist = []
 
-    itemlist.append(item.clone( title = 'En DVDR', action = 'list_all', url = host + 'peliculas-dvdr/', search_type = 'movie' ))
-    itemlist.append(item.clone( title = 'En HD', action = 'list_all', url = host + 'peliculas-hd-5/', search_type = 'movie' ))
-    itemlist.append(item.clone( title = 'En 3D', action = 'list_all', url = host + 'peliculas-3-d/', search_type = 'movie' ))
+    itemlist.append(item.clone( title = 'En DVDR', action = 'list_all', url = host + 'peliculas-dvdr/', search_type = 'movie', text_color = 'moccasin' ))
+    itemlist.append(item.clone( title = 'En HD', action = 'list_all', url = host + 'peliculas-hd-5/', search_type = 'movie', text_color = 'moccasin' ))
+    itemlist.append(item.clone( title = 'En 3D', action = 'list_all', url = host + 'peliculas-3-d/', search_type = 'movie', text_color = 'moccasin' ))
 
     return itemlist
 
@@ -170,7 +176,9 @@ def generos(item):
     matches = scrapertools.find_multiple_matches(bloque, "href='(.*?)'.*?'>(.*?)</button>")
 
     for url, title in matches:
-        itemlist.append(item.clone( action='list_all', title=title, url=url ))
+        if title == 'Españolas': continue
+
+        itemlist.append(item.clone( action='list_all', title=title, url=url, text_color = 'deepskyblue' ))
 
     return itemlist
 
@@ -221,16 +229,19 @@ def list_all(item):
 
         thumb = scrapertools.find_single_match(match, "'(.*?)'")
 
-        if '/peliculas/' in url:
+        tipo = 'movie' if '/peliculas/' in url or '/peliculas-' in url else 'tvshow'
+        sufijo = '' if item.search_type != 'all' else tipo
+
+        if tipo == 'movie':
             if not item.search_type == 'all':
                 if item.search_type == 'tvshow': continue
 
             if "(" in titulo: titulo = titulo.split("(")[0]
 
             itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, fmt_sufijo=sufijo,
-                                    contentType='movie', contentTitle=titulo, infoLabels={'year': "-" } ))
+                                        contentType='movie', contentTitle=titulo, infoLabels={'year': "-" } ))
 
-        if '/series/' in url:
+        if tipo == 'tvshow':
             if not item.search_type == 'all':
                 if item.search_type == 'movie': continue
 
@@ -274,7 +285,7 @@ def temporadas(item):
             itemlist = episodios(item)
             return itemlist
 
-        itemlist.append(item.clone( action = 'episodios', title = title, contentType = 'season', contentSeason = tempo ))
+        itemlist.append(item.clone( action = 'episodios', title = title, contentType = 'season', contentSeason = tempo, text_color = 'tan' ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -368,8 +379,7 @@ def findvideos(item):
             if link.startswith('/'): link = host[:-1] + link
             other = 'Directo'
 
-        itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = link, server = 'torrent',
-                              language = lang, quality = qlty, other = other))
+        itemlist.append(Item( channel = item.channel, action = 'play', title = '', url = link, server = 'torrent', language = lang, quality = qlty, other = other))
 
     if not itemlist:
         if not ses == 0:

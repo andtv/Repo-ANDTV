@@ -14,6 +14,7 @@ from platformcode import config, logger, platformtools
 from core.item import Item
 from core import channeltools
 
+
 color_list_prefe = config.get_setting('channels_list_prefe_color', default='gold')
 color_list_proxies = config.get_setting('channels_list_proxies_color', default='red')
 color_list_inactive = config.get_setting('channels_list_inactive_color', default='gray')
@@ -150,7 +151,7 @@ def show_help_parameters(item):
     txt += '[CR][CR]'
 
     txt += ' - [B][COLOR gold]Canales[/COLOR][/B] que nunca intervienen en las busquedas:'
-    txt += '[CR][COLOR darkorange][B]    CineDeAntes,  CineLibreOnline,  Frozenlayer,  MovidyTv,'
+    txt += '[CR][COLOR darkorange][B]    CineDeAntes,  CineLibreOnline,  Frozenlayer,'
     txt += '[CR]    SeoDiv,  SigloXX,  Trailers,  TvSeries[/B][/COLOR]'
 
     if not config.get_setting('mnu_documentales', default=True):
@@ -214,7 +215,7 @@ def show_help_parameters(item):
 
            if not config.get_setting(cfg_searchable_channel, default=False): continue
 
-           txt_ch += '[COLOR violet]%s[/COLOR]  ' % ch['name']
+           txt_ch += '[COLOR yellow]%s[/COLOR]  ' % ch['name']
 
        if txt_ch: txt += '[CR][CR] - [COLOR gold][B]Excluidos:[B][/COLOR]  %s' % str(txt_ch)
 
@@ -519,7 +520,7 @@ def do_search(item, tecleado):
             perc = int(hechos / num_canales * 100)
             mensaje = ', '.join([a.getName() for a in pendent])
 
-            progreso.update(perc, 'Buscando en el %d de %d canales. Quedan %d : %s' % (hechos, num_canales, len(pendent), mensaje))
+            progreso.update(perc, '[COLOR gold]Buscando[/COLOR] en el %d de %d canales. [COLOR chartreuse]Quedan[/COLOR] %d : %s' % (hechos, num_canales, len(pendent), mensaje))
 
             if progreso.iscanceled(): break
 
@@ -533,6 +534,7 @@ def do_search(item, tecleado):
     if item.from_channel != '': 
         # Búsqueda exacta en otros/todos canales de una peli/serie : mostrar sólo las coincidencias exactas
         tecleado_lower = tecleado.lower()
+
         for ch in ch_list:
             if 'itemlist_search' in ch and len(ch['itemlist_search']) > 0:
                 for it in ch['itemlist_search']:
@@ -668,6 +670,11 @@ def do_search(item, tecleado):
                        if only_prefered: continue
                        elif only_suggesteds: continue
                        elif only_torrents: continue
+
+                       elif 'register' in ch['clusters']:
+                           username = config.get_setting(ch['id'] + '_username', ch['id'], default='')
+                           if not username:
+                               titulo = titulo + ' [COLOR teal]faltan [I]Credenciales Cuenta[/I]'
 
                        elif only_includes:
                            if no_channels: titulo = titulo + ' [COLOR yellow]Ignorado no está en Incluidos'

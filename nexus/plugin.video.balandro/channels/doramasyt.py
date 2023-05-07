@@ -31,7 +31,6 @@ def mainlist_pelis(item):
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'doramas?categoria=pelicula', search_type = 'movie' ))
 
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'movie' ))
-
     itemlist.append(item.clone( title = 'Por año', action = 'anios', search_type = 'movie' ))
 
     return itemlist
@@ -45,14 +44,13 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'doramas?categoria=dorama', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Episodios recientes', action = 'last_episodes', url = host, search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Episodios recientes', action = 'last_episodes', url = host, search_type = 'tvshow', text_color = 'olive' ))
 
     itemlist.append(item.clone( title = 'Live action', action = 'list_all', url = host + 'doramas?categoria=live-action', search_type = 'tvshow' ))
 
     itemlist.append(item.clone( title = 'En emisión', action = 'list_all', url = host + 'emision', search_type = 'tvshow' ))
 
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
-
     itemlist.append(item.clone( title = 'Por año', action = 'anios', search_type = 'tvshow' ))
 
     return itemlist
@@ -61,6 +59,9 @@ def mainlist_series(item):
 def generos(item):
     logger.info()
     itemlist = []
+
+    if item.search_type == 'movie': text_color = 'deepskyblue'
+    else: text_color = 'hotpink'
 
     genres = [
        ['policial', 'Policial'],
@@ -118,7 +119,7 @@ def generos(item):
     for genero in genres:
         url = url_gen + genero[0]
 
-        itemlist.append(item.clone( title = genero[1], action = 'list_all', url = url ))
+        itemlist.append(item.clone( title = genero[1], action = 'list_all', url = url, text_color = text_color ))
 
     return sorted(itemlist, key=lambda i: i.title)
 
@@ -126,6 +127,9 @@ def generos(item):
 def anios(item):
     logger.info()
     itemlist = []
+
+    if item.search_type == 'movie': text_color = 'deepskyblue'
+    else: text_color = 'hotpink'
 
     from datetime import datetime
     current_year = int(datetime.today().year)
@@ -136,7 +140,7 @@ def anios(item):
     for x in range(current_year, 1981, -1):
         url = url_any + str(x)
 
-        itemlist.append(item.clone( title = str(x), url = url, action = 'list_all' ))
+        itemlist.append(item.clone( title = str(x), url = url, action = 'list_all', text_color = text_color ))
 
     return itemlist
 
@@ -193,6 +197,7 @@ def list_all(item):
     if itemlist:
         if '<ul class="pagination">' in data:
             bloque = scrapertools.find_single_match(data, '<ul class="pagination">(.*?)</nav>')
+
             next_url = scrapertools.find_single_match(bloque, '<li class="page-item active".*?href="(.*?)"')
 
             if next_url:
@@ -262,7 +267,7 @@ def episodios(item):
 
     matches = re.compile(patron, re.DOTALL).findall(data)
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -273,6 +278,7 @@ def episodios(item):
                 platformtools.dialog_notification('DoramasYt', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -285,14 +291,20 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('DoramasYt', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('DoramasYt', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('DoramasYt', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('DoramasYt', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for url, thumb, epis, in matches[item.page * item.perpage:]:
         epis = epis.strip()
@@ -344,6 +356,11 @@ def findvideos(item):
 
         srv = srv.replace('com/', '')
 
+        if servertools.is_server_available(srv):
+            if not servertools.is_server_enabled(srv): continue
+        else:
+            if not config.get_setting('developer_mode', default=False): continue
+
         if url:
             url = base64.b64decode(url).decode("utf-8")
 
@@ -364,11 +381,15 @@ def findvideos(item):
             srv = srv.lower()
 
             if not srv: continue
-            elif srv == '1fichier': continue
-            elif srv == 'mediafire': continue
-            elif srv == 'fireload': continue
 
             elif srv == 'ok': srv = 'mega'
+
+            if servertools.is_server_available(srv):
+                if not servertools.is_server_enabled(srv): continue
+            else:
+                if not config.get_setting('developer_mode', default=False): continue
+
+                if srv == 'mediafire': continue
 
             servidor = servertools.corregir_servidor(srv)
 

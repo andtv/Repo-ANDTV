@@ -269,24 +269,22 @@ def mainlist(item):
                                     only_options_proxies = True, thumbnail=config.get_thumb('flame'), text_color='red' ))
 
     if config.get_setting('sub_mnu_favoritos', default=False):
-        itemlist.append(item.clone( channel='favoritos', action='mainlist', title='[B]Favoritos[/B]', context=context_cfg_search, thumbnail=config.get_thumb('star'), text_color='plum' ))
+        itemlist.append(item.clone( channel='favoritos', action='mainlist', title='[B]Favoritos[/B]', context=context_cfg_search, thumbnail=config.get_thumb('star'), text_color='coral' ))
 
     if current_month == 4:
-        itemlist.append(item.clone( channel='filmaffinitylists', action='_oscars', title='[B]Premios Oscar ' + str(current_year) + '[/B]', text_color='orchid', thumbnail=config.get_thumb('oscars'), plot = 'Las películas nominadas a los premios Oscars' ))
+        itemlist.append(item.clone( channel='filmaffinitylists', action='_oscars', title='[B]Premios Oscar ' + str(current_year) + '[/B]', text_color='greenyellow', thumbnail=config.get_thumb('oscars'), plot = 'Las películas nominadas a los premios Oscars' ))
 
     elif current_month == 10:
-        itemlist.append(item.clone( channel='filmaffinitylists', action='_emmys', title='[B]Premios Emmy ' + str(current_year) + '[/B]', text_color='orchid', thumbnail=config.get_thumb('emmys'), plot = 'Las Series nominadas a los premios Emmy' ))
+        itemlist.append(item.clone( channel='filmaffinitylists', action='_emmys', title='[B]Premios Emmy ' + str(current_year) + '[/B]', text_color='greenyellow', thumbnail=config.get_thumb('emmys'), plot = 'Las Series nominadas a los premios Emmy' ))
 
     elif current_month == 11:
-         itemlist.append(item.clone( channel='tmdblists', action='descubre', title='[B]Halloween[/B]', text_color='orchid',
+         itemlist.append(item.clone( channel='tmdblists', action='descubre', title='[B]Halloween[/B]', text_color='greenyellow',
                                      extra = 27, search_type = 'movie', thumbnail=config.get_thumb('halloween'), plot = 'Películas del género Terror' ))
 
     elif current_month == 12:
-        itemlist.append(item.clone( channel='filmaffinitylists', action='_navidad', title='[B]Navidad[/B]', text_color='orchid', thumbnail=config.get_thumb('navidad'), plot = 'Películas y Series del tema Navidad' ))
+        itemlist.append(item.clone( channel='filmaffinitylists', action='_navidad', title='[B]Navidad[/B]', text_color='greenyellow', thumbnail=config.get_thumb('navidad'), plot = 'Películas y Series del tema Navidad' ))
 
-    else:
-        itemlist.append(item.clone( channel='tmdblists', action='listado', title='[B]Novedades[/B]', text_color='orchid',
-                                    extra = 'now_playing', search_type = 'movie', thumbnail=config.get_thumb('novedades'), plot = 'Películas en cartelera' ))
+    itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
 
     if config.get_setting('sub_mnu_special', default=True):
         itemlist.append(item.clone( channel='submnuctext', action='submnu_special', title='[B]Especiales[/B]', context=context_cfg_search, extra='all', thumbnail=config.get_thumb('heart'), text_color='pink' ))
@@ -488,6 +486,8 @@ def channels(item):
             itemlist.append(item.clone( channel='trailers', action='search', title='[B]Tráilers[/B]', text_color='darkgoldenrod' ))
 
         if config.get_setting('search_extra_main', default=False):
+            itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
+
             itemlist.append(item.clone( channel='tmdblists', action='mainlist', search_type='movie', title='[B]Búsquedas y listas en TMDB[/B]', thumbnail=thumb_tmdb, text_color=color_adver ))
 
             itemlist.append(item.clone( channel='filmaffinitylists', action='mainlist', search_type='movie', title='[B]Búsquedas y listas en Filmaffinity[/B]', thumbnail=thumb_filmaffinity, text_color=color_adver ))
@@ -510,6 +510,8 @@ def channels(item):
         itemlist.append(Item( channel='search', action='search', search_type='tvshow', title='[B]Buscar Serie ...[/B]', context=context_search, extra = 'tvshows', thumbnail=config.get_thumb('search'), text_color='hotpink' ))
 
         if config.get_setting('search_extra_main', default=False):
+            itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', thumbnail=config.get_thumb('novedades'), extra = 'tvshows', text_color='darksalmon' ))
+
             itemlist.append(item.clone( channel='tmdblists', action='mainlist', search_type='tvshow', title='[B]Búsquedas y listas en TMDB[/B]', thumbnail=thumb_tmdb, text_color=color_adver ))
 
             itemlist.append(item.clone( channel='filmaffinitylists', action='mainlist', search_type='tvshow', title='[B]Búsquedas y listas en Filmaffinity[/B]', thumbnail=thumb_filmaffinity, text_color=color_adver ))
@@ -557,6 +559,8 @@ def channels(item):
              itemlist.append(item.clone( channel='trailers', action='search', title='[B]Tráilers[/B]', text_color='darkgoldenrod' ))
 
         if config.get_setting('search_extra_main', default=False):
+            itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
+
             itemlist.append(item.clone( channel='tmdblists', action='mainlist', search_type='all', title='[B]Búsquedas y listas en TMDB[/B]', thumbnail=thumb_tmdb, text_color=color_adver ))
 
             itemlist.append(item.clone( channel='filmaffinitylists', action='mainlist', search_type='all', title='[B]Búsquedas y listas en Filmaffinity[/B]', thumbnail=thumb_filmaffinity, text_color=color_adver ))
@@ -569,6 +573,12 @@ def channels(item):
         filtros = {}
 
     elif item.extra == 'torrents':
+        cliente_torrent = config.get_setting('cliente_torrent', default='Seleccionar')
+
+        if cliente_torrent == 'Seleccionar' or cliente_torrent == 'Ninguno':
+            itemlist.append(item.clone( channel='actions', action='open_settings', title='[COLOR chocolate][B]Ajustes[/B][/COLOR] configuración (categoría [COLOR blue][B]Torrents)[/B][/COLOR]' + ' [COLOR fuchsia][B]Motor:[/B][/COLOR][COLOR goldenrod][B] ' + cliente_torrent.capitalize() + '[/B][/COLOR]',
+                                        folder=False, thumbnail=config.get_thumb('settings') ))
+
         if config.get_setting('mnu_search_proxy_channels', default=False):
             itemlist.append(item.clone( channel='submnuctext', action='submnu_search', title='[B]Buscar Nuevos Proxies[/B]', context=context_proxy_channels,
                                         only_options_proxies = True, thumbnail=config.get_thumb('flame'), text_color='red' ))
@@ -626,6 +636,8 @@ def channels(item):
                    itemlist.append(item.clone( channel='trailers', action='search', title='[B]Tráilers[/B]', text_color='darkgoldenrod' ))
 
                if config.get_setting('search_extra_main', default=False):
+                   itemlist.append(item.clone( channel='submnuctext', action='submnu_news', title='[B]Novedades[/B]', thumbnail=config.get_thumb('novedades'), text_color='darksalmon' ))
+
                    itemlist.append(item.clone( channel='tmdblists', action='mainlist', search_type='all', title='[B]Búsquedas y listas en TMDB[/B]', thumbnail=thumb_tmdb, text_color=color_adver ))
 
                    itemlist.append(item.clone( channel='filmaffinitylists', action='mainlist', search_type='all', title='[B]Búsquedas y listas en Filmaffinity[/B]', thumbnail=thumb_filmaffinity, text_color=color_adver ))
@@ -994,6 +1006,7 @@ def channels(item):
                        if not config.get_setting(cfg_dominio_channel, default=''): presentar = False
 
                    if presentar: titulo += '[I][COLOR teal] (sesion)[/COLOR][/I]'
+               else: titulo += '[I][COLOR teal] (login)[/COLOR][/I]'
 
         if not PY3:
             if 'mismatched' in ch['clusters']: titulo += '[I][COLOR coral] (Incompatible)[/COLOR][/I]'

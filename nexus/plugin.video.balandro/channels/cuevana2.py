@@ -43,8 +43,10 @@ def configurar_proxies(item):
 
 
 def do_downloadpage(url, post=None, headers=None, follow_redirects=True, only_headers=False, raise_weberror=True):
-    # ~ resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
-    resp = httptools.downloadpage_proxy('cuevana2', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
+    if not url.startswith(host):
+        resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
+    else:
+        resp = httptools.downloadpage_proxy('cuevana2', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
 
     if '<title>You are being redirected...</title>' in resp.data:
         try:
@@ -52,8 +54,11 @@ def do_downloadpage(url, post=None, headers=None, follow_redirects=True, only_he
             ck_name, ck_value = balandroresolver.get_sucuri_cookie(resp.data)
             if ck_name and ck_value:
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
-                # ~ resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
-                resp = httptools.downloadpage_proxy('cuevana2', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
+
+                if not url.startswith(host):
+                    resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
+                else:
+                    resp = httptools.downloadpage_proxy('cuevana2', url, post=post, headers=headers, follow_redirects=follow_redirects, only_headers=only_headers, raise_weberror=raise_weberror)
         except:
             pass
 
@@ -106,9 +111,9 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'series', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'series/estrenos', search_type = 'tvshow' ))
-
     itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host + 'episodios', search_type = 'tvshow' ))
+
+    itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + 'series/estrenos', search_type = 'tvshow' ))
 
     itemlist.append(item.clone( title = 'Más vistas', action = 'list_all', url = host + 'series/top/day', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Más valoradas', action = 'list_all', url = host + 'series/top/week', search_type = 'tvshow' ))
@@ -144,7 +149,7 @@ def generos(item):
     for genero in generos:
         url = host + 'genero/' + genero
 
-        itemlist.append(item.clone( action = 'list_all', title = genero.capitalize(), url = url ))
+        itemlist.append(item.clone( action = 'list_all', title = genero.capitalize(), url = url, text_color = 'deepskyblue' ))
 
     return itemlist
 
@@ -281,7 +286,7 @@ def temporadas(item):
             itemlist = episodios(item)
             return itemlist
 
-        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, contentType = 'season', contentSeason = tempo ))
+        itemlist.append(item.clone( action = 'episodios', title = title, page = 0, contentType = 'season', contentSeason = tempo, text_color = 'tan' ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -306,7 +311,7 @@ def episodios(item):
 
     matches = re.compile(patron, re.DOTALL).findall(str(bloque))
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -317,6 +322,7 @@ def episodios(item):
                 platformtools.dialog_notification('Cuevana2', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -329,14 +335,20 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('Cuevana2', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('Cuevana2', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('Cuevana2', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('Cuevana2', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for thumb, season, epis, in matches[item.page * item.perpage:]:
         i += 1
@@ -351,8 +363,7 @@ def episodios(item):
 
         titulo = season + 'x' + epis + ' ' + item.contentSerieName
 
-        itemlist.append(item.clone( action='findvideos', url = url, title = titulo, thumbnail=thumb,
-                                    contentType = 'episode', contentSeason = season, contentEpisodeNumber=epis ))
+        itemlist.append(item.clone( action='findvideos', url = url, title = titulo, thumbnail=thumb, contentType = 'episode', contentSeason = season, contentEpisodeNumber=epis ))
 
         if len(itemlist) >= item.perpage:
             break
@@ -390,8 +401,7 @@ def findvideos(item):
 
             if srv == 'hqq' or srv == 'waaw' or srv == 'netu': continue
 
-            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link,
-                                  quality = qlty, language = 'Lat', other = srv ))
+            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link, quality = qlty, language = 'Lat', other = srv ))
 
 
     if '"spanish":' in str(block):
@@ -406,8 +416,7 @@ def findvideos(item):
 
             if srv == 'hqq' or srv == 'waaw' or srv == 'netu': continue
 
-            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link,
-                                  quality = qlty, language = 'Esp', other = srv ))
+            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link, quality = qlty, language = 'Esp', other = srv ))
 
     if '"english":' in str(block):
         bloque = scrapertools.find_single_match(str(block), '"english":(.*?)]')
@@ -421,8 +430,7 @@ def findvideos(item):
 
             if srv == 'hqq' or srv == 'waaw' or srv == 'netu': continue
 
-            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link,
-                                  quality = qlty, language = 'Vose', other = srv ))
+            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link, quality = qlty, language = 'Vose', other = srv ))
 
     # ~ Descargas
     if '"downloads":' in str(block):
@@ -442,8 +450,7 @@ def findvideos(item):
             elif lang == 'Subtitulado': lang = 'Vose'
             else: lang = '?'
 
-            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link,
-                                  quality = qlty, language = lang, other = srv + ' D'))
+            itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = link, quality = qlty, language = lang, other = srv + ' D'))
 
     if not itemlist:
         if not ses == 0:

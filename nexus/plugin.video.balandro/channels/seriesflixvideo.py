@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import re
-
 from platformcode import config, logger, platformtools
 from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
@@ -46,8 +44,10 @@ def configurar_proxies(item):
 
 
 def do_downloadpage(url, post=None, headers=None, follow_redirects=False):
-    # ~ data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
-    data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
+    if not url.startswith(host):
+        data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
+    else:
+        data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
 
     if '<title>You are being redirected...</title>' in data:
         try:
@@ -55,8 +55,11 @@ def do_downloadpage(url, post=None, headers=None, follow_redirects=False):
             ck_name, ck_value = balandroresolver.get_sucuri_cookie(data)
             if ck_name and ck_value:
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
-                # ~ data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
-                data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
+
+                if not url.startswith(host):
+                    data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
+                else:
+                    data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
         except:
             pass
 
@@ -119,7 +122,7 @@ def generos(item):
         title = tit.replace('Series de', '').strip()
         if tot: title = title + ' %s' % tot.strip()
 
-        itemlist.append(item.clone( title = title, url = url, action = 'list_all' ))
+        itemlist.append(item.clone( title = title, url = url, action = 'list_all', text_color = 'hotpink' ))
 
     if item.grupo == 'productoras':
         return sorted(itemlist, key=lambda i: i.title)
@@ -149,7 +152,7 @@ def paises(item):
         title = x.capitalize()
         if title == 'Espanolas': title = 'Españolas'
 
-        itemlist.append(item.clone( title = title, url = url, action = 'list_all' ))
+        itemlist.append(item.clone( title = title, url = url, action = 'list_all', text_color='moccasin' ))
 
     return itemlist
 
@@ -178,8 +181,7 @@ def list_all(item):
         year = scrapertools.find_single_match(article, ' <span class="Qlty Yr">(\d{4})</span>')
         if not year: year = '-'
 
-        itemlist.append(item.clone( action = 'temporadas', url = url, title = title, thumbnail = thumb, 
-                                    contentType = 'tvshow', contentSerieName = title, infoLabels = {'year': year} ))
+        itemlist.append(item.clone( action = 'temporadas', url = url, title = title, thumbnail = thumb, contentType = 'tvshow', contentSerieName = title, infoLabels = {'year': year} ))
 
         if len(itemlist) >= perpage: break
 
@@ -196,6 +198,7 @@ def list_all(item):
         if buscar_next:
             if '<nav class="wp-pagenavi">' in data:
                 next_page = scrapertools.find_single_match(data, '<a class="page-link current".*?<a class="page-link" href="(.*?)">')
+
                 if next_page:
                   itemlist.append(item.clone (url = next_page, page = 0, title = 'Siguientes ...', action = 'list_all', text_color='coral' ))
 
@@ -207,6 +210,12 @@ def temporadas(item):
     itemlist = []
 
     data = do_downloadpage(item.url)
+
+    # ~ hay redirecionamiento por location
+    if not data:
+        data = do_downloadpage(item.url, follow_redirects = True)
+
+    if not data: return itemlist
 
     patron = '<section class="SeasonBx AACrdn">.*?<a href="(.*?)".*?<span>(.*?)</span>'
 
@@ -231,7 +240,7 @@ def temporadas(item):
             if len(str(numtempo)) == 1:
                 titulo = title = 'Temporada 0' + str(numtempo)
 
-        itemlist.append(item.clone( action = 'episodios', title = titulo, url = url, page = 0, contentType = 'season', contentSeason = numtempo ))
+        itemlist.append(item.clone( action = 'episodios', title = titulo, url = url, page = 0, contentType = 'season', contentSeason = numtempo, text_color = 'tan' ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -249,7 +258,7 @@ def episodios(item):
 
     matches = scrapertools.find_multiple_matches(data, '<tr class="Viewed">(.*?)</tr>')
 
-    if item.page == 0:
+    if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
         try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
@@ -260,6 +269,7 @@ def episodios(item):
                 platformtools.dialog_notification('SeriesFlixVideo', '[COLOR cyan]Cargando Todos los elementos[/COLOR]')
                 item.perpage = sum_parts
         else:
+            item.perpage = sum_parts
 
             if sum_parts >= 1000:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]500[/B][/COLOR] elementos ?'):
@@ -272,14 +282,20 @@ def episodios(item):
                     item.perpage = 250
 
             elif sum_parts >= 250:
-                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]100[/B][/COLOR] elementos ?'):
-                    platformtools.dialog_notification('SeriesFlixVideo', '[COLOR cyan]Cargando 100 elementos[/COLOR]')
-                    item.perpage = 100
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]125[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('SeriesFlixVideo', '[COLOR cyan]Cargando 125 elementos[/COLOR]')
+                    item.perpage = 125
+
+            elif sum_parts >= 125:
+                if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos en bloques de [COLOR cyan][B]75[/B][/COLOR] elementos ?'):
+                    platformtools.dialog_notification('SeriesFlixVideo', '[COLOR cyan]Cargando 75 elementos[/COLOR]')
+                    item.perpage = 75
 
             elif sum_parts > 50:
                 if platformtools.dialog_yesno(item.contentSerieName.replace('&#038;', '&').replace('&#8217;', "'"), '¿ Hay [COLOR yellow][B]' + str(sum_parts) + '[/B][/COLOR] elementos disponibles, desea cargarlos [COLOR cyan][B]Todos[/B][/COLOR] de una sola vez ?'):
                     platformtools.dialog_notification('SeriesFlixVideo', '[COLOR cyan]Cargando ' + str(sum_parts) + ' elementos[/COLOR]')
                     item.perpage = sum_parts
+                else: item.perpage = 50
 
     for data_epi in matches[item.page * item.perpage:]:
         url = scrapertools.find_single_match(data_epi, '<a href="([^"]+)"')
@@ -348,8 +364,7 @@ def findvideos(item):
             servidor = 'directo'
             ref = ref + ' server'
 
-        itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, quality = qlty,
-                              language = IDIOMAS.get(lang, lang), other = ref ))
+        itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, quality = qlty, language = IDIOMAS.get(lang, lang), other = ref ))
 
     if not itemlist:
         if not ses == 0:
@@ -371,16 +386,24 @@ def play(item):
     if url.startswith('/'): url = host + url[1:]
 
     if '/flixplayer.' in url:
-        data = httptools.downloadpage(url).data
+        if not url.startswith(host):
+            data = httptools.downloadpage(url).data
+        else:
+            data = httptools.downloadpage_proxy('seriesflixvideo', url).data
+
         url = scrapertools.find_single_match(data, 'link":"([^"]+)"')
 
     elif host in url or '.seriesflix.video' in url and '?h=' in url:
         fid = scrapertools.find_single_match(url, "h=([^&]+)")
         url2 = url.replace('index.php', '').split('?h=')[0] + 'r.php'
 
-        resp = httptools.downloadpage(url2, post= 'h=' + fid, headers = {'Referer': url}, follow_redirects=False)
+        if not url2.startswith(host) and not '.seriesflix.video' in url2:
+            resp = httptools.downloadpage(url2, post= 'h=' + fid, headers = {'Referer': url}, follow_redirects=False)
+        else:
+            resp = httptools.downloadpage_proxy('seriesflixvideo', url2, post= 'h=' + fid, headers = {'Referer': url}, follow_redirects=False)
+
         if 'location' in resp.headers: url = resp.headers['location']
-        else: url = None
+        else: url = ''
 
     if url:
         if '/hqq.' in url or '/waaw.' in url or '/netu' in url:

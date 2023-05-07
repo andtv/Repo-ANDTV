@@ -8,7 +8,7 @@
   "searchable": true,
   "search_types": ["all", "movie", "tvshow"],
 
-  "categories": [ "movie", "tvshow" ],
+  "categories": ["movie", "tvshow"],
   "language": ["cast", "lat", "vose"],
 
   "clusters": ["inestable", "register", "current", "suggested", "notice", "news", "rankings", "lists", "lasts", "stars", "directors", "kids", "docs", "vos", "dorama", "anime", "tales"],

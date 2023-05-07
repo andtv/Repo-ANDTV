@@ -361,7 +361,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="30.4.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="7.5.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
 	<requires>
     	<import addon="xbmc.python" version="3.0.0"/>
     	<import addon="script.module.requests" />
@@ -376,8 +376,10 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
 
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20</summary>
-
+		<summary lang="es">
+	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
+	</summary>
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
 [COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
@@ -387,14 +389,15 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
 		<news>
-• [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR darkviolet][B]Nexus[/B][/COLOR]
-
-• 05/02/2023
+• [COLOR darkorange]05/02/2023[/COLOR]
+- Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
-+ Limpieza de Miniaturas.
-+ Color en Notificaciones.
-- Inciada la compatibilidad con Kodi 20.0 Nexus</news>
+¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
+
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos
+</news>
 	<assets>
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
@@ -452,7 +455,7 @@
 	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
-<addon id="plugin.video.balandro" name="Balandro" version="3.0.1" provider-name="Balandro Team">
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.4" provider-name="Balandro Team">
   <requires>
      <import addon="script.module.requests"/>
   </requires>
@@ -467,11 +470,13 @@
       <icon>icon.png</icon>
     </assets>
     <news>
-    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.1[/COLOR][COLOR red]  Febrero de 2023[/B][/COLOR]
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.4[/COLOR][COLOR red]  Abril de 2023[/B][/COLOR]
 
     [COLOR goldenrod][B]Media Centers Soportados[/COLOR][COLOR plum]  20.x,  19.x,  18.x  y  17.x[/B][/COLOR]
 
-    [COLOR springgreen][B]Fuente:[/COLOR]  [COLOR cyan]balandro-tk.github.io/balandro/[/B][/COLOR]
+    [COLOR springgreen][B]Fuente:[/COLOR]  [COLOR cyan]https://balandro-tk.github.io/balandro/[/B][/COLOR]
+
+    [COLOR firebrick][B]Desarrollo:[/COLOR]  [COLOR orange]github.com/balandro-tk/balandro-addon[/B][/COLOR]
 
     [COLOR limegreen][B]Contacto:[/B][/COLOR]
         Foro  mimediacenter.info/foro/
@@ -605,7 +610,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.elementum" name="Elementum_arm" version="0.1.87" provider-name="elgatito">
+<addon id="plugin.video.elementum" name="Elementum" version="0.1.87" provider-name="elgatito">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
         <import addon="repository.elementum" optional="true" />
@@ -637,52 +642,7 @@
         <language>en el es de fi fr he hr it nl pt ro sk sv</language>
         <platform>all</platform>
         <website>http://elementum.surge.sh/</website>
-        <source>https://github.com/andtv/Repo-ANDTV/tree/master/nexus/plugin.video.elementum_arm</source>
-        <forum></forum>
-        <license>Non commercial. See https://github.com/elgatito/plugin.video.elementum/blob/master/LICENSE</license>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.jpg</fanart>
-            <screenshot>resources/screenshots/home.png</screenshot>
-            <screenshot>resources/screenshots/movies.png</screenshot>
-            <screenshot>resources/screenshots/webui.png</screenshot>
-        </assets>
-    </extension>
-</addon>
-
-<addon id="plugin.video.elementum" name="Elementum_nvidia_arm64" version="0.1.83" provider-name="elgatito">
-    <requires>
-        <import addon="xbmc.addon" version="16.0.0" />
-        <import addon="repository.elementum" optional="true" />
-        <import addon="script.module.kodi-six" />
-        <import addon="script.module.requests" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="navigation.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service" library="service.py" start="startup" />
-    <extension point="xbmc.python.module" library="resources/site-packages" />
-    <extension point="xbmc.subtitle.module" library="navigation.py" />
-    <extension point="xbmc.addon.metadata">
-        <summary lang="ru">Elementum: Стриминг видео</summary>
-        <summary lang="en">Elementum: Media streaming</summary>
-        <summary lang="hr">Elementum: Medijsko strujanje</summary>
-        <summary lang="es">Elementum: Transmisión de medios</summary>
-        <summary lang="sv">Elementum: medieströmning</summary>
-        <description lang="ru">Elementum это дополнение для поиска и воспроизведения торрентов. Дополнение не ходит на запрещенные сайты самостоятельно. Хотя, для поиска используются дополнения (называемые провайдерами), которые устанавливаются отдельно.[CR]Этот проект является ответвлением хорошо извесных, но не поддерживаемых Pulsar/Quasar от steeve и scakemyer.</description>
-        <description lang="en">Elementum is a torrent finding and streaming engine. It doesn't go on torrent websites for legal reasons. However, it calls specially crafted add-ons (called providers) that are installed separately.[CR]This project is a fork of the well known, but no longer maintained Pulsar/Quasar projects from steeve and scakemyer.</description>
-        <description lang="hr">Elementum je pogon pretraživanja i strujanja. Ne posjećuje torrent web stranice iz pravnih razloga. Ipak, koristi posebno napravljene dodatke (nazvane pružatelji usluge) koji su instalirani odvojeno.[CR]Ovaj projekt je ogranak dobro poznatih, ali više ne održavanih Pulsar/Quasar projekata od autora steevea i scakemyera.</description>
-        <description lang="es">Elementum es un motor de búsqueda y transmisión torrent. No navega por sitios web torrent por razones legales. Sin embargo, llama a complementos especialmente diseñados para ello (denominados providers o proveedores) que se instalan por separado.[CR]Este proyecto es un fork de los bien conocidos, pero ya sin soporte proyectos Pulsar/Quasar de steeve y scakemyer.[CR]</description>
-        <description lang="sv">Elementum är en torrentsöknings- och strömningsmotor. Det går inte till torrentwebbplatser av juridiska skäl. Den anropar dock speciellt utformade tillägg (kallade leverantörer) som installeras separat.[CR]Detta projekt är en förgrening av de välkända, men inte längre underhållna Pulsar/Quasar-projekten av steeve och scakemyer. </description>
-        <disclaimer lang="ru">Автор дополнения не несёт ответственности за скачивание или поиск информации и содержимого в этом дополнении. Автор никак не связан с Kodi, командой Kodi, или XBMC Foundation.</disclaimer>
-        <disclaimer lang="en">The author does not own or host any content found within this Addon. The author is not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation.</disclaimer>
-        <disclaimer lang="hr">Autor ovog dodatka ne posjeduje i ne distribuira bilo kakav sadržaj koji je pronađen. Autor nije povezan sa ili na bilo koji drugi način bilo sa Kodijem, Team Kodijem ili XBMC fundacijom.</disclaimer>
-        <disclaimer lang="es">El autor no posee ni aloja ningún contenido que se encuentre a través de este complemento. El autor no está unido ni relacionado de ninguna manera con Kodi, Team Kodi, o XBMC Foundation.</disclaimer>
-        <disclaimer lang="sv">Skaparen äger inte eller är värd av något innehåll som finns i detta tillägg. Författaren är inte ansluten till eller på något annat sätt en del av Kodi, Team Kodi eller XBMC Foundation.</disclaimer>
-        <language>en el es de fi fr he hr it nl pt ro sk sv</language>
-        <platform>all</platform>
-        <website>http://elementum.surge.sh/</website>
-        <source>https://github.com/andtv/Repo-ANDTV/tree/master/nexus/plugin.video.elementum_narm64</source>
+        <source>https://github.com/elgatito/plugin.video.elementum</source>
         <forum></forum>
         <license>Non commercial. See https://github.com/elgatito/plugin.video.elementum/blob/master/LICENSE</license>
         <assets>

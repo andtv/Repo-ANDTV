@@ -79,6 +79,9 @@ def init():
     """
 
     try:
+        # TORREST: Modificaciones temporales
+        emergency_fixes()
+
         # Comprobando la integridad de la estructura de Settings.xml
         config.verify_settings_integrity()
         
@@ -172,21 +175,6 @@ def init():
         
         # LIBTORRENT: se descarga el binario de Libtorrent cada vez que se actualiza Alfa
         update_libtorrent()
-        
-        # TORREST: Modificaciones temporales
-        if xbmc.getCondVisibility('System.HasAddon("plugin.video.torrest")'):
-            try:
-                __settings__ = xbmcaddon.Addon(id="plugin.video.torrest")
-                if __settings__.getSetting("s:check_available_space") == 'true':
-                    __settings__.setSetting("s:check_available_space", "false") # No comprobar espacio disponible hasta que lo arreglen
-                #__settings__.setSetting("s:service_log_level", "2")             # TEMPORAL
-                #__settings__.setSetting("s:alerts_log_level", "5")              # TEMPORAL
-                #__settings__.setSetting("s:api_log_level", "4")                 # TEMPORAL
-                #if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
-                #    and not config.get_setting('addon_quasar_update', default=False):
-                #    question_update_external_addon("torrest")
-            except:
-                pass
 
         # QUASAR: Preguntamos si se hacen modificaciones a Quasar
         if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
@@ -1438,3 +1426,27 @@ def set_season_holidays():
     except:
         if xml: logger.error('XML File: %s; XML: %s' % (xml_file, str(xml)))
         logger.error(traceback.format_exc())
+        
+        
+def emergency_fixes():
+
+    if xbmc.getCondVisibility('System.HasAddon("plugin.video.torrest")'):
+        try:
+            __settings__ = xbmcaddon.Addon(id="plugin.video.torrest")
+            if __settings__.getSetting("s:check_available_space") == 'true':
+                __settings__.setSetting("s:check_available_space", "false") # No comprobar espacio disponible hasta que lo arreglen
+            if not PY3 and ADDON_PLATFORM in ["android", "atv2"] \
+                       and __settings__.getSetting("has_libtorrest") == 'true' \
+                       and __settings__.getSetting("force_torrest") == 'false':     # Si es Androdid con Kodi 18...
+                __settings__.setSetting("force_torrest", "true")            # Forzar uso de Binario en vez de .so (crash)
+            if __settings__.getSetting("min_candidate_size") == '100':
+                __settings__.setSetting("min_candidate_size", "50")         # Marcar mínimo tamaño de archivo más pequeño
+            #__settings__.setSetting("s:service_log_level", "2")             # TEMPORAL
+            #__settings__.setSetting("s:alerts_log_level", "5")              # TEMPORAL
+            #__settings__.setSetting("s:api_log_level", "4")                 # TEMPORAL
+            #if not filetools.exists(filetools.join(config.get_data_path(), "quasar.json")) \
+            #    and not config.get_setting('addon_quasar_update', default=False):
+            #    question_update_external_addon("torrest")
+            logger.info('Torrest PATCHED', force=True)
+        except:
+            logger.error(traceback.format_exc())
