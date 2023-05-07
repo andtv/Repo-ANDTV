@@ -1,6 +1,6 @@
 name="tvban.andtv"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban.zip"
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban.ziq"
 minor="http://"
 gui="http://"
 kodi="20"
@@ -25,3 +25,4 @@ preview="http://"
 adult="no"
 info="http://"
 description="[COLOR azure][B]TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
+
