@@ -6,25 +6,12 @@
     See LICENSES/GPL-2.0-only for more information.
 """
 
+from html import unescape
+from urllib.parse import (parse_qs, urlsplit, urlunsplit, urlencode, urljoin)
+
 import xbmcvfs
 import requests
 from ...kodion.utils import make_dirs
-
-from six.moves.urllib_parse import parse_qs
-from six.moves.urllib_parse import urlencode
-from six.moves.urllib_parse import urlsplit
-from six.moves.urllib_parse import urlunsplit
-
-from six import PY2
-
-try:
-    from six.moves import html_parser
-
-    unescape = html_parser.HTMLParser().unescape
-except AttributeError:
-    import html
-
-    unescape = html.unescape
 
 
 class Subtitles(object):
@@ -130,6 +117,7 @@ class Subtitles(object):
             return list(set(list_of_subs))
         else:
             self.context.log_debug('Unknown language_enum: %s for subtitles' % str(languages))
+        return []
 
     def _get_all(self):
         list_of_subs = []
@@ -189,12 +177,12 @@ class Subtitles(object):
 
         subtitle_url = None
         if (caption_track is None) and has_translation:
-            base_url = self.caption_track.get('baseUrl')
+            base_url = self._normalize_url(self.caption_track.get('baseUrl'))
             if base_url:
                 subtitle_url = self.set_query_param(base_url, 'type', 'track')
                 subtitle_url = self.set_query_param(subtitle_url, 'tlang', language)
         elif caption_track is not None:
-            base_url = caption_track.get('baseUrl')
+            base_url = self._normalize_url(caption_track.get('baseUrl'))
             if base_url:
                 subtitle_url = self.set_query_param(base_url, 'type', 'track')
 
@@ -233,9 +221,6 @@ class Subtitles(object):
 
     @staticmethod
     def _recode_language_name(language_name):
-        if PY2:
-            language_name = language_name.encode('utf-8')
-
         return language_name
 
     @staticmethod
@@ -249,3 +234,15 @@ class Subtitles(object):
             new_query_string = new_query_string.encode('utf-8')
 
         return urlunsplit((scheme, netloc, path, new_query_string, fragment))
+
+    @staticmethod
+    def _normalize_url(url):
+        if not url:
+            url = ''
+        elif url.startswith(('http://', 'https://')):
+            pass
+        elif url.startswith('//'):
+            url = urljoin('https:', url)
+        elif url.startswith('/'):
+            url = urljoin('https://www.youtube.com', url)
+        return url
