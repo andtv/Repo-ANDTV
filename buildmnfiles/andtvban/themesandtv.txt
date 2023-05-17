@@ -1,5 +1,5 @@
-name="[B][COLOR white]ANDTV [COLOR limegreen]Nexus [COLOR gold]00.0.00[/COLOR][/B]"
-url="https://github.com/andtv/andtvban.github.io/releases/download/2.5/ParcheM.ANDTV.Nexus.zip"
+name="[B][COLOR white]ANDTV [COLOR limegreen]Nexus [COLOR gold]17.5.23[/COLOR][/B]"
+url="https://github.com/andtv/andtv.github.io/releases/download/20.5/B.TvbanParche.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 adult="no"
