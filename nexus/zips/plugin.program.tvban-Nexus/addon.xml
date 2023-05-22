@@ -27,14 +27,17 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
 		<news>
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Nuevos textos		
+		
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos
+		
 • [COLOR darkorange]05/02/2023[/COLOR]
 - Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
 ¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
-
-• [COLOR darkorange]07/05/2023[/COLOR]
-- Añadido nuevos arreglos
 </news>
 	<assets>
 	    <icon>icon.png</icon>
