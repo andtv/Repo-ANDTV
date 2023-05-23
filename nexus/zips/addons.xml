@@ -376,8 +376,10 @@
 	<extension point="xbmc.service" library="startup.py" start="startup" />
 
 	<extension point="xbmc.addon.metadata">
-		<summary lang="es">[COLOR azure]tvban[/COLOR] [COLOR darkviolet]Nexus[/COLOR] tu Wizard para KODI 20</summary>
-
+		<summary lang="es">
+	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
+	</summary>
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
 [COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
@@ -387,14 +389,19 @@
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
 		<news>
-• [B]plugin.program[/B] [COLOR azure][B]andtv[/B][/COLOR]-[COLOR darkviolet][B]Nexus[/B][/COLOR]
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Nuevos textos
 
-• 05/02/2023
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos
+
+• [COLOR darkorange]05/02/2023[/COLOR]
+- Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
-+ Limpieza de Miniaturas.
-+ Color en Notificaciones.
-- Inciada la compatibilidad con Kodi 20.0 Nexus</news>
+¤ Limpieza de Miniaturas.
+¤ Color en Notificaciones.
+</news>
 	<assets>
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
