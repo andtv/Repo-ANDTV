@@ -28,7 +28,7 @@ description="[COLOR azure][B]TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] p
 
 name="TVBan E.Nvidia 2"
 version="1.0"
-url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban_EleNvidia.zip
+url="https://github.com/andtv/Repo-ANDTV/releases/download/1.0/B.Tvban_EleNvidia.zip"
 gui="http://"
 kodi="20"
 theme="https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/ANDTV/themesandtv.txt"
@@ -38,8 +38,6 @@ preview="http://"
 adult="no"
 info="http://"
 description="[COLOR azure][B]TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus.[/B][/COLOR]                                                       [COLOR limegreen][B]Créditos:[/B][/COLOR]                                    [COLOR dodgerblue][B]Developers:[/B][/COLOR]   [B]JoseaTEBA[/B]                         [COLOR orange][B]Colaborador:[/B][/COLOR] [COLOR cyan][B]Vicente[/B][/COLOR]"
-
-
 
 name="TVBan  E.Windows"
 version="1.0"
