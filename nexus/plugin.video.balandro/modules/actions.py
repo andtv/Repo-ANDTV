@@ -316,10 +316,14 @@ def manto_params(item):
     if platformtools.dialog_yesno(config.__addon_name, "Se quitarán: 'Logins' en canales, 'Dominios' seleccionados en los canales, 'Canales Incluidos/Excluidos' en búsquedas, 'Canales Excluidos' en buscar proxies global, y se Inicializarán otros 'Parámetros'.", '[COLOR yellow][B]¿ Confirma Restablecer a sus valores por defecto los Parámetros Internos del addon ?[/B][/COLOR]'):
         config.set_setting('adults_password', '')
 
+        config.set_setting('dominio', '', 'test_providers')
+        config.set_setting('channel_test_providers_dominio', '')
+
+        config.set_setting('proxies', '', 'test_providers')
+
         config.set_setting('channel_animefenix_dominio', '')
         config.set_setting('channel_animeflv_dominio', '')
 
-        config.set_setting('channel_caricaturashd_dominio', '')
         config.set_setting('channel_cinecalidad_dominio', '')
         config.set_setting('channel_cinecalidadla_dominio', '')
         config.set_setting('channel_cinecalidadlol_dominio', '')
@@ -332,6 +336,7 @@ def manto_params(item):
 
         config.set_setting('channel_elifilms_dominio', '')
         config.set_setting('channel_elitetorrent_dominio', '')
+        config.set_setting('channel_ennovelas_dominio', '')
         config.set_setting('channel_entrepeliculasyseries_dominio', '')
 
         config.set_setting('channel_gnula24_dominio', '')
@@ -342,7 +347,11 @@ def manto_params(item):
         config.set_setting('channel_hdfull_hdfull_login', False)
         config.set_setting('channel_hdfull_hdfull_password', '')
         config.set_setting('channel_hdfull_hdfull_username', '')
+
         config.set_setting('channel_hdfullse_dominio', '')
+        config.set_setting('channel_henaojara_dominio', '')
+
+        config.set_setting('channel_mejortorrentapp_dominio', '')
 
         config.set_setting('channel_nextdede_nextdede_login', False)
         config.set_setting('channel_nextdede_nextdede_email', '')
@@ -358,12 +367,14 @@ def manto_params(item):
         config.set_setting('channel_pelisplushd_dominio', '')
         config.set_setting('channel_pelisplushdlat_dominio', '')
         config.set_setting('channel_pelisplushdnz_dominio', '')
+        config.set_setting('channel_pelispluslat_dominio', '')
         config.set_setting('channel_playdede_dominio', '')
         config.set_setting('channel_playdede_playdede_login', False)
         config.set_setting('channel_playdede_playdede_password', '')
         config.set_setting('channel_playdede_playdede_username', '')
 
         config.set_setting('channel_series24_dominio', '')
+        config.set_setting('channel_seriesantiguas_dominio', '')
         config.set_setting('channel_serieskao_dominio', '')
         config.set_setting('channel_seriesyonkis_dominio', '')
         config.set_setting('channel_srnovelas_dominio', '')
@@ -395,7 +406,7 @@ def manto_params(item):
         download_path = filetools.join(config.get_data_path(), 'downloads')
         config.set_setting('downloadpath', download_path)
 
-        config.set_setting('chrome_last_version', '112.0.5615.138')
+        config.set_setting('chrome_last_version', '113.0.5672.127')
 
         config.set_setting('debug', '0')
 
@@ -482,6 +493,176 @@ def manto_folder_cache(item):
     if platformtools.dialog_yesno(config.__addon_name, '[COLOR red][B]¿ Confirma Eliminar Toda la carpeta Caché ?[/B][/COLOR]'):
         filetools.rmdirtree(path)
         platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Carpeta Caché eliminada[/B][/COLOR]' % color_infor)
+
+
+def manto_limpiezas(item):
+    logger.info()
+
+    opciones_limpiezas = []
+
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Limpieza [/B][COLOR powderblue][B]Media Center[/B][/COLOR]'))
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Limpieza [/B][COLOR powderblue][B]Add-Ons[/B][/COLOR]'))
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Limpieza [/B][COLOR powderblue][B]Sistema[/B][/COLOR]'))
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Limpieza [/B][COLOR powderblue][B]Logs[/B][/COLOR]'))
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Limpieza [/B][COLOR powderblue][B]Temporales[/B][/COLOR]'))
+    opciones_limpiezas.append(platformtools.listitem_to_select('[COLOR olive][B]Eliminar [/B][COLOR red][B]Poxies[/B][/COLOR] de Todos los Canalas'))
+
+    ret = platformtools.dialog_select('Limpiezas', opciones_limpiezas)
+
+    if not ret == -1:
+        procesado = False
+
+        if ret == 0:
+            path_advs = translatePath(os.path.join('special://home/userdata', ''))
+            file_advs = 'advancedsettings.xml'
+            file = path_advs + file_advs
+            existe = filetools.exists(file)
+
+            if existe:
+                manto_advs(item)
+                procesado = True
+
+            path_cache = translatePath(os.path.join('special://temp/archive_cache', ''))
+            existe_cache = filetools.exists(path_cache)
+
+            caches = []
+            if existe_cache: caches = os.listdir(path_cache)
+
+            if caches:
+                manto_caches(item)
+                procesado = True
+
+            path_thumbs = translatePath(os.path.join('special://home/userdata/Thumbnails', ''))
+            existe_thumbs = filetools.exists(path_thumbs)
+
+            if existe_thumbs:
+                manto_thumbs(item)
+                procesado = True
+
+            if not procesado:
+                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Nada a limpiar de Media Center[/COLOR][/B]' % color_exec)
+                return
+
+        elif ret == 1:
+            ejecutar = False
+
+            path_packages = translatePath(os.path.join('special://home/addons/packages', ''))
+            existe_packages = filetools.exists(path_packages)
+
+            packages = []
+            if existe_packages: packages = os.listdir(path_packages)
+
+            path_temp = translatePath(os.path.join('special://home/addons/temp', ''))
+            existe_temp = filetools.exists(path_temp)
+
+            temps = []
+            if existe_temp: temps = os.listdir(path_temp)
+
+            if packages: ejecutar = True
+            elif temps: ejecutar = True
+
+            if not ejecutar:
+                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Aún no hay Add-Ons[/COLOR][/B]' % color_exec)
+                return
+
+            if packages: manto_addons_packages(item)
+            if temps: manto_addons_temp(item)
+
+        elif ret == 2:
+            path = os.path.join(config.get_runtime_path(), 'last_fix.json')
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_last_fix(item)
+                procesado = True
+
+            path = os.path.join(config.get_data_path(), 'cookies.dat')
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_cookies(item)
+                procesado = True
+
+            path = os.path.join(config.get_data_path(), 'cache')
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_folder_cache(item)
+                procesado = True
+
+            downloadpath = config.get_setting('downloadpath', default='')
+            if downloadpath: path = downloadpath
+            else: path = filetools.join(config.get_data_path(), 'downloads')
+
+            existe = filetools.exists(path)
+            if existe:
+                manto_folder_downloads(item)
+                procesado = True
+
+            path = filetools.join(config.get_data_path(), 'tracking_dbs')
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_tracking_dbs(item)
+                procesado = True
+
+            path = filetools.join(config.get_data_path(), 'tmdb.sqlite-journal')
+            existe = filetools.exists(path)
+
+            if existe:
+                item.journal = 'journal'
+                manto_tmdb_sqlite(item)
+                procesado = True
+
+            path = filetools.join(config.get_data_path(), 'tmdb.sqlite')
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_tmdb_sqlite(item)
+                procesado = True
+
+            path = config.get_data_path()
+            existe = filetools.exists(path)
+
+            if existe:
+                manto_folder_addon(item)
+                procesado = True
+
+            if not procesado:
+                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Nada a limpiar de Sistema[/COLOR][/B]' % color_exec)
+                return
+
+        elif ret == 3:
+            ejecutar = False
+
+            if os.path.exists(os.path.join(config.get_data_path(), 'servers_todo.log')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'qualities_todo.log')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'proxies.log')): ejecutar = True
+
+            if not ejecutar:
+                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Aún no hay Logs[/COLOR][/B]' % color_exec)
+                return
+
+            if ejecutar: manto_temporales(item)
+
+        elif ret == 4:
+            ejecutar = False
+
+            if os.path.exists(os.path.join(config.get_data_path(), 'info_channels.csv')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'temp.torrent')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'm3u8hls.m3u8')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'test_logs')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'temp_updates.zip')): ejecutar = True
+            elif os.path.exists(os.path.join(config.get_data_path(), 'tempfile_mkdtemp')): ejecutar = True
+
+            if not ejecutar:
+                platformtools.dialog_notification(config.__addon_name, '[B][COLOR %s]Aún no hay Temporales[/COLOR][/B]' % color_exec)
+                return
+
+            if ejecutar: manto_temporales(item)
+
+        elif ret == 5:
+            manto_proxies(item)
 
 
 def manto_temporales(item):

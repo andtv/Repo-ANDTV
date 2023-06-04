@@ -94,6 +94,9 @@ def list_all(item):
         elif '(BRS)' in title:
             qlty = 'BRS'
             title = title.replace('(BRS)', '').strip()
+        elif '(HDRip)' in title:
+            qlty = 'HDRip'
+            title = title.replace('(HDRip)', '').strip()
         elif '(HDR)' in title:
             qlty = 'HDR'
             title = title.replace('(HDR)', '').strip()
@@ -103,6 +106,8 @@ def list_all(item):
         elif '3D' in title:
             qlty = '3D'
             title = title.replace('3D', '').strip()
+
+        title = title.replace('Español Torrent', '').strip()
 
         tipo = 'movie' if '/movies/' in url else 'tvshow'
         sufijo = '' if item.search_type != 'all' else tipo

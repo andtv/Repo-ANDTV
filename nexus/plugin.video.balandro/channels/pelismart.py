@@ -106,6 +106,8 @@ def list_all(item):
 
         if not url or not title: continue
 
+        title = title.replace('&amp;', '&')
+
         thumb = scrapertools.find_single_match(match, 'src="(.*?)"')
 
         tipo = 'movie' if '/pelicula/' in url else 'tvshow'
@@ -185,7 +187,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:

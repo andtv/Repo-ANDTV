@@ -107,6 +107,9 @@ def get_video_url(page_url, url_referer=''):
     elif '//lvturbo.com/' in page_url:
         page_url = page_url.replace('//lvturbo.com/e/', '//streamsb.net/play/').replace('//lvturbo.com/d/', '//streamsb.net/play/')
 
+    elif '//cinestart.net/' in page_url:
+        page_url = page_url.replace('//cinestart.net/e/', '//streamsb.net/play/').replace('//cinestart.net/d/', '//streamsb.net/play/')
+
     data = httptools.downloadpage(page_url).data
 
     if 'File Not Found' in data or 'File is no longer available' in data:

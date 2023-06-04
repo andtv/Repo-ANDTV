@@ -547,6 +547,7 @@ def developer_mode_check_findvideos(itemlist, parent_item):
     for it in itemlist:
         # Verificar servers desconocidos o no implementados
         apuntar = False
+
         if it.server == 'desconocido':
             # El canal no ha fijado server, y la url no se ha detectado de ningún server conocido
             apuntar = True
@@ -559,15 +560,22 @@ def developer_mode_check_findvideos(itemlist, parent_item):
                 if not os.path.isfile(path):
                     apuntar = True
 
-        if apuntar:
-            if not it.server in ['ddownload', 'dfiles', 'dropapk', 'desiupload', 'fileflares', 'fireload', 'katfile', 'krakenfiles', 'oload', 'pandafiles', 'rockfile', 'turbobit', 'uploadrive', 'uppit', 'userload']:
-                txt_log_servers += 'Canal: %s Server: %s Url: %s' % (it.channel, it.server, it.url)
+        # Server Various
+        if it.server in ['dropload', 'fastupload', 'filemoon', 'hexupload', 'krakenfiles', 'mvidoo', 'rutube', 'streamhub', 'streamwish', 'tubeload', 'uploadever', 'videowood', 'yandex']:
+            apuntar = False
 
-                if parent_item.contentType == 'movie':
-                    txt_log_servers += ' Película: %s' % (parent_item.contentTitle)
-                else:
-                    txt_log_servers += ' Serie: %s Temporada %s Episodio %s' % (parent_item.contentSerieName, parent_item.contentSeason, parent_item.contentEpisodeNumber)
-                txt_log_servers += os.linesep
+        elif it.server in ['ddownload', 'dfiles', 'dropapk', 'desiupload', 'fileflares', 'filerice', 'fireload', 'katfile', 'megaupload', 'oload', 'pandafiles', 'rockfile', 'turbobit', 'uploadrive', 'uppit', 'userload']:
+            apuntar = False
+
+        if apuntar:
+            txt_log_servers += 'Canal: %s Server: %s Url: %s' % (it.channel, it.server, it.url)
+
+            if parent_item.contentType == 'movie':
+                txt_log_servers += ' Película: %s' % (parent_item.contentTitle)
+            else:
+                txt_log_servers += ' Serie: %s Temporada %s Episodio %s' % (parent_item.contentSerieName, parent_item.contentSeason, parent_item.contentEpisodeNumber)
+
+            txt_log_servers += os.linesep
 
         # Verificar calidades
         if it.quality == '' or it.quality_num == '': continue # Si no hay calidad o el canal no ha fijado el orden de calidades, nada a comprobar
@@ -858,7 +866,7 @@ def play_video(item, parent_item, autoplay=False):
             return play_torrent(mediaurl, parent_item)
 
         # ~ Para evitar ERROR: CCurlFile::Stat - Failed: Peer certificate cannot be authenticated with given CA certificates(60)
-        if item.server not in ['m3u8hls', 'zembed']:
+        if item.server not in ['m3u8hls', 'zembed', 'youtube']:
             if 'verifypeer=false' not in mediaurl and 'googleusercontent' not in mediaurl: 
                 mediaurl += '|' if '|' not in mediaurl else '&'
                 mediaurl += 'verifypeer=false'
@@ -954,23 +962,23 @@ def play_torrent(mediaurl, parent_item):
     torrent_clients = jsontools.get_node_from_file('torrent.json', 'clients', os.path.join(config.get_runtime_path(), 'servers'))
 
     cliente_torrent = config.get_setting('cliente_torrent', default='Seleccionar')
+
+    if cliente_torrent == 'Ninguno':
+        dialog_ok(config.__addon_name, '[COLOR red][B]Ningún Cliente/Motor Torrent asignado en la configuración[/B][/COLOR]')
+        return False
+
     if cliente_torrent == 'Seleccionar':
         from modules import filters
 
         ret = filters.show_clients_torrent(parent_item)
 
-        if ret == -1:
-            cliente_torrent = 'Ninguno'
+        if ret == -1: return False
         else:
-           seleccionado = torrent_clients[ret]
-           cliente_torrent = seleccionado['name']
+           cliente_torrent = ret[0]
 
-           if dialog_yesno(config.__addon_name, 'Selecionado: [COLOR yellow][B]' + cliente_torrent.capitalize() + '[/B][/COLOR]', '[COLOR greenyellow][B]¿ Desea mantener este Cliente/Motor torrent, como motor habitual y no volver a seleccionarlo más ?[/B][/COLOR]'): 
-               config.set_setting('cliente_torrent', cliente_torrent.capitalize())
-
-    if cliente_torrent == 'Ninguno':
-        dialog_ok(config.__addon_name, '[COLOR moccasin][B]Necesitas tener instalado un Cliente/Motor Torrent e indicarlo en la configuración[/B][/COLOR]')
-        return False
+           if xbmc.getCondVisibility('System.HasAddon("%s")' % ret[1]):
+               if dialog_yesno(config.__addon_name, 'Selecionado: [COLOR yellow][B]' + cliente_torrent.capitalize() + '[/B][/COLOR]', '[COLOR greenyellow][B]¿ Desea asignar este Cliente/Motor torrent, como motor habitual para no volver a seleccionarlo más ?[/B][/COLOR]'): 
+                   config.set_setting('cliente_torrent', cliente_torrent.capitalize())
 
     cliente_torrent = cliente_torrent.lower()
 
@@ -980,7 +988,7 @@ def play_torrent(mediaurl, parent_item):
             if xbmc.getCondVisibility('System.HasAddon("%s")' % client['id']):
                 plugin_url = client['url_magnet'] if 'url_magnet' in client and mediaurl.startswith('magnet:') else client['url']
             else:
-                dialog_ok(config.__addon_name, '[COLOR moccasin][B]Necesitas instalar el Cliente/Motor Torrent:[/B][/COLOR] ' + client['name'], client['id'])
+                dialog_ok(config.__addon_name, '[COLOR moccasin][B]Falta instalar el Cliente/Motor Torrent:[/B][/COLOR][COLOR chartreuse][B] ' + client['name'].capitalize() + '[/B][/COLOR]', client['id'])
                 return False
 
     if plugin_url == '':

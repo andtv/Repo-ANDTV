@@ -60,6 +60,11 @@ def do_downloadpage(url, post=None, headers=None):
         except:
             pass
 
+    if '<title>Just a moment...</title>' in data:
+        if not '?s=' in url:
+            platformtools.dialog_notification(config.__addon_name, '[COLOR red][B]CloudFlare[COLOR orangered] Protection[/B][/COLOR]')
+        return ''
+
     return data
 
 
@@ -68,6 +73,8 @@ def mainlist(item):
     itemlist = []
 
     itemlist.append(item_configurar_proxies(item))
+
+    itemlist.append(Item( channel='helper', action='show_help_ppeliculas', title='[COLOR aquamarine][B]Aviso[/COLOR] [COLOR green]Información[/B][/COLOR] canal', thumbnail=config.get_thumb('help') ))
 
     itemlist.append(item.clone( title = 'Buscar ...', action = 'search', search_type = 'all', text_color = 'yellow' ))
 
@@ -82,6 +89,8 @@ def mainlist_pelis(item):
     itemlist = []
 
     itemlist.append(item_configurar_proxies(item))
+
+    itemlist.append(Item( channel='helper', action='show_help_ppeliculas', title='[COLOR aquamarine][B]Aviso[/COLOR] [COLOR green]Información[/B][/COLOR] canal', thumbnail=config.get_thumb('help') ))
 
     itemlist.append(item.clone( title = 'Buscar película ...', action = 'search', search_type = 'movie', text_color = 'deepskyblue' ))
 
@@ -104,11 +113,13 @@ def mainlist_series(item):
 
     itemlist.append(item_configurar_proxies(item))
 
+    itemlist.append(Item( channel='helper', action='show_help_ppeliculas', title='[COLOR aquamarine][B]Aviso[/COLOR] [COLOR green]Información[/B][/COLOR] canal', thumbnail=config.get_thumb('help') ))
+
     itemlist.append(item.clone( title = 'Buscar serie ...', action = 'search', search_type = 'tvshow', text_color = 'hotpink' ))
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + 'series/', search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host + 'episodios/', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Últimos episodios', action = 'last_epis', url = host + 'episodios/', search_type = 'tvshow', text_color = 'olive' ))
 
     itemlist.append(item.clone( title = 'Más destacadas', action = 'list_all', url = host + 'series/', group = 'destacadas', search_type = 'tvshow' ))
 
@@ -177,7 +188,7 @@ def list_all(item):
 
         if not url or not title: continue
 
-        title = title.replace('&#038;', '').replace("&#8217;", "'")
+        title = title.replace('&#038;', '').replace("&#8217;", "'").replace("&#8211;", "")
 
         thumb = scrapertools.find_single_match(match, 'src="(.*?)"')
 
@@ -222,20 +233,23 @@ def list_top(item):
     if item.search_type == 'movie':
         blk = '<h3>TOP Movies(.*?)<h3>TOP Series'
     else:
-        blk = '<h3>TOP Series(.*?)</div></div></div>'
+        blk = '<h3>TOP Series(.*?)</div></div></div></div>'
 
     bloque = scrapertools.find_single_match(data, blk)
 
-    matches = scrapertools.find_multiple_matches(bloque, "<div class='top-imdb-item'(.*?)<div class='puesto'>")
+    matches = scrapertools.find_multiple_matches(bloque, 'id="top-(.*?)div class="puesto">')
 
     for match in matches:
-        url = scrapertools.find_single_match(match, "<a href='(.*?)'")
+        url = scrapertools.find_single_match(match, '<a href="(.*?)"')
 
-        title = scrapertools.find_single_match(match, "alt='(.*?)'")
+        title = scrapertools.find_single_match(match, 'alt="(.*?)"')
+        if not title: title = scrapertools.find_single_match(match, '<a href=.*?">(.*?)</a>')
 
         if not url or not title: continue
 
-        thumb = scrapertools.find_single_match(match, "src='(.*?)'")
+        title = title.replace('&#038;', '').replace("&#8217;", "'").replace("&#8211;", "")
+
+        thumb = scrapertools.find_single_match(match, 'src="(.*?)"')
 
         if '/pelicula/' in url:
             itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, contentType='movie', contentTitle=title, infoLabels={'year': '-'} ))
@@ -279,6 +293,8 @@ def last_epis(item):
            epis = i
 
         title = title.replace('Online', '').replace('Sub Español', 'Vose').strip()
+
+        title = title.replace('&#038;', '').replace("&#8217;", "'").replace("&#8211;", "")
 
         if ':' in title: SerieName = scrapertools.find_single_match(title, '(.*?):').strip()
         elif ' (' in title: SerieName = title.split(" (")[0]
@@ -350,7 +366,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -659,6 +677,8 @@ def list_search(item):
         title = scrapertools.find_single_match(match, ' alt="(.*?)"')
 
         if not url or not title: continue
+
+        title = title.replace('&#038;', '').replace("&#8217;", "'").replace("&#8211;", "")
 
         thumb = scrapertools.find_single_match(match, ' src="(.*?)"')
 

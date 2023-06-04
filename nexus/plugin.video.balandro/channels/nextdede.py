@@ -262,7 +262,7 @@ def mainlist(item):
     itemlist.append(item.clone( action='acciones', title=titulo, text_color='goldenrod' ))
 
     if config.get_setting('nextdede_login', 'nextdede', default=False):
-        itemlist.append(item.clone( title = 'Listas colecciones', action = 'list_listas', search_type = 'all', text_color = 'cyan' ))
+        itemlist.append(item.clone( title = '[COLOR moccasin][B]Listas colecciones[/B][/COLOR]', action = 'list_listas', search_type = 'all' ))
 
         itemlist.append(item.clone( title = 'Buscar ...', action = 'search', search_type = 'all', text_color = 'yellow' ))
 
@@ -282,11 +282,11 @@ def mainlist_pelis(item):
     itemlist.append(item.clone( action='acciones', title=titulo, text_color='goldenrod' ))
 
     if config.get_setting('nextdede_login', 'nextdede', default=False):
-        itemlist.append(item.clone( title = 'Listas colecciones', action = 'list_listas', search_type = 'all', text_color = 'cyan' ))
+        itemlist.append(item.clone( title = '[COLOR moccasin][B]Listas colecciones[/B][/COLOR]', action = 'list_listas', search_type = 'all' ))
 
         itemlist.append(item.clone( title = 'Buscar película ...', action = 'search', search_type = 'movie', text_color = 'deepskyblue' ))
 
-        itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/discovery?filter={"type":"movie","sorting":"newest"}', search_type = 'movie' ))
+        itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/discovery?filter={"type": "movie", "sorting": "newest"}', search_type = 'movie' ))
 
         itemlist.append(item.clone( title = 'Estrenos', action = 'list_all', url = host + '/movies', search_type = 'movie' ))
 
@@ -318,15 +318,15 @@ def mainlist_series(item):
     itemlist.append(item.clone( action='acciones', title=titulo, text_color='goldenrod' ))
 
     if config.get_setting('nextdede_login', 'nextdede', default=False):
-        itemlist.append(item.clone( title = 'Listas colecciones', action = 'list_listas', search_type = 'all', text_color = 'cyan' ))
+        itemlist.append(item.clone( title = '[COLOR moccasin][B]Listas colecciones[/B][/COLOR]', action = 'list_listas', search_type = 'all' ))
 
         itemlist.append(item.clone( title = 'Buscar serie ...', action = 'search', search_type = 'tvshow', text_color = 'hotpink' ))
 
-        itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/discovery?filter={"type":"serie","sorting":"newest"}', search_type = 'tvshow' ))
+        itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/discovery?filter={"type": "serie", "sorting": "newest"}', search_type = 'tvshow' ))
 
         itemlist.append(item.clone( title = 'Nuevas', action = 'list_all', url = host + '/series', search_type = 'tvshow' ))
 
-        itemlist.append(item.clone( title = 'Últimas agregadas', action = 'list_last', url = host + '/trends', search_type = 'tvshow' ))
+        itemlist.append(item.clone( title = 'Últimas agregadas', action = 'list_last', url = host + '/trends', search_type = 'tvshow', text_color = 'olive' ))
 
         itemlist.append(item.clone( title = 'Recientes', action = 'list_all', url = host + '/series?filter={"sorting":"newest"}', search_type = 'tvshow' ))
 
@@ -398,8 +398,8 @@ def anios(item):
     from datetime import datetime
     current_year = int(datetime.today().year)
 
-    if item.search_type == 'movie': url = host + '/discovery?filter={"type":"movie",'
-    else: url = host + '/discovery?filter={"type":"serie",'
+    if item.search_type == 'movie': url = host + '/discovery?filter={"type": "movie", "sorting": "newest"}'
+    else: url = host + '/discovery?filter={"type": "serie", "sorting": "newest"}'
 
     itemlist.append(item.clone( title = '2020 - ' + str(current_year), url = url + '"released":"2020-"' + str(current_year) + ',"sorting":"newest"}', action = 'list_all', text_color = text_color ))
 
@@ -462,9 +462,12 @@ def list_all(item):
     if itemlist:
         if '<ul class="pagination' in data:
             next_page = scrapertools.find_single_match(data, '<li class="page-item active">.*?</a>.*?' + "href='(.*?)'")
+            if not next_page: next_page = scrapertools.find_single_match(data, '<li class="page-item active">.*?</a>.*?href="(.*?)"')
 
             if next_page:
                 if '&page=' in next_page:
+                    next_page = next_page.replace('&quot;', '"').strip()
+
                     itemlist.append(item.clone( title = 'Siguientes ...', action = 'list_all', url = next_page, text_color = 'coral' ))
 
     return itemlist
@@ -551,17 +554,17 @@ def episodios(item):
     if str(item.contentSeason) == '0':
         bloque = scrapertools.find_single_match(data, 'aria-labelledby="season--tab">(.*?)</a></div>')
     else:
-        bloque = scrapertools.find_single_match(data, '<div class="tab-pane show active" id="season-%s"(.*?)</a></div>' % (item.contentSeason))
-        if not bloque: bloque = scrapertools.find_single_match(data, '<div class="tab-pane " id="season-%s"(.*?)</a></div>' % (item.contentSeason))
+        bloque = scrapertools.find_single_match(data, '<div class="tab-pane " id="season-%s"(.*?)</div></div></div></div></div></div></div></div>' % (item.contentSeason))
+        if not bloque: bloque = scrapertools.find_single_match(data, '<div class="tab-pane show active" id="season-%s"(.*?)</div></div></div></div></div></div></div></div>' % (item.contentSeason))
 
-    patron = '<a href="(.*?)".*?<img src="(.*?)".*?<div class="episode">(.*?)</div>.*?<div class="name">(.*?)</div>'
-
-    matches = re.compile(patron, re.DOTALL).findall(bloque)
+    matches = re.compile('<img src="(.*?)".*?<div class="w-full flex-none text-.*?">(.*?)</div>.*?<span>(.*?)</span>.*?<a href="(.*?)"', re.DOTALL).findall(bloque)
 
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -597,13 +600,13 @@ def episodios(item):
                     item.perpage = sum_parts
                 else: item.perpage = 50
 
-    for url, thumb, temp_epis, name in matches[item.page * item.perpage:]:
+    for thumb, name, temp_epis, url in matches[item.page * item.perpage:]:
         temp_epis = temp_epis.strip()
 
-        season = scrapertools.find_single_match(temp_epis, "(.*?)x")
+        season = scrapertools.find_single_match(temp_epis, "T(.*?)-").strip()
         if not season: season = '0'
 
-        episode = scrapertools.find_single_match(temp_epis, ".*?x(.*?)$")
+        episode = scrapertools.find_single_match(temp_epis, " - E(.*?)$")
 
         name = name.strip()
 
@@ -657,7 +660,13 @@ def findvideos(item):
             if not config.get_setting('developer_mode', default=False): continue
 
         if not servidor == 'directo':
-            itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = lang, quality = qlty ))
+            other = ''
+
+            if servidor == 'various':
+                if '/filemoon.' in url: other = 'Filemoon'
+                elif '/streamwish.' in url: other = 'Streamwish'
+
+            itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, title = '', url = url, language = lang, quality = qlty, other = other ))
 
     # ~ Descargar
     bloque = scrapertools.find_single_match(data, '<div class="links-modal-body"><table>(.*?)</table>')

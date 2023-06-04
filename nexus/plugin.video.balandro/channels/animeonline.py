@@ -42,21 +42,26 @@ def configurar_proxies(item):
     return proxytools.configurar_proxies_canal(item.channel, host)
 
 
-def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
-    if not config.get_setting('channel_animeonline_proxies', default=''): raise_weberror=False
-
-    timeout = 30
-
+def do_downloadpage(url, post=None, headers=None):
     # ~ por si viene de enlaces guardados
     ant_hosts = ['https://animeonline1.ninja/']
 
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
+    timeout = None
+    if host in url:
+        if config.get_setting('channel_animeonline_proxies', default=''): timeout = 40
+
     if not url.startswith(host):
-        data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+        data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
     else:
-        data = httptools.downloadpage_proxy('animeonline', url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+        data = httptools.downloadpage_proxy('animeonline', url, post=post, headers=headers, timeout=timeout).data
+
+        if not data:
+            if not '?s=' in url:
+                platformtools.dialog_notification('AnimeOnline', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+                data = httptools.downloadpage_proxy('animeonline', url, post=post, headers=headers, timeout=timeout).data
 
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         try:
@@ -66,9 +71,9 @@ def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
 
                 if not url.startswith(host):
-                    data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+                    data = httptools.downloadpage(url, post=post, headers=headers).data
                 else:
-                    data = httptools.downloadpage_proxy('animeonline', url, post=post, headers=headers, raise_weberror=raise_weberror, timeout=timeout).data
+                    data = httptools.downloadpage_proxy('animeonline', url, post=post, headers=headers, timeout=timeout).data
         except:
             pass
 
@@ -163,6 +168,7 @@ def pelis(item):
     itemlist.append(item.clone( title = 'Más valoradas', action = 'list_all', url = host + 'ratings/?get=movies', search_type = 'movie' ))
 
     return itemlist
+
 
 def idiomas(item):
     logger.info()
@@ -288,6 +294,7 @@ def temporadas(item):
     data = do_downloadpage(item.url)
 
     temporadas = re.compile("<span class='se-t.*?'>(.*?)</span>", re.DOTALL).findall(data)
+    if not temporadas: temporadas = re.compile('<span class="se-t.*?">(.*?)</span>', re.DOTALL).findall(data)
 
     for tempo in temporadas:
         title = 'Temporada ' + tempo
@@ -307,7 +314,6 @@ def temporadas(item):
     return itemlist
 
 
-
 def episodios(item):
     logger.info()
     itemlist = []
@@ -319,13 +325,17 @@ def episodios(item):
     data = re.sub(r'\n|\r|\t|\s{2}|&nbsp;', '', data)
 
     bloque = scrapertools.find_single_match(data, "<span class='se-t.*?'>%s</span>(.*?)</div></div>" % (item.contentSeason))
+    if not bloque: bloque = scrapertools.find_single_match(data, '<span class="se-t.*?">%s</span>(.*?)</div></div>' % (item.contentSeason))
 
     epis = re.compile("<li class='mark-(.*?)</li>", re.DOTALL).findall(bloque)
+    if not epis: epis = re.compile('<li class="mark-(.*?)</li>', re.DOTALL).findall(bloque)
 
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(epis)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -363,21 +373,29 @@ def episodios(item):
 
     for epi in epis[item.page * item.perpage:]:
         epi_num = scrapertools.find_single_match(epi, "(.*?)'>")
+        if not epi_num: epi_num = scrapertools.find_single_match(epi, '(.*?)">')
 
         thumb = scrapertools.find_single_match(epi, "data-src='(.*?)'")
-        url = scrapertools.find_single_match(epi, "<a href='(.*?)'")
+        if not thumb: thumb = scrapertools.find_single_match(epi, 'data-src="(.*?)"')
 
-        title = scrapertools.find_single_match(epi, "<div class='episodiotitle'>.*?<a href=.*?'>(.*?)</a>")
+        url = scrapertools.find_single_match(epi, "<a href='(.*?)'")
+        if not url: url = scrapertools.find_single_match(epi, '<a href="(.*?)"')
+
+        title = scrapertools.find_single_match(epi, "<div class='episodiotitle'>.*?'>(.*?)</a>")
+        if not title: title = scrapertools.find_single_match(epi, '<div class="episodiotitle">.*?">(.*?)</a>')
 
         titulo = '%sx%s - %s' % (str(item.contentSeason), epi_num, title)
+
+        titulo = titulo + ' ' + item.contentSerieName
 
         Season = item.contentSeason
         Episode = epi_num
 
         if '.' in epi_num: Episode = epi_num.split(".")[0]
 
-        itemlist.append(item.clone( action='findvideos', url = url, title = titulo, thumbnail = thumb, 
-                                    contentType = 'episode', contentSeason = Season, contentEpisodeNumber = Episode ))
+        if url:
+            itemlist.append(item.clone( action='findvideos', url = url, title = titulo, thumbnail = thumb, 
+                                        contentType = 'episode', contentSeason = Season, contentEpisodeNumber = Episode ))
 
         if len(itemlist) >= item.perpage:
             break
@@ -398,6 +416,7 @@ def findvideos(item):
     data = do_downloadpage(item.url)
 
     players = scrapertools.find_multiple_matches(data, "<li id='player-option-(.*?)</ul>")
+    if not players: players = scrapertools.find_multiple_matches(data, '<li id="player-option-(.*?)</ul>')
 
     ses = 0
 
@@ -405,12 +424,18 @@ def findvideos(item):
         ses += 1
 
         _server = scrapertools.find_single_match(datos, "<span class='server'>(.*?)</span>")
+        if not _server: _server = scrapertools.find_single_match(datos, '<span class="server">(.*?)</span>')
 
         if not 'saidochesto' in _server: continue
 
         data_type = scrapertools.find_single_match(datos, "data-type='(.*?)'")
+        if not data_type: data_type = scrapertools.find_single_match(datos, 'data-type="(.*?)"')
+
         data_post = scrapertools.find_single_match(datos, "data-post='(.*?)'")
-        data_nume = scrapertools.find_single_match(datos, "data-nume='(.*?)'")
+        if not data_post: data_post = scrapertools.find_single_match(datos, 'data-post="(.*?)"')
+
+        data_nume = scrapertools.find_single_match(datos, 'data-nume="(.*?)"')
+        if not data_nume: data_nume = scrapertools.find_single_match(datos, "data-nume='(.*?)'")
 
         if not data_type or not data_post or not data_nume: continue
 
@@ -457,21 +482,21 @@ def findvideos(item):
                        link_other = url.split('//')[1]
                        link_other = link_other.split('/')[0]
                     except:
-                        link_other = url
+                       link_other = url
                 else: link_other = url
 
                 link_other = link_other.replace('www.', '').replace('.com', '').replace('.net', '').replace('.org', '').replace('.top', '')
                 link_other = link_other.replace('.co', '').replace('.cc', '').replace('.sh', '').replace('.to', '').replace('.tv', '').replace('.ru', '').replace('.io', '')
                 link_other = link_other.replace('.eu', '').replace('.ws', '').replace('.sx', '')
 
-                link_other = servertools.corregir_servidor(link_other)
+                if servidor == 'various': other = link_other
+                else:
+                    link_other = servertools.corregir_servidor(link_other)
 
-                if link_other == servidor: link_other = ''
-                else: link_other = link_other.capitalize()
+                    if link_other == servidor: link_other = ''
+                    else: link_other = link_other
 
-                if link_other == 'krakenfiles': continue
-
-                itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, url = url, language = lang, other = link_other ))
+                itemlist.append(Item( channel = item.channel, action = 'play', server = servidor, url = url, language = lang, other = link_other.capitalize() ))
 
     if not itemlist:
         if not ses == 0:

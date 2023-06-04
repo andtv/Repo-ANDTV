@@ -78,15 +78,19 @@ def list_all(item):
         if item.search_type == 'movie':
             PeliName = title
 
-            if 'Movie' in title: PeliName = title.split("Movie")[0]
+            if 'Movie' in PeliName: PeliName = PeliName.split("Movie")[0]
 
             PeliName = PeliName.strip()
 
-            itemlist.append(item.clone( action='episodios', url=url, title=title, thumbnail=thumb,
-                                        contentType='movie', contentTitle=PeliName, infoLabels={'year': '-'} ))
+            itemlist.append(item.clone( action='episodios', url=url, title=title, thumbnail=thumb,  contentType='movie', contentTitle=PeliName, infoLabels={'year': '-'} ))
         else:
-            itemlist.append(item.clone( action='episodios', url=url, title=title, thumbnail=thumb, 
-                                        contentType = 'tvshow', contentSerieName = title, infoLabels={'year': '-'} ))
+            SerieName = title
+
+            if 'Season' in SerieName: SerieName = SerieName.split("Season")[0]
+
+            SerieName = SerieName.strip()
+
+            itemlist.append(item.clone( action='episodios', url=url, title=title, thumbnail=thumb, contentType = 'tvshow', contentSerieName = SerieName, infoLabels={'year': '-'} ))
 
     tmdb.set_infoLabels(itemlist)
 
@@ -119,7 +123,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:

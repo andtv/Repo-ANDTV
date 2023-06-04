@@ -7,14 +7,15 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://www3.cinecalidad.ms/'
+host = 'https://www.cinecalidad.gs/'
 
 
 # ~ por si viene de enlaces guardados
 ant_hosts = ['https://www.cinecalidad.eu/', 'https://www.cinecalidad.im/', 'https://www.cinecalidad.is/',
              'https://www.cinecalidad.li/', 'https://www.cine-calidad.com/', 'https://cinecalidad.website/',
              'https://www.cinecalidad.lat/', 'https://cinecalidad3.com/', 'https://www5.cine-calidad.com/',
-             'https://v3.cine-calidad.com/', 'https://cinecalidad.dev/', 'https://cinecalidad.ms/']
+             'https://v3.cine-calidad.com/', 'https://cinecalidad.dev/', 'https://cinecalidad.ms/',
+             'https://www3.cinecalidad.ms/', 'https://ww1.cinecalidad.ms/']
 
 domain = config.get_setting('dominio', 'cinecalidad', default='')
 
@@ -235,6 +236,8 @@ def list_all(item):
 
         url = url.replace('\\/', '/')
 
+        if '-premium-12-meses' in url: continue
+
         if not url or not title: continue
 
         plot = scrapertools.find_single_match(match, '<p>.*?">(.*?)</p>').strip()
@@ -378,7 +381,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -469,6 +474,8 @@ def findvideos(item):
         for data_url, data_lmt, servidor in matches:
             ses += 1
 
+            other = ''
+
             servidor = servidor.lower().strip()
 
             if servidor == "trailer": continue
@@ -497,6 +504,10 @@ def findvideos(item):
             elif 'watchsb' in servidor: servidor = 'streamsb'
             elif 'lvturbo' in servidor: servidor = 'streamsb'
 
+            elif servidor == 'streamwish':
+                  other = servidor.capitalize()
+                  servidor = 'various'
+
             if servertools.is_server_available(servidor):
                 if not servertools.is_server_enabled(servidor): continue
             else:
@@ -504,7 +515,8 @@ def findvideos(item):
 
             qlty = '1080'
 
-            itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', data_url = data_url, data_lmt = data_lmt, quality = qlty, language = lang ))
+            itemlist.append(Item (channel = item.channel, action = 'play', server = servidor, title = '', data_url = data_url, data_lmt = data_lmt,
+                                  quality = qlty, language = lang, other = other ))
 
     hay_descargas = False
 

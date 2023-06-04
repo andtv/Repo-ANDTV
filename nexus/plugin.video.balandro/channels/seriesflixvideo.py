@@ -43,11 +43,13 @@ def configurar_proxies(item):
     return proxytools.configurar_proxies_canal(item.channel, host)
 
 
-def do_downloadpage(url, post=None, headers=None, follow_redirects=False):
+def do_downloadpage(url, post=None, headers=None, raise_weberror=True):
+    if '?s=filter&years[]=' in url: raise_weberror = False
+
     if not url.startswith(host):
-        data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
+        data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
     else:
-        data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
+        data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, raise_weberror=raise_weberror).data
 
     if '<title>You are being redirected...</title>' in data:
         try:
@@ -57,9 +59,9 @@ def do_downloadpage(url, post=None, headers=None, follow_redirects=False):
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
 
                 if not url.startswith(host):
-                    data = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects).data
+                    data = httptools.downloadpage(url, post=post, headers=headers, raise_weberror=raise_weberror).data
                 else:
-                    data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, follow_redirects=follow_redirects).data
+                    data = httptools.downloadpage_proxy('seriesflixvideo', url, post=post, headers=headers, raise_weberror=raise_weberror).data
         except:
             pass
 
@@ -89,6 +91,7 @@ def mainlist_series(item):
     itemlist.append(item.clone( title = 'Por productora', action = 'generos', search_type = 'tvshow', grupo = 'productoras' ))
     itemlist.append(item.clone( title = 'Por género', action = 'generos', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Por país', action = 'paises', search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Por año', action = 'anios', search_type = 'tvshow' ))
 
     return itemlist
 
@@ -157,6 +160,23 @@ def paises(item):
     return itemlist
 
 
+def anios(item):
+    logger.info()
+    itemlist = []
+
+    from datetime import datetime
+    current_year = int(datetime.today().year)
+
+    for x in range(current_year, 1956, -1):
+        if x > 2021: continue
+
+        url = host + '?s=filter&years[]=' + str(x)
+
+        itemlist.append(item.clone( title = str(x), url = url, action = 'list_all', text_color = 'hotpink' ))
+
+    return itemlist
+
+
 def list_all(item):
     logger.info()
     itemlist = []
@@ -175,6 +195,8 @@ def list_all(item):
         url = scrapertools.find_single_match(article, ' href="([^"]+)')
         title = scrapertools.find_single_match(article, '<h2 class="Title">(.*?)</h2>').strip()
         if not url or not title: continue
+
+        title = title.replace('&#038;', '')
 
         thumb = scrapertools.find_single_match(article, ' data-src="([^"]+)')
 
@@ -213,7 +235,13 @@ def temporadas(item):
 
     # ~ hay redirecionamiento por location
     if not data:
-        data = do_downloadpage(item.url, follow_redirects = True)
+        resp = httptools.downloadpage_proxy('seriesflixvideo', item.url)
+
+        if 'location' in resp.headers:
+             url = resp.headers['location']
+
+             if url:
+                 data = do_downloadpage(url)
 
     if not data: return itemlist
 
@@ -261,7 +289,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -304,7 +334,7 @@ def episodios(item):
 
         title = scrapertools.find_single_match(data_epi, '<td class="MvTbTtl">.*?>(.*?)</a>')
 
-        if not item.contentSerieName in title: title = item.contentSerieName + ' ' + str(item.contentSeason) + 'x' + episode + ' ' + title
+        if not item.contentSerieName in title: title = str(item.contentSeason) + 'x' + episode + ' ' + item.contentSerieName + ' ' + title
 
         fecha = scrapertools.find_single_match(data_epi, '<span>(.*?)</span>')
         if fecha: title = title + ' [COLOR gray](' + fecha + ')[/COLOR]'
@@ -387,17 +417,17 @@ def play(item):
 
     if '/flixplayer.' in url:
         if not url.startswith(host):
-            data = httptools.downloadpage(url).data
+            data = do_downloadpage(url)
         else:
-            data = httptools.downloadpage_proxy('seriesflixvideo', url).data
+            data = do_downloadpage('seriesflixvideo', url)
 
         url = scrapertools.find_single_match(data, 'link":"([^"]+)"')
 
-    elif host in url or '.seriesflix.video' in url and '?h=' in url:
+    elif host in url or '.seriesflix.' in url and '?h=' in url:
         fid = scrapertools.find_single_match(url, "h=([^&]+)")
         url2 = url.replace('index.php', '').split('?h=')[0] + 'r.php'
 
-        if not url2.startswith(host) and not '.seriesflix.video' in url2:
+        if not url2.startswith(host) and not '.seriesflix.' in url2:
             resp = httptools.downloadpage(url2, post= 'h=' + fid, headers = {'Referer': url}, follow_redirects=False)
         else:
             resp = httptools.downloadpage_proxy('seriesflixvideo', url2, post= 'h=' + fid, headers = {'Referer': url}, follow_redirects=False)

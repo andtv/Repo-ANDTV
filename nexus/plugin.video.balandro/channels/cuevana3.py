@@ -234,7 +234,7 @@ def list_all(item):
 
         if '/pagina-ejemplo' in url: continue
 
-        title = title.replace("&#8217;", "'")
+        title = title.replace("&#8217;", "'").replace("&#038;", "&").replace('&#8211;', '')
 
         thumb = scrapertools.find_single_match(article, 'data-src=([^ >]+)')
         if not thumb: thumb = scrapertools.find_single_match(article, ' src=(?:"|)([^ >"]+)')
@@ -323,7 +323,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -420,7 +422,7 @@ def findvideos(item):
                                   language = IDIOMAS.get(lang, lang), quality = qlty, quality_num = puntuar_calidad(qlty) ))
 
     # Enlaces descarga
-    patron = 'Uptobox</td><td>([^<]*)</td><td><span>([^<]*)</span></td><td><a\s*rel=nofollow target=_blank href="([^"]+)" class="Button STPb">Descargar</a>'
+    patron = 'Uptobox</td>.*?<td>(.*?)</td>.*?<td><span>(.*?)</span></td>.*?href="(.*?)".*?>Descargar</a>'
 
     matches = re.compile(patron, re.DOTALL).findall(data)
 

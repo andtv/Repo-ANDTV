@@ -120,6 +120,8 @@ def list_all(item):
         title = re.sub(r'\((.*)', '', title)
         title = re.sub(r'\[(.*?)\]', '', title)
 
+        title = title.replace('&#8211;', '')
+
         thumb = scrapertools.find_single_match(article, '<img src="(.*?)"')
 
         year = scrapertools.find_single_match(article, '<span class="Year">(.*?)</span>')
@@ -205,7 +207,7 @@ def findvideos(item):
         servidor = servertools.corregir_servidor(servidor)
 
         if url:
-           itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = url, language = lang, quality = qlty ))
+           itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = url ))
 
     if not itemlist:
         if not ses == 0:

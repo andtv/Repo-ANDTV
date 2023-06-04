@@ -543,7 +543,7 @@ def clear_thumbs(type=None):
         for i in thumb_locations:
             tools.remove_folder(i)
         logging.log_notify(CONFIG.ADDONTITLE,
-            '[COLOR {0}][COLOR gold]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
+            '[COLOR {0}][COLOR white]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
     else:
         logging.log('Eliminar nombres en miniatura cancelados')
 

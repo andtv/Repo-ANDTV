@@ -83,7 +83,7 @@ def list_all(item):
 
         thumb = thumb.replace("200/", "800/").replace("280/", "1120/")
 
-        title = title.replace('&#039;', "'")
+        title = title.replace('&#039;', "'").replace('&quot;', "")
 
         SerieName = title
 
@@ -121,7 +121,7 @@ def last_epis(item):
     matches = re.compile(patron, re.DOTALL).findall(bloque)
 
     for url, thumb, epis, title in matches:
-        title = title.replace('&#039;', "'")
+        title = title.replace('&#039;', "'").replace('&quot;', "")
 
         SerieName = title
 
@@ -164,7 +164,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:

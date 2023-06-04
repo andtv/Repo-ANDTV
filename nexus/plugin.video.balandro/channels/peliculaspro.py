@@ -150,6 +150,8 @@ def list_all(item):
 
         if not url or not title: continue
 
+        title = title.replace('&#8211;', '').replace('&#8217;', '').replace('&#038;', '&')
+
         thumb = scrapertools.find_single_match(article, ' src="([^"]+)"')
         if thumb.startswith('//'): thumb = 'https:' + thumb
 
@@ -231,7 +233,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -314,9 +318,9 @@ def findvideos(item):
            if 'hqq' in srv or 'waaw' in srv or 'netu' in srv: continue
 
            elif srv == 'streamz': servidor = srv
-           elif srv == 'peliculaspro': other = 'fembed' + '-' + str(i)
-           elif srv == 'streamcrypt':  other = srv + '-' + str(i)
-           else: other = srv.lower() + '-' + str(i)
+           elif srv == 'peliculaspro': other = 'fembed' + ' ' + str(i)
+           elif srv == 'streamcrypt':  other = srv + ' ' + str(i)
+           else: other = srv.lower() + ' ' + str(i)
 
         itemlist.append(Item( channel = item.channel, action = 'play', title = '', server = servidor, url = url, other = other, language = idioma ))
 

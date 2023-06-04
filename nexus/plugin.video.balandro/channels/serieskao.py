@@ -307,7 +307,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(matches)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -412,6 +414,10 @@ def findvideos(item):
         elif other == 'netu' or other == 'hqq' or other == 'waaw': continue
 
         other = servertools.corregir_servidor(other)
+
+        if other == 'various':
+            if 'filemoon' in match: other = 'filemoon'
+            elif 'streamwish' in match: other = 'streamwish'
 
         itemlist.append(Item( channel = item.channel, action = 'play', server = 'directo', title = '', url = url, language = lng, other = other.capitalize() ))
 

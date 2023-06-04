@@ -7,7 +7,7 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://c2.cinecalidad.com.mx/'
+host = 'https://c26.cinecalidad.com.mx/'
 
 
 players = ['https://cinecalidad.', '.cinecalidad.']
@@ -16,7 +16,12 @@ players = ['https://cinecalidad.', '.cinecalidad.']
 # ~ por si viene de enlaces guardados
 ant_hosts = ['https://cinecalidad.com.mx/', 'https://cinecalidad.fit/', 'https://ww3.cinecalidad.com.mx/',
             'https://ww10.cinecalidad.com.mx/', 'https://w5.cinecalidad.com.mx/', 'https://w15.cinecalidad.com.mx/',
-            'https://ww1.cinecalidad.com.mx/', 'https://c1.cinecalidad.com.mx/']
+            'https://ww1.cinecalidad.com.mx/', 'https://c1.cinecalidad.com.mx/', 'https://c2.cinecalidad.com.mx/',
+            'https://c3.cinecalidad.com.mx/', 'https://c4.cinecalidad.com.mx/', 'https://c5.cinecalidad.com.mx/',
+            'https://c6.cinecalidad.com.mx/', 'https://c7.cinecalidad.com.mx/', 'https://c8.cinecalidad.com.mx/',
+            'https://c9.cinecalidad.com.mx/', 'https://c20.cinecalidad.com.mx/', 'https://c21.cinecalidad.com.mx/',
+            'https://c22.cinecalidad.com.mx/', 'https://c23.cinecalidad.com.mx/', 'https://c24.cinecalidad.com.mx/',
+            'https://c25.cinecalidad.com.mx/']
 
 
 domain = config.get_setting('dominio', 'cinecalidadmx', default='')
@@ -158,7 +163,7 @@ def anios(item):
     from datetime import datetime
     current_year = int(datetime.today().year)
 
-    for x in range(current_year, 1999, -1):
+    for x in range(current_year, 1969, -1):
         url = host + 'fecha-de-lanzamiento/' + str(x) + '/'
 
         itemlist.append(item.clone( title = str(x), url = url, action = 'list_all', text_color = 'deepskyblue' ))
@@ -232,15 +237,10 @@ def list_all(item):
     tmdb.set_infoLabels(itemlist)
 
     if itemlist:
-        next_page = scrapertools.find_single_match(data, "<div class='wp-pagenavi'>.*?<span class='current'>.*?<a href='(.*?)'")
-        if not next_page: next_page = scrapertools.find_single_match(data, '<div class="load_more_text">' + ".*?<a href='(.*?)'")
-        if not next_page: next_page = scrapertools.find_single_match(data, '<div class="load_more_text">.*?<a href="(.*?)"')
+        next_page = scrapertools.find_single_match(data, '<span class="pages">.*?class="current">.*?href="(.*?)"')
 
         if next_page:
-            if '?page=' in next_page:
-                itemlist.append(item.clone( title='Siguientes ...', url = next_page, action = 'list_all', text_color='coral' ))
-
-            elif '/page/' in next_page:
+            if '/page/' in next_page:
                 itemlist.append(item.clone( title='Siguientes ...', url = next_page, action = 'list_all', text_color='coral' ))
 
     return itemlist
@@ -407,7 +407,8 @@ def findvideos(item):
     data = re.sub(r'\n|\r|\t|\s{2}|&nbsp;', '', data)
 
     if '>No hay opciones para ver en latino' in data:
-        new_url = scrapertools.find_single_match(data, '>No hay opciones para ver en latino.*?<a href="(.*?)">Ver en castellano<')
+        new_url = scrapertools.find_single_match(data, ">No hay opciones para ver en latino.*?<a href='(.*?)'>Ver en castellano<")
+        if not new_url: new_url = scrapertools.find_single_match(data, '>No hay opciones para ver en latino.*?<a href="(.*?)">Ver en castellano<')
 
         if new_url:
             platformtools.dialog_notification(config.__addon_name, '[COLOR yellowgreen][B]Sin opciones Play en Latino[/B][/COLOR]')
@@ -435,7 +436,6 @@ def findvideos(item):
             if srv == 'netu' or srv == 'waaw' or srv == 'hqq': continue
             elif 'cinecalidad' in srv: continue
             elif 'subtítulo' in srv: continue
-            elif 'cinestart' in srv: continue
 
             qlty = '1080'
 

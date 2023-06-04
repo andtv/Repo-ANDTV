@@ -98,7 +98,7 @@ def mainlist_series(item):
 
     itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = h_catalogue, search_type = 'tvshow' ))
 
-    itemlist.append(item.clone( title = 'Nuevos episodios', action = 'last_epis', url = host, search_type = 'tvshow' ))
+    itemlist.append(item.clone( title = 'Nuevos episodios', action = 'last_epis', url = host, search_type = 'tvshow', text_color = 'olive' ))
 
     itemlist.append(item.clone( title = 'Las de la semana', action = 'list_all', url = h_catalogue+'?sort=mosts-week', search_type = 'tvshow' ))
     itemlist.append(item.clone( title = 'Actualizadas', action = 'list_all', url = h_catalogue+'?sort=latest', search_type = 'tvshow' ))
@@ -294,6 +294,8 @@ def last_epis(item):
     logger.info()
     itemlist = []
 
+    epis = []
+
     descartar_xxx = config.get_setting('descartar_xxx', default=False)
 
     if not item.page: item.page = 0
@@ -307,15 +309,14 @@ def last_epis(item):
 
     matches = scrapertools.find_multiple_matches(bloque, '<a class="media"(.*?)</a>')
 
-    num_matches = len(matches)
 
-    for match in matches[item.page * perpage:]:
+    # ~ Reducir Matches
+    i = 0
+
+    for match in matches:
         url = scrapertools.find_single_match(match, ' href="([^"]+)"')
 
-        title = scrapertools.find_single_match(match, ' title="([^"]+)"')
-        title = title.replace(' Online sub español', '').strip()
-
-        if not url or not title: continue
+        if not url: continue
 
         if descartar_xxx and ('/coleccion-adulto-espanol/' in url or '/internacional-adultos/' in url): continue
 
@@ -336,6 +337,37 @@ def last_epis(item):
         elif '/gran-' in url: continue
         elif '/various-' in url: continue
         elif '/muy-interesante-' in url: continue
+        elif '/sport-' in url: continue
+        elif '/bad-' in url: continue
+        elif '/score-' in url: continue
+        elif '/thickncurvy-' in url: continue
+        elif '/bra-busters-' in url: continue
+        elif '/reposteria-' in url: continue
+        elif '/artistas-eternos-' in url: continue
+        elif '/secretos-y-sabores-' in url: continue
+        elif '/los-grandes-enigmas-del-mundo-' in url: continue
+        elif '/mens-health-' in url: continue
+        elif '/sucesos-de-la-historia-' in url: continue
+        elif '/voluptuous-' in url: continue
+        elif '/hustlers-taboo-' in url: continue
+        elif '/tortillas-crepes-y-rebozados-' in url: continue
+        elif '/mas-vegetales-menos-animales-' in url: continue
+        elif '/hustler-usa-' in url: continue
+        elif '/penthouse-usa-' in url: continue
+        elif '/fhm-south-africa-' in url: continue
+        elif '/pan-paso-a-paso-' in url: continue
+        elif '/larousse-gastronomique-' in url: continue
+        elif '/motociclismo-' in url: continue
+        elif '/barely-legal-' in url: continue
+        elif '/computadoras-que-aprenden-' in url: continue
+        elif '/accion-cine-video-' in url: continue
+        elif '/la-mitologia-templaria-' in url: continue
+        elif '/viajar-espana-' in url: continue
+        elif 'rico-rico-y-con-fundamento-' in url: continue
+        elif '/cocinar-sin-carbohidratos-' in url: continue
+        elif '/chocolate-' in url: continue
+        elif '/postres-' in url: continue
+        elif '/freidora-de-aire-' in url: continue
 
         elif '-pc-' in url: continue
         elif '-magazine-' in url: continue
@@ -350,6 +382,25 @@ def last_epis(item):
         elif '-remix-' in url: continue
         elif '-dance-' in url: continue
         elif '-hits-' in url: continue
+        elif '-photo-' in url: continue
+        elif '-volume-' in url: continue
+        elif 'audiolibrovoz-' in url: continue
+
+        epis.append(match)
+
+        i +=1
+
+
+    matches = epis
+    num_matches = i
+
+    for match in matches[item.page * perpage:]:
+        url = scrapertools.find_single_match(match, ' href="([^"]+)"')
+
+        title = scrapertools.find_single_match(match, ' title="([^"]+)"')
+        title = title.replace(' Online sub español', '').strip()
+
+        if not url or not title: continue
 
         thumb = scrapertools.find_single_match(match, ' src="([^"]+)"')
 
@@ -378,24 +429,30 @@ def last_epis(item):
 
     tmdb.set_infoLabels(itemlist)
 
+
+    # ~ Peliculas
     for new_item in itemlist:
-        if not new_item.infoLabels['tmdb_id']:
-           if new_item.infoLabels['season'] == 1 and new_item.infoLabels['episode'] == 1:
-               new_item.title = new_item.title
+        if new_item.infoLabels['season'] == 1 and new_item.infoLabels['episode'] == 1:
+             if not new_item.infoLabels['tmdb_id']:
+                 tmdb.set_infoLabels_item(new_item)
 
-               new_item.contentType = 'movie'
-               new_item.contentTitle = new_item.title = new_item.contentSerieName
-               new_item.infoLabels['year'] = '-'
+                 if not new_item.infoLabels['tmdb_id']:
+                     new_item.contentType = 'movie'
+                     new_item.contentTitle = new_item.title = new_item.contentSerieName
+                     new_item.infoLabels['year'] = '-'
 
-               del new_item.contentSerieName
-               del new_item.contentSeason
-               del new_item.contentEpisodeNumber
+                     new_item.title = new_item.title + ' [COLOR deepskyblue] Película[/COLOR]'
 
-               del new_item.infoLabels['season']
-               del new_item.infoLabels['episode']
-               del new_item.infoLabels['tvshowtitle']
+                     del new_item.contentSerieName
+                     del new_item.contentSeason
+                     del new_item.contentEpisodeNumber
 
-               tmdb.set_infoLabels_item(new_item)
+                     del new_item.infoLabels['season']
+                     del new_item.infoLabels['episode']
+                     del new_item.infoLabels['tvshowtitle']
+
+                     tmdb.set_infoLabels_item(new_item)
+
 
     if itemlist:
         if num_matches > ((item.page + 1) * perpage):
@@ -470,7 +527,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = len(data)
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:

@@ -299,7 +299,9 @@ def episodios(item):
     if item.page == 0 and item.perpage == 50:
         sum_parts = num_matches
 
-        try: tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+        try:
+            tvdb_id = scrapertools.find_single_match(str(item), "'tvdb_id': '(.*?)'")
+            if not tvdb_id: tvdb_id = scrapertools.find_single_match(str(item), "'tmdb_id': '(.*?)'")
         except: tvdb_id = ''
 
         if tvdb_id:
@@ -410,8 +412,10 @@ def findvideos(item):
 
             url = servertools.normalize_url(servidor, url)
 
+            link_other = ''
             if servidor == 'directo': link_other = normalize_other(url)
-            else: link_other = ''
+            elif servidor == 'various':
+                  if '/filemoon.' in url: link_other = 'filemoon'
 
             lang = idioma
 
@@ -426,7 +430,7 @@ def findvideos(item):
 
 
 def normalize_other(url):
-    if '/clonamesta' in url or '/moonplayer' in url: link_other = ''
+    if '/clonamesta' in url: link_other = ''
 
     elif 'pelisplus' in url: link_other = 'plus'
     elif 'pelisplay' in url: link_other = 'play'
