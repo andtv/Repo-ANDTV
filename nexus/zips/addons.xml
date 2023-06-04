@@ -379,12 +379,13 @@
 		<summary lang="es">
 	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
 	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
-	</summary>
+	    </summary>
     	<description lang="es">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
 [COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor y editado por TVban y Protegidos por los Derechos de Autor. [COLOR chocolate]La vulneración de estas prohibiciones hará Separar, privar o destituir de cualquier Culpa a sus Autores, [COLOR red]Siendo el unico Responsable quien lo haya Distribuido.[/B][/COLOR]</disclaimer>
 		<platform>all</platform>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
