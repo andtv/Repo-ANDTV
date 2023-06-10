@@ -1,4 +1,4 @@
-1
+2
 |||
 
 [COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN NEXUS !!![B][/COLOR]
@@ -17,7 +17,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 [COLOR red][B]* Corregido y agregado HULU en las Plataofrmas dentro de SERIES[/B][/COLOR]
 
 
-[COLOR aquamarine][B]INSTALACIÓN DE PARCHE:[/B][/COLOR]
+[COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
 
 Para instalar un parche, deberemos seleccionar la Build correspondiente que tengamos instalada por ejemplo [COLOR yellowgreen][B]TVBan E.ARM[/B][/COLOR] y dentro nos saldrá el PARCHE con la FECHA a instalar.
 
