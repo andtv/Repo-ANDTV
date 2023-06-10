@@ -50,7 +50,7 @@ name="[COLOR goldenrod]File Manager [COLOR white]PRO 3.1.9.[/COLOR]"
 section="no"
 url="https://github.com/andtv/andtv.github.io/releases/download/1.0/FILE.MANAGER.V3.1.9.PREMIUM.MOD.EXTRA.apk"
 icon="https://i.imgur.com/CjHOh8a.png" 
-fanart="https://i.imgur.com/E5BdYUt.jpg"
+fanart="https://i.imgur.com/eJuG4mu.jpg"
 adult="no"
 description="File Manager Pro"
 
