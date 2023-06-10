@@ -14,7 +14,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 
 [COLOR gold][B]10/06/2023 ¡¡¡ACTUALIZADOR PARCHE TVBAN NEXUS!!![/B][/COLOR]
 
-[COLOR red][B]* CORREGIDO Y AÑADIDO hulu EN LAS PLATAFORMAS: SERIES[/B][/COLOR]
+[COLOR red][B]* Corregido y agregado HULU en las Plataofrmas dentro de SERIES[/B][/COLOR]
 
 
 [COLOR aquamarine][B]INSTALACIÓN DE PARCHE:[/B][/COLOR]
