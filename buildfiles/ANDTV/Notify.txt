@@ -22,7 +22,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 Para instalar un parche, deberemos seleccionar la Build correspondiente que tengamos instalada por ejemplo [COLOR yellowgreen][B]TVBan E.ARM[/B][/COLOR] y dentro nos saldrá el PARCHE con la FECHA a instalar.
 
 
-[COLOR red]                   ****** JOSEATEBA, ANDTV ******                 [/COLOR] 
+[COLOR red]                   ****** JOSEATEBA, ANDTV_TVBAN******                 [/COLOR] 
   
 [COLOR dodgerblue]https://t.me/beelinkking[/COLOR]
 
