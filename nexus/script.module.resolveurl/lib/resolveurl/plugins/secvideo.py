@@ -1,6 +1,6 @@
 """
     Plugin for ResolveURL
-    Copyright (C) 2022 jsergio, shellc0de
+    Copyright (C) 2023 gujal
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,32 +17,27 @@
 """
 
 import re
-from resolveurl import common
 from resolveurl.lib import helpers
 from resolveurl.resolver import ResolveUrl, ResolverError
+from resolveurl import common
 
 
-class CloudVideoResolver(ResolveUrl):
-    name = 'CloudVideo'
-    domains = ['cloudvideo.tv']
-    pattern = r'(?://|\.)(cloudvideo\.tv)/(?:embed-)?([0-9a-zA-Z]+)'
+class SecVideoResolver(ResolveUrl):
+    name = 'SecVideo'
+    domains = ['secvideo1.online', 'csst.online']
+    pattern = r'(?://|\.)((?:secvideo1|csst)\.online)/(?:videos|embed)/([A-Za-z0-9]+)'
 
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'User-Agent': common.RAND_UA}
+        headers = {'User-Agent': common.FF_USER_AGENT}
         html = self.net.http_GET(web_url, headers=headers).content
-        payload = helpers.get_hidden(html)
-        if not payload:
-            raise ResolverError('File Removed')
+        srcs = re.search(r'Playerjs.+?file:"([^"]+)', html, re.DOTALL)
+        if srcs:
+            srcs = srcs.group(1).split(',')
+            srcs = [(x.split(']')[0][1:], x.split(']')[1]) for x in srcs]
+            return helpers.pick_source(helpers.sort_sources_list(srcs)) + helpers.append_headers(headers)
 
-        headers.update({'Origin': web_url.rsplit('/', 1)[0], 'Referer': web_url})
-        html = self.net.http_POST(web_url, form_data=payload, headers=headers).content
-        html += helpers.get_packed_data(html)
-        source = re.search(r'''sources:\s*\[{src:\s*["']([^"']+)''', html)
-        if source:
-            return source.group(1).replace(' ', '%20') + helpers.append_headers(headers)
-
-        raise ResolverError('File Not Found')
+        raise ResolverError('No playable video found.')
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/{media_id}')
+        return self._default_get_url(host, media_id, template='https://{host}/embed/{media_id}/')
