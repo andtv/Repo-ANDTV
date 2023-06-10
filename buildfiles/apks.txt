@@ -54,7 +54,6 @@ fanart="https://i.imgur.com/E5BdYUt.jpg"
 adult="no"
 description="File Manager Pro"
 
-
 name="[COLOR turquoise]ES File Explorer [COLOR white]PRO 4.2.9.6[/COLOR]"
 section="no"
 url="https://github.com/andtv/andtv.github.io/releases/download/1.0/ES.File.Explorer-Premium-v4.2.9.6_build_10170-Mod.apk"
