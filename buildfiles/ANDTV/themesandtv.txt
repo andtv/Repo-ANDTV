@@ -1,5 +1,5 @@
 name="[B][COLOR white]Tvban [COLOR gold]10.6.23[/COLOR][/B]"
-url="https://github.com/andtv/andtv.github.io/releases/download/20.5/Parche_B.TVban.zip"
+url="https://github.com/andtv/andtv.github.io/releases/download/12.6/B.Tvban_Window.zip"
 icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
 fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
 adult="no"
