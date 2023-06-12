@@ -1,0 +1,7 @@
+name="[B][COLOR white]Tvban [COLOR gold]10.6.23[/COLOR][/B]"
+url="https://github.com/andtv/andtv.github.io/releases/download/12.6/B.Tvban_Window.zip"
+icon="https://andtv.github.io/tvban/wizard/wizardFI/ICParche.jpg"
+fanart="https://andtv.github.io/tvban/wizard/wizardFI/FABuild.jpg"
+adult="no"
+description="[COLOR azure][B]Andtv[/COLOR] [COLOR darkviolet]Nexus[/B][/COLOR] para [COLOR teal][B]KODI: 20 Nexus[/B][/COLOR]"
+
