@@ -1,6 +1,6 @@
 """
     Plugin for ResolveURL
-    Copyright (C) 2023 shellc0de
+    Copyright (C) 2022 shellc0de
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,19 +16,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from resolveurl.lib import helpers
 from resolveurl.plugins.__resolve_generic__ import ResolveGeneric
+from resolveurl.lib import helpers
 
 
-class StreamWishResolver(ResolveGeneric):
-    name = 'StreamWish'
-    domains = ['streamwish.com', 'streamwish.to', 'ajmidyad.sbs']
-    pattern = r'(?://|\.)((?:streamwish|ajmidyad)\.(?:com|to|sbs))/(?:e/|f/)?([0-9a-zA-Z]+)'
+class KwikResolver(ResolveGeneric):
+    name = 'Kwik'
+    domains = ['kwik.cx']
+    pattern = r'(?://|\.)(kwik\.cx)/(?:e/|d/|v/)?([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         return helpers.get_media_url(
             self.get_url(host, media_id),
-            patterns=[r'''sources:\s*\[{file:\s*["'](?P<url>[^"']+)'''],
+            patterns=[r'''const\s*source\s*=\s*'(?P<url>[^']+)'''],
             generic_patterns=False
         )
 
