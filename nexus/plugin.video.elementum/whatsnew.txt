@@ -7,6 +7,16 @@
     - Source is open, so you can fork everything.
     - Some bug fixes or updates can come, to keep things working and have the latest versions.
 
+[B][COLOR red]0.1.88-0.1.91[/COLOR][/B]
+    - Initial support for connecting more than one plugin.video.elementum to a binary.
+    - Added support for exporting current configuration to a json/yaml file.
+    - Added support for reading configuration form json/yaml file (Kodi is not needed to startup).
+    - Added support for setting login/password to access Elementum binary.
+    - Added manual option to compact Elementum databases (instead of a periodic automatic run).
+    - Added support for allowing custom search queries, coming from context.elementum actions (needs latest context.elementum update).
+    - Changed the way plugin detects running OS and Architecture to use detection, based on shared library run.
+    - Added support for using custom profile location on Android (taken from Kodi environment).
+
 [B][COLOR red]0.1.87[/COLOR][/B]
     - Added basic support for running application as a shared library, that can be used on latest Android devices and Xbox devices (that do not allow to fork application).
     - Fixed repository.elementum xml declaration to run properly on Kodi 20.

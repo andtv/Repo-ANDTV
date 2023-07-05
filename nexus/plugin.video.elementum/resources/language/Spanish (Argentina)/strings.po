@@ -2117,3 +2117,23 @@ msgstr ""
 msgctxt "#30671"
 msgid "List of Opennic DNS IPs"
 msgstr ""
+
+msgctxt "#30672"
+msgid "Compact database"
+msgstr ""
+
+msgctxt "#30673"
+msgid "Compact cache database"
+msgstr ""
+
+msgctxt "#30674"
+msgid "Database was compacted"
+msgstr ""
+
+msgctxt "#30675"
+msgid "Remote host login"
+msgstr ""
+
+msgctxt "#30676"
+msgid "Remote host password"
+msgstr ""

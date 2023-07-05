@@ -198,7 +198,7 @@
         <setting id="listen_autodetect_port" label="30371" type="bool" default="true" />
         <setting id="listen_port_min" label="30006" type="number" default="6891" enable="eq(-1,false)" />
         <setting id="listen_port_max" label="30007" type="number" default="6899" enable="eq(-2,false)" />
-        <setting id="magnet_resolve_timeout" label="30610" type="slider" option="int" range="1,1,600" default="40" />
+        <setting id="magnet_resolve_timeout" label="30610" type="slider" option="int" range="1,1,600" default="60" />
 
         <setting label="30327" type="lsep" />
         <setting type="text" label="30598" enable="false" />
@@ -375,12 +375,14 @@
         <setting type="action" label="30464" action="RunPlugin(plugin://plugin.video.elementum/cmd/database/clear_torrent_history)" />
         <setting type="action" label="30465" action="RunPlugin(plugin://plugin.video.elementum/cmd/database/clear_search_history)" />
         <setting type="action" label="30466" action="RunPlugin(plugin://plugin.video.elementum/cmd/database/clear_database)" />
+        <setting type="action" label="30672" action="RunPlugin(plugin://plugin.video.elementum/cmd/database/compact_database)" />
 
         <!-- Cache -->
         <setting label="30467" type="lsep" />
         <setting type="action" label="30468" action="RunPlugin(plugin://plugin.video.elementum/cmd/cache/clear_tmdb)" />
         <setting type="action" label="30469" action="RunPlugin(plugin://plugin.video.elementum/cmd/cache/clear_trakt)" />
         <setting type="action" label="30470" action="RunPlugin(plugin://plugin.video.elementum/cmd/cache/clear_cache)" />
+        <setting type="action" label="30673" action="RunPlugin(plugin://plugin.video.elementum/cmd/cache/compact_cache)" />
 
         <!-- Logging -->
         <setting label="30455" type="lsep" />
@@ -398,5 +400,7 @@
         <setting id="local_port" label="30409" type="number" default="65221" />
         <setting id="remote_host" label="30411" type="text" default="127.0.0.1" />
         <setting id="remote_port" label="30410" type="number" default="65220" />
+        <setting id="remote_login" label="30675" type="text" default="" />
+        <setting id="remote_password" label="30676" type="text" default="" />
     </category>
 </settings>

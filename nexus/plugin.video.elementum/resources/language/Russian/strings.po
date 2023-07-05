@@ -2117,3 +2117,23 @@ msgstr "Скачиваем требуемый бинарный файл для '
 msgctxt "#30671"
 msgid "List of Opennic DNS IPs"
 msgstr "Список IP Opennic DNS"
+
+msgctxt "#30672"
+msgid "Compact database"
+msgstr "Сжать базу данных"
+
+msgctxt "#30673"
+msgid "Compact cache database"
+msgstr "Сжать базу данных кеша"
+
+msgctxt "#30674"
+msgid "Database was compacted"
+msgstr "База данных была сжата"
+
+msgctxt "#30675"
+msgid "Remote host login"
+msgstr "Удаленный хост / Логин"
+
+msgctxt "#30676"
+msgid "Remote host password"
+msgstr "Удаленный хост / Пароль"

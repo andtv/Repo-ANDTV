@@ -32,6 +32,11 @@ $(ARCHS):
 $(ZIP_FILE):
 	echo "Zipping $(ZIP_FILE)"
 	git archive --format zip --prefix $(NAME)/ --output $(ZIP_FILE) HEAD
+
+	mkdir -p $(NAME)/resources/site-packages
+	cp -r `pwd`/$(DEV)/resources/site-packages/platform_detect $(NAME)/resources/site-packages
+	zip -9 -r -g $(ZIP_FILE) $(NAME)/resources/site-packages/platform_detect
+	
 	mkdir -p $(NAME)/resources/bin
 	for arch in $(ARCHS); do \
 		cp -r `pwd`/$(DEV)/resources/bin/$$arch $(NAME)/resources/bin/$$arch; \
