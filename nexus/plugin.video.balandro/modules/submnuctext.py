@@ -229,6 +229,7 @@ def submnu_search(item):
         itemlist.append(item.clone( action='', title='[B]Búsquedas en canales con Proxies:[/B]', folder=False, text_color='red' ))
 
         itemlist.append(item.clone( channel='helper', action='show_help_proxies', title= ' - [COLOR green][B]Información Uso de proxies[/B][/COLOR]' ))
+        itemlist.append(item.clone( channel='helper', action='show_help_providers', title= ' - [COLOR green][B]Información Proveedores de proxies[/B][/COLOR]' ))
 
         itemlist.append(item.clone( channel='filters', title=' - Qué canales pueden usar proxies', action='with_proxies', thumbnail=config.get_thumb('stack'), new_proxies=True ))
 
@@ -397,286 +398,123 @@ def _dominios(item):
 
     if item.from_channel == 'hdfull':
         from channels import hdfull
+
         item.channel = 'hdfull'
         hdfull.configurar_dominio(item)
-
-    elif item.from_channel == 'animefenix':
-        domains.manto_domain_animefenix(item)
-
-    elif item.from_channel == 'animeflv':
-        domains.manto_domain_animeflv(item)
-
-    elif item.from_channel == 'cinecalidad':
-        domains.manto_domain_cinecalidad(item)
-
-    elif item.from_channel == 'cinecalidadla':
-        domains.manto_domain_cinecalidadla(item)
-
-    elif item.from_channel == 'cinecalidadlol':
-        domains.manto_domain_cinecalidadlol(item)
-
-    elif item.from_channel == 'cinecalidadmx':
-        domains.manto_domain_cinecalidadmx(item)
-
-    elif item.from_channel == 'cuevana3':
-        domains.manto_domain_cuevana3(item)
-
-    elif item.from_channel == 'cuevana3video':
-        domains.manto_domain_cuevana3video(item)
-
-    elif item.from_channel == 'divxtotal':
-        domains.manto_domain_divxtotal(item)
-
-    elif item.from_channel == 'dontorrents':
-        domains.manto_domain_dontorrents(item)
-
-    elif item.from_channel == 'elifilms':
-        domains.manto_domain_elifilms(item)
-
-    elif item.from_channel == 'elitetorrent':
-        domains.manto_domain_elitetorrent(item)
-
-    elif item.from_channel == 'ennovelas':
-        domains.manto_domain_ennovelas(item)
-
-    elif item.from_channel == 'entrepeliculasyseries':
-        domains.manto_domain_entrepeliculasyseries(item)
-
-    elif item.from_channel == 'gnula24':
-        domains.manto_domain_gnula24(item)
-
-    elif item.from_channel == 'grantorrent':
-        domains.manto_domain_grantorrent(item)
-
-    elif item.from_channel == 'grantorrents':
-        domains.manto_domain_grantorrents(item)
-
-    elif item.from_channel == 'hdfull':
-        domains.manto_domain_hdfull(item)
-
-    elif item.from_channel == 'hdfullse':
-        domains.manto_domain_hdfullse(item)
-
-    elif item.from_channel == 'henaojara':
-        domains.manto_domain_henaojara(item)
-
-    elif item.from_channel == 'mejortorrentapp':
-        domains.manto_domain_mejortorrentapp(item)
-
-    elif item.from_channel == 'pelis28':
-        domains.manto_domain_pelis28(item)
-
-    elif item.from_channel == 'pelishouse':
-        domains.manto_domain_pelishouse(item)
-
-    elif item.from_channel == 'pelismaraton':
-        domains.manto_domain_pelismaraton(item)
-
-    elif item.from_channel == 'pelispedia':
-        domains.manto_domain_pelispedia(item)
-
-    elif item.from_channel == 'pelispediaws':
-        domains.manto_domain_pelispediaws(item)
-
-    elif item.from_channel == 'pelisplus':
-        domains.manto_domain_pelisplus(item)
-
-    elif item.from_channel == 'pelisplushd':
-        domains.manto_domain_pelisplushd(item)
-
-    elif item.from_channel == 'pelisplushdlat':
-        domains.manto_domain_pelisplushdlat(item)
-
-    elif item.from_channel == 'pelisplushdnz':
-        domains.manto_domain_pelisplushdnz(item)
-
-    elif item.from_channel == 'pelispluslat':
-        domains.manto_domain_pelispluslat(item)
-
-    elif item.from_channel == 'playdede':
-        domains.manto_domain_playdede(item)
-
-    elif item.from_channel == 'series24':
-        domains.manto_domain_series24(item)
-
-    elif item.from_channel == 'seriesantiguas':
-        domains.manto_domain_seriesantiguas(item)
-
-    elif item.from_channel == 'serieskao':
-        domains.manto_domain_serieskao(item)
-
-    elif item.from_channel == 'seriesyonkis':
-        domains.manto_domain_seriesyonkis(item)
-
-    elif item.from_channel == 'srnovelas':
-        domains.manto_domain_srnovelas(item)
-
-    elif item.from_channel == 'subtorrents':
-        domains.manto_domain_subtorrents(item)
-
-    elif item.from_channel == 'torrentpelis':
-        domains.manto_domain_torrentpelis(item)
-
     else:
-        platformtools.dialog_notification(config.__addon_name + '[B][COLOR yellow] ' + item.from_channel.capitalize() + '[/COLOR][/B]', '[B][COLOR %s]Configuración No Permitida[/B][/COLOR]' % color_alert)
+        _dominio_memorizado(item)
 
 
 def _dominio_vigente(item):
     from modules import domains
 
-    if item.from_channel == 'dontorrents':
-        item.desde_el_canal = True
-        domains.last_domain_dontorrents(item)
+    item.desde_el_canal = True
 
-    elif item.from_channel == 'hdfull':
-        item.desde_el_canal = True
-        domains.last_domain_hdfull(item)
+    if item.from_channel == 'dontorrents': domains.last_domain_dontorrents(item)
 
-    elif item.from_channel == 'hdfullse':
-        item.desde_el_canal = True
-        domains.last_domain_hdfullse(item)
+    elif item.from_channel == 'hdfull': domains.last_domain_hdfull(item)
 
-    elif item.from_channel == 'playdede':
-        item.desde_el_canal = True
-        domains.last_domain_playdede(item)
+    elif item.from_channel == 'hdfullse': domains.last_domain_hdfullse(item)
+
+    elif item.from_channel == 'playdede': domains.last_domain_playdede(item)
 
     else:
-        platformtools.dialog_notification(config.__addon_name + '[B][COLOR yellow] ' + item.from_channel.capitalize() + '[/COLOR][/B]', '[B][COLOR %s]Efectue Test Web, la comprobación No está permitida[/B][/COLOR]' % color_alert)
+        domains.manto_domain_common(item, item.from_channel, item.from_channel.capitalize())
 
 
 def _dominio_memorizado(item):
     from modules import domains
 
-    if item.from_channel == 'animefenix':
-        domains.manto_domain_animefenix(item)
+    if item.from_channel == 'animefenix': domains.manto_domain_animefenix(item)
 
-    elif item.from_channel == 'animeflv':
-        domains.manto_domain_animeflv(item)
+    elif item.from_channel == 'animeflv': domains.manto_domain_animeflv(item)
 
-    elif item.from_channel == 'cinecalidad':
-        domains.manto_domain_cinecalidad(item)
+    elif item.from_channel == 'animeonline': domains.manto_domain_animeonline(item)
 
-    elif item.from_channel == 'cinecalidadla':
-        domains.manto_domain_cinecalidadla(item)
+    elif item.from_channel == 'cinecalidad': domains.manto_domain_cinecalidad(item)
 
-    elif item.from_channel == 'cinecalidadlol':
-        domains.manto_domain_cinecalidadlol(item)
+    elif item.from_channel == 'cinecalidadla': domains.manto_domain_cinecalidadla(item)
 
-    elif item.from_channel == 'cinecalidadmx':
-        domains.manto_domain_cinecalidadmx(item)
+    elif item.from_channel == 'cinecalidadlol': domains.manto_domain_cinecalidadlol(item)
 
-    elif item.from_channel == 'cuevana3':
-        domains.manto_domain_cuevana3(item)
+    elif item.from_channel == 'cinecalidadmx': domains.manto_domain_cinecalidadmx(item)
 
-    elif item.from_channel == 'cuevana3video':
-        domains.manto_domain_cuevana3video(item)
+    elif item.from_channel == 'cuevana3': domains.manto_domain_cuevana3(item)
 
-    elif item.from_channel == 'divxtotal':
-        domains.manto_domain_divxtotal(item)
+    elif item.from_channel == 'cuevana3video': domains.manto_domain_cuevana3video(item)
 
-    elif item.from_channel == 'dontorrents':
-        domains.manto_domain_dontorrents(item)
+    elif item.from_channel == 'divxtotal': domains.manto_domain_divxtotal(item)
 
-    elif item.from_channel == 'elifilms':
-        domains.manto_domain_elifilms(item)
+    elif item.from_channel == 'dontorrents': domains.manto_domain_dontorrents(item)
 
-    elif item.from_channel == 'elitetorrent':
-        domains.manto_domain_elitetorrent(item)
+    elif item.from_channel == 'elifilms': domains.manto_domain_elifilms(item)
 
-    elif item.from_channel == 'ennovelas':
-        domains.manto_domain_ennovelas(item)
+    elif item.from_channel == 'elitetorrent': domains.manto_domain_elitetorrent(item)
 
-    elif item.from_channel == 'entrepeliculasyseries':
-        domains.manto_domain_entrepeliculasyseries(item)
+    elif item.from_channel == 'ennovelas': domains.manto_domain_ennovelas(item)
 
-    elif item.from_channel == 'gnula24':
-        domains.manto_domain_gnula24(item)
+    elif item.from_channel == 'entrepeliculasyseries': domains.manto_domain_entrepeliculasyseries(item)
 
-    elif item.from_channel == 'grantorrent':
-        domains.manto_domain_grantorrent(item)
+    elif item.from_channel == 'gnula24': domains.manto_domain_gnula24(item)
 
-    elif item.from_channel == 'grantorrents':
-        domains.manto_domain_grantorrents(item)
+    elif item.from_channel == 'grantorrent': domains.manto_domain_grantorrent(item)
 
-    elif item.from_channel == 'hdfull':
-        domains.manto_domain_hdfull(item)
+    elif item.from_channel == 'grantorrents': domains.manto_domain_grantorrents(item)
 
-    elif item.from_channel == 'hdfullse':
-        domains.manto_domain_hdfullse(item)
+    elif item.from_channel == 'hdfull': domains.manto_domain_hdfull(item)
 
-    elif item.from_channel == 'henaojara':
-        domains.manto_domain_henaojara(item)
+    elif item.from_channel == 'hdfullse': domains.manto_domain_hdfullse(item)
 
-    elif item.from_channel == 'mejortorrentapp':
-        domains.manto_domain_mejortorrentapp(item)
+    elif item.from_channel == 'henaojara': domains.manto_domain_henaojara(item)
 
-    elif item.from_channel == 'pelis28':
-        domains.manto_domain_pelis28(item)
+    elif item.from_channel == 'mejortorrentapp': domains.manto_domain_mejortorrentapp(item)
 
-    elif item.from_channel == 'pelishouse':
-        domains.manto_domain_pelishouse(item)
+    elif item.from_channel == 'pelishouse': domains.manto_domain_pelishouse(item)
 
-    elif item.from_channel == 'pelismaraton':
-        domains.manto_domain_pelismaraton(item)
+    elif item.from_channel == 'pelismaraton': domains.manto_domain_pelismaraton(item)
 
-    elif item.from_channel == 'pelispediaws':
-        domains.manto_domain_pelispediaws(item)
+    elif item.from_channel == 'pelispedia': domains.manto_domain_pelispedia(item)
 
-    elif item.from_channel == 'pelispedia':
-        domains.manto_domain_pelispedia(item)
+    elif item.from_channel == 'pelispediaws': domains.manto_domain_pelispediaws(item)
 
-    elif item.from_channel == 'pelisplus':
-        domains.manto_domain_pelisplus(item)
+    elif item.from_channel == 'pelisplus': domains.manto_domain_pelisplus(item)
 
-    elif item.from_channel == 'pelisplushd':
-        domains.manto_domain_pelisplushd(item)
+    elif item.from_channel == 'pelisplushd': domains.manto_domain_pelisplushd(item)
 
-    elif item.from_channel == 'pelisplushdlat':
-        domains.manto_domain_pelisplushdlat(item)
+    elif item.from_channel == 'pelisplushdlat': domains.manto_domain_pelisplushdlat(item)
 
-    elif item.from_channel == 'pelisplushdnz':
-        domains.manto_domain_pelisplushdnz(item)
+    elif item.from_channel == 'pelisplushdnz': domains.manto_domain_pelisplushdnz(item)
 
-    elif item.from_channel == 'pelispluslat':
-        domains.manto_domain_pelispluslat(item)
+    elif item.from_channel == 'pelispluslat': domains.manto_domain_pelispluslat(item)
 
-    elif item.from_channel == 'playdede':
-        domains.manto_domain_playdede(item)
+    elif item.from_channel == 'playdede': domains.manto_domain_playdede(item)
 
-    elif item.from_channel == 'series24':
-        domains.manto_domain_series24(item)
+    elif item.from_channel == 'poseidonhd2': domains.manto_domain_poseidonhd2(item)
 
-    elif item.from_channel == 'seriesantiguas':
-        domains.manto_domain_seriesantiguas(item)
+    elif item.from_channel == 'series24': domains.manto_domain_series24(item)
 
-    elif item.from_channel == 'serieskao':
-        domains.manto_domain_serieskao(item)
+    elif item.from_channel == 'seriesantiguas': domains.manto_domain_seriesantiguas(item)
 
-    elif item.from_channel == 'seriesyonkis':
-        domains.manto_domain_seriesyonkis(item)
+    elif item.from_channel == 'serieskao': domains.manto_domain_serieskao(item)
 
-    elif item.from_channel == 'srnovelas':
-        domains.manto_domain_srnovelas(item)
+    elif item.from_channel == 'seriesyonkis': domains.manto_domain_seriesyonkis(item)
 
-    elif item.from_channel == 'subtorrents':
-        domains.manto_domain_subtorrents(item)
+    elif item.from_channel == 'srnovelas': domains.manto_domain_srnovelas(item)
 
-    elif item.from_channel == 'torrentpelis':
-        domains.manto_domain_torrentpelis(item)
+    elif item.from_channel == 'subtorrents': domains.manto_domain_subtorrents(item)
+
+    elif item.from_channel == 'torrentpelis': domains.manto_domain_torrentpelis(item)
 
     else:
-        platformtools.dialog_notification(config.__addon_name + '[B][COLOR yellow] ' + item.from_channel.capitalize() + '[/COLOR][/B]', '[B][COLOR %s]Falta _DomainMemorizado[/B][/COLOR]' % color_alert)
+        platformtools.dialog_notification(config.__addon_name + '[B][COLOR yellow] ' + item.from_channel.capitalize() + '[/COLOR][/B]', '[B][COLOR %s]Configuración No Permitida[/B][/COLOR]' % color_alert)
 
 
 def _credenciales(item):
-    if item.from_channel == 'hdfull':
-        _credenciales_hdfull(item)
+    if item.from_channel == 'hdfull': _credenciales_hdfull(item)
 
-    elif item.from_channel == 'nextdede':
-        _credenciales_nextdede(item)
+    elif item.from_channel == 'nextdede': _credenciales_nextdede(item)
 
-    elif item.from_channel == 'playdede':
-        _credenciales_playdede(item)
+    elif item.from_channel == 'playdede': _credenciales_playdede(item)
 
     else:
         platformtools.dialog_notification(config.__addon_name + '[B][COLOR yellow] ' + item.from_channel.capitalize() + '[/COLOR][/B]', '[B][COLOR %s]Falta _Credenciales[/B][/COLOR]' % color_alert)
@@ -701,8 +539,10 @@ def _credenciales_hdfull(item):
        platformtools.dialog_notification(config.__addon_name + ' - HdFull', el_canal + '[/COLOR][/B]')
        return
 
+    name = params['name']
+
     if params['active'] == False:
-        el_canal = ('[B][COLOR %s] HdFull') % color_avis
+        el_canal = ('[B][COLOR %s] ' + name) % color_avis
         platformtools.dialog_notification(config.__addon_name, el_canal + '[COLOR %s] inactivo [/COLOR][/B]' % color_alert)
         return
 
@@ -736,8 +576,10 @@ def _credenciales_nextdede(item):
        platformtools.dialog_notification(config.__addon_name + ' - NextDede', el_canal + '[/COLOR][/B]')
        return
 
+    name = params['name']
+
     if params['active'] == False:
-        el_canal = ('[B][COLOR %s] NextDede') % color_avis
+        el_canal = ('[B][COLOR %s] ' + name) % color_avis
         platformtools.dialog_notification(config.__addon_name, el_canal + '[COLOR %s] inactivo [/COLOR][/B]' % color_alert)
         return
 
@@ -771,8 +613,10 @@ def _credenciales_playdede(item):
        platformtools.dialog_notification(config.__addon_name + ' - PlayDede', el_canal + '[/COLOR][/B]')
        return
 
+    name = params['name']
+
     if params['active'] == False:
-        el_canal = ('[B][COLOR %s] PlayDede') % color_avis
+        el_canal = ('[B][COLOR %s] ' + name) % color_avis
         platformtools.dialog_notification(config.__addon_name, el_canal + '[COLOR %s] inactivo [/COLOR][/B]' % color_alert)
         return
 
@@ -1044,20 +888,6 @@ def _proxies(item):
 
         if config.get_setting('channel_peliculaspro_proxies') is None: refrescar = False
 
-    elif item.from_channel == 'pelis28':
-        from channels import pelis28
-        item.channel = 'pelis28'
-        pelis28.configurar_proxies(item)
-
-        if config.get_setting('channel_pelis28_proxies') is None: refrescar = False
-
-    elif item.from_channel == 'pelisencastellano':
-        from channels import pelisencastellano
-        item.channel = 'pelisencastellano'
-        pelisencastellano.configurar_proxies(item)
-
-        if config.get_setting('channel_pelisencastellano_proxies') is None: refrescar = False
-
     elif item.from_channel == 'pelisforte':
         from channels import pelisforte
         item.channel = 'pelisforte'
@@ -1142,13 +972,6 @@ def _proxies(item):
 
         if config.get_setting('channel_playview_proxies') is None: refrescar = False
 
-    elif item.from_channel == 'ppeliculas':
-        from channels import ppeliculas
-        item.channel = 'ppeliculas'
-        ppeliculas.configurar_proxies(item)
-
-        if config.get_setting('channel_ppeliculas_proxies') is None: refrescar = False
-
     elif item.from_channel == 'reinventorrent':
         from channels import reinventorrent
         item.channel = 'reinventorrent'
@@ -1169,13 +992,6 @@ def _proxies(item):
         series24.configurar_proxies(item)
 
         if config.get_setting('channel_series24_proxies') is None: refrescar = False
-
-    elif item.from_channel == 'seriesflixvideo':
-        from channels import seriesflixvideo
-        item.channel = 'seriesflixvideo'
-        seriesflixvideo.configurar_proxies(item)
-
-        if config.get_setting('channel_seriesflixvideo_proxies') is None: refrescar = False
 
     elif item.from_channel == 'seriesmovil':
         from channels import seriesmovil

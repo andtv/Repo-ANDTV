@@ -14,7 +14,7 @@ from core import httptools, scrapertools, tmdb
 from lib import decrypters
 
 
-host = 'https://grantorrent.bz/'
+host = 'https://grantorrent.zip/'
 
 
 # ~ por si viene de enlaces guardados
@@ -23,7 +23,8 @@ ant_hosts = ['http://grantorrent.net/', 'https://grantorrent1.com/', 'https://gr
              'https://grantorrent.eu/', 'https://grantorrent.cc/', 'https://grantorrent.li/',
              'https://grantorrent.online/', 'https://grantorrentt.com/', 'https://grantorrent.nl/',
              'https://grantorrent.ch/', 'https://grantorrent.ac/', 'https://grantorrent.re/',
-             'https://grantorrent.se/,' 'https://grantorrent.si/', 'https://grantorrent.fi/']
+             'https://grantorrent.se/,' 'https://grantorrent.si/', 'https://grantorrent.fi/',
+             'https://grantorrent.bz/']
 
 
 domain = config.get_setting('dominio', 'grantorrent', default='')
@@ -82,11 +83,9 @@ def do_downloadpage(url, post=None, headers=None):
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
-    # ~ timeout 13/7/2022
-    timeout = 15
-
-    if '/?query' in url: timeout = 30
-    elif '/categoria/' in url: timeout = 30
+    timeout = None
+    if host in url:
+        if config.get_setting('channel_grantorrent_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
 
     headers = {'Referer': host}
 
@@ -94,6 +93,11 @@ def do_downloadpage(url, post=None, headers=None):
         data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
     else:
         data = httptools.downloadpage_proxy('grantorrent', url, post=post, headers=headers, timeout=timeout).data
+
+        if not data:
+            if not '?s=' in url:
+                platformtools.dialog_notification('GranTorrent', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+                data = httptools.downloadpage_proxy('grantorrent', url, post=post, headers=headers, timeout=timeout).data
 
     if '<title>You are being redirected...</title>' in data:
         try:
@@ -237,6 +241,8 @@ def list_all(item):
 
         qlty = scrapertools.find_single_match(match, ' text-center">.*?<span>(.*?)</span>')
 
+        title = title.replace('&#038;', '').strip()
+
         itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, languages=lang, qualities=qlty,
                                     contentType='movie', contentTitle=title, infoLabels={'year': '-'} ))
 
@@ -256,6 +262,7 @@ def list_all(item):
 
 def puntuar_calidad(txt):
     txt = txt.lower().replace(' ', '').replace('-', '')
+
     orden = ['3d',
              'screener',
              'screener720p',
@@ -270,6 +277,7 @@ def puntuar_calidad(txt):
              'microhd',
              'microhd1080p',
              '1080p',
+             'blurayrip',
              'bluray1080p',
              'fullbluray1080p',
              'bdremux1080p',

@@ -561,10 +561,10 @@ def developer_mode_check_findvideos(itemlist, parent_item):
                     apuntar = True
 
         # Server Various
-        if it.server in ['dropload', 'fastupload', 'filemoon', 'hexupload', 'krakenfiles', 'mvidoo', 'rutube', 'streamhub', 'streamwish', 'tubeload', 'uploadever', 'videowood', 'yandex']:
+        if it.server in ['dropload', 'fastupload', 'filemoon', 'moonplayer', 'hexupload', 'krakenfiles', 'mvidoo', 'rutube', 'streamhub', 'streamwish', 'tubeload', 'uploadever', 'videowood', 'yandex', 'desiupload', 'filelions', 'youdbox', 'yodbox', 'youdboox']:
             apuntar = False
 
-        elif it.server in ['ddownload', 'dfiles', 'dropapk', 'desiupload', 'fileflares', 'filerice', 'fireload', 'katfile', 'megaupload', 'oload', 'pandafiles', 'rockfile', 'turbobit', 'uploadrive', 'uppit', 'userload']:
+        elif it.server in ['ddownload', 'dfiles', 'dropapk', 'fileflares', 'filerice', 'fireload', 'katfile', 'megaupload', 'oload', 'pandafiles', 'rockfile', 'turbobit', 'uploadrive', 'uppit', 'userload']:
             apuntar = False
 
         if apuntar:

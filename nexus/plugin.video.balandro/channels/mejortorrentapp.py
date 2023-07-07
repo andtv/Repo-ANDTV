@@ -7,11 +7,12 @@ from core.item import Item
 from core import httptools, scrapertools, tmdb
 
 
-host = 'https://www2.mejortorrent.rip'
+host = 'https://www3.mejortorrent.rip'
 
 
 # ~ por si viene de enlaces guardados
-ant_hosts = ['https://mejortorrent.app', 'https://mejortorrent.wtf', 'https://www1.mejortorrent.rip']
+ant_hosts = ['https://mejortorrent.app', 'https://mejortorrent.wtf', 'https://www1.mejortorrent.rip',
+             'https://www2.mejortorrent.rip']
 
 
 domain = config.get_setting('dominio', 'mejortorrentapp', default='')
@@ -121,7 +122,7 @@ def mainlist_pelis(item):
 
     itemlist.append(item.clone( title = 'Buscar película ...', action = 'search', search_type = 'movie', text_color = 'deepskyblue' ))
 
-    itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/peliculas/', search_type = 'movie' ))
+    itemlist.append(item.clone( title = 'Catálogo', action = 'list_all', url = host + '/public/peliculas/', search_type = 'movie' ))
 
     itemlist.append(item.clone( title = 'Últimas', action = 'list_list', url = host + '/public/torrents/', search_type = 'movie' ))
 
@@ -301,12 +302,16 @@ def list_all(item):
             itemlist.append(item.clone( action='findvideos', url=url, title=title, thumbnail=thumb, qualities=qlty,
                                         contentType='movie', contentTitle=titulo, infoLabels={'year': '-'} ))
 
+            continue
+
         if item.search_type == 'tvshow':
             if " Temporada" in title: SerieName = title.split(" Temporada")[0]
             else: SerieName = title
 
             itemlist.append(item.clone( action='episodios', url=url, title=title, thumbnail=thumb, qualities=qlty,
                                         contentType='tvshow', contentSerieName=SerieName, infoLabels={'year': '-'} ))
+
+            continue
 
         else:
             if "(" in title: titulo = title.split("(")[0]

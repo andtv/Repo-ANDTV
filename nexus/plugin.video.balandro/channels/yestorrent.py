@@ -122,14 +122,18 @@ def calidades(item):
     logger.info()
     itemlist = []
 
-    itemlist.append(item.clone( title='En Micro HD', url = host + 'quality/MicroHD-1080p/', action='list_all', text_color='moccasin' ))
-    itemlist.append(item.clone( title='En HD', url = host + 'quality/hd/', action='list_all', text_color='moccasin' ))
+    itemlist.append(item.clone( title='En 3D', url = host + 'quality/3d/', action='list_all', text_color='moccasin' ))
+    itemlist.append(item.clone( title='En 4K UHD', url = host + 'quality/4k-uhd/', action='list_all', text_color='moccasin' ))
+
     itemlist.append(item.clone( title='En BD Rip', url = host + 'quality/bdrip/', action='list_all', text_color='moccasin' ))
-    itemlist.append(item.clone( title='En Dual 1080', url = host + 'quality/dual-1080p/', action='list_all', text_color='moccasin' ))
     itemlist.append(item.clone( title='En BluRay 720', url = host + 'quality/bluRay-720p/', action='list_all', text_color='moccasin' ))
     itemlist.append(item.clone( title='En BluRay 1080', url = host + 'quality/bluRay-1080p/', action='list_all', text_color='moccasin' ))
-    itemlist.append(item.clone( title='En 4K UHD', url = host + 'quality/4k-uhd/', action='list_all', text_color='moccasin' ))
-    itemlist.append(item.clone( title='En 3D', url = host + 'quality/3d/', action='list_all', text_color='moccasin' ))
+
+    itemlist.append(item.clone( title='En Dual 1080', url = host + 'quality/dual-1080p/', action='list_all', text_color='moccasin' ))
+
+    itemlist.append(item.clone( title='En HD', url = host + 'quality/hd/', action='list_all', text_color='moccasin' ))
+
+    itemlist.append(item.clone( title='En Micro HD', url = host + 'quality/MicroHD-1080p/', action='list_all', text_color='moccasin' ))
 
     return itemlist
 

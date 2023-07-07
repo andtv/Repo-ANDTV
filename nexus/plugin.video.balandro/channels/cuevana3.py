@@ -14,7 +14,7 @@ host = 'https://w4.cuevana3.ai/'
 # ~ por si viene de enlaces guardados
 ant_hosts = ['http://www.cuevana3.co/', 'https://cuevana3.co/', 'https://cuevana3.io/',
              'https://cuevana3.me/', 'https://ww1.cuevana3.me/', 'https://ww2.cuevana3.me/',
-             'https://ww3.cuevana3.me/', 'https://ww4.cuevana3.me/,' 'https://ww5.cuevana3.me/',
+             'https://ww3.cuevana3.me/', 'https://ww4.cuevana3.me/', 'https://ww5.cuevana3.me/',
              'https://c3.cuevana3.me/', 'https://s3.cuevana3.me/', 'https://es.cuevana3.me/',
              'https://a2.cuevana3.me/', 'https://b2.cuevana3.me/', 'https://d2.cuevana3.me/',
              'https://e2.cuevana3.me/', 'https://g2.cuevana3.me/', 'https://z2.cuevana3.me/',
@@ -83,14 +83,25 @@ def do_downloadpage(url, post=None, headers=None, follow_redirects=True, onlydat
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
-    timeout = 40
+    timeout = None
+    if host in url:
+        if config.get_setting('channel_cuevana3_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
 
     if not url.startswith(host):
         resp = httptools.downloadpage(url, post=post, headers=headers, follow_redirects=follow_redirects, timeout=timeout)
     else:
         resp = httptools.downloadpage_proxy('cuevana3', url, post=post, headers=headers, follow_redirects=follow_redirects, timeout=timeout)
 
-    if onlydata: return resp.data
+        if onlydata:
+            if not resp.data:
+                if not 'search/' in url:
+                    platformtools.dialog_notification('Cuevana3', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+                    resp = httptools.downloadpage_proxy('cuevana3', url, post=post, headers=headers, follow_redirects=follow_redirects, timeout=timeout)
+
+    if onlydata:
+        if not resp.data: return ''
+
+        return resp.data
 
     return resp
 
@@ -523,7 +534,7 @@ def play(item):
 
             elif '/apialfa.tomatomatela.club/ir/goto_ddh.php' in item.url: api_url = 'https://apialfa.tomatomatela.club/ir/redirect_ddh.php'
             elif '/apialfa.tomatomatela.club/ir/rd.php' in item.url: api_url = 'https://apialfa.tomatomatela.club/ir/rd.php'
-            elif '/api.cuevana3.me/ir/player.php?h=' in item.url: api_url = 'https://api.cuevana3.me//ir/rd.php'
+            elif '/api.cuevana3.me/ir/player.php?h=' in item.url: api_url = 'https://api.cuevana3.me/ir/rd.php'
 
             elif '/api.cuevana3.me/sc/index.php?h=' in item.url:
                 api_url = 'https://api.cuevana3.me/sc/r.php'
@@ -547,7 +558,7 @@ def play(item):
 
                     api_post = 'url=' + fid
 
-                    if '/api.cuevana3.me/ir/player.php?h=' in item.url: api_url = 'https://api.cuevana3.me//ir/rd.php'
+                    if '/api.cuevana3.me/ir/player.php?h=' in item.url: api_url = 'https://api.cuevana3.me/ir/rd.php'
 
                     elif '/api.cuevana3.me/sc/index.php?h=' in url:
                         api_url = 'https://api.cuevana3.me/sc/r.php'

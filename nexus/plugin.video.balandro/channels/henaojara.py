@@ -61,7 +61,7 @@ def do_downloadpage(url, post=None, headers=None):
 
     timeout = None
     if host in url:
-        if config.get_setting('channel_henaojara_proxies', default=''): timeout = 40
+        if config.get_setting('channel_henaojara_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
 
     if not url.startswith(host):
         data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
@@ -143,8 +143,6 @@ def mainlist_animes(item):
             return itemlist
 
     itemlist.append(item.clone( action='acciones', title= '[B]Acciones[/B] [COLOR plum](si no hay resultados)[/COLOR]', text_color='goldenrod' ))
-
-    itemlist.append(Item( channel='helper', action='show_help_henaojara', title='[COLOR aquamarine][B]Aviso[/COLOR] [COLOR green]Información[/B][/COLOR] canal', thumbnail=config.get_thumb('help') ))
 
     itemlist.append(item.clone( title = 'Buscar anime ...', action = 'search', search_type = 'tvshow', text_color='springgreen' ))
 

@@ -7,7 +7,7 @@ from core.item import Item
 from core import httptools, scrapertools, servertools, tmdb
 
 
-host = 'https://w8.cinecalidad.vet/'
+host = 'https://wy.cinecalidad.vet/'
 
 
 players = ['https://cinecalidad.', '.cinecalidad.']
@@ -28,7 +28,9 @@ ant_hosts = ['https://cinecalidad.lol/', 'https://cinecalidad.link/', 'https://w
              'https://w10.cinecalidad.win/', 'https://w1.cinecalidad.ist/', 'https://cinecalidad.ist/',
              'https://cinecalidad.vet/', 'https://w1.cinecalidad.vet/', 'https://w2.cinecalidad.vet/',
              'https://w3.cinecalidad.vet/', 'https://w4.cinecalidad.vet/', 'https://w5.cinecalidad.vet/',
-             'https://w6.cinecalidad.vet/', 'https://w7.cinecalidad.vet/']
+             'https://w6.cinecalidad.vet/', 'https://w7.cinecalidad.vet/', 'https://w8.cinecalidad.vet/',
+             'https://w11.cinecalidad.vet/', 'https://w12.cinecalidad.vet/', 'https://ww.cinecalidad.vet/',
+             'https://wc.cinecalidad.vet/']
 
 
 domain = config.get_setting('dominio', 'cinecalidadlol', default='')
@@ -570,6 +572,8 @@ def findvideos(item):
             elif servidor == 'utorrent': servidor = 'torrent'
             elif 'torrent' in servidor: servidor = 'torrent'
 
+            elif servidor == 'drive': servidor = 'gvideo'
+
             if servertools.is_server_available(servidor):
                 if not servertools.is_server_enabled(servidor): continue
             else:
@@ -634,6 +638,9 @@ def play(item):
                     elif not url.startswith('http'): url = 'https://mega.nz/file/' + url
 
     if url:
+        if '/acortalink.' in url:
+            return 'Tiene [COLOR plum]Acortador[/COLOR] del enlace'
+
         if url.endswith('.torrent'):
             itemlist.append(item.clone( url = url, server = 'torrent' ))
             return itemlist

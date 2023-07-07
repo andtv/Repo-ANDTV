@@ -61,10 +61,19 @@ def do_downloadpage(url, post=None, headers=None):
     for ant in ant_hosts:
         url = url.replace(ant, host)
 
+    timeout = None
+    if host in url:
+        if config.get_setting('channel_torrentpelis_proxies', default=''): timeout = config.get_setting('channels_repeat', default=30)
+
     if not url.startswith(host):
-        data = httptools.downloadpage(url, post=post, headers=headers).data
+        data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
     else:
-        data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers).data
+        data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
+
+        if not data:
+            if not '?s=' in url:
+                platformtools.dialog_notification('TorrentPelis', '[COLOR cyan]Re-Intentanto acceso[/COLOR]')
+                data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
 
     if '<title>You are being redirected...</title>' in data or '<title>Just a moment...</title>' in data:
         try:
@@ -74,9 +83,9 @@ def do_downloadpage(url, post=None, headers=None):
                 httptools.save_cookie(ck_name, ck_value, host.replace('https://', '')[:-1])
 
                 if not url.startswith(host):
-                    data = httptools.downloadpage(url, post=post, headers=headers).data
+                    data = httptools.downloadpage(url, post=post, headers=headers, timeout=timeout).data
                 else:
-                    data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers).data
+                    data = httptools.downloadpage_proxy('torrentpelis', url, post=post, headers=headers, timeout=timeout).data
         except:
             pass
 
@@ -166,7 +175,7 @@ def list_all(item):
     if 'Añadido recientemente' in data:
         bloque = scrapertools.find_single_match(data, 'Añadido recientemente(.*?)<div class="sidebar')
     else:
-        bloque = scrapertools.find_single_match(data, 'Tendencias(.*?)<div class="sidebar')
+        bloque = scrapertools.find_single_match(data, 'Peliculas Torrent(.*?)<div class="sidebar')
 
     matches = scrapertools.find_multiple_matches(bloque, '<article(.*?)</article')
 
@@ -192,7 +201,7 @@ def list_all(item):
 
     if itemlist:
         if '<div class="pagination">' in data:
-           next_url = scrapertools.find_single_match(data, '<div class="pagination">.*?<span class="current">.*?' + "<a href='(.*?)'")
+           next_url = scrapertools.find_single_match(data, '<div class="pagination">.*?<span class="current">.*?<a href="(.*?)"')
 
            if next_url:
                if '/page/' in next_url:

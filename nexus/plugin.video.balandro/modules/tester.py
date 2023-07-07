@@ -81,10 +81,10 @@ def test_channel(channel_name):
     txt += '[COLOR moccasin][B]Balandro:[/B][/COLOR] ' + config.get_addon_version() + '[CR][CR]'
 
     txt += '[COLOR moccasin][B]Parámetros:[/B][/COLOR][CR]'
+
     txt += 'id: ' + str(params['id']) + '[CR]'
-    txt += 'name: ' + str(params['name']) + '[CR]'
+    txt += 'channel: ' + str(params['name']) + '[CR]'
     txt += 'active: ' + str(params['active']) + '[CR]'
-    txt += 'searchable: [COLOR limegreen][B]' + str(params['searchable']) + '[/B][/COLOR][CR]'
 
     search_types = str(params['search_types'])
     search_types = search_types.replace('[', '').replace(']', '').replace("'", '').strip()
@@ -94,10 +94,41 @@ def test_channel(channel_name):
     categories = categories.replace('[', '').replace(']', '').replace("'", '').strip()
     txt += 'categories: ' + str(categories) + '[CR]'
 
+    if config.get_setting('developer_mode', default=False):
+        txt += '[CR][COLOR moccasin][B]Desarrollo:[/B][/COLOR]'
+
+        sets_clusters = str(params['clusters'])
+        sets_clusters = sets_clusters.replace('[', '').replace(']', '').replace("'", '').strip()
+        txt += '[CR]clusters: ' + sets_clusters
+
+        sets_notes = str(params['notes'])
+        txt += '[CR]notes: ' + sets_notes
+
+        txt += '[CR]'
+
+    txt += '[CR][COLOR moccasin][B]Contenidos:[/B][/COLOR][CR]'
+
+    notes = str(params['notes'])
+
+    if '+18' in notes: notes = notes.replace(' +18', '').strip()
+
+    if 'Canal con enlaces Torrent exclusivamente.' in notes: notes = notes.replace('Canal con enlaces Torrent exclusivamente.', '').strip()
+
+    if 'Canal con enlaces Streaming y Torrent.' in notes: notes = notes.replace('Canal con enlaces Streaming y Torrent.', '').strip()
+
+    if 'Dispone de varios posibles dominios.' in notes: notes = notes.replace('Dispone de varios posibles dominios.', '').strip()
+
+    if 'Puede requerir el uso de proxies' in notes: notes = scrapertools.find_single_match(str(notes), '(.*?)Puede requerir el uso de proxies').strip()
+
+    txt += 'info: [COLOR yellow][B]' + str(notes) + '[/B][/COLOR][CR]'
+
+    if 'temporary' in str(params['clusters']): txt += 'búsquedas: [COLOR red][B]False[/B][/COLOR][CR]'
+    else: txt += 'búsquedas: [COLOR chartreuse][B]' + str(params['searchable']) + '[/B][/COLOR][CR]'
+
     language = str(params['language'])
     language = language.replace('[', '').replace(']', '').replace("'", '').strip()
     language = language.replace('cast', 'Esp').replace('lat', 'Lat').replace('vose', 'Vose').replace('vo', 'Vo')
-    txt += 'language: ' + str(language) + '[CR]'
+    txt += 'idiomas: ' + str(language) + '[CR]'
 
     clusters = str(params['clusters'])
     clusters = clusters.replace('[', '').replace(']', '').replace("'", '').strip()
@@ -112,6 +143,43 @@ def test_channel(channel_name):
     if 'current' in clusters: clusters = clusters.replace('current,', '').strip()
     if 'torrents' in clusters: clusters = clusters.replace('torrents,', '').strip()
     if 'notice' in clusters: clusters = clusters.replace('notice,', '').strip()
+    if 'languages' in clusters: clusters = clusters.replace('languages,', '').strip()
+
+    if 'news' in clusters: clusters = clusters.replace('news,', '').strip()
+    if 'news' in clusters: clusters = clusters.replace('news', '').strip()
+
+    if 'lasts' in clusters: clusters = clusters.replace('lasts,', '').strip()
+    if 'lasts' in clusters: clusters = clusters.replace('lasts', '').strip()
+
+    if 'classic' in clusters: clusters = clusters.replace('classic,', '').strip()
+    if 'classic' in clusters: clusters = clusters.replace('classic', '').strip()
+
+    if 'rankings' in clusters: clusters = clusters.replace('rankings,', '').strip()
+    if 'rankings' in clusters: clusters = clusters.replace('rankings', '').strip()
+
+    if 'countries' in clusters: clusters = clusters.replace('countries,', '').strip()
+    if 'countries' in clusters: clusters = clusters.replace('countries', '').strip()
+
+    if 'qualityes' in clusters: clusters = clusters.replace('qualityes,', '').strip()
+    if 'qualityes' in clusters: clusters = clusters.replace('qualityes', '').strip()
+
+    if 'producers' in clusters: clusters = clusters.replace('producers,', '').strip()
+    if 'producers' in clusters: clusters = clusters.replace('producers', '').strip()
+
+    if 'years' in clusters: clusters = clusters.replace('years,', '').strip()
+    if 'years' in clusters: clusters = clusters.replace('years', '').strip()
+
+    if 'stars' in clusters: clusters = clusters.replace('stars,', '').strip()
+    if 'stars' in clusters: clusters = clusters.replace('stars', '').strip()
+
+    if 'directors' in clusters: clusters = clusters.replace('directors,', '').strip()
+    if 'directors' in clusters: clusters = clusters.replace('directors', '').strip()
+
+    if 'lists' in clusters: clusters = clusters.replace('lists,', '').strip()
+    if 'lists' in clusters: clusters = clusters.replace('lists', '').strip()
+
+    if 'categories' in clusters: clusters = clusters.replace('categories,', '').strip()
+    if 'categories' in clusters: clusters = clusters.replace('categories', '').strip()
 
     if str(params['clusters']) == "['dorama']": clusters = clusters.replace('dorama', '').strip()
     if str(params['clusters']) == "['anime']": clusters = clusters.replace('anime', '').strip()
@@ -136,6 +204,9 @@ def test_channel(channel_name):
     if 'kids' in clusters: clusters = clusters.replace('kids,', '').strip()
     if 'kids' in clusters: clusters = clusters.replace('kids', '').strip()
 
+    if 'infantil' in clusters: clusters = clusters.replace('infantil,', '').strip()
+    if 'infantil' in clusters: clusters = clusters.replace('infantil', '').strip()
+
     if 'vos' in clusters: clusters = clusters.replace('vos,', '').strip()
     if 'vos' in clusters: clusters = clusters.replace('vos', '').strip()
 
@@ -145,211 +216,280 @@ def test_channel(channel_name):
     if '3d' in clusters: clusters = clusters.replace('3d,', '').strip()
     if '3d' in clusters: clusters = clusters.replace('3d', '').strip()
 
-    if clusters: txt += 'clusters: ' + str(clusters) + '[CR]'
-
-    notes = str(params['notes'])
-
-    if '+18' in notes: notes = notes.replace(' +18', '').strip()
-
-    if 'Canal con enlaces Torrent exclusivamente.' in notes: notes = notes.replace('Canal con enlaces Torrent exclusivamente.', '').strip()
-
-    if 'Canal con enlaces Streaming y Torrent.' in notes: notes = notes.replace('Canal con enlaces Streaming y Torrent.', '').strip()
-
-    if 'Dispone de varios posibles dominios.' in notes: notes = notes.replace('Dispone de varios posibles dominios.', '').strip()
-
-    if 'Puede requerir el uso de proxies' in notes: notes = scrapertools.find_single_match(str(notes), '(.*?)Puede requerir el uso de proxies').strip()
-
-    txt += 'notes: [COLOR yellowgreen][B]' + str(notes) + '[/B][/COLOR]'
+    if clusters: txt += 'grupos: ' + str(clusters) + '[CR]'
 
     txt_temas = ''
 
-    if 'docs' in str(params['clusters']):
-        if txt_temas: txt_temas += ' '
-        txt_temas += '[COLOR cyan][B]Documentales[/B][/COLOR]'
+    if 'géneros' in str(params['notes']) or 'Géneros' in str(params['notes']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR thistle][B]Géneros[/B][/COLOR]'
 
-    if 'kids' in str(params['clusters']):
-        if txt_temas: txt_temas += ' '
+    if 'languages' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR yellowgreen][B]Idiomas[/B][/COLOR]'
+
+    if 'news' in str(params['clusters']) or 'lasts' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR darksalmon][B]Novedades[/B][/COLOR]'
+
+    if 'classic' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR turquoise][B]Clásicos[/B][/COLOR]'
+
+    if 'rankings' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR powderblue][B]Rankings[/B][/COLOR]'
+
+    if 'countries' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR dodgerblue][B]Paises[/B][/COLOR]'
+
+    if 'qualityes' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR moccasin][B]Calidades[/B][/COLOR]'
+
+    if 'producers' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR teal][B]Productoras[/B][/COLOR]'
+
+    if 'years'  in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR sienna][B]Años[/B][/COLOR]'
+
+    if 'stars' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR magenta][B]Intérpretes[/B][/COLOR]'
+
+    if 'directors' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR slateblue][B]Dirección[/B][/COLOR]'
+
+    if 'lists' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR steelblue][B]Listas[/B][/COLOR]'
+
+    if 'categories' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
+        txt_temas += '[COLOR violet][B]Categorías[/B][/COLOR]'
+
+    if 'docs' in str(params['clusters']):
+        if not str(params['categories']) == "['documentary']":
+            if txt_temas: txt_temas += ', '
+            txt_temas += '[COLOR cyan][B]Documentales[/B][/COLOR]'
+
+    if 'kids' in str(params['clusters']) or 'infantil' in str(params['clusters']):
+        if txt_temas: txt_temas += ', '
         txt_temas += '[COLOR lightyellow][B]Infantil[/B][/COLOR]'
 
     if 'tales' in str(params['clusters']):
         if not 'Web dedicada exclusivamente en Novelas' in str(params['notes']):
-            if txt_temas: txt_temas += ' '
+            if txt_temas: txt_temas += ', '
             txt_temas += '[COLOR limegreen][B]Novelas[/B][/COLOR]'
 
     if 'dorama' in str(params['clusters']):
         if not 'Web dedicada exclusivamente al dorama' in str(params['notes']):
-            if txt_temas: txt_temas += ' '
+            if txt_temas: txt_temas += ', '
             txt_temas += '[COLOR firebrick][B]Doramas[/B][/COLOR]'
 
     if 'anime' in str(params['clusters']):
         if not 'Web dedicada exclusivamente al anime' in str(params['notes']):
-            if txt_temas: txt_temas += ' '
+            if txt_temas: txt_temas += ', '
             txt_temas += '[COLOR springgreen][B]Animes[/B][/COLOR]'
 
     if 'vos' in str(params['clusters']):
-        if txt_temas: txt_temas += ' '
+        if txt_temas: txt_temas += ', '
         txt_temas += '[COLOR yellowgreen][B]VOS[/B][/COLOR]'
 
     if '4k' in str(params['clusters']):
-        if txt_temas: txt_temas += ' '
+        if txt_temas: txt_temas += ', '
         txt_temas += '[COLOR lightblue][B]4K[/B][/COLOR]'
 
     if '3d' in str(params['clusters']):
-        if txt_temas: txt_temas += ' '
+        if txt_temas: txt_temas += ', '
         txt_temas += '[COLOR powderblue][B]3D[/B][/COLOR]'
 
-    if txt_temas: txt += '[CR]temas: ' + txt_temas
+    if txt_temas: txt += 'temas: ' + txt_temas
 
     txt_diag = ''
 
-    if 'temporary' in str(params['clusters']): txt_diag  += 'estado: ' + '[COLOR plum][B]Temporalmente Inactivo[/B][/COLOR]'
+    sets_categories = str(params['categories'])
 
-    if 'inestable' in str(params['clusters']):
+    if sets_categories == "['movie']":
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'estado: ' + '[COLOR plum][B]Inestable[/B][/COLOR]'
+        txt_diag  += 'incluye: ' + '[COLOR deepskyblue][B]solo Películas[/B][/COLOR]'
 
-    if 'problematic' in str(params['clusters']):
+    elif sets_categories == "['movie', 'torrent']":
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'servidores: ' + '[COLOR darkgoldenrod][B]Problemáticos[/B][/COLOR]'
+        txt_diag  += 'incluye: ' + '[COLOR deepskyblue][B]solo Películas[/B][/COLOR]'
 
-    if 'mismatched' in str(params['clusters']):
-        if not PY3:
+    elif sets_categories == "['tvshow']":
+        if txt_diag: txt_diag += '[CR]'
+        txt_diag  += 'incluye: ' + '[COLOR hotpink][B]solo Series[/B][/COLOR]'
+
+    elif sets_categories == "['documentary']":
+        if not 'Películas' in str(params['notes']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag  += 'result: ' + '[COLOR violet][B]Posible MediaCenter Incompatibile (Sin Resultados) si versión anterior a 19.x[/B][/COLOR]'
+            txt_diag  += 'incluye: ' + '[COLOR cyan][B]solo Documentales[/B][/COLOR]'
 
-    if 'clons' in str(params['clusters']):
+    elif sets_categories == "['movie', 'adults']":
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'clones: ' + '[COLOR lightyellow][B]Varios Clones[/B][/COLOR]'
-
-    if 'suggested' in str(params['clusters']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'canal: ' + '[COLOR aquamarine][B]Sugerido[/B][/COLOR]'
-
-    cfg_status_channel = 'channel_' + channel_id + '_status'
-
-    if str(config.get_setting(cfg_status_channel)) == '1':
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'marcado: ' + '[COLOR aqua][B]Preferido[/B][/COLOR]'
-
-    elif str(config.get_setting(cfg_status_channel)) == '-1':
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'marcado: ' + '[COLOR aqua][B]Desactivado[/B][/COLOR]'
-
-    if not params['searchable']:
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'buscar: ' + '[COLOR yellow][B]No Interviene[/B][/COLOR]'
-    else:
-        if str(params['search_types']) == "['documentary']":
-            if txt_diag: txt_diag += '[CR]'
-            txt_diag  += 'buscar: ' + '[COLOR yellow][B]Solo Documental[/B][/COLOR]'
-
-    if '+18' in str(params['notes']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'adultos: ' + '[COLOR orange][B]+18[/B][/COLOR]'
+        txt_diag  += 'incluye: ' + '[COLOR orange][B]solo Vídeos[/B][/COLOR]'
 
     if 'Web dedicada exclusivamente al anime' in str(params['notes']):
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR springgreen][B]Solo Animes[/B][/COLOR]'
+        txt_diag  += 'contenido: ' + '[COLOR springgreen][B]solo Animes[/B][/COLOR]'
 
-    if 'Web dedicada exclusivamente al dorama' in str(params['notes']):
+    elif 'Web dedicada exclusivamente al dorama' in str(params['notes']):
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR firebrick][B]Solo Doramas[/B][/COLOR]'
+        txt_diag  += 'contenido: ' + '[COLOR firebrick][B]solo Doramas[/B][/COLOR]'
 
-    if 'Web dedicada exclusivamente en Novelas' in str(params['notes']):
+    elif 'Web dedicada exclusivamente en Novelas' in str(params['notes']):
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR limegreen][B]Solo Novelas[/B][/COLOR]'
+        txt_diag  += 'contenido: ' + '[COLOR limegreen][B]solo Novelas[/B][/COLOR]'
 
-    if 'Web dedicada exclusivamente a los tráilers' in str(params['notes']):
+    elif 'Web dedicada exclusivamente a los tráilers' in str(params['notes']):
         if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR limegreen][B]Solo Tráilers[/B][/COLOR]'
+        txt_diag  += 'contenido: ' + '[COLOR darkgoldenrod][B]solo Tráilers[/B][/COLOR]'
 
-    if not str(params['clusters']) == "['adults']":
-        if 'adults' in str(params['clusters']):
+    if 'temporary' in str(params['clusters']):
+        if txt_diag: txt_diag += '[CR]'
+        txt_diag  += 'estado: ' + '[COLOR plum][B]Temporalmente Inactivo[/B][/COLOR]'
+
+    if not 'Temporalmente Inactivo' in txt_diag:
+        if 'inestable' in str(params['clusters']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag  += 'contenido: ' + '[COLOR orange][B]Puede tener enlaces para Adultos[/B][/COLOR]'
+            txt_diag  += 'estado: ' + '[COLOR plum][B]Inestable[/B][/COLOR]'
 
-    if str(params['search_types']) == "['documentary']":
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR cyan][B]Solo Documentales[/B][/COLOR]'
-
-    if 'Canal con enlaces Torrent exclusivamente' in str(params['notes']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'contenido: ' + '[COLOR blue][B]Solo Torrents[/B][/COLOR]'
-
-    if 'Canal con enlaces Streaming y Torrent' in str(params['notes']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'enlaces: ' + '[COLOR thistle][B]Streaming y Torrent[/B][/COLOR]'
-
-    if 'register' in str(params['clusters']):
-        if txt_diag: txt_diag += '[CR]'
-
-        username = config.get_setting(channel_id + '_username', channel_id, default='')
-        if not username: txt_diag += 'cuenta: ' + '[COLOR green][B]Requiere registrarse[/B][/COLOR]'
-        else: txt_diag += 'cuenta: ' + '[COLOR green][B]Credenciales informadas[/B][/COLOR]'
-
-    if 'dominios' in str(params['notes']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'dominios: ' + '[COLOR lightyellow][B]Varios disponibles[/B][/COLOR]'
-
-    if 'current' in str(params['clusters']):
-        cfg_dominio_channel = 'channel_' + channel_id + '_dominio'
-        if config.get_setting(cfg_dominio_channel, default=''):
+        if 'problematic' in str(params['clusters']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag  += 'memorizado: ' + '[COLOR pink][B]' + config.get_setting(cfg_dominio_channel) + '[/B][/COLOR]'
+            txt_diag  += 'servidores: ' + '[COLOR darkgoldenrod][B]Problemáticos[/B][/COLOR]'
 
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'vigente: ' + '[COLOR darkorange][B]Puede comprobarse el último dominio[/B][/COLOR]'
+        if 'mismatched' in str(params['clusters']):
+            if not PY3:
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag  += 'result: ' + '[COLOR violet][B]Posible MediaCenter Incompatibile (Sin Resultados) si versión anterior a 19.x[/B][/COLOR]'
 
-    if 'Puede requerir el uso de proxies' in params['notes']:
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag += 'bloqueo: ' + '[COLOR red][B]Puede requerir el uso de proxies en función del país/operadora desde el que se accede[/B][/COLOR]'
-
-    if 'notice' in str(params['clusters']):
-        if txt_diag: txt_diag += '[CR]'
-        txt_diag  += 'notice: ' + '[COLOR indianred][B] CloudFlare [/COLOR][COLOR orangered] Protection[/B][/COLOR]'
-
-    if config.get_setting('search_included_all', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_movies')):
+        if 'clons' in str(params['clusters']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'incluido: Buscar está [COLOR yellow][B]Asignado[/B][/COLOR]'
+            txt_diag  += 'clones: ' + '[COLOR lightyellow][B]Varios Clones[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_movies', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_movies')):
+        if 'suggested' in str(params['clusters']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR deepskyblue][B]Películas[/B][/COLOR]'
+            txt_diag  += 'canal: ' + '[COLOR aquamarine][B]Sugerido[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_tvshows', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_tvshows')):
+        cfg_status_channel = 'channel_' + channel_id + '_status'
+
+        if str(config.get_setting(cfg_status_channel)) == '1':
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR hotpink][B]Series[/B][/COLOR]'
+            txt_diag  += 'marcado: ' + '[COLOR gold][B]Preferido[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_documentaries', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_documentaries')):
+        elif str(config.get_setting(cfg_status_channel)) == '-1':
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR cyan][B]Documentales[/B][/COLOR]'
+            txt_diag  += 'marcado: ' + '[COLOR gray][B]Desactivado[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_torrents', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_torrents')):
+        if not params['searchable']:
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR blue][B]Torrents[/B][/COLOR]'
+            txt_diag  += 'buscar: ' + '[COLOR chartreuse][B]No Interviene[/B][/COLOR]'
+        else:
+            if str(params['search_types']) == "['documentary']":
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag  += 'buscar: ' + '[COLOR cyan][B]solo Documental[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_mixed', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_mixed')):
+        if '+18' in str(params['notes']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR yellow][B]Películas y/ó Series[/B][/COLOR]'
+            txt_diag  += 'adultos: ' + '[COLOR orange][B]+18[/B][/COLOR]'
 
-    if config.get_setting('search_excludes_all', default=''):
-        if "'" + channel_id + "'" in str(config.get_setting('search_excludes_all')):
+        if not str(params['clusters']) == "['adults']":
+            if 'adults' in str(params['clusters']):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag  += '+18: ' + '[COLOR orange][B]Puede tener enlaces para Adultos[/B][/COLOR]'
+
+        if str(params['search_types']) == "['documentary']":
+            if not 'Películas' in str(params['notes']):
+                if not 'docs' in str(params['clusters']):
+                    if txt_diag: txt_diag += '[CR]'
+                    txt_diag  += 'contenido: ' + '[COLOR cyan][B]solo Documentales[/B][/COLOR]'
+
+        if 'Canal con enlaces Torrent exclusivamente' in str(params['notes']):
             if txt_diag: txt_diag += '[CR]'
-            txt_diag += 'excluido: Buscar en [COLOR green][B]Todos[/B][/COLOR]'
+            txt_diag  += 'enlaces: ' + '[COLOR blue][B]solo Torrents[/B][/COLOR]'
 
-    if params['searchable']:
-        cfg_searchable_channel = 'channel_' + channel_id + '_no_searchable'
+        if 'Canal con enlaces Streaming y Torrent' in str(params['notes']):
+            if txt_diag: txt_diag += '[CR]'
+            txt_diag  += 'enlaces: ' + '[COLOR thistle][B]Streaming y Torrent[/B][/COLOR]'
 
-        if config.get_setting(cfg_searchable_channel, default=False): txt_diag += '[COLOR violet][B]Excluido en Búsquedas[/B][/COLOR]'
+        if 'register' in str(params['clusters']):
+            if txt_diag: txt_diag += '[CR]'
+
+            username = config.get_setting(channel_id + '_username', channel_id, default='')
+            if not username: txt_diag += 'cuenta: ' + '[COLOR green][B]Requiere registrarse[/B][/COLOR]'
+            else: txt_diag += 'cuenta: ' + '[COLOR green][B]Credenciales informadas[/B][/COLOR]'
+
+        if 'dominios' in str(params['notes']):
+            if txt_diag: txt_diag += '[CR]'
+            txt_diag  += 'dominios: ' + '[COLOR lightyellow][B]Varios disponibles[/B][/COLOR]'
+
+        if 'current' in str(params['clusters']):
+            cfg_dominio_channel = 'channel_' + channel_id + '_dominio'
+            if config.get_setting(cfg_dominio_channel, default=''):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag  += 'memorizado: ' + '[COLOR pink][B]' + config.get_setting(cfg_dominio_channel) + '[/B][/COLOR]'
+
+            if txt_diag: txt_diag += '[CR]'
+            txt_diag  += 'vigente: ' + '[COLOR darkorange][B]Puede comprobarse el último dominio[/B][/COLOR]'
+
+        if 'Puede requerir el uso de proxies' in params['notes']:
+            if txt_diag: txt_diag += '[CR]'
+            txt_diag += 'bloqueo: ' + '[COLOR red][B]Puede requerir el uso de proxies en función del país/operadora desde el que se accede[/B][/COLOR]'
+
+        if 'notice' in str(params['clusters']):
+            if txt_diag: txt_diag += '[CR]'
+            txt_diag  += 'aviso: ' + '[COLOR indianred][B] CloudFlare [/COLOR][COLOR orangered] Protection[/B][/COLOR]'
+
+        if config.get_setting('search_included_all', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_movies')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'incluido: Buscar está [COLOR yellow][B]Asignado[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_movies', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_movies')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR deepskyblue][B]Películas[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_tvshows', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_tvshows')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR hotpink][B]Series[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_documentaries', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_documentaries')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR cyan][B]Documentales[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_torrents', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_torrents')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR blue][B]Torrents[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_mixed', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_mixed')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR yellow][B]Películas y/ó Series[/B][/COLOR]'
+
+        if config.get_setting('search_excludes_all', default=''):
+            if "'" + channel_id + "'" in str(config.get_setting('search_excludes_all')):
+                if txt_diag: txt_diag += '[CR]'
+                txt_diag += 'excluido: Buscar en [COLOR green][B]Todos[/B][/COLOR]'
+
+        if params['searchable']:
+            cfg_searchable_channel = 'channel_' + channel_id + '_no_searchable'
+
+            if config.get_setting(cfg_searchable_channel, default=False): txt_diag += '[COLOR violet][B]Excluido en Búsquedas[/B][/COLOR]'
 
     if txt_diag:
-        txt += '[CR][CR][COLOR moccasin][B]Diagnosis:[/B][/COLOR][CR]'
+        if txt_temas: txt += '[CR]'
+
+        txt += '[CR][COLOR moccasin][B]Diagnosis:[/B][/COLOR][CR]'
         txt += txt_diag
 
     if 'mismatched' in str(params['clusters']):
@@ -430,7 +570,7 @@ def test_channel(channel_name):
     host = host.strip()
 
     if not host:
-        if channel_name == 'test_providers': data = host = 'https://www.youtube.com/'
+        if channel_name == 'test_providers': host = 'https://www.youtube.com/'
 
         if dominio: host = dominio
 
@@ -459,35 +599,69 @@ def test_channel(channel_name):
 
                 ant_hosts = tab_hosts
 
-                txt += '[CR][CR][COLOR moccasin][B]Dominios Anteriores:[/B][/COLOR][CR]'
+                txt += '[CR][COLOR moccasin][B]Dominios Anteriores:[/B][/COLOR][CR]'
 
                 for ant_host in ant_hosts:
                     txt += '[COLOR mediumaquamarine][B]' + ant_host[1] + '[/B][/COLOR][CR]'
 
     if config.get_setting('user_test_channel', default=''):
         if config.get_setting('user_test_channel') == 'host_channel': config.set_setting('user_test_channel', host)
+        elif config.get_setting('user_test_channel') == 'localize': config.set_setting('user_test_channel', 'localized')
         return ''
 
     avisado = False
 
     if channel_id in str(channels_poe): pass
-    elif channel_id in str(channels_despised): pass
+
+    elif channel_id in str(channels_despised):
+        invalid = True
+
+        for channel_depised in channels_despised:
+            if not channel_id == channel_depised: continue
+
+            invalid = False
+            break
+
+        if invalid:
+            if not 'code: [COLOR springgreen][B]200' in txt:
+                avis_causas = ''
+                if '<p>Por causas ajenas a' in txt or '>Por causas ajenas a' in txt: avis_causas = txt_blocs.replace('[CR]', '')
+
+                if not channels_unsatisfactory == 'unsatisfactory':
+                    platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+                    avisado = True
+
+                else:
+                    if 'Podría estar Correcto' in txt: pass
+                    else:
+                        platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+
+                    avisado = True
+            else:
+                if not channels_unsatisfactory == 'unsatisfactory':
+                    if 'invalid:' in txt:
+                        platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+                        avisado = True
+
     else:
        if not 'code: [COLOR springgreen][B]200' in txt:
+           avis_causas = ''
+           if '<p>Por causas ajenas a' in txt or '>Por causas ajenas a' in txt: avis_causas = txt_blocs.replace('[CR]', '')
+
            if not channels_unsatisfactory == 'unsatisfactory':
-               platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+               platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
                avisado = True
 
            else:
                if 'Podría estar Correcto' in txt: pass
                else:
-                   platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+                   platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
 
                avisado = True
        else:
            if not channels_unsatisfactory == 'unsatisfactory':
                if 'invalid:' in txt:
-                   platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
+                   platformtools.dialog_ok(config.__addon_name + ' [COLOR yellow][B]' + channel_name.capitalize() + '[/B][/COLOR]', '[COLOR red][B][I]El test del Canal NO ha resultado Satisfactorio.[/I][/B][/COLOR]', avis_causas, '[COLOR cyan][B]Por favor, compruebe la información del Test del Canal.[/B][/COLOR]')
                    avisado = True
 
     if channels_unsatisfactory == 'unsatisfactory':
@@ -499,7 +673,7 @@ def test_channel(channel_name):
             if 'invalid:' in txt: return txt
             elif 'Podría estar Correcto' in txt: return ''
             else:
-                platformtools.dialog_textviewer(channel_name.capitalize(), txt)
+                platformtools.dialog_textviewer(channel_name.upper(), txt)
                 return txt
 
     platformtools.dialog_textviewer(channel_name.upper(), txt)
@@ -672,9 +846,9 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
         host_no_points = host_no_points.replace('.', '')
 
     if response.sucess == False:
-        if 'getaddrinfo failed' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]No se puede acceder a este sitio web.[/B][/COLOR]'
-        elif 'No address associated with hostname' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]Inaccesible no se puede acceder a este sitio web.[/B][/COLOR]'
-        elif '| 502: Bad gateway</title>' in str(response.data): txt += '[CR][COLOR darkgoldenrod][B]Host error Bad Gateway[/B][/COLOR]'
+        if 'getaddrinfo failed' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]No se puede acceder a este sitio web.[/B][/COLOR][CR]'
+        elif 'No address associated with hostname' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]Inaccesible no se puede acceder a este sitio.[/B][/COLOR][CR]'
+        elif '| 502: Bad gateway</title>' in str(response.data): txt += '[CR][COLOR darkgoldenrod][B]Host error Bad Gateway[/B][/COLOR][CR]'
 
         elif '<urlopen error timed out>' in str(response.code) or '<urlopen error' in str(response.code):
              if not 'Sugerencias:' in txt: txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR]'
@@ -712,7 +886,7 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
                    if len(response.data) < 1000:
                        response.data = str(response.data).strip()
                        if len(response.data) > 0:
-                           txt += '[CR][COLOR moccasin][B]Data:[/B][/COLOR][CR]'
+                           txt += '[CR][COLOR moccasin][B]Datos:[/B][/COLOR][CR]'
                            txt += str(response.data).strip() + '[CR]'
     else:
         if  '<span class="error-description">Access denied</span>' in response.data: txt += '[CR]acces: [COLOR orangered][B]Denegado[/B][/COLOR]'
@@ -729,7 +903,7 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
 
                 txt += '[CR]nuevo: [COLOR springgreen][B]' + new_web + '[/B][/COLOR]'
 
-                if new_web == host + 'inicio/' or new_web == host + 'principal/' or new_web == host + 'principal-b/' or new_web == host + 'chorizo' or new_web == host + '/es/' or new_web == host + '/login' or new_web == '/home':
+                if new_web == host + 'inicio/' or new_web == host + 'principal/' or new_web == host + 'principal-b/' or new_web == host + 'nino' or new_web == host + '/es/' or new_web == host + '/login' or new_web == host + 'home/' or new_web == '/home':
                     if 'Diagnosis:' in txt:
                         if not 'Sugerencias:' in txt: txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR]'
 
@@ -784,7 +958,12 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
                             if channel_id in str(response.data).lower(): invalid = False
 
                         if invalid:
-                            if channel_id in str(channels_despised): invalid = False
+                            if channel_id in str(channels_despised):
+                               for channel_depised in channels_despised:
+                                   if not channel_id == channel_depised: continue
+
+                                   invalid = False
+                                   break
 
                         if invalid: txt += "[CR]invalid: [COLOR goldenrod][B]Acceso sin Host Válido en los datos.[/B][/COLOR]"
 
@@ -807,6 +986,7 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
                 if not 'Diagnosis:' in txt: txt += '[CR][CR][COLOR moccasin][B]Diagnosis:[/B][/COLOR]'
 
                 if 'The website is under maintenance' in response.data: txt += '[CR]obras: [COLOR springgreen][B]Está en mantenimiento[/B][/COLOR]'
+                elif 'The server is temporarily busy' in response.data: txt += '[CR]obras: [COLOR springgreen][B]Está en mantenimiento[/B][/COLOR]'
                 elif '/cgi-sys/defaultwebpage.cgi' in response.data: txt += '[CR]sorry: [COLOR springgreen][B]Contact your hosting Provider[/B][/COLOR]'
                 elif '/www.alliance4creativity.com/' in new_web: txt += '[CR]legal: [COLOR springgreen][B]Copyright infringement[/B][/COLOR]'
 
@@ -822,7 +1002,7 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
 
                         txt += "[CR]comprobar: [COLOR limegreen][B]Podría estar Correcto ó quizás ser un Nuevo Dominio (verificar la Web vía internet)[/B][/COLOR]"
 
-                elif new_web == host + 'inicio/' or new_web == host + 'principal/' or new_web == host + 'principal-b/' or new_web == host + 'chorizo' or new_web == host + '/es/' or new_web == host + '/login' or new_web == '/home':
+                elif new_web == host + 'inicio/' or new_web == host + 'principal/' or new_web == host + 'principal-b/' or new_web == host + 'nino' or new_web == host + '/es/' or new_web == host + '/login' or new_web == host + 'home/' or new_web == '/home':
                     if 'Diagnosis:' in txt:
                         if not 'Sugerencias:' in txt: txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR]'
 
@@ -892,13 +1072,15 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
 
             if len(response.data) > 0:
                 if not '/cgi-sys/suspendedpage.cgi' or not '/wp-admin/install.php' in new_web:
-                    txt += '[CR][CR][COLOR moccasin][B]Data:[/B][/COLOR][CR]'
+                    txt += '[CR][CR][COLOR moccasin][B]Datos:[/B][/COLOR][CR]'
                     txt += str(response.data).strip() + '[CR]'
 
     if 'active: True' in txt:
         if not 'Sugerencias:' in txt:
             if 'Invisible Captcha' in txt or 'Obtenga nuevos proxies' in txt or 'Host error' in txt or 'No se puede establecer una' in txt or 'Cloudflare' in txt or 'Unknow' in txt:
-                txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
+                if len(response.data) == 0: txt += '[CR]'
+
+                txt += '[CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
 
                 if 'Invisible Captcha' in txt:
                     if 'actuales:' in txt:
@@ -1069,7 +1251,9 @@ def acces_channel(channel_name, host, txt_dominio, dominio, txt, ant_hosts, foll
             txt += txt_routs
 
     if config.get_setting('user_test_channel', default=''):
-        if 'Nuevo Dominio Permanente' in str(txt):
+        if config.get_setting('user_test_channel') == 'localized': config.set_setting('user_test_channel', '')
+
+        if 'Nuevo Dominio Permanente' in str(txt) or 'Nuevo Dominio Temporal' in str(txt):
             if new_web: config.set_setting('user_test_channel', new_web)
 
     return response, txt
@@ -1149,6 +1333,8 @@ def test_server(server_name):
 
     txt += '[COLOR moccasin][B]Parámetros:[/B][/COLOR][CR]'
 
+    txt += 'server: ' + server_name + '[CR][CR]'
+
     try:
        patterns = dict_server['find_videos']['patterns']
 
@@ -1216,7 +1402,7 @@ def test_server(server_name):
     if servers_unsatisfactory == 'unsatisfactory':
         if not avisado: return ''
         else:
-           platformtools.dialog_textviewer(server_name.capitalize(), txt)
+           platformtools.dialog_textviewer(server_name.upper(), txt)
            return txt
 
     platformtools.dialog_textviewer(server_name.upper(), txt)
@@ -1294,9 +1480,9 @@ def acces_server(server_name, url, txt, follow_redirects=None):
     new_web = scrapertools.find_single_match(str(response.headers), "'location':.*?'(.*?)'")
 
     if response.sucess == False:
-        if 'getaddrinfo failed' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]No se puede acceder a este sitio web.[/B][/COLOR]'
-        elif 'No address associated with hostname' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]Inaccesible no se puede acceder a este sitio web.[/B][/COLOR]'
-        elif '| 502: Bad gateway</title>' in str(response.data): txt += '[COLOR darkgoldenrod][B]Host error Bad Gateway[/B][/COLOR]'
+        if 'getaddrinfo failed' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]No se puede acceder a este sitio web.[/B][/COLOR][CR]'
+        elif 'No address associated with hostname' in str(response.code): txt += '[CR]domain: [COLOR darkgoldenrod][B]Inaccesible no se puede acceder a este sitio.[/B][/COLOR][CR]'
+        elif '| 502: Bad gateway</title>' in str(response.data): txt += '[COLOR darkgoldenrod][B]Host error Bad Gateway[/B][/COLOR][CR]'
 
         elif '<urlopen error timed out>' in str(response.code) or '<urlopen error' in str(response.code):
              if not 'Sugerencias:' in txt: txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
@@ -1325,7 +1511,7 @@ def acces_server(server_name, url, txt, follow_redirects=None):
                    if len(response.data) < 1000:
                        response.data = str(response.data).strip()
                        if len(response.data) > 0:
-                           txt += '[CR][COLOR moccasin][B]Data:[/B][/COLOR][CR]'
+                           txt += '[CR][COLOR moccasin][B]Datos:[/B][/COLOR][CR]'
                            txt += str(response.data).strip() + '[CR]'
     else:
         if  '<span class="error-description">Access denied</span>' in response.data: txt += '[CR]acces: [COLOR orangered][B]Denegado[/B][/COLOR]'
@@ -1359,6 +1545,7 @@ def acces_server(server_name, url, txt, follow_redirects=None):
                 if not 'Diagnosis:' in txt: txt += '[CR][CR][COLOR moccasin][B]Diagnosis:[/B][/COLOR]'
 
                 if 'The website is under maintenance' in response.data: txt += '[CR]obras: [COLOR springgreen][B]Está en mantenimiento[/B][/COLOR]'
+                elif 'The server is temporarily busy' in response.data: txt += '[CR]obras: [COLOR springgreen][B]Está en mantenimiento[/B][/COLOR]'
                 elif '/cgi-sys/defaultwebpage.cgi' in response.data: txt += '[CR]sorry: [COLOR springgreen][B]Contact your hosting Provider[/B][/COLOR]'
                 elif '/www.alliance4creativity.com/' in new_web: txt += '[CR]legal: [COLOR springgreen][B]Copyright infringement[/B][/COLOR]'
 
@@ -1390,21 +1577,23 @@ def acces_server(server_name, url, txt, follow_redirects=None):
 
             if len(response.data) > 0:
                 if not '/cgi-sys/suspendedpage.cgi' in new_web or not '/wp-admin/install.php' in new_web:
-                    txt += '[CR][CR][COLOR moccasin][B]Data:[/B][/COLOR][CR]'
+                    txt += '[CR][CR][COLOR moccasin][B]Datos:[/B][/COLOR][CR]'
                     txt += str(response.data).strip() + '[CR]'
 
     if not 'Sugerencias:' in txt:
+        if len(response.data) == 0: txt += '[CR]'
+
         if 'Invisible Captcha' in txt:
-            txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
+            txt += '[CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
             txt += txt_routs
 
         elif 'Suspendida' in txt:
-            txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
+            txt += '[CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
 
             txt += '[COLOR goldenrod][B]Puede estar Renovando el Dominio o quizás estar en Mantenimiento[/B][/COLOR]'
 
         elif response.sucess == False:
-            txt += '[CR][CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
+            txt += '[CR][COLOR moccasin][B]Sugerencias:[/B][/COLOR][CR]'
 
             txt += '[COLOR gold][B]Puede Descartar el Servidor en la Configuración [/COLOR](categoría [COLOR fuchsia]Play[/COLOR])[/B][CR]'
             txt += '[COLOR tomato][B]Compruebe su Internet y/ó el Servidor, a través de un Navegador Web[/B][/COLOR][CR]'

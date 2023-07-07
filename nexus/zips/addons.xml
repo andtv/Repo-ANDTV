@@ -466,7 +466,7 @@
 	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
-<addon id="plugin.video.balandro" name="Balandro" version="3.0.6" provider-name="Balandro Team">
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.8" provider-name="Balandro Team">
   <requires>
      <import addon="script.module.requests"/>
   </requires>
@@ -481,7 +481,7 @@
       <icon>icon.png</icon>
     </assets>
     <news>
-    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.6[/COLOR][COLOR chartreuse]  Junio de 2023[/B][/COLOR]
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.8[/COLOR][COLOR chartreuse]  Julio de 2023[/B][/COLOR]
 
     [COLOR goldenrod][B]Media Centers Soportados[/COLOR][COLOR plum]  20.x,  19.x,  18.x  y  17.x[/B][/COLOR]
 
@@ -490,7 +490,7 @@
     [COLOR firebrick][B]Desarrollo:[/COLOR]  [COLOR orange]github.com/balandro-tk/balandro-addon[/B][/COLOR]
 
     [COLOR limegreen][B]Contacto:[/B][/COLOR]
-        Foro  mimediacenter.info/foro/
+        Foro  www.mimediacenter.info/foro/
         Telegram  t.me/balandro_asesor
         Team  t.me/Balandro_team
 
@@ -1096,6 +1096,8 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 
     <extension point="xbmc.service" library="service.py" start="login|startup" />
 </addon>
+
+<addon id="repository.elementum" name="Elementum Repository" version="0.1.87" provider-name="elgatito"><requires></requires><extension point="xbmc.addon.repository" name="Elementum Repository"><dir><info compressed="false">http://127.0.0.1:65220/repository/elgatito/plugin.video.elementum/addons.xml</info><checksum>http://127.0.0.1:65220/repository/elgatito/plugin.video.elementum/addons.xml.md5</checksum><datadir zip="true">http://127.0.0.1:65220/repository/elgatito/</datadir></dir></extension><extension point="xbmc.addon.metadata"><platform>all</platform><summary lang="en">GitHub repository for Elementum updates</summary></extension></addon>
 
 <addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.3" provider-name="jurialmunkey">
     <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
