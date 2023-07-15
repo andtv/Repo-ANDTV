@@ -86,7 +86,7 @@ def whitelist(do):
             addonids.append(addid)
             addonfolds.append(foldername)
         selected = []
-        tempaddonnames = ["-- Clic aquí para Continuar --"] + addonnames
+        tempaddonnames = ["-- Click here to Continue --"] + addonnames
         currentWhite = whitelist(do='read')
         for item in currentWhite:
             logging.log(str(item))
@@ -104,7 +104,7 @@ def whitelist(do):
                 tempaddonnames.append("[B][COLOR {0}]{1}[/COLOR][/B]".format(CONFIG.COLOR1, name))
         choice = 1
         while choice not in [-1, 0]:
-            choice = dialog.select("{0}: Seleccione los add-ons que desea incluir en la Lista blanca.".format(CONFIG.ADDONTITLE), tempaddonnames)
+            choice = dialog.select("{0}: Select the add-ons you wish to the whitelist.".format(CONFIG.ADDONTITLE), tempaddonnames)
             if choice == -1:
                 break
             elif choice == 0:
@@ -129,7 +129,7 @@ def whitelist(do):
             except:
                 pass
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]{1} Add-ons en la Lista blanca[/COLOR]".format(CONFIG.COLOR2, len(selected)))
+                           "[COLOR {0}]{1} Add-ons in whitelist[/COLOR]".format(CONFIG.COLOR2, len(selected)))
     elif do == 'read':
         white_list = []
         if os.path.exists(CONFIG.WHITELIST):
@@ -144,24 +144,24 @@ def whitelist(do):
     elif do == 'view':
         list = whitelist(do='read')
         if len(list) > 0:
-            msg = "Aquí hay una lista de los elementos de su Lista blanca, estos elementos (junto con las dependencias) no se eliminarán cuando se realice un nuevo comienzo o los datos de usuario se sobrescriban en una instalación de la Build.[CR][CR]"
+            msg = "Here is a list of your whitelist items, these items(along with dependencies) will not be removed when preforming a fresh start or the userdata overwritten in a build install.[CR][CR]"
             for item in list:
                 try:
                     name, id, fold = item
                 except Exception as e:
                     logging.log(str(e))
                 msg += "[COLOR {0}]{1}[/COLOR] [COLOR {2}]\"{3}\"[/COLOR][CR]".format(CONFIG.COLOR1, name, CONFIG.COLOR2, id)
-            window.show_text_box("Visualización de elementos de la Lista blanca", msg)
+            window.show_text_box("Viewing Whitelisted Items", msg)
         else:
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]No hay elementos en la Lista blanca[/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]No items in whitelist[/COLOR]".format(CONFIG.COLOR2))
     elif do == 'import':
-        source = dialog.browse(1, '[COLOR {0}]Seleccione el archivo de la Lista blanca para importar[/COLOR]'.format(CONFIG.COLOR2),
+        source = dialog.browse(1, '[COLOR {0}]Select the whitelist file to import[/COLOR]'.format(CONFIG.COLOR2),
                                    'files', '.txt', False, False, CONFIG.HOME)
         logging.log(str(source))
         if not source.endswith('.txt'):
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]Importación Cancelada![/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Import Cancelled![/COLOR]".format(CONFIG.COLOR2))
             return
         current = whitelist(do='read')
         idList = []
@@ -175,7 +175,7 @@ def whitelist(do):
                 try:
                     name, id, folder = eval(item)
                 except Exception as e:
-                    logging.log("Error al Agregar: '{0}' / {1}".format(item, str(e)), level=xbmc.LOGERROR)
+                    logging.log("Error Adding: '{0}' / {1}".format(item, str(e)), level=xbmc.LOGERROR)
                     continue
                 logging.log("{0} / {1} / {2}".format(name, id, folder))
                 if id not in idList:
@@ -185,42 +185,42 @@ def whitelist(do):
                         writing = "\n%s" % writing
                     f.write(writing)
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]{1} Elemento(s) Agregado[/COLOR]".format(CONFIG.COLOR2, count))
+                               "[COLOR {0}]{1} Item(s) Added[/COLOR]".format(CONFIG.COLOR2, count))
     elif do == 'export':
         source = dialog.browse(3,
-                                   '[COLOR {0}]Seleccione dónde desea exportar el archivo de la Lista blanca[/COLOR]'.format(CONFIG.COLOR2),
+                                   '[COLOR {0}]Select where you wish to export the whitelist file[/COLOR]'.format(CONFIG.COLOR2),
                                    'files', '.txt', False, False, CONFIG.HOME)
         logging.log(str(source))
         try:
             xbmcvfs.copy(CONFIG.WHITELIST, os.path.join(source, 'whitelist.txt'))
             dialog.ok(CONFIG.ADDONTITLE,
-                          "[COLOR {0}]La Lista blanca ha sido exportado a:[/COLOR]".format(CONFIG.COLOR2)
+                          "[COLOR {0}]Whitelist has been exported to:[/COLOR]".format(CONFIG.COLOR2)
                           +'\n'+"[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, os.path.join(source, 'whitelist.txt')))
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]Lista blanca Exportado[/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Whitelist Exported[/COLOR]".format(CONFIG.COLOR2))
         except Exception as e:
-            logging.log("Error de Exportación: {0}".format(str(e)), level=xbmc.LOGERROR)
+            logging.log("Export Error: {0}".format(str(e)), level=xbmc.LOGERROR)
             if not dialog.yesno(CONFIG.ADDONTITLE,
-                                    "[COLOR {0}]La ubicación que seleccionó no se puede escribir. Le gustaría seleccionar otra?[/COLOR]".format(CONFIG.COLOR2),
-                                    yeslabel="[B][COLOR cyan]Cambiar Ubicación[/COLOR][/B]",
-                                    nolabel="[B][COLOR red]No, Cancelar[/COLOR][/B]"):
+                                    "[COLOR {0}]The location you selected isn\'t writable would you like to select another one?[/COLOR]".format(CONFIG.COLOR2),
+                                    yeslabel="[B][COLOR springgreen]Change Location[/COLOR][/B]",
+                                    nolabel="[B][COLOR red]No Cancel[/COLOR][/B]"):
                 logging.log_notify(CONFIG.ADDONTITLE,
-                                   "[COLOR {0}]Exportación Lista blanca, Cancelada[/COLOR]".format(CONFIG.COLOR2, e))
+                                   "[COLOR {0}]Whitelist Export Cancelled[/COLOR]".format(CONFIG.COLOR2, e))
             else:
                 whitelist(do='export')
     elif do == 'clear':
         if not dialog.yesno(CONFIG.ADDONTITLE,
-                                "[COLOR {0}]Estás seguro de que quieres vaciar tu Lista blanca?".format(CONFIG.COLOR2)
-                                +'\n'+"Este proceso no se puede deshacer.[/COLOR]",
-                                yeslabel="[B][COLOR cyan]Si, Eliminar[/COLOR][/B]",
-                                nolabel="[B][COLOR red]No, Cancelar[/COLOR][/B]"):
+                                "[COLOR {0}]Are you sure you want to clear your whitelist?".format(CONFIG.COLOR2)
+                                +'\n'+"This process can't be undone.[/COLOR]",
+                                yeslabel="[B][COLOR springgreen]Yes Remove[/COLOR][/B]",
+                                nolabel="[B][COLOR red]No Cancel[/COLOR][/B]"):
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]Borrar Lista blanca, Cancelada[/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Clear Whitelist Cancelled[/COLOR]".format(CONFIG.COLOR2))
             return
         try:
             os.remove(CONFIG.WHITELIST)
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]Lista blanca Vaciada[/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Whitelist Cleared[/COLOR]".format(CONFIG.COLOR2))
         except:
             logging.log_notify(CONFIG.ADDONTITLE,
-                               "[COLOR {0}]Error Vaciando Lista blanca![/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Error Clearing Whitelist![/COLOR]".format(CONFIG.COLOR2))

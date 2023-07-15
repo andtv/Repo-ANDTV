@@ -1,0 +1,170 @@
+v8.0.3
+   - Remove requires import script.kodi.android.update
+
+v8.0.2a
+   - Special version for 1AMC 20.0 Beta 1 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v8.0.2
+   - Repo Auto Install changed to the main repo address
+
+v8.0.1
+   - Change to addon.xml
+
+v8.0.1~Alpha
+   - Default View changed from Icon to List
+
+v8.0.0~Alpha
+   - Wizard for Kodi 20 Nexus
+
+v7.0.3a
+   - Special version for 1AMC 19.5 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v7.0.3
+   - Repo Auto Install changed to the main repo address
+
+(v8.x.x new branch)
+
+v7.0.2d
+   - Special version for 1AMC 19.4
+
+v7.0.2c
+   - Special version for 1AMC 19.3
+
+v7.0.2b
+   - Special version for 1AMC 19.2
+
+v7.0.2a
+   - Special version for 1AMC 19.1 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v7.0.2
+   - Fork of OpenWizard v2.0.7
+
+v7.0.1a
+   - Special version for 1AMC 19.0 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v7.0.1
+   - Fork of OpenWizard v2.0.4
+   - Do not show previous Kodi version builds in Kodi 19 Matrix
+
+v7.0.0-beta
+   - Kodi 18 Leia builds removed from build view
+
+v7.0.0-alpha
+   - Fork of OpenWizard v2.0.1
+   - Wizard for Kodi 19 Matrix
+
+v6.1.2a
+   - Special version for 1AMC 18.7.2, 18.8 and 18.9 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v6.1.2
+   - Fork of OpenWizard (formerly Aftermath) v1.4.3
+
+v6.1.1a
+   - Special version for 1AMC 18.7 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v6.1.1
+   - Fork of OpenWizard (formerly Aftermath) v1.4.1
+   - Disable auto clean
+   - Changes to addon.xml
+
+v6.1.0a
+   - Special version for 1AMC 18.6 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v6.1.0
+   - Fork of OpenWizard (formerly Aftermath) v1.3.4
+   - Reimplement auto install OneAlliance Reborn Repo
+   - Communication changed to secure (SSL)
+   - Keep My Trakt, Debrid and Login Data changed to "true"
+
+v6.0.2
+   - Fork of OpenWizard (formerly Aftermath) v1.3.1
+
+v6.0.1
+   - Fork of OpenWizard (formerly Aftermath) v1.2.9
+
+v6.0.0
+   - All new URLs
+
+v5.0.0
+   - Changes to addon.xml
+
+v4.0.0
+   - Fork of OpenWizard (formerly Aftermath) v1.0.3
+   - Fixes and features
+   - Removed advancedsettings.xml in build download
+   - Removed documentation (go to https://github.com/drinfernoo/plugin.program.openwizard)
+   - Disable auto install OneAlliance Reborn Repo
+
+v3.0.0a
+   - Special version for 1AMC 18.4 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v3.0.0
+   - Fork of Aftermath v0.5.0
+   - Fixes and features
+   - New autobuilds URL
+   - New repo URL
+
+v2.0.8
+   - Edit to fix Yoda not saving Trakt data
+
+v2.0.7a
+   - Special version for 1AMC 18.1 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v2.0.7
+   - Fork of Aftermath v0.4.9
+   - Fixes and features
+   - Removed YOUTUBEFILE link (not currently maintained)
+
+v2.0.6a
+   - Special version for 1AMC 18.0 - disable auto install repo (One Alliance Reborn Repo already in the apk)
+
+v2.0.6
+   - Fork of Aftermath v0.4.6
+   - Fixes and features
+   - Removed APKFILE link (incompatible with Kodi 18)
+
+v2.0.5
+   - Fixed APKFILE
+
+v2.0.4
+   - Fork of Aftermath v0.4.5
+   - Fixes and features
+
+v2.0.3
+   - Fork of Aftermath v0.4.3
+   - advancedsettings.xml in build download
+   - Documentation added
+   - README.md updated
+   - Other minor changes
+
+v2.0.2
+   - Fixes
+   - License updated
+
+v2.0.1
+   - Fork of Aftermath v0.4.2
+   - Fix for Xbox
+   - Supported add-ons updated
+   - Contact page updated
+
+v2.0.0
+   - Full Release
+   - Save Favourites, Sources and Whitelist enabled by default
+   - Force Close by default
+
+v1.1.5~Beta5
+   - Fixes and features
+   - Auto install OneAlliance Reborn Repo
+
+v1.1.5~Beta4
+   - Fixes
+
+v1.1.5~Beta3
+   - Fixes
+
+v1.1.5~Beta2
+   - Fixes and features
+
+v1.1.5~Beta1
+   - Kodi 18 Leia and later compatibility
+   - Taken over from another developer who did not maintain a changelog

@@ -39,11 +39,11 @@ def import_save_data():
     TEMP = os.path.join(CONFIG.PLUGIN_DATA, 'temp')
     if not os.path.exists(TEMP):
         os.makedirs(TEMP)
-    source = dialog.browse(1, '[COLOR {0}]Seleccione la ubicación del SaveData.zip[/COLOR]'.format(CONFIG.COLOR2),
+    source = dialog.browse(1, '[COLOR {0}]Select the location of the SaveData.zip[/COLOR]'.format(CONFIG.COLOR2),
                                'files', '.zip', False, False, CONFIG.HOME)
     if not source.endswith('.zip'):
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]Error de importación de datos![/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Import Data Error![/COLOR]".format(CONFIG.COLOR2))
         return
     source = xbmcvfs.translatePath(source)
     tempfile = xbmcvfs.translatePath(os.path.join(CONFIG.MYBUILDS, 'SaveData.zip'))
@@ -52,9 +52,9 @@ def import_save_data():
 
     from resources.libs import extract
     if not extract.all(xbmcvfs.translatePath(tempfile), TEMP):
-        logging.log("Error al intentar extraer el archivo zip!")
+        logging.log("Error trying to extract the zip file!")
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]Error de Importación de Datos![/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Import Data Error![/COLOR]".format(CONFIG.COLOR2))
         return
 
     trakt = os.path.join(TEMP, 'trakt')
@@ -65,9 +65,9 @@ def import_save_data():
 
     x = 0
     overwrite = dialog.yesno(CONFIG.ADDONTITLE,
-                                 "[COLOR {0}]Prefieres que sobrescribamos todos los archivos de Datos Guardados o te preguntemos por cada archivo que se está importando?[/COLOR]".format(CONFIG.COLOR2),
-                                 yeslabel="[B][COLOR cyan]Sobrescribir TODO[/COLOR][/B]",
-                                 nolabel="[B][COLOR red]No preguntar[/COLOR][/B]")
+                                 "[COLOR {0}]Would you rather we overwrite all Save Data files or ask you for each file being imported?[/COLOR]".format(CONFIG.COLOR2),
+                                 yeslabel="[B][COLOR springgreen]Overwrite All[/COLOR][/B]",
+                                 nolabel="[B][COLOR red]No Ask[/COLOR][/B]")
     
     if os.path.exists(trakt):
         from resources.libs import traktit
@@ -84,9 +84,9 @@ def import_save_data():
                     os.remove(old)
                 else:
                     if not dialog.yesno(CONFIG.ADDONTITLE,
-                                            "[COLOR {0}]Le gustaría reemplazar el archivo [COLOR {1}]{2}[/COLOR] actual?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
-                                            yeslabel="[B][COLOR cyan]Sí, Reemplazar[/COLOR][/B]",
-                                            nolabel="[B][COLOR red]No, Saltar[/COLOR][/B]"):
+                                            "[COLOR {0}]Would you like replace the current [COLOR {1}]{2}[/COLOR] file?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
+                                            yeslabel="[B][COLOR springgreen]Yes Replace[/COLOR][/B]",
+                                            nolabel="[B][COLOR red]No Skip[/COLOR][/B]"):
                         continue
                     else:
                         os.remove(old)
@@ -108,9 +108,9 @@ def import_save_data():
                     os.remove(old)
                 else:
                     if not dialog.yesno(CONFIG.ADDONTITLE,
-                                            "[COLOR {0}]Desea reemplazar el archivo [COLOR {1}]{2}[/COLOR] actual?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
-                                            yeslabel="[B][COLOR cyan]Sí, Reemplazar[/COLOR][/B]",
-                                            nolabel="[B][COLOR red]No, Saltar[/COLOR][/B]"):
+                                            "[COLOR {0}]Would you like replace the current [COLOR {1}]{2}[/COLOR] file?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
+                                            yeslabel="[B][COLOR springgreen]Yes Replace[/COLOR][/B]",
+                                            nolabel="[B][COLOR red]No Skip[/COLOR][/B]"):
                         continue
                     else:
                         os.remove(old)
@@ -133,9 +133,9 @@ def import_save_data():
                     os.remove(old)
                 else:
                     if not dialog.yesno(CONFIG.ADDONTITLE,
-                                            "[COLOR {0}]Desea reemplazar el archivo [COLOR {1}]{2}[/COLOR] actual?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
-                                            yeslabel="[B][COLOR cyan]Sí, Reemplazar[/COLOR][/B]",
-                                            nolabel="[B][COLOR red]No, Saltar[/COLOR][/B]"):
+                                            "[COLOR {0}]Would you like replace the current [COLOR {1}]{2}[/COLOR] file?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
+                                            yeslabel="[B][COLOR springgreen]Yes Replace[/COLOR][/B]",
+                                            nolabel="[B][COLOR red]No Skip[/COLOR][/B]"):
                         continue
                     else:
                         os.remove(old)
@@ -151,9 +151,9 @@ def import_save_data():
             if os.path.exists(old):
                 if not overwrite == 1:
                     if not dialog.yesno(CONFIG.ADDONTITLE,
-                                            "[COLOR {0}]Desea reemplazar el archivo [COLOR {1}]{2}[/COLOR] actual?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
-                                            yeslabel="[B][COLOR cyan]Sí, Reemplazar[/COLOR][/B]",
-                                            nolabel="[B][COLOR red]No, Saltar[/COLOR][/B]"):
+                                            "[COLOR {0}]Would you like replace the current [COLOR {1}]{2}[/COLOR] file?".format(CONFIG.COLOR2, CONFIG.COLOR1, item),
+                                            yeslabel="[B][COLOR springgreen]Yes Replace[/COLOR][/B]",
+                                            nolabel="[B][COLOR red]No Skip[/COLOR][/B]"):
                         continue
             os.remove(old)
             shutil.copy(new, old)
@@ -162,9 +162,9 @@ def import_save_data():
         old = os.path.join(CONFIG.ADDON_DATA, 'plugin.program.super.favourites')
         if os.path.exists(old):
             cont = dialog.yesno(CONFIG.ADDONTITLE,
-                                    "[COLOR {0}]Le gustaría reemplazar la carpeta actual  [COLOR {1}]Super Favoritos[/COLOR] addon_data por la nueva?".format(CONFIG.COLOR2, CONFIG.COLOR1),
-                                    yeslabel="[B][COLOR cyan]Sí, Reemplazar[/COLOR][/B]",
-                                    nolabel="[B][COLOR red]No, Saltar[/COLOR][/B]")
+                                    "[COLOR {0}]Would you like replace the current [COLOR {1}]Super Favourites[/COLOR] addon_data folder with the new one?".format(CONFIG.COLOR2, CONFIG.COLOR1),
+                                    yeslabel="[B][COLOR springgreen]Yes Replace[/COLOR][/B]",
+                                    nolabel="[B][COLOR red]No Skip[/COLOR][/B]")
         else:
             cont = 1
         if cont == 1:
@@ -177,10 +177,10 @@ def import_save_data():
         xbmcvfs.delete(tempfile)
     if x == 0:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]No se pudo Guardar la Importación de Datos[/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Save Data Import Failed[/COLOR]".format(CONFIG.COLOR2))
     else:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]Guardar Importación de Datos Completa[/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Save Data Import Complete[/COLOR]".format(CONFIG.COLOR2))
 
 
 def export_save_data():
@@ -195,7 +195,7 @@ def export_save_data():
     traktit.trakt_it('update', 'all')
     loginit.login_it('update', 'all')
     debridit.debrid_it('update', 'all')
-    source = dialog.browse(3, '[COLOR {0}]Seleccione dónde desea exportar el zip SaveData?[/COLOR]'.format(CONFIG.COLOR2),
+    source = dialog.browse(3, '[COLOR {0}]Select where you wish to export the SaveData zip?[/COLOR]'.format(CONFIG.COLOR2),
                                'files', '', False, True, CONFIG.HOME)
     source = xbmcvfs.translatePath(source)
     tempzip = os.path.join(source, 'SaveData.zip')
@@ -219,5 +219,5 @@ def export_save_data():
     zipf.close()
     
     dialog.ok(CONFIG.ADDONTITLE,
-                  "[COLOR {0}]Se ha realizado una copia de seguridad de los datos guardados en:[/COLOR]".format(CONFIG.COLOR2)
+                  "[COLOR {0}]Save data has been backed up to:[/COLOR]".format(CONFIG.COLOR2)
                   +'\n'+"[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, os.path.join(source, 'SaveData.zip')))

@@ -53,7 +53,7 @@ def all_with_progress(_in, _out, dp, ignore, title):
     except Exception as e:
         errors += 1
         error += '%s\n' % e
-        logging.log('Error al Comprobar el Zip: {0}'.format(str(e)), level=xbmc.LOGERROR)
+        logging.log('Error Checking Zip: {0}'.format(str(e)), level=xbmc.LOGERROR)
         return update, errors, error
 
     white_list = whitelist.whitelist('read')
@@ -75,10 +75,10 @@ def all_with_progress(_in, _out, dp, ignore, title):
         try:
             str(item.filename).encode('ascii')
         except UnicodeDecodeError:
-            logging.log("[ASCII Check] Carácter ilegal encontrado en archivo: {0}".format(item.filename))
+            logging.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
             continue
         except UnicodeEncodeError:
-            logging.log("[ASCII Check] Carácter ilegal encontrado en archivo: {0}".format(item.filename))
+            logging.log("[ASCII Check] Illegal character found in file: {0}".format(item.filename))
             continue
             
         count += 1
@@ -87,14 +87,14 @@ def all_with_progress(_in, _out, dp, ignore, title):
         file = str(item.filename).split('/')
         skip = False
         
-        line1 = '{0} [COLOR {1}][B][Errores:{2}][/B][/COLOR]'.format(title,
+        line1 = '{0} [COLOR {1}][B][Errors:{2}][/B][/COLOR]'.format(title,
                                                                     CONFIG.COLOR2,
                                                                     errors)
-        line2 = '[COLOR {0}][B]Archivo:[/B][/COLOR] [COLOR {1}]{2}[/COLOR][COLOR white]/[/COLOR][COLOR {1}]{3}[/COLOR] '.format(CONFIG.COLOR2,
+        line2 = '[COLOR {0}][B]File:[/B][/COLOR] [COLOR {1}]{2}/{3}[/COLOR] '.format(CONFIG.COLOR2,
                                                                                      CONFIG.COLOR1,
                                                                                      count,
                                                                                      int(nFiles))
-        line2 += '[COLOR {0}][B]Tamaño:[/B][/COLOR] [COLOR {1}]{2}[/COLOR][COLOR white]/[/COLOR][COLOR {1}]{3}[/COLOR]'.format(CONFIG.COLOR2,
+        line2 += '[COLOR {0}][B]Size:[/B][/COLOR] [COLOR {1}]{2}/{3}[/COLOR]'.format(CONFIG.COLOR2,
                                                                                      CONFIG.COLOR1,
                                                                                      tools.convert_size(size),
                                                                                      zipsize)
@@ -132,20 +132,20 @@ def all_with_progress(_in, _out, dp, ignore, title):
             try:
                 zin.extract(item, _out)
             except Exception as e:
-                errormsg = "[COLOR {0}][B]Archivo:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]\n".format(CONFIG.COLOR2,
+                errormsg = "[COLOR {0}]File:[/COLOR] [COLOR {1}]{2}[/COLOR]\n".format(CONFIG.COLOR2,
                                                                                       CONFIG.COLOR1,
                                                                                       file[-1])
-                errormsg += "[COLOR {0}][B]Carpeta:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]\n".format(CONFIG.COLOR2,
+                errormsg += "[COLOR {0}]Folder:[/COLOR] [COLOR {1}]{2}[/COLOR]\n".format(CONFIG.COLOR2,
                                                                                          CONFIG.COLOR1,
                                                                                          item.filename.replace(file[-1], ''))
-                errormsg += "[COLOR {0}][B]Error:[/B][/COLOR] [COLOR {1}]{2}[/COLOR]\n\n".format(CONFIG.COLOR2,
+                errormsg += "[COLOR {0}]Error:[/COLOR] [COLOR {1}]{2}[/COLOR]\n\n".format(CONFIG.COLOR2,
                                                                                           CONFIG.COLOR1,
                                                                                           str(e).replace('\\\\', '\\')
                                                                                           .replace("'{0}'"
                                                                                           .format(item.filename), ''))
                 errors += 1
                 error += errormsg
-                logging.log('[B]Error Extrayendo:[/B] {0}({1})'.format(item.filename, str(e)), level=xbmc.LOGERROR)
+                logging.log('Error Extracting: {0}({1})'.format(item.filename, str(e)), level=xbmc.LOGERROR)
                 pass
         dp.update(prog, line1 + '\n' + line2 + '\n' + line3)
         if dp.iscanceled():
@@ -154,7 +154,7 @@ def all_with_progress(_in, _out, dp, ignore, title):
     if dp.iscanceled():
         dp.close()
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]Extraer Cancelado[/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]Extract Cancelled[/COLOR]".format(CONFIG.COLOR2))
         sys.exit()
         
     return prog, errors, error

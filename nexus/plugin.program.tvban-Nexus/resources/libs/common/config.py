@@ -74,14 +74,11 @@ class Config:
         self.SPACER = uservar.SPACER
         self.COLOR1 = uservar.COLOR1
         self.COLOR2 = uservar.COLOR2
-        self.COLOR3 = uservar.COLOR3
-        self.COLOR4 = uservar.COLOR4
         self.THEME1 = uservar.THEME1
         self.THEME2 = uservar.THEME2
         self.THEME3 = uservar.THEME3
         self.THEME4 = uservar.THEME4
         self.THEME5 = uservar.THEME5
-        self.THEME6 = uservar.THEME6
         self.HIDECONTACT = uservar.HIDECONTACT
         self.CONTACT = uservar.CONTACT
         self.CONTACTICON = uservar.CONTACTICON if not uservar.CONTACTICON.endswith('://') else self.ADDON_ICON
@@ -109,8 +106,8 @@ class Config:
 
     def init_paths(self):
         # Static variables
-        self.CLEANFREQ = ['Cada Inicio', 'Todos los Días', 'Cada Tres Días',
-                          'Semanalmente', 'Mensualmente']
+        self.CLEANFREQ = ['Every Startup', 'Every Day', 'Every Three Days',
+                          'Weekly', 'Monthly']
         self.LOGFILES = ['log', 'xbmc.old.log', 'kodi.log']
         self.DEFAULTPLUGINS = ['metadata.album.universal',
                                'metadata.artists.universal',
@@ -187,7 +184,7 @@ class Config:
                              os.path.join(self.HOME, 'cache'),
                              os.path.join(self.HOME, 'system'),
                              os.path.join(self.HOME, 'temp'),
-                             os.path.join(self.HOME, 'Mis_Builds'),
+                             os.path.join(self.HOME, 'My_Builds'),
                              os.path.join(self.HOME, 'cdm'),
                              os.path.join(self.ADDONS, 'temp'),
                              os.path.join(self.ADDONS, 'packages'),
@@ -214,9 +211,7 @@ class Config:
         self.EXTERROR = self.get_setting('errors')
         
         # View variables
-        self.SHOW21 = self.get_setting('show21')
         self.SHOW20 = self.get_setting('show20')
-        self.SHOW19 = self.get_setting('show19')
         self.SHOWADULT = self.get_setting('adult')
         self.SEPARATE = self.get_setting('separate')
         self.DEVELOPER = self.get_setting('developer')
@@ -239,12 +234,12 @@ class Config:
         self.INCLUDETHECREW = self.get_setting('includethecrew')
         self.INCLUDEYODA = self.get_setting('includeyoda')
         self.INCLUDEVENOM = self.get_setting('includevenom')
-        self.INCLUDENUMBERS = int(self.get_setting('noteid'))        
+        self.INCLUDENUMBERS = self.get_setting('includenumbers')
         self.INCLUDESCRUBS = self.get_setting('includescrubs')
         
         # Notification variables
         self.NOTIFY = self.get_setting('notify')
-        self.NOTEID = int(self.get_setting('noteid'))
+        self.NOTEID = self.get_setting('noteid')
         self.NOTEDISMISS = self.get_setting('notedismiss')
         
         # Save Data variables
@@ -266,7 +261,7 @@ class Config:
 
         # Backup variables
         self.BACKUPLOCATION = xbmcvfs.translatePath(self.get_setting('path') if not self.get_setting('path') == '' else self.HOME)
-        self.MYBUILDS = os.path.join(self.BACKUPLOCATION, 'Mis_Builds')
+        self.MYBUILDS = os.path.join(self.BACKUPLOCATION, 'My_Builds')
 
         # Logging variables
         self.DEBUGLEVEL = self.get_setting('debuglevel')
@@ -314,10 +309,10 @@ class Config:
             use = 1
 
         if cat is not None:
-            category_id = cat + str(offset[use][0])
+            category_id = cat + offset[use][0]
             xbmc.executebuiltin('SetFocus({})'.format(category_id))
             if set is not None:
-                setting_id = set + str(offset[use][1])
+                setting_id = set + offset[use][1]
                 xbmc.executebuiltin('SetFocus({})'.format(setting_id))
                 
                 if activate:

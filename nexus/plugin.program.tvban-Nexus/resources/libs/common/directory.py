@@ -32,7 +32,7 @@ from resources.libs.common.config import CONFIG
 
 
 def set_view():
-    auto_view = CONFIG.get_setting('auto-view')
+    auto_view = CONFIG.get_setting('wide-list')
 
     if auto_view == 'true':
         view_type = CONFIG.get_setting('viewType')
@@ -69,7 +69,7 @@ def add_dir(display, params=None, menu=None, description=CONFIG.ADDONTITLE, over
 
 
 def _add_menu_item(display, params, menu, description, overwrite, fanart, icon, themeit, isFolder):
-    # the plugin id, i.e. "plugin://plugin.program.gtkingbuild/"
+    # the plugin id, i.e. "plugin://plugin.program.openwizard/"
     u = sys.argv[0]
 
     if params is not None:
