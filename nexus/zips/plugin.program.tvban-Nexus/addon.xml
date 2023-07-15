@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvban-Nexus" name="OneAlliance Reborn Wizard" version="8.0.3" provider-name="RedWizard">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="31.6.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -13,23 +13,46 @@
     <extension point="xbmc.service" library="startup.py" start="startup" />
     
     <extension point="xbmc.addon.metadata">
-        <summary lang="en">OneAlliance Reborn Wizard</summary>
-        <description lang="en">The OneAlliance Reborn Wizard for installing and maintaining the latest OneAlliance Reborn builds.</description>
-        <platform>all</platform>
-        <reuselanguageinvoker>false</reuselanguageinvoker>
-        <source>https://www.github.com/a4k-openproject/plugin.program.openwizard/</source>
-        <news>2022-12-01
-- Remove requires import script.kodi.android.update
-- Beta Wizard for Kodi 20 Nexus
-- Default View changed from Icon to List
-- Repo Auto Install changed to the main Repo address
-- Change to addon.xml</news>
-        <assets>
-            <icon>icon.png</icon>
-            <fanart>fanart.png</fanart>
-        </assets>
-		<license>GNU GENERAL PUBLIC LICENSE Version 3</license>
-		<email></email>
-		<website>https://www.facebook.com/groups/OneAllianceReborn/</website>
+        <summary lang="en">
+	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR], 
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]	
+	    </summary>
+    	<description lang="en">
+[COLOR lime][B]CREDITOS:[/COLOR][/B] 
+[COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por TVban y Protegidos por los Derechos de Autor.[/B][/COLOR]</disclaimer>
+		<platform>all</platform>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <source>https://andtv.github.io/tvban/</source>
+		<news>
+• [COLOR darkorange]15/07/2023[/COLOR]	
+- Corregido Wizard para Kodi 20 Nexus
+	
+• [COLOR darkorange]10/06/2023[/COLOR]
+- Editado nuevo png para Nexus.		
+		
+• [COLOR darkorange]04/06/2023[/COLOR]
+- Actualizados los scripts.
+- Editar nuevos textos.
+		
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Editar nuevos textos.			
+		
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos.		
+		
+• [COLOR darkorange]05/02/2023[/COLOR]
+- Inciada la compatibilidad con Versiones de Kodi.
+- Nuevo Instalador a la versión  5.2.23
+- Añadido nuevos arreglos:
+¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
+</news>
+	<assets>
+	    <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+	</assets>
     </extension>
 </addon>
+		
