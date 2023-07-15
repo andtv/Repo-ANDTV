@@ -83,7 +83,7 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('[B]Version Kodi:[/B] [COLOR azure]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
+            directory.add_file('[B]Version Kodi:[/B] [COLOR azure]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
             directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
