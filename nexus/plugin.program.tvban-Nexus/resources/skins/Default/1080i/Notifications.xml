@@ -21,10 +21,10 @@
             </control>
             <control type="label" id="102">
                 <posx>20</posx>
-                <posy>40</posy> <!--40-->
+                <posy>20</posy>
                 <width>1660</width>
                 <height>60</height>
-                <font>font_bigposter_text</font>
+                <font>font14</font>
                 <label></label>
                 <align>center</align>
                 <aligny>center</aligny>
@@ -32,21 +32,20 @@
             </control>
             <control type="image" id="103">
                 <posx>20</posx>
-                <posy>10</posy> <!--20-->
+                <posy>20</posy>
                 <width>1660</width>
-                <height>250</height> <!--60-->
+                <height>60</height>
                 <aspectratio aligny="center" align="center">keep</aspectratio>
                 <visible>Skin.String(headerimagetype)</visible>
             </control>
             <control type="textbox" id="104">
-			    <autoscroll delay="3000" time="1500" repeat="4000">!Control.HasFocus(105)</autoscroll>
                 <left>20</left>
-                <top>250</top> <!--90-->
+                <top>90</top>
                 <width>1640</width>
-                <height>575</height> <!--790-->
-                <font>font20</font> <!--font10-->
-                <align>center</align> <!--left-->
-                <aligny>center</aligny> <!--top-->
+                <height>790</height>
+                <font>font10</font>
+                <align>left</align>
+                <aligny>top</aligny>
                 <colordiffuse>FFFF00FF</colordiffuse>
                 <pagecontrol>105</pagecontrol>
             </control>
@@ -76,7 +75,7 @@
                 <height>60</height>
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>[B]Cerrar[/B]</label>
+                <label>Dismiss</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
@@ -94,7 +93,7 @@
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
                 <textoffsetx>20</textoffsetx>
-                <label>[B]Recordar Más Tarde[/B]</label>
+                <label>Remind Me Later</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>

@@ -361,7 +361,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="165.7.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="01.7.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -375,20 +375,18 @@
     <extension point="xbmc.service" library="startup.py" start="startup" />
 
     <extension point="xbmc.addon.metadata">
-        <summary lang="en">
-	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
+        <summary lang="en">[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
 	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
 	    </summary>
-    	<description lang="en">
-[COLOR lime][B]CREDITOS:[/COLOR][/B]
+        <description lang="en">[COLOR lime][B]CREDITOS:[/COLOR][/B]
 [COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
         <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por TVban y Protegidos por los Derechos de Autor.[/B][/COLOR]</disclaimer>
 		<platform>all</platform>
-		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
-		<news>
+        <news>
 • [COLOR darkorange]15/07/2023[/COLOR]
 - Corregido Wizard para Kodi 20 Nexus
 
@@ -415,6 +413,9 @@
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
 	</assets>
+	<license>GNU GENERAL PUBLIC LICENSE Version 3</license>
+		<email></email>
+		<website></website>
     </extension>
 </addon>
 
