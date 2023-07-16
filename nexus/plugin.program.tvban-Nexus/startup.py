@@ -80,7 +80,7 @@ def auto_install_repo():
                         reponame = root.get('name')
                         
                         logging.log_notify("{1}".format(CONFIG.COLOR1, reponame),
-                                           "[COLOR {0}]Add-on actualizado[/COLOR]".format(CONFIG.COLOR2),
+                                           "[COLOR {0}]Add-on updated[/COLOR]".format(CONFIG.COLOR2),
                                            icon=os.path.join(CONFIG.ADDONS, CONFIG.REPOID, 'icon.png'))
                                            
                     except Exception as e:
@@ -92,22 +92,22 @@ def auto_install_repo():
                     progress_dialog.close()
                     xbmc.sleep(500)
 
-                    logging.log("[Auto Install Repo] Instalado exitosamente", level=xbmc.LOGINFO)
+                    logging.log("[Auto Install Repo] Successfully Installed", level=xbmc.LOGINFO)
                 else:
-                    logging.log_notify("[COLOR {0}]Error de Instalación del Repositorio[/COLOR]".format(CONFIG.COLOR1),
-                                       "[COLOR {0}]URL No válida para zip![/COLOR]".format(CONFIG.COLOR2))
-                    logging.log("[Auto Install Repo] No se pudo crear una URL funcional para el repositorio. {0}".format(
+                    logging.log_notify("[COLOR {0}]Repo Install Error[/COLOR]".format(CONFIG.COLOR1),
+                                       "[COLOR {0}]Invalid URL for zip![/COLOR]".format(CONFIG.COLOR2))
+                    logging.log("[Auto Install Repo] Was unable to create a working URL for repository. {0}".format(
                         url), level=xbmc.LOGERROR)
             else:
-                logging.log("URL No válida para el zip del Repositorio", level=xbmc.LOGERROR)
+                logging.log("Invalid URL for Repo zip", level=xbmc.LOGERROR)
         else:
-            logging.log_notify("[COLOR {0}]Error de Instalación del repositorio[/COLOR]".format(CONFIG.COLOR1),
-                               "[COLOR {0}]Invalido addon.xml file![/COLOR]".format(CONFIG.COLOR2))
-            logging.log("[Auto Install Repo] Incapaz de leer el addon.xml file.", level=xbmc.LOGERROR)
+            logging.log_notify("[COLOR {0}]Repo Install Error[/COLOR]".format(CONFIG.COLOR1),
+                               "[COLOR {0}]Invalid addon.xml file![/COLOR]".format(CONFIG.COLOR2))
+            logging.log("[Auto Install Repo] Unable to read the addon.xml file.", level=xbmc.LOGERROR)
     elif not CONFIG.AUTOINSTALL == 'Yes':
-        logging.log("[Auto Install Repo] No habilitado", level=xbmc.LOGINFO)
+        logging.log("[Auto Install Repo] Not Enabled", level=xbmc.LOGINFO)
     elif os.path.exists(os.path.join(CONFIG.ADDONS, CONFIG.REPOID)):
-        logging.log("[Auto Install Repo] Repositorio ya instalado")
+        logging.log("[Auto Install Repo] Repository already installed")
 
 
 def show_notification():
@@ -118,15 +118,15 @@ def show_notification():
             if CONFIG.NOTEDISMISS == 'false':
                 window.show_notification(msg)
             else:
-                logging.log('[Notifications] No hay notificaciones nuevas.', level=xbmc.LOGINFO)
-        elif note_id == CONFIG.NOTEID:
-            logging.log('[Notifications] Mostrando Notificación {0}'
+                logging.log('[Notifications] No new notifications.', level=xbmc.LOGINFO)
+        elif note_id > CONFIG.NOTEID:
+            logging.log('[Notifications] Showing notification {0}'
                         .format(note_id))
-            CONFIG.set_setting('noteid', '{}'.format(note_id))
+            CONFIG.set_setting('noteid', note_id)
             CONFIG.set_setting('notedismiss', 'false')
             window.show_notification(msg)
     else:
-        logging.log('[Notifications] El archivo de Notificaciones en{0} no tiene el formato correcto.'
+        logging.log('[Notifications] Notifications file at {0} not formatted correctly.'
                     .format(CONFIG.NOTIFICATION),
                     level=xbmc.LOGINFO)
 
@@ -135,27 +135,27 @@ def installed_build_check():
     dialog = xbmcgui.Dialog()
 
     if not CONFIG.EXTRACT == '100' and CONFIG.EXTERROR > 0:
-        logging.log("[Build Installed Check] Build fue extraído {0}/100 con [ERRORS: {1}]".format(CONFIG.EXTRACT,
+        logging.log("[Build Installed Check] Build was extracted {0}/100 with [ERRORS: {1}]".format(CONFIG.EXTRACT,
                                                                                                     CONFIG.EXTERROR),
                     level=xbmc.LOGINFO)
         yes = dialog.yesno(CONFIG.ADDONTITLE,
-                           '[COLOR {0}]{2}[/COLOR] [COLOR {1}]no se instaló correctamente![/COLOR]'.format(CONFIG.COLOR1,
+                           '[COLOR {0}]{2}[/COLOR] [COLOR {1}]was not installed correctly![/COLOR]'.format(CONFIG.COLOR1,
                                                                                                    CONFIG.COLOR2,
                                                                                                    CONFIG.BUILDNAME)
-                           +'\n'+('Instalado: [COLOR {0}]{1}[/COLOR] / '
-                            'Errores Encontrados: [COLOR {2}]{3}[/COLOR]').format(CONFIG.COLOR1, CONFIG.EXTRACT, CONFIG.COLOR1,
+                           +'\n'+('Installed: [COLOR {0}]{1}[/COLOR] / '
+                            'Error Count: [COLOR {2}]{3}[/COLOR]').format(CONFIG.COLOR1, CONFIG.EXTRACT, CONFIG.COLOR1,
                                                                           CONFIG.EXTERROR)
-                           +'\n'+'¿Le gustaría volver a intentarlo?[/COLOR]', nolabel='[B]No, ¡Gracias![/B]',
-                           yeslabel='[B]Reintentar la Instalación[/B]')
+                           +'\n'+'Would you like to try again?[/COLOR]', nolabel='[B]No Thanks![/B]',
+                           yeslabel='[B]Retry Install[/B]')
         CONFIG.clear_setting('build')
         if yes:
             xbmc.executebuiltin("PlayMedia(plugin://{0}/?mode=install&name={1}&url=fresh)".format(CONFIG.ADDON_ID,
                                                                                                   quote_plus(CONFIG.BUILDNAME)))
-            logging.log("[Build Installed Check] Instalación Nueva Re-activada", level=xbmc.LOGINFO)
+            logging.log("[Build Installed Check] Fresh Install Re-activated", level=xbmc.LOGINFO)
         else:
-            logging.log("[Build Installed Check] Reinstalar Ignorado")
+            logging.log("[Build Installed Check] Reinstall Ignored")
     elif CONFIG.SKIN in ['skin.confluence', 'skin.estuary', 'skin.estouchy']:
-        logging.log("[Build Installed Check] Skin Incorrecto: {0}".format(CONFIG.SKIN), level=xbmc.LOGINFO)
+        logging.log("[Build Installed Check] Incorrect skin: {0}".format(CONFIG.SKIN), level=xbmc.LOGINFO)
         defaults = CONFIG.get_setting('defaultskin')
         if not defaults == '':
             if os.path.exists(os.path.join(CONFIG.ADDONS, defaults)):
@@ -166,39 +166,39 @@ def installed_build_check():
 
             response = tools.open_url(gui_xml, check=True)
             if not response:
-                logging.log("[Build Installed Check] Guifix estaba configurado para http://", level=xbmc.LOGINFO)
+                logging.log("[Build Installed Check] Guifix was set to http://", level=xbmc.LOGINFO)
                 dialog.ok(CONFIG.ADDONTITLE,
-                          "[COLOR {0}]Parece que la configuración de la máscara no se aplicó a la build.".format(CONFIG.COLOR2)
-                          +'\n'+"Lamentablemente, no se adjuntó ninguna corrección de interfaz gráfica de usuario a la  build"
-                          +'\n'+"Deberá reinstalar la build y asegurarse de hacer un cierre forzado[/COLOR]")
+                          "[COLOR {0}]It looks like the skin settings was not applied to the build.".format(CONFIG.COLOR2)
+                          +'\n'+"Sadly no gui fix was attached to the build"
+                          +'\n'+"You will need to reinstall the build and make sure to do a force close[/COLOR]")
             else:
                 yes = dialog.yesno(CONFIG.ADDONTITLE,
-                                       '{0} No se instaló correctamente!'.format(CONFIG.BUILDNAME)
-                                       +'\n'+'Parece que la configuración de la máscara no se aplicó a la build.'
-                                       +'\n'+'Le gustaría aplicar el GuiFix?',
-                                       nolabel='[B]No, Cancelar[/B]', yeslabel='[B]Aplicar Fix[/B]')
+                                       '{0} was not installed correctly!'.format(CONFIG.BUILDNAME)
+                                       +'\n'+'It looks like the skin settings was not applied to the build.'
+                                       +'\n'+'Would you like to apply the GuiFix?',
+                                       nolabel='[B]No, Cancel[/B]', yeslabel='[B]Apply Fix[/B]')
                 if yes:
                     xbmc.executebuiltin("PlayMedia(plugin://{0}/?mode=install&name={1}&url=gui)".format(CONFIG.ADDON_ID,
                                                                                                         quote_plus(CONFIG.BUILDNAME)))
-                    logging.log("[Build Installed Check] Intentando instalar Guifix")
+                    logging.log("[Build Installed Check] Guifix attempting to install")
                 else:
-                    logging.log('[Build Installed Check] URL de Guifix funcionando, pero cancelada: {0}'.format(gui_xml),
+                    logging.log('[Build Installed Check] Guifix url working but cancelled: {0}'.format(gui_xml),
                                 level=xbmc.LOGINFO)
     else:
-        logging.log('[Build Installed Check] La instalación parece haberse completado correctamente', level=xbmc.LOGINFO)
+        logging.log('[Build Installed Check] Install seems to be completed correctly', level=xbmc.LOGINFO)
         
     if CONFIG.get_setting('installed') == 'true':
         if CONFIG.get_setting('keeptrakt') == 'true':
             from resources.libs import traktit
-            logging.log('[Build Installed Check] Restaurando Trakt Data', level=xbmc.LOGINFO)
+            logging.log('[Build Installed Check] Restoring Trakt Data', level=xbmc.LOGINFO)
             traktit.trakt_it('restore', 'all')
         if CONFIG.get_setting('keepdebrid') == 'true':
             from resources.libs import debridit
-            logging.log('[Build Installed Check] Restaurando Real Debrid Data', level=xbmc.LOGINFO)
+            logging.log('[Build Installed Check] Restoring Real Debrid Data', level=xbmc.LOGINFO)
             debridit.debrid_it('restore', 'all')
         if CONFIG.get_setting('keeplogin') == 'true':
             from resources.libs import loginit
-            logging.log('[Build Installed Check] Restaurando Login Data', level=xbmc.LOGINFO)
+            logging.log('[Build Installed Check] Restoring Login Data', level=xbmc.LOGINFO)
             loginit.login_it('restore', 'all')
 
         CONFIG.clear_setting('install')
@@ -208,12 +208,12 @@ def build_update_check():
     response = tools.open_url(CONFIG.BUILDFILE, check=True)
 
     if not response:
-        logging.log("[Build Check] No es una URL válida para el Archivo de  la Build: {0}".format(CONFIG.BUILDFILE), level=xbmc.LOGINFO)
+        logging.log("[Build Check] Not a valid URL for Build File: {0}".format(CONFIG.BUILDFILE), level=xbmc.LOGINFO)
     elif not CONFIG.BUILDNAME == '':
         if CONFIG.SKIN in ['skin.confluence', 'skin.estuary', 'skin.estouchy'] and not CONFIG.DEFAULTIGNORE == 'true':
             check.check_skin()
 
-        logging.log("[Build Check] Build Instalado: [COLOR gold]Comprobando Actualizaciones", level=xbmc.LOGINFO)
+        logging.log("[Build Check] Build Installed: Checking Updates", level=xbmc.LOGINFO)
         check.check_build_update()
 
     CONFIG.set_setting('nextbuildcheck', tools.get_date(days=CONFIG.UPDATECHECK, formatted=True))
@@ -279,17 +279,17 @@ def auto_clean():
     else:
         logging.log("[Auto Clean Up] Next Clean Up {0}".format(CONFIG.NEXTCLEANDATE),
                     level=xbmc.LOGINFO)
-    if CONFIG.AUTOTHUMBS == 'true':
-            logging.log('[Auto Clean Up] Old Thumbs: On', level=xbmc.LOGINFO)
-            clear.clear_thumbs(type=1)
-    else:
-        logging.log('[Auto Clean Up] Old Thumbs: Off', level=xbmc.LOGINFO)
     if service:
         if CONFIG.AUTOCACHE == 'true':
             logging.log('[Auto Clean Up] Cache: On', level=xbmc.LOGINFO)
             clear.clear_cache(True)
         else:
             logging.log('[Auto Clean Up] Cache: Off', level=xbmc.LOGINFO)
+        if CONFIG.AUTOTHUMBS == 'true':
+            logging.log('[Auto Clean Up] Old Thumbs: On', level=xbmc.LOGINFO)
+            clear.old_thumbs()
+        else:
+            logging.log('[Auto Clean Up] Old Thumbs: Off', level=xbmc.LOGINFO)
         if CONFIG.AUTOPACKAGES == 'true':
             logging.log('[Auto Clean Up] Packages: On', level=xbmc.LOGINFO)
             clear.clear_packages_startup()
@@ -342,10 +342,26 @@ else:
 
 # BUILD INSTALL PROMPT
 if tools.open_url(CONFIG.BUILDFILE, check=True) and CONFIG.get_setting('installed') == 'false':
-    logging.log("[Current Build Check] Build No Instalado", level=xbmc.LOGINFO)
+    logging.log("[Current Build Check] Build Not Installed", level=xbmc.LOGINFO)
     window.show_build_prompt()
 else:
-    logging.log("[Current Build Check] Build Instalado: {0}".format(CONFIG.BUILDNAME), level=xbmc.LOGINFO)
+    logging.log("[Current Build Check] Build Installed: {0}".format(CONFIG.BUILDNAME), level=xbmc.LOGINFO)
+
+# ENABLE ALL ADDONS AFTER INSTALL
+if CONFIG.get_setting('enable_all') == 'true':
+    logging.log("[Post Install] Enabling all Add-ons", level=xbmc.LOGINFO)
+    from resources.libs.gui import menu
+    menu.enable_addons(all=True)
+    if os.path.exists(os.path.join(CONFIG.USERDATA, '.enableall')):
+    	logging.log("[Post Install] .enableall file found in userdata. Deleting..", level=xbmc.LOGINFO)
+    	import xbmcvfs
+    	xbmcvfs.delete(os.path.join(CONFIG.USERDATA, '.enableall'))
+    xbmc.executebuiltin('UpdateLocalAddons')
+    xbmc.executebuiltin('UpdateAddonRepos')
+    db.force_check_updates(auto=True)
+    CONFIG.set_setting('enable_all', 'false')
+    xbmc.executebuiltin("ReloadSkin()")
+    tools.reload_profile(xbmc.getInfoLabel('System.ProfileName'))
 
 # BUILD UPDATE CHECK
 buildcheck = CONFIG.get_setting('nextbuildcheck')
@@ -389,11 +405,11 @@ else:
     logging.log('[Notifications] Not Enabled', level=xbmc.LOGINFO)
 
 # INSTALLED BUILD CHECK
-if CONFIG.get_setting('instalado') == 'true':
-    logging.log("[Build Instalado Check] Started", level=xbmc.LOGINFO)
+if CONFIG.get_setting('installed') == 'true':
+    logging.log("[Build Installed Check] Started", level=xbmc.LOGINFO)
     installed_build_check()
 else:
-    logging.log("[Build Instalado Check] Not Enabled", level=xbmc.LOGINFO)
+    logging.log("[Build Installed Check] Not Enabled", level=xbmc.LOGINFO)
 
 # SAVE TRAKT
 if CONFIG.get_setting('keeptrakt') == 'true':
