@@ -135,7 +135,7 @@ def get_cache_size():
                     continue
                 totalsize += os.path.getsize(item)
         else:
-            logging.log("Eliminar Cache: [COLOR gold]Eliminar Cache de Video No Habilitado[/COLOR]")
+            logging.log("Eliminar Cache: Eliminar Cache de Video No Habilitado")
 
     return totalsize
 
@@ -327,9 +327,9 @@ def clear_cache(over=None):
                         try:
                             shutil.rmtree(os.path.join(root, d))
                             delfiles += 1
-                            logging.log("[Correcto] limpiado {0} archivos de {1} ".format(os.path.join(root, d)))
+                            logging.log("[Correcto] Limpiado {0} ".format(os.path.join(root, d)))
                         except:
-                            logging.log("[Error] al Eliminar la cache en: {0}".format(os.path.join(item, d)))
+                            logging.log("[Fallido] para limpiar la cache en: {0}".format(os.path.join(item, d)))
 
     if CONFIG.INCLUDEVIDEO == 'true' and over is None:
         files = []
@@ -398,7 +398,7 @@ def clear_cache(over=None):
         else:
             logging.log("Eliminar Cache: Eliminar Cache de Video No Habilitado")
     logging.log_notify(CONFIG.ADDONTITLE,
-                       '[COLOR {0}]Eliminar Cache: [COLOR gold]Archivos {1} Eliminados[/COLOR]'.format(CONFIG.COLOR2, delfiles))
+                       '[COLOR {0}]Eliminar Cache: [COLOR gold]Archivos {1} Eliminados[/COLOR]'.format(CONFIG.COLOR2, delfiles)) 
 
 
 def old_thumbs():
@@ -542,11 +542,11 @@ def clear_thumbs(type=None):
             db.purge_db_file(latest)
         for i in thumb_locations:
             tools.remove_folder(i)
-    else:
-        logging.log('[COLOR {0}][COLOR gold]Miniaturas Borradas![/COLOR]')
+        logging.log_notify(CONFIG.ADDONTITLE,
+            '[COLOR {0}][COLOR gold]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
     else:
         logging.log('Eliminar nombres en miniatura cancelados')
-		
+
     tools.redo_thumbs()
 
 
@@ -701,7 +701,7 @@ def remove_addon_menu():
         logging.log_notify(CONFIG.ADDONTITLE,
                            "[COLOR {0}]No hay Addons Para Eliminar[/COLOR]".format(CONFIG.COLOR2))
         return
-    selected = dialog.multiselect("{0}: Seleccione los addons.".format(CONFIG.ADDONTITLE), addonnames)
+    selected = dialog.multiselect("{0}: [COLOR red]Seleccione los Addons[/COLOR]".format(CONFIG.ADDONTITLE), addonnames)
     if not selected:
         return
     if len(selected) > 0:
