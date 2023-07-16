@@ -361,47 +361,63 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="18.5.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
-	<requires>
-    	<import addon="xbmc.python" version="3.0.0"/>
-    	<import addon="script.module.requests" />
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="41.6.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.requests" />
         <import addon="script.module.six" />
-        <import addon="script.kodi.android.update" optional="true" version="1.1.7" />
-	</requires>
+    </requires>
 
-	<extension point="xbmc.python.pluginsource" library="default.py">
-    	<provides>executable</provides>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
     </extension>
 
-	<extension point="xbmc.service" library="startup.py" start="startup" />
+    <extension point="xbmc.service" library="startup.py" start="startup" />
 
-	<extension point="xbmc.addon.metadata">
-		<summary lang="es">
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">
 	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR],
-	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
-	</summary>
-    	<description lang="es">
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]
+	    </summary>
+    	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B]
-[COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
-[COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]Vicente, [COLOR gold]JoseAnd[/COLOR]
-[COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
+[COLOR white][B]• Developers:[/B]      [COLOR lime]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR tan]JoseAnd, [COLOR darkkhaki]AndTvban[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR tan]https://t.me/+andTvban[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por TVban y Protegidos por los Derechos de Autor.[/B][/COLOR]</disclaimer>
 		<platform>all</platform>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
         <source>https://andtv.github.io/tvban/</source>
 		<news>
+• [COLOR darkorange]15/07/2023[/COLOR]
+- Corregido Wizard para Kodi 20 Nexus
+
+• [COLOR darkorange]10/06/2023[/COLOR]
+- Editado nuevo png para Nexus.
+
+• [COLOR darkorange]04/06/2023[/COLOR]
+- Actualizados los scripts.
+- Editar nuevos textos.
+
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Editar nuevos textos.
+
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos.
+
 • [COLOR darkorange]05/02/2023[/COLOR]
 - Inciada la compatibilidad con Versiones de Kodi.
 - Nuevo Instalador a la versión  5.2.23
 - Añadido nuevos arreglos:
 ¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
-
-• [COLOR darkorange]07/05/2023[/COLOR]
-- Añadido nuevos arreglos
 </news>
 	<assets>
 	    <icon>icon.png</icon>
         <fanart>fanart.jpg</fanart>
 	</assets>
+	<license>GNU GENERAL PUBLIC LICENSE Version 20</license>
+		<email></email>
+		<website></website>
     </extension>
 </addon>
 
@@ -455,7 +471,7 @@
 	<extension point="xbmc.service" library="videolibrary_service.py" start="login|startup"></extension>
 </addon>
 
-<addon id="plugin.video.balandro" name="Balandro" version="3.0.4" provider-name="Balandro Team">
+<addon id="plugin.video.balandro" name="Balandro" version="3.0.8" provider-name="Balandro Team">
   <requires>
      <import addon="script.module.requests"/>
   </requires>
@@ -470,7 +486,7 @@
       <icon>icon.png</icon>
     </assets>
     <news>
-    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.4[/COLOR][COLOR red]  Abril de 2023[/B][/COLOR]
+    [COLOR darkorange][B]Versión  [/COLOR][COLOR yellow]3.0.8[/COLOR][COLOR chartreuse]  Julio de 2023[/B][/COLOR]
 
     [COLOR goldenrod][B]Media Centers Soportados[/COLOR][COLOR plum]  20.x,  19.x,  18.x  y  17.x[/B][/COLOR]
 
@@ -479,8 +495,9 @@
     [COLOR firebrick][B]Desarrollo:[/COLOR]  [COLOR orange]github.com/balandro-tk/balandro-addon[/B][/COLOR]
 
     [COLOR limegreen][B]Contacto:[/B][/COLOR]
-        Foro  mimediacenter.info/foro/
+        Foro  www.mimediacenter.info/foro/
         Telegram  t.me/balandro_asesor
+        Team  t.me/Balandro_team
 
     [COLOR blue][B]Agradecimientos:[/B][/COLOR]
         Cita destacada a los miembros de Balandro Team
@@ -610,12 +627,12 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.elementum" name="Elementum" version="0.1.87" provider-name="elgatito">
+<addon id="plugin.video.elementum" name="Elementum" version="0.1.91" provider-name="elgatito">
     <requires>
         <import addon="xbmc.addon" version="16.0.0" />
         <import addon="repository.elementum" optional="true" />
         <import addon="script.module.kodi-six" />
-        <import addon="script.module.requests" />
+        <import addon="script.module.requests" version="2.9.1" />
     </requires>
     <extension point="xbmc.python.pluginsource" library="navigation.py">
         <provides>video</provides>
@@ -820,12 +837,17 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 	</extension>
 </addon>
 
-<addon id="plugin.video.vavooto" name="VAVOO.TO" version="5.3" provider-name="michaz">
+<addon id="plugin.video.vavooto" name="VAVOO.TO" version="5.8.6" provider-name="kasi,michaz">
     <requires>
+        <import addon="script.module.vavoo"/>
         <import addon="script.module.requests"/>
         <import addon="inputstream.ffmpegdirect" optional="true" />
+        <import addon="script.module.resolveurl" optional="true" />
+        <import addon="script.module.urlresolver" optional="true" />
+        <!-- only for debug -->
+        <import addon="script.module.pydevd" optional="true"/>
     </requires>
-    <extension point="xbmc.python.pluginsource" library="lib/main.py">
+    <extension point="xbmc.python.pluginsource" library="main.py">
         <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
@@ -1080,6 +1102,8 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     <extension point="xbmc.service" library="service.py" start="login|startup" />
 </addon>
 
+<addon id="repository.elementum" name="Elementum Repository" version="0.1.87" provider-name="elgatito"><requires></requires><extension point="xbmc.addon.repository" name="Elementum Repository"><dir><info compressed="false">http://127.0.0.1:65220/repository/elgatito/plugin.video.elementum/addons.xml</info><checksum>http://127.0.0.1:65220/repository/elgatito/plugin.video.elementum/addons.xml.md5</checksum><datadir zip="true">http://127.0.0.1:65220/repository/elgatito/</datadir></dir></extension><extension point="xbmc.addon.metadata"><platform>all</platform><summary lang="en">GitHub repository for Elementum updates</summary></extension></addon>
+
 <addon id="repository.jurialmunkey" name="jurialmunkey Alpha Repository" version="3.3" provider-name="jurialmunkey">
     <extension point="xbmc.addon.repository" name="jurialmunkey Alpha Repository">
         <dir>
@@ -1144,6 +1168,27 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<fanart>fanart.jpg</fanart>
 		</assets>
 	</extension>
+</addon>
+
+<addon id="repository.michaz" name="Michaz Repository" provider-name="Michaz" version="3.1.2">
+  <extension point="xbmc.addon.repository" name="Michaz Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/michaz1988/repo/master/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/michaz1988/repo/master/addons.xml.md5</checksum>
+      <datadir zip="true">https://raw.githubusercontent.com/michaz1988/repo/master/</datadir>
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <description lang="en">Addons by Michaz</description>
+    <license></license>
+    <language></language>
+    <website></website>
+    <news></news>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
+  </extension>
 </addon>
 
 <addon id="repository.resolveurl" name="ResolveURL Repository" provider-name="gujal" version="1.0.0">
@@ -1230,6 +1275,32 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
+<addon id="repository.xbmchub" name="TVADDONS.CO Add-on Repository" version="3.0.0" provider-name="tvaddons">
+	<extension point="xbmc.addon.repository" name="TVADDONS.CO Add-on Repository">
+	<dir>
+		<info compressed="false">https://github.com/tvaddonsco/tva-resolvers-repo/raw/master/addons.xml</info>
+		<checksum>https://github.com/tvaddonsco/tva-resolvers-repo/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/tvaddonsco/tva-resolvers-repo/raw/master/zips/</datadir>
+	</dir>
+
+    <dir>
+		<info compressed="false">https://github.com/tvaddonsco/tva-release-repo/raw/master/addons.xml</info>
+		<checksum>https://github.com/tvaddonsco/tva-release-repo/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/tvaddonsco/tva-release-repo/raw/master/</datadir>
+    </dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Unofficial Kodi Addons from TVADDONS.CO</summary>
+		<description>Unofficial Kodi Addons from the TVADDONS.CO Add-on Repository. Please visit www.tvaddons.co for support!
+
+Kodi is a registered trademark of the XBMC Foundation. We are not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation.</description>
+         <disclaimer>TVADDONS.CO did not make all the add-ons in this repository and is not responsible for their content.</disclaimer>
+		<platform>all</platform>
+                <forum>https://www.tvaddons.co/forums</forum>
+                <website>https://www.tvaddons.co</website>
+	</extension>
+</addon>
+
 <addon id="resource.images.weathericons.white" name="Weather Icons - White" version="0.0.6" provider-name="Team Kodi">
 	<extension point="kodi.resource.images" compile="true" type="weather" />
 	<requires>
@@ -1263,6 +1334,44 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 			<screenshot>resources/fanart.jpg</screenshot>
 		</assets>
 	</extension>
+</addon>
+
+<addon id="script.elementum.burst" name="Elementum [COLOR FFFF6B00]Burst[/COLOR]" version="0.0.74" provider-name="elgatito">
+    <requires>
+        <import addon="xbmc.addon" version="16.0.0" />
+        <import addon="plugin.video.elementum" optional="true"/>
+        <import addon="script.module.kodi-six" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.future" version="0.16.0.4"/>
+    </requires>
+    <extension point="xbmc.python.script" library="burst.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">Elementum torrents provider</summary>
+        <summary lang="hr">Elementum torrent pružatelji usluga</summary>
+        <summary lang="es">Proveedor de torrents Elementum</summary>
+        <summary lang="ru">Поисковое дополнение Elementum</summary>
+        <summary lang="sv">Elementum-torrentleverantör</summary>
+        <description lang="en">Elementum Burst is a lean and mean multi-provider for Elementum.</description>
+        <description lang="hr">Elementum Burst je višestruki pružatelj usluga za Elementum.</description>
+        <description lang="es">Elementum Burst es un multi-proveedor simple y eficiente para Elementum.</description>
+        <description lang="ru">Elementum Burst это поисковое дополнение, для поиска торрентов для Elementum.</description>
+        <description lang="sv">Elementum Burst är en enkel och effektiv multi-leverantör för Elementum.</description>
+        <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content providers.</disclaimer>
+        <disclaimer lang="hr">Autor ovog dodatka ne posjeduje i ne distribuira bilo kakav sadržaj koji je pronađen. Autor nije povezan sa bilo kojim izvorom sadržaja.</disclaimer>
+        <disclaimer lang="es">El autor no aloja ni distribuye ninguno de los contenidos mostrados por este complemento. El autor no tiene ninguna afiliación con los proveedores de contenido.</disclaimer>
+        <disclaimer lang="ru">Автор не несёт ответственности за использование дополнения, не распространяет данные, выводимые дополнением.</disclaimer>
+        <disclaimer lang="sv">Skaparen är inte värd eller distribuerar något av innehållet som visas av detta tillägg. Skaparen har ingen anslutning till innehållsleverantörerna.</disclaimer>
+        <license>WTFPL, Version 2, December 2004. See included LICENSE.</license>
+        <website>https://elementum.surge.sh</website>
+        <source>https://github.com/elgatito/script.elementum.burst</source>
+        <forum>TODO</forum>
+        <assets>
+            <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
+        </assets>
+    </extension>
 </addon>
 
 <addon id="script.kelebek"
@@ -1353,7 +1462,7 @@ No se acepta ninguna responsabilidad por el uso de este addon.
     </extension>
 </addon>
 
-<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.95~nightly2" provider-name="gujal">
+<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.101" provider-name="gujal">
     <requires>
         <!-- <import addon="xbmc.python" version="3.0.0" /> -->
         <import addon="script.module.six" />
@@ -1361,8 +1470,6 @@ No se acepta ninguna responsabilidad por el uso de este addon.
         <import addon="plugin.video.youtube" optional="true" />
         <import addon="script.module.python.twitch" optional="true" />
         <import addon="plugin.googledrive" optional="true" />
-        <!-- for remote debug -->
-        <import addon="script.module.pydevd" optional="true"/>
     </requires>
     <extension point="xbmc.python.module" library="lib" />
     <extension point="xbmc.python.pluginsource" library="lib/default.py" />
@@ -1382,6 +1489,18 @@ No se acepta ninguna responsabilidad por el uso de este addon.
             <fanart>fanart.jpg</fanart>
         </assets>
     </extension>
+</addon>
+
+<addon id="script.module.vavoo" name="Vavoosign" version="0.1.2" provider-name="michaz1988">
+	<requires>
+		<import addon="script.module.requests"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<assets>
+			<icon>icon.png</icon>
+		</assets>
+	</extension>
 </addon>
 
 	<addon id="script.skin.helper.colorpicker" name="Skin Helper Service ColorPicker" version="2.0.2" provider-name="sualfred,marcelveldt">
@@ -1404,31 +1523,42 @@ No se acepta ninguna responsabilidad por el uso de este addon.
 	</extension>
 </addon>
 
-<addon id="skin.auramod.TVBAN-Nexus" version="1.1.11" name="AuraMod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod,[COLOR darkviolet]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Nexus" version="1.1.9" name="[COLOR azure]Aura[/COLOR][COLOR darkviolet]TVBAN[/COLOR]" provider-name="[COLOR darkviolet]andtv_tvban,JoseAnd[/COLOR],auraMod">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
         <import addon="script.skin.helper.widgets" version="1.0.0"/>
-        <import addon="script.skinshortcuts" version="1.0.20"/>
+        <import addon="script.skinshortcuts" version="2.0.3"/>
         <import addon="script.image.resource.select" version="0.0.5"/>
+		<import addon="service.library.data.provider" version="0.0.7"/>
         <import addon="plugin.program.autocompletion" version="1.0.1"/>
-        <import addon="resource.images.studios.white" version="0.0.10"/>
+        <import addon="resource.images.studios.white" version="0.0.30"/>
         <import addon="resource.images.studios.coloured" version="0.0.18"/>
         <import addon="resource.images.moviegenreicons.transparent" version="0.0.6"/>
+		<import addon="script.colorbox" version="2.0.8"/>
     </requires>
     <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets. </summary>
+        <summary lang="es">[COLOR azure]Mod[/COLOR] [COLOR darkviolet]TVBAN[/COLOR] [COLOR azure]de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
         <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
-		<news>Nuevos cambios:
-		- Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
+		<news>[COLOR tan]Nuevos cambios:[/COLOR]
+		    - Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
+			v1.1.9
+            -Fix Aura Home horizontal menu layout
+            -Fix conditional spacers when horizontal menu enabled
+            -Add conditional spacer when category widget disabled
+            v1.1.8
+            -Fix weather widget visibility
+            -Fix skin settings labels
+            -Fix skin settings comment blocks
+            v1.1.7
+            -Fix empty enabled widgets visibility
+            -Fix default widget paths
 		</news>
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
-        <forum/>
-        <source/>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>

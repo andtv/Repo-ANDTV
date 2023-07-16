@@ -64,7 +64,7 @@ class MaintenanceMenu:
                            {'mode': 'clearcache'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         if xbmc.getCondVisibility('System.HasAddon(script.module.urlresolver)') or xbmc.getCondVisibility(
                 'System.HasAddon(script.module.resolveurl)'):
-            directory.add_file('Borrar Cache de Función de Resolver', {'mode': 'clearfunctioncache'}, icon=CONFIG.ICONMAINT,
+            directory.add_file('Borrar Caches de Función de Resolver', {'mode': 'clearfunctioncache'}, icon=CONFIG.ICONMAINT,
                                themeit=CONFIG.THEME3)
         directory.add_file('Borrar Paquetes: [COLOR azure][B]{0}[/B][/COLOR]'.format(tools.convert_size(sizepack)),
                            {'mode': 'clearpackages'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
@@ -158,9 +158,9 @@ class MaintenanceMenu:
                 directory.add_file(
                     '--- Include Yoda: {0}'.format(includeyoda.replace('true', on).replace('false', off)),
                     {'mode': 'togglecache', 'name': 'includeyoda'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
-            directory.add_file('[COLOR azure]---[/COLOR] Habilitar TODOS los Addons de Video', {'mode': 'togglecache', 'name': 'true'}, icon=CONFIG.ICONMAINT,
+            directory.add_file('[COLOR azure]---[/COLOR] Habilitar Todos los Addons de Video', {'mode': 'togglecache', 'name': 'true'}, icon=CONFIG.ICONMAINT,
                                themeit=CONFIG.THEME3)
-            directory.add_file('[COLOR azure]---[/COLOR] Desactivar TODOS los Addons de Video', {'mode': 'togglecache', 'name': 'false'}, icon=CONFIG.ICONMAINT,
+            directory.add_file('[COLOR azure]---[/COLOR] Desactivar Todos los Addons de Video', {'mode': 'togglecache', 'name': 'false'}, icon=CONFIG.ICONMAINT,
                                themeit=CONFIG.THEME3)
 
     def addon_menu(self):
@@ -174,7 +174,7 @@ class MaintenanceMenu:
    
     def logging_menu(self):
         errors = int(logging.error_checking(count=True))
-        errorsfound = str(errors) + 'Error(es) Encontrado' if errors > 0 else '[COLOR gold]Nada Encontrado[/COLOR]'
+        errorsfound = str(errors) + ' Error(es) Encontrado' if errors > 0 else '[COLOR azure]Nada Encontrado[/COLOR]'
         wizlogsize = ': [COLOR red]No Encontrado[/COLOR]' if not os.path.exists(
             CONFIG.WIZLOG) else ": [COLOR azure]{0}[/COLOR]".format(
             tools.convert_size(os.path.getsize(CONFIG.WIZLOG)))
@@ -223,6 +223,5 @@ class MaintenanceMenu:
         directory.add_file('Buscar Repositorios Rotos', {'mode': 'checkrepos'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         directory.add_file('Eliminar nombres de archivo que No sean ASCII', {'mode': 'asciicheck'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         # directory.add_file('Toggle Passwords On Keyboard Entry', {'mode': 'togglepasswords'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
-        directory.add_file('Convertir Rutas en Especiales', {'mode': 'convertpath'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         directory.add_dir('Forzar Cierre Kodi', {'mode': 'forceclose'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)
         directory.add_dir('Información del Sistema', {'mode': 'systeminfo'}, icon=CONFIG.ICONMAINT, themeit=CONFIG.THEME3)

@@ -1,29 +1,40 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addon id="skin.auramod.TVBAN-Nexus" version="1.1.11" name="AuraMod[COLOR darkviolet]TVBAN[/COLOR]" provider-name="Auramod,[COLOR darkviolet]andtv_tvban, JoseAnd[/COLOR]">
+<addon id="skin.auramod.TVBAN-Nexus" version="1.1.9" name="[COLOR azure]Aura[/COLOR][COLOR darkviolet]TVBAN[/COLOR]" provider-name="[COLOR darkviolet]andtv_tvban,JoseAnd[/COLOR],auraMod">
     <requires>
         <import addon="xbmc.gui" version="5.15.0"/>
         <import addon="script.skin.helper.service" version="1.1.24"/>
         <import addon="script.skin.helper.widgets" version="1.0.0"/>
-        <import addon="script.skinshortcuts" version="1.0.20"/>
+        <import addon="script.skinshortcuts" version="2.0.3"/>
         <import addon="script.image.resource.select" version="0.0.5"/>
+		<import addon="service.library.data.provider" version="0.0.7"/>
         <import addon="plugin.program.autocompletion" version="1.0.1"/>
-        <import addon="resource.images.studios.white" version="0.0.10"/>
+        <import addon="resource.images.studios.white" version="0.0.30"/>
         <import addon="resource.images.studios.coloured" version="0.0.18"/>
         <import addon="resource.images.moviegenreicons.transparent" version="0.0.6"/>
+		<import addon="script.colorbox" version="2.0.8"/>
     </requires>
     <extension point="xbmc.gui.skin" defaultthemename="Textures.xbt" debugging="false" effectslowdown="1">
         <res width="1920" height="1080" aspect="16:9" default="true" folder="1080i"/>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets. </summary>
+        <summary lang="es">[COLOR azure]Mod[/COLOR] [COLOR darkviolet]TVBAN[/COLOR] [COLOR azure]de Auramod para Kodi 20 / Nexus Minimalista, Personalizable, Multiple Widgets.[/COLOR] </summary>
         <description lang="es">Mod [COLOR darkviolet]TVBAN[/COLOR] de AuraMod. Esta versión de Aura está basada para todos los usuarios. Editado por José Andrés</description>
-		<news>Nuevos cambios:
-		- Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
+		<news>[COLOR tan]Nuevos cambios:[/COLOR]
+		    - Skin modificada para Kodi 20 Nexus y [COLOR darkviolet]TVBAN[/COLOR]
+			v1.1.9
+            -Fix Aura Home horizontal menu layout
+            -Fix conditional spacers when horizontal menu enabled
+            -Add conditional spacer when category widget disabled
+            v1.1.8
+            -Fix weather widget visibility
+            -Fix skin settings labels
+            -Fix skin settings comment blocks
+            v1.1.7
+            -Fix empty enabled widgets visibility
+            -Fix default widget paths
 		</news> 
         <platform>all</platform>
         <license>Creative Commons Attribution Non-Commercial Share-Alike 4.0</license>
-        <forum/>
-        <source/>
         <assets>
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
