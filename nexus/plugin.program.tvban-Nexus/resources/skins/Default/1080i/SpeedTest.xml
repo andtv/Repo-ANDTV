@@ -30,7 +30,7 @@
                 <height>175</height>
                 <font>font13</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>[B]Close[/B]</label>
+                <label>[B]Cerrar[/B]</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus border="40">SpeedTest/btn_start_bg.png</texturefocus>
