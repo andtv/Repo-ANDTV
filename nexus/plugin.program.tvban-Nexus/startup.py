@@ -102,8 +102,8 @@ def auto_install_repo():
                 logging.log("URL No válida para el zip del Repositorio", level=xbmc.LOGERROR)
         else:
             logging.log_notify("[COLOR {0}]Error de Instalación del repositorio[/COLOR]".format(CONFIG.COLOR1),
-                               "[COLOR {0}]Archivo addon.xml no válido![/COLOR]".format(CONFIG.COLOR2))
-            logging.log("[Auto Install Repo] No se puede leer el archivo addon.xml.", level=xbmc.LOGERROR)
+                               "[COLOR {0}]Invalido addon.xml file![/COLOR]".format(CONFIG.COLOR2))
+            logging.log("[Auto Install Repo] Incapaz de leer el addon.xml file.", level=xbmc.LOGERROR)
     elif not CONFIG.AUTOINSTALL == 'Yes':
         logging.log("[Auto Install Repo] No habilitado", level=xbmc.LOGINFO)
     elif os.path.exists(os.path.join(CONFIG.ADDONS, CONFIG.REPOID)):
