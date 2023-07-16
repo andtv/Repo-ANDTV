@@ -43,7 +43,7 @@ class BuildMenu:
 
             if not kodiv or kodiv == int(float(kodi)):
                 menu = self.create_install_menu(name)
-                directory.add_dir('[{0}] {1} (v{2})'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
+                directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} (v{1})[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
 
     def theme_count(self, name, count=True):
         from resources.libs import check
