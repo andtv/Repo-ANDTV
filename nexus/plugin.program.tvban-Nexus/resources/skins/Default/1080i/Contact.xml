@@ -31,14 +31,14 @@
                 <aligny>center</aligny>
             </control>
             <control type="image" id="103">
-                <left>10</left>
-                <top>20</top>
-                <width>350</width>
-                <height>350</height>
+                <left>15</left>
+                <top>30</top>
+                <width>330</width>
+                <height>330</height>
                 <aspectratio aligny="center" align="center">keep</aspectratio>
             </control>
             <control type="textbox" id="104">
-                <left>350</left>
+                <left>375</left>
                 <top>100</top>
                 <width>575</width>
                 <height>300</height>
