@@ -280,7 +280,7 @@ class Router:
 
             tools.clean_house(CONFIG.ADDON_DATA, ignore=True)
             logging.log_notify("[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, CONFIG.ADDONTITLE),
-                               "[COLOR {0}]Addon_Data reset[/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]Reinicar Addon_Data[/COLOR]".format(CONFIG.COLOR2))
         # BACKUP / RESTORE
         elif mode == 'backup' and action:
             from resources.libs import backup
@@ -309,7 +309,7 @@ class Router:
             from resources.libs.common import tools
             tools.remove_file(CONFIG.WIZLOG)
             logging.log_notify("[COLOR {0}]{1}[/COLOR]".format(CONFIG.COLOR1, CONFIG.ADDONTITLE),
-                               "[COLOR {0}]Wizard Log Cleared![/COLOR]".format(CONFIG.COLOR2))
+                               "[COLOR {0}]¡Registro del Wizard Borrado![/COLOR]".format(CONFIG.COLOR2))
 
         # ADVANCED SETTINGS
         elif mode == advanced_settings_mode:
