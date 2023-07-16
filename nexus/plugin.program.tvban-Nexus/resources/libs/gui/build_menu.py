@@ -87,7 +87,7 @@ class BuildMenu:
                                themeit=CONFIG.THEME3)
             directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
-            directory.add_file('URL para archivo txt no valido', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+            directory.add_file('La URL para archivo txt no valido', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             return
 
@@ -105,7 +105,7 @@ class BuildMenu:
                 self.view_build(match[0][0])
                 return
 
-        directory.add_file('[B]Version Kodi:[/B] [COLOR azure]{0}[/COLOR]Kodi Version: {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+        directory.add_file('[B]Version Kodi:[/B] [COLOR azure]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
         directory.add_separator()
 
@@ -140,7 +140,7 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('[COLOR azure]URL para archivo txt no válido', themeit=CONFIG.THEME3)
+            directory.add_file('[COLOR azure]La URL para archivo txt no válido', themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), themeit=CONFIG.THEME3)
             return
 

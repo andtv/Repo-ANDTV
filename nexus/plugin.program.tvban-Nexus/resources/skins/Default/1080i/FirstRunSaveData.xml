@@ -98,9 +98,9 @@
                 <font>font12</font>
                 <texturefocus colordiffuse="FF12B2E7">RadioButton/MenuItemFO.png</texturefocus>
                 <texturenofocus>RadioButton/MenuItemNF.png</texturenofocus>
-                <textureradioonfocus colordiffuse="FF12B2E7">RadioButton/radiobutton-focus.png</textureradioonfocus>
-                <textureradioonnofocus colordiffuse="FF12B2E7">RadioButton/radiobutton-focus.png</textureradioonnofocus>
-                <textureradioofffocus colordiffuse="FF12B2E7">RadioButton/radiobutton-focus.png</textureradioofffocus>
+                <textureradioonfocus colordiffuse="FF32cd32">RadioButton/radiobutton-focus.png</textureradioonfocus><!-- 12B2E7 -->
+                <textureradioonnofocus colordiffuse="FF32cd32">RadioButton/radiobutton-focus.png</textureradioonnofocus><!-- 12B2E7 -->
+                <textureradioofffocus colordiffuse="FF32cd32">RadioButton/radiobutton-focus.png</textureradioofffocus><!-- 12B2E7 -->
                 <textureradiooffnofocus>RadioButton/radiobutton-nofocus.png</textureradiooffnofocus>
             </control>
             <control type="radiobutton" id="303">

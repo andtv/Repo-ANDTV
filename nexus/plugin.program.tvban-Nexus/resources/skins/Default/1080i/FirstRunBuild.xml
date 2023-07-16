@@ -53,7 +53,7 @@
                 <label>[B]Build Menu[/B]</label>
                 <align>center</align>
                 <aligny>center</aligny>
-                <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
+                <texturefocus colordiffuse="FF16e712">Button/testbuttonfo.png</texturefocus><!--12B2E7-->
                 <texturenofocus>Button/testbuttonnf.png</texturenofocus>
                 <onleft>202</onleft>
                 <onright>202</onright>

@@ -192,16 +192,16 @@ def fresh_start(install=None, over=False):
     elif install == 'restore':
         yes_pressed = dialog.yesno(CONFIG.ADDONTITLE,
                                        "[COLOR {0}][B]Desea Restaurar su Configuración de Kodi[/B]".format(CONFIG.COLOR2)
-                                       +'\n'+"Kodi configuration to default settings"
-                                       +'\n'+"Before installing the local backup?[/COLOR]",
-                                       nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]',
-                                       yeslabel='[B][COLOR springgreen]Continue[/COLOR][/B]')
+                                       +'\n'+"[B] a la Configuración Predeterminada,[/B]"
+                                       +'\n'+"[B]Antes de instalar la Copia de Seguridad local?[/B][/COLOR]",                                       
+									   nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
+                                       yeslabel='[B][COLOR cyan]Continuar[/COLOR][/B]')
     elif install:
-        yes_pressed = dialog.yesno(CONFIG.ADDONTITLE, "[COLOR {0}]Do you wish to restore your".format(CONFIG.COLOR2)
-                                       +'\n'+"Kodi configuration to default settings"
-                                       +'\n'+"Before installing [COLOR {0}]{1}[/COLOR]?".format(CONFIG.COLOR1, install),
-                                       nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]',
-                                       yeslabel='[B][COLOR springgreen]Continue[/COLOR][/B]')
+        yes_pressed = dialog.yesno(CONFIG.ADDONTITLE, "[COLOR {0}][B]Desea Restaurar su Configuración de Kodi[/B]".format(CONFIG.COLOR2)
+                                       +'\n'+"[B] a la Configuración Predeterminada[/B]"
+                                       +'\n'+"[B]Antes de instalar[/B] [COLOR {0}]{1}[/COLOR][B]?[/B]".format(CONFIG.COLOR1, install),
+                                       nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
+                                       yeslabel='[B][COLOR cyan]Continuar[/COLOR][/B]')
     else:
         yes_pressed = dialog.yesno(CONFIG.ADDONTITLE, "[COLOR {0}][B]Desea Restaurar su Configuración de Kodi[/B]".format(CONFIG.COLOR2) +' \n' + "[B] a la Configuración Predeterminada?[/B][/COLOR]", nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Continuar[/COLOR][/B]')
     if yes_pressed:
