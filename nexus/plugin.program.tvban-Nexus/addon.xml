@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="04.7.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="05.7.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -14,10 +14,10 @@
     
     <extension point="xbmc.addon.metadata">
         <summary lang="en">[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR], 
-	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 19[/COLOR] [COLOR limegreen]Matrix[/COLOR], [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]	
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]	
 	    </summary>
         <description lang="en">[COLOR lime][B]CREDITOS:[/COLOR][/B] 
-[COLOR white][B]• Developers:[/B]      [COLOR gold]JoseAnd[/COLOR]
+[COLOR white][B]• Developers:[/B]      [COLOR dodgerblue]AndTVban[/COLOR]
 [COLOR white][B]• Testers:[/B]             [COLOR dodgerblue]AndTVban, [COLOR gold]JoseAnd[/COLOR]
 [COLOR white][B]• Telegram:[/B]         [COLOR lime]t.me/beelinkking[/COLOR]</description>
         <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por TVban y Protegidos por los Derechos de Autor.[/B][/COLOR]</disclaimer>
