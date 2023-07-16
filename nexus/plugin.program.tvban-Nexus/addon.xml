@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="41.6.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="42.6.23" provider-name="[B][COLOR azure]andtv_tvban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -19,9 +19,9 @@
 	    </summary>
     	<description lang="en">
 [COLOR lime][B]CREDITOS:[/COLOR][/B] 
-[COLOR white][B]• Developers:[/B]      [COLOR lime]JoseAnd[/COLOR]
-[COLOR white][B]• Testers:[/B]             [COLOR tan]JoseAnd, [COLOR darkkhaki]AndTvban[/COLOR]
-[COLOR white][B]• Telegram:[/B]         [COLOR tan]https://t.me/+andTvban[/COLOR]</description>
+[COLOR white][B]• Developers:[/B]      [COLOR darkorange]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR darkorange]JoseAnd, [COLOR darkkhaki]AndTvban[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR dodgeblue]https://t.me/+andTvban[/COLOR]</description>
         <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por TVban y Protegidos por los Derechos de Autor.[/B][/COLOR]</disclaimer>
 		<platform>all</platform>
 		<reuselanguageinvoker>false</reuselanguageinvoker>
