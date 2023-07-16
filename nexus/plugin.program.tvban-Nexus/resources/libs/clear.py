@@ -639,7 +639,7 @@ def remove_addon_data(addon):
                             yeslabel='[B][COLOR cyan]Eliminar Datos[/COLOR][/B]',
                             nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]'):
             total = tools.empty_folder(CONFIG.ADDON_DATA)
-            logging.log_notify(''[COLOR {0}]Eliminar Carpetas Vacias[/COLOR]'.format(CONFIG.COLOR1),
+            logging.log_notify('[COLOR {0}]Eliminar Carpetas Vacias[/COLOR]'.format(CONFIG.COLOR1),
                                '[COLOR {0}]{1} Carpeta(s) Eliminada[/COLOR]'.format(CONFIG.COLOR2, total))
         else:
             logging.log_notify('[COLOR {0}]Eliminar Carpetas Vacias[/COLOR]'.format(CONFIG.COLOR1),
