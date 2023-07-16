@@ -43,18 +43,7 @@ class BuildMenu:
 
             if not kodiv or kodiv == int(float(kodi)):
                 menu = self.create_install_menu(name)
-#               if float(kodi) == 21:
-#                   directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} (v{1})[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
-#                   directory.add_separator()
-                if float(kodi) == 20:
-                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
-#                    directory.add_separator()
-#               elif float(kodi) == 19.0:
-#                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen]{0} - v{1}[/COLOR][/B]'.format(name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME3)
-#                    directory.add_separator()
-                else:
-                    directory.add_dir('[COLOR aliceblue][/COLOR] [B][COLOR azure]•[/COLOR][COLOR yellowgreen] {1} - v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
-                    directory.add_separator()
+                directory.add_dir('[{0}] {1} (v{2})'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
 
     def theme_count(self, name, count=True):
         from resources.libs import check
@@ -96,13 +85,13 @@ class BuildMenu:
         else:
             directory.add_file('[B]Version Kodi:[/B] [COLOR azure]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
-            directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
+            directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]'', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
-            directory.add_file('URL para archivo txt no valido', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+            directory.add_file('LaURL para archivo txt no es valido', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             return
-            
-        total, count21, count20, count19, adultcount, hidden = check.build_count()
+
+        total, count20, adultcount, hidden = check.build_count()
 
         match = re.compile('name="(.+?)".+?ersion="(.+?)".+?rl="(.+?)".+?ui="(.+?)".+?odi="(.+?)".+?heme="(.+?)".+?con="(.+?)".+?anart="(.+?)".+?dult="(.+?)".+?escription="(.+?)"').findall(link)
         
@@ -124,21 +113,13 @@ class BuildMenu:
             if CONFIG.SEPARATE == 'true':
                 self._list_all(match)
             else:
-                if count21 > 0:
-                    state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW21 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR lime]OMEGA[/B][/COLOR]'.format(state, count21), {'mode': 'togglesetting', 'name': 'show21'}, themeit=CONFIG.THEME3)
-                    if CONFIG.SHOW21 == 'true':
-                        self._list_all(match, kodiv=21)
                 if count20 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting', 'name': 'show20'}, themeit=CONFIG.THEME3)
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR] [COLOR azure]({1})[/COLOR][/B]'.format(state, count20), {'mode': 'togglesetting',
+                                       'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
-                if count19 > 0:
-                    state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW19 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR lime]MATRIX[/B][/COLOR]'.format(state, count19), {'mode': 'togglesetting', 'name': 'show19'}, themeit=CONFIG.THEME3)
-                    if CONFIG.SHOW19 == 'true':
-                        self._list_all(match, kodiv=19)
+
         elif hidden > 0:
             if adultcount > 0:
                 directory.add_file('[COLOR azure]Actualmente Solo hay Builds para Adultos[COLOR]', icon=CONFIG.ICONBUILDS,
@@ -146,7 +127,7 @@ class BuildMenu:
                 directory.add_file('[COLOR azure]Habilitar Mostrar Adultos en los Ajustes de Addon[COLOR] > Misc', icon=CONFIG.ICONBUILDS,
                                    themeit=CONFIG.THEME3)
             else:
-                directory.add_file('[COLOR azure]Actualmente No Se Ofrecen Builds de[COLOR] {0}'.format(CONFIG.ADDONTITLE),
+                directory.add_file('[COLOR azure]Actualmente No Se Ofrecen Builds de[COLOR] {0}Currently No Builds Offered from {0}'.format(CONFIG.ADDONTITLE),
                                    icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         else:
             directory.add_file('[COLOR azure]El archivo de texto para la Build no tiene el formato correcto.[COLOR]', icon=CONFIG.ICONBUILDS,
@@ -159,7 +140,7 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('[COLOR azure]URL para archivo txt no válido', themeit=CONFIG.THEME3)
+            directory.add_file('[COLOR azure]La URL para archivo txt no es válido', themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), themeit=CONFIG.THEME3)
             return
 
@@ -171,7 +152,7 @@ class BuildMenu:
         match = re.compile(
             'name="%s".+?ersion="(.+?)".+?rl="(.+?)".+?ui="(.+?)".+?odi="(.+?)".+?heme="(.+?)".+?con="(.+?)".+?anart="(.+?)".+?review="(.+?)".+?dult="(.+?)".+?nfo="(.+?)".+?escription="(.+?)"' % name).findall(
             link)
-       
+            
         for version, url, gui, kodi, themefile, icon, fanart, preview, adult, info, description in match:
             build = '[COLOR azure]{0}[/COLOR] [COLOR white]- v{1}[/COLOR]'.format(name, version)
             
@@ -201,17 +182,16 @@ class BuildMenu:
                 directory.add_file(
                     '[I][COLOR azure]Soporte[/COLOR] [COLOR dodgerblue]TELEGRAM:[/COLOR] [I][COLOR azure]https://t.me/beelinkking[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
                     fanart=fanart, icon=icon, themeit=CONFIG.THEME3)    
-                    
-            directory.add_separator('[B]INSTALACION BUILD[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
+            directory.add_separator('[B]INSTALACION BUILD[/B]')
             directory.add_file('[B][COLOR azure]• INSTALAR BUILD[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
-                               icon=icon, themeit=CONFIG.THEME3)
+                               icon=icon, themeit=CONFIG.THEME1)
                                
             if guicheck:
-                directory.add_file('Aplicar Corrección gui', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
+                directory.add_file('Aplicar Corrección guiFix', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]MOTOR PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2 )
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon)
 
                 response = tools.open_url(themefile)
                 theme = response.text
@@ -228,7 +208,7 @@ class BuildMenu:
                     themefanart = themefanart if tools.open_url(themefanart, check=True) else fanart
                     
                     directory.add_file(themetitle, {'mode': 'install', 'action': 'theme', 'name': name, 'url': themename}, description=description, fanart=themefanart,
-                        icon=themeicon, themeit=CONFIG.THEME6)
+                        icon=themeicon, themeit=CONFIG.THEME3)
 
     def build_info(self, name):
         from resources.libs import check

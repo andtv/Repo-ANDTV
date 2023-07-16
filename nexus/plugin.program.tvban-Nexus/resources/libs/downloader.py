@@ -35,9 +35,8 @@ class Downloader:
         self.dialog = xbmcgui.Dialog()
         self.progress_dialog = xbmcgui.DialogProgress()
 
-    def download(self, url, dest): 
-        cancelled = False
-        self.progress_dialog.create(CONFIG.ADDONTITLE, "[B]Descargando Contenido...[/B]")
+    def download(self, url, dest):
+        self.progress_dialog.create(CONFIG.ADDONTITLE, "Downloading Content")
         self.progress_dialog.update(0)
         
         path = os.path.split(dest)[0]
@@ -48,7 +47,7 @@ class Downloader:
             
             if not response:
                 logging.log_notify(CONFIG.ADDONTITLE,
-                                   '[COLOR {0}][B]Instalar Build:[/B][/COLOR] [COLOR gold]Url Zip Invalido![/COLOR]'.format(CONFIG.COLOR2))
+                                   '[COLOR {0}]Build Install: Invalid Zip Url![/COLOR]'.format(CONFIG.COLOR2))
                 return
             else:
                 total = response.headers.get('content-length')
@@ -80,19 +79,9 @@ class Downloader:
                         kbps_speed = kbps_speed / 1024
                         type_speed = 'MB'
                         
-                    currently_downloaded = '[COLOR azure][B]Descargando: [COLOR green]ANDTV_O Matrix...[/COLOR] [COLOR azure] -  Espere por Favor.[/B][/COLOR]'.format(CONFIG.ADDONTITLE)  + '\n' + '[COLOR %s][B]Tamaño:[/B] [COLOR %s]%.02f[/COLOR] MB de [COLOR %s]%.02f[/COLOR] MB' % (CONFIG.COLOR2, CONFIG.COLOR1, downloaded / mb, CONFIG.COLOR1, total / mb)
-                    speed = '[COLOR %s][B]Velocidad:[/B] [COLOR %s]%.02f [/COLOR]%s/s ' % (CONFIG.COLOR2, CONFIG.COLOR1, kbps_speed, type_speed)
+                    currently_downloaded = '[COLOR %s][B]Size:[/B] [COLOR %s]%.02f[/COLOR] MB of [COLOR %s]%.02f[/COLOR] MB[/COLOR]' % (CONFIG.COLOR2, CONFIG.COLOR1, downloaded / mb, CONFIG.COLOR1, total / mb)
+                    speed = '[COLOR %s][B]Speed:[/B] [COLOR %s]%.02f [/COLOR]%s/s ' % (CONFIG.COLOR2, CONFIG.COLOR1, kbps_speed, type_speed)
                     div = divmod(eta, 60)
-                    speed += '[B]ESTIMADO:[/B] [COLOR %s]%02d:%02d[/COLOR][/COLOR]' % (CONFIG.COLOR1, div[0], div[1])
+                    speed += '[B]ETA:[/B] [COLOR %s]%02d:%02d[/COLOR][/COLOR]' % (CONFIG.COLOR1, div[0], div[1])
                     
                     self.progress_dialog.update(done, '\n' + str(currently_downloaded) + '\n' + str(speed)) 
-                    if self.progress_dialog.iscanceled():
-                    	cancelled = True
-                    	break
-        if cancelled:
-        	xbmc.sleep(1000)
-        	os.unlink(dest)
-        	dialog = xbmcgui.Dialog()
-        	dialog.ok('[B][COLOR azure]TVBAN[/COLOR] [COLOR lime]MATRIX[/COLOR][/B]', '\n' + '[COLOR azure][B]Descarga Cancelada!![/B][/COLOR]')
-        	quit()
-        
