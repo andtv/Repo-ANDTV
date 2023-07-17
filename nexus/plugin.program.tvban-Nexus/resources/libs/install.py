@@ -58,7 +58,7 @@ def wipe():
         CONFIG.set_setting('loginnextsave', str(tools.get_date(days=3, formatted=True)))
 
     exclude_dirs = CONFIG.EXCLUDES
-    exclude_dirs.append('Mis Builds')
+    exclude_dirs.append('Mis_Builds')
     
     progress_dialog = xbmcgui.DialogProgress()
     
