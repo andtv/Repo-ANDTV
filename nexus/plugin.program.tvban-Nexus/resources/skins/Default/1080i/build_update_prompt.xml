@@ -59,7 +59,7 @@
                 <height>60</height>
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>Instalación Nueva</label>
+                <label>Fresh Install</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
@@ -74,7 +74,7 @@
                 <height>60</height>
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
-                <label>Instalación Normal</label>
+                <label>Normal Install</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>
@@ -90,7 +90,7 @@
                 <font>font12</font>
                 <textcolor>FFF0F0F0</textcolor>
                 <textoffsetx>20</textoffsetx>
-                <label>Actualización</label>
+                <label>Delay Update</label>
                 <align>center</align>
                 <aligny>center</aligny>
                 <texturefocus colordiffuse="FF12B2E7">Button/testbuttonfo.png</texturefocus>

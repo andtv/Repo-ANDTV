@@ -79,7 +79,6 @@ class Config:
         self.THEME3 = uservar.THEME3
         self.THEME4 = uservar.THEME4
         self.THEME5 = uservar.THEME5
-        self.THEME6 = uservar.THEME6
         self.HIDECONTACT = uservar.HIDECONTACT
         self.CONTACT = uservar.CONTACT
         self.CONTACTICON = uservar.CONTACTICON if not uservar.CONTACTICON.endswith('://') else self.ADDON_ICON
@@ -107,8 +106,8 @@ class Config:
 
     def init_paths(self):
         # Static variables
-        self.CLEANFREQ = ['Cada Inicio', 'Todos los Días', 'Cada Tres Días',
-                          'Semanalmente', 'Mensualmente']
+        self.CLEANFREQ = ['Every Startup', 'Every Day', 'Every Three Days',
+                          'Weekly', 'Monthly']
         self.LOGFILES = ['log', 'xbmc.old.log', 'kodi.log']
         self.DEFAULTPLUGINS = ['metadata.album.universal',
                                'metadata.artists.universal',
@@ -185,7 +184,7 @@ class Config:
                              os.path.join(self.HOME, 'cache'),
                              os.path.join(self.HOME, 'system'),
                              os.path.join(self.HOME, 'temp'),
-                             os.path.join(self.HOME, 'Mis_Builds'),
+                             os.path.join(self.HOME, 'My_Builds'),
                              os.path.join(self.HOME, 'cdm'),
                              os.path.join(self.ADDONS, 'temp'),
                              os.path.join(self.ADDONS, 'packages'),
@@ -262,7 +261,7 @@ class Config:
 
         # Backup variables
         self.BACKUPLOCATION = xbmcvfs.translatePath(self.get_setting('path') if not self.get_setting('path') == '' else self.HOME)
-        self.MYBUILDS = os.path.join(self.BACKUPLOCATION, 'Mis_Builds')
+        self.MYBUILDS = os.path.join(self.BACKUPLOCATION, 'My_Builds')
 
         # Logging variables
         self.DEBUGLEVEL = self.get_setting('debuglevel')
@@ -302,7 +301,7 @@ class Config:
             xbmcaddon.Addon(id).openSettings()
         except:
             import logging
-            logging.log('No se puede abrir la configuración de {}'.format(id), level=xbmc.LOGERROR)
+            logging.log('Cannot open settings for {}'.format(id), level=xbmc.LOGERROR)
         
         if int(self.KODIV) < 18:
             use = 0

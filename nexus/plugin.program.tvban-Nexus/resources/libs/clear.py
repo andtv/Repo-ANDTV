@@ -135,7 +135,7 @@ def get_cache_size():
                     continue
                 totalsize += os.path.getsize(item)
         else:
-            logging.log("Eliminar Cache: Eliminar Cache de Video No Habilitado")
+            logging.log("Clear Cache: Clear Video Cache Not Enabled")
 
     return totalsize
 
@@ -155,24 +155,24 @@ def clear_packages(over=None):
                     else:
                         dialog = xbmcgui.Dialog()
                     
-                        yes = dialog.yesno("[COLOR {0}]Eliminar Archivos de Paquete[/COLOR]".format(CONFIG.COLOR2), "[COLOR {0}]{1}[/COLOR] archivos encontrados / [COLOR {2}]{3}[/COLOR] en tamaño.".format(CONFIG.COLOR1, str(file_count),CONFIG.COLOR1, size) + '\n' + "Quieres eliminarlos?", nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Eliminar Paquetes[/COLOR][/B]')
+                        yes = dialog.yesno("[COLOR {0}]Delete Package Files[/COLOR]".format(CONFIG.COLOR2), "[COLOR {0}]{1}[/COLOR] files found / [COLOR {2}]{3}[/COLOR] in size.".format(CONFIG.COLOR1, str(file_count),CONFIG.COLOR1, size) + '\n' + "Do you want to delete them?", nolabel='[B][COLOR red]Don\'t Clear[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Clear Packages[/COLOR][/B]')
                     if yes:
                         for f in files:
                             os.unlink(os.path.join(root, f))
                         for d in dirs:
                             shutil.rmtree(os.path.join(root, d))
                         logging.log_notify(CONFIG.ADDONTITLE,
-                                  '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Correcto![/COLOR]'.format(CONFIG.COLOR2))
+                                  '[COLOR {0}]Clear Packages: Success![/COLOR]'.format(CONFIG.COLOR2))
                 else:
                     logging.log_notify(CONFIG.ADDONTITLE,
-                              '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
+                              '[COLOR {0}]Clear Packages: None Found![/COLOR]'.format(CONFIG.COLOR2))
         except Exception as e:
             logging.log_notify(CONFIG.ADDONTITLE,
-                      '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Error![/COLOR]'.format(CONFIG.COLOR2))
-            logging.log("Error Eliminar Paquetes: {0}".format(str(e)), level=xbmc.LOGERROR)
+                      '[COLOR {0}]Clear Packages: Error![/COLOR]'.format(CONFIG.COLOR2))
+            logging.log("Clear Packages Error: {0}".format(str(e)), level=xbmc.LOGERROR)
     else:
         logging.log_notify(CONFIG.ADDONTITLE,
-                  '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
+                  '[COLOR {0}]Clear Packages: None Found![/COLOR]'.format(CONFIG.COLOR2))
 
 
 def clear_packages_startup():
@@ -200,29 +200,29 @@ def clear_packages_startup():
                         try:
                             shutil.rmtree(file)
                         except Exception as e:
-                            logging.log("No se pudo eliminar {0}: {1}".format(file, str(e), xbmc.LOGERROR))
+                            logging.log("Failed to remove {0}: {1}".format(file, str(e), xbmc.LOGERROR))
             if file_count > 0:
                 logging.log_notify(CONFIG.ADDONTITLE,
-                          '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Correcto: {1}[/COLOR]'.format(CONFIG.COLOR2, tools.convert_size(cleanupsize)))
+                          '[COLOR {0}]Clear Packages: Success: {1}[/COLOR]'.format(CONFIG.COLOR2, tools.convert_size(cleanupsize)))
             else:
                 logging.log_notify(CONFIG.ADDONTITLE,
-                          '[COLOR {0}]Eliminar Paquetes: [COLOR gold]Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
+                          '[COLOR {0}]Clear Packages: None Found![/COLOR]'.format(CONFIG.COLOR2))
         except Exception as e:
             logging.log_notify(CONFIG.ADDONTITLE,
-                      '[COLOR {0}]Eliminar Paquetes: Error![/COLOR]'.format(CONFIG.COLOR2))
-            logging.log("Error Eliminar Paquetes: {0}".format(str(e)), level=xbmc.LOGERROR)
+                      '[COLOR {0}]Clear Packages: Error![/COLOR]'.format(CONFIG.COLOR2))
+            logging.log("Clear Packages Error: {0}".format(str(e)), level=xbmc.LOGERROR)
     else:
         logging.log_notify(CONFIG.ADDONTITLE,
-                  '[COLOR {0}]Eliminar Paquetes: Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
+                  '[COLOR {0}]Clear Packages: None Found![/COLOR]'.format(CONFIG.COLOR2))
 
 
 def clear_archive():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria Eliminar la carpeta [COLOR darkturquoise][B]\'Archivo_Cache\'[/B] [/COLOR]?'.format(CONFIG.COLOR2),
-                        nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
-                        yeslabel='[B][COLOR cyan]Si Eliminar[/COLOR][/B]'):
+                        '[COLOR {0}]Would you like to clear the \'Archive_Cache\' folder?[/COLOR]'.format(CONFIG.COLOR2),
+                        nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]',
+                        yeslabel='[B][COLOR springgreen]Yes Clear[/COLOR][/B]'):
         if os.path.exists(CONFIG.ARCHIVE_CACHE):
             from resources.libs.common import tools
             tools.clean_house(CONFIG.ARCHIVE_CACHE)
@@ -233,9 +233,9 @@ def clear_function_cache(over=False):
 
     if not over:
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar las [COLOR darkturquoise][B]Caches de la Función de Resolución[/B] [/COLOR]?'.format(CONFIG.COLOR2),
-                            nolabel='[B][COLOR red]No, Cancelar[/COLOR][/B]',
-                            yeslabel='[B][COLOR cyan]Eliminar Cache[/COLOR][/B]'):
+                            '[COLOR {0}]Would you like to clear resolver function caches?[/COLOR]'.format(CONFIG.COLOR2),
+                            nolabel='[B][COLOR red]No, Cancel[/COLOR][/B]',
+                            yeslabel='[B][COLOR springgreen]Clear Cache[/COLOR][/B]'):
             clear = True
     else:
         clear = True
@@ -304,20 +304,20 @@ def clear_cache(over=None):
                         if f not in CONFIG.LOGFILES:
                             try:
                                 os.unlink(os.path.join(root, f))
-                                logging.log("[Limpiado] {0}".format(os.path.join(root, f)))
+                                logging.log("[Wiped] {0}".format(os.path.join(root, f)))
                                 delfiles += 1
                             except:
                                 pass
                         else:
-                            logging.log('Ignorar Archivo de Registro: {0}'.format(f))
+                            logging.log('Ignore Log File: {0}'.format(f))
                     for d in dirs:
                         try:
                             shutil.rmtree(os.path.join(root, d))
                             delfiles += 1
-                            logging.log("[Correcto] borro {0} archivos de {1}".format(str(file_count), os.path.join(item, d)),
+                            logging.log("[Success] cleared {0} files from {1}".format(str(file_count), os.path.join(item, d)),
                                         level=xbmc.LOGINFO)
                         except:
-                            logging.log("[Error] al Eliminar la cache en: {0}".format(os.path.join(item, d)),
+                            logging.log("[Failed] to wipe cache in: {0}".format(os.path.join(item, d)),
                                         level=xbmc.LOGINFO)
         else:
             for root, dirs, files in os.walk(item):
@@ -327,9 +327,9 @@ def clear_cache(over=None):
                         try:
                             shutil.rmtree(os.path.join(root, d))
                             delfiles += 1
-                            logging.log("[Correcto] Limpiado {0} ".format(os.path.join(root, d)))
+                            logging.log("[Success] wiped {0} ".format(os.path.join(root, d)))
                         except:
-                            logging.log("[Fallido] para limpiar la cache en: {0}".format(os.path.join(item, d)))
+                            logging.log("[Failed] to wipe cache in: {0}".format(os.path.join(item, d)))
 
     if CONFIG.INCLUDEVIDEO == 'true' and over is None:
         files = []
@@ -370,35 +370,35 @@ def clear_cache(over=None):
                         textdb = database.connect(item)
                         textexe = textdb.cursor()
                     except Exception as e:
-                        logging.log("DB Error de conexion: {0}".format(str(e)), level=xbmc.LOGERROR)
+                        logging.log("DB Connection error: {0}".format(str(e)), level=xbmc.LOGERROR)
                         continue
                     if 'Database' in item:
                         try:
-                            textexe.execute("ELIMINAR DE url_cache")
+                            textexe.execute("DELETE FROM url_cache")
                             textexe.execute("VACUUM")
                             textdb.commit()
                             textexe.close()
-                            logging.log("[Correcto] limpiado {0}".format(item))
+                            logging.log("[Success] wiped {0}".format(item))
                         except Exception as e:
-                            logging.log("[Fallido] limpiado {0}: {1}".format(item, str(e)))
+                            logging.log("[Failed] wiped {0}: {1}".format(item, str(e)))
                     else:
-                        textexe.execute("SELECCIONE el nombre de sqlite_master DONDE tipo = 'table'")
+                        textexe.execute("SELECT name FROM sqlite_master WHERE type = 'table'")
                         for table in textexe.fetchall():
                             try:
-                                textexe.execute("ELIMINAR DE {0}".format(table[0]))
+                                textexe.execute("DELETE FROM {0}".format(table[0]))
                                 textexe.execute("VACUUM")
                                 textdb.commit()
-                                logging.log("[Correcto] limpiado {0} en {1}".format(table[0], item))
+                                logging.log("[Success] wiped {0} in {1}".format(table[0], item))
                             except Exception as e:
                                 try:
-                                    logging.log("[Fallido] limpiado {0} en {1}: {2}".format(table[0], item, str(e)))
+                                    logging.log("[Failed] wiped {0} in {1}: {2}".format(table[0], item, str(e)))
                                 except:
                                     pass
                         textexe.close()
         else:
-            logging.log("Eliminar Cache: Eliminar Cache de Video No Habilitado")
+            logging.log("Clear Cache: Clear Video Cache Not Enabled")
     logging.log_notify(CONFIG.ADDONTITLE,
-                       '[COLOR {0}]Eliminar Cache: [COLOR gold]Archivos {1} Eliminados[/COLOR]'.format(CONFIG.COLOR2, delfiles)) 
+                       '[COLOR {0}]Clear Cache: Removed {1} Files[/COLOR]'.format(CONFIG.COLOR2, delfiles))
 
 
 def old_thumbs():
@@ -416,10 +416,10 @@ def old_thumbs():
             textdb = database.connect(dbfile, isolation_level=None)
             textexe = textdb.cursor()
         except Exception as e:
-            logging.log("DB Error de Conexion: {0}".format(str(e)), level=xbmc.LOGERROR)
+            logging.log("DB Connection Error: {0}".format(str(e)), level=xbmc.LOGERROR)
             return False
     else:
-        logging.log('{0} no encontrado.'.format(dbfile), level=xbmc.LOGERROR)
+        logging.log('{0} not found.'.format(dbfile), level=xbmc.LOGERROR)
         return False
     textexe.execute("SELECT idtexture FROM sizes WHERE usecount < ? AND lastusetime < ?", (use, str(week)))
     found = textexe.fetchall()
@@ -430,7 +430,7 @@ def old_thumbs():
         found2 = textexe.fetchall()
         for rows2 in found2:
             images.append(rows2[0])
-    logging.log("{0} total de miniaturas limpios.".format(str(len(images))))
+    logging.log("{0} total thumbs cleaned up.".format(str(len(images))))
     for id in ids:
         textexe.execute("DELETE FROM sizes WHERE idtexture = ?", (id, ))
         textexe.execute("DELETE FROM texture WHERE id = ?", (id, ))
@@ -448,10 +448,10 @@ def old_thumbs():
     removed = tools.convert_size(size)
     if len(images) > 0:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           '[COLOR {0}]Miniaturas Borrados:[COLOR gold] {1} Archivos / {2} MB[/COLOR]!'.format(CONFIG.COLOR2, str(len(images)), removed))
+                           '[COLOR {0}]Clear Thumbs: {1} Files / {2} MB[/COLOR]!'.format(CONFIG.COLOR2, str(len(images)), removed))
     else:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           '[COLOR {0}]Miniaturas Borrados: [COLOR gold]Ninguno Encontrado![/COLOR]'.format(CONFIG.COLOR2))
+                           '[COLOR {0}]Clear Thumbs: None Found![/COLOR]'.format(CONFIG.COLOR2))
 
 
 def clear_crash():
@@ -462,26 +462,26 @@ def clear_crash():
         dialog = xbmcgui.Dialog()
 
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar el [COLOR darkturquoise][B]Crash Logs[/B] [/COLOR]?'.format(CONFIG.COLOR2)
-                            +'\n'+'[COLOR {0}]{1}[/COLOR] Archivos Encontrados[/COLOR]'.format(CONFIG.COLOR1, len(files)),
-                            yeslabel="[B][COLOR cyan]Eliminar Logs[/COLOR][/B]",
-                            nolabel="[B][COLOR red]Mantener Logs[/COLOR][/B]"):
+                            '[COLOR {0}]Would you like to delete the Crash logs?'.format(CONFIG.COLOR2)
+                            +'\n'+'[COLOR {0}]{1}[/COLOR] Files Found[/COLOR]'.format(CONFIG.COLOR1, len(files)),
+                            yeslabel="[B][COLOR springgreen]Remove Logs[/COLOR][/B]",
+                            nolabel="[B][COLOR red]Keep Logs[/COLOR][/B]"):
             for f in files:
                 os.remove(f)
-            logging.log_notify('[COLOR {0}]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]{1} º            Crash Logs Eliminado[/COLOR]'.format(CONFIG.COLOR2, len(files)))
+            logging.log_notify('[COLOR {0}]Clear Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]{1} Crash Logs Removed[/COLOR]'.format(CONFIG.COLOR2, len(files)))
         else:
             logging.log_notify(CONFIG.ADDONTITLE,
-                               '[COLOR {0}][COLOR gold]Eliminar Crash Logs Cancelado[/COLOR]'.format(CONFIG.COLOR2))
+                               '[COLOR {0}]Clear Crash Logs Cancelled[/COLOR]'.format(CONFIG.COLOR2))
     else:
-        logging.log_notify('[COLOR {0}] [COLOR white]Eliminar Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
-                           '[COLOR {0}][COLOR gold]No se Encontraron Crash Logs[/COLOR]'.format(CONFIG.COLOR2))
+        logging.log_notify('[COLOR {0}]Clear Crash Logs[/COLOR]'.format(CONFIG.COLOR1),
+                           '[COLOR {0}]No Crash Logs Found[/COLOR]'.format(CONFIG.COLOR2))
 
 
 def force_text():
     tools.clean_house(CONFIG.TEXTCACHE)
     logging.log_notify(CONFIG.ADDONTITLE,
-                       '[COLOR {0}][COLOR gold]Archivos de Texto Descargados![/COLOR]'.format(CONFIG.COLOR2))
+                       '[COLOR {0}]Text Files Flushed![/COLOR]'.format(CONFIG.COLOR2))
 
 
 def toggle_cache(state):
@@ -497,10 +497,10 @@ def toggle_cache(state):
 
                 item = titlelist[cachelist.index(state)]
                 dialog.ok(CONFIG.ADDONTITLE,
-                              "[COLOR {0}]Debera desactivar [COLOR {1}]Incluir Todos los Addons[/COLOR] para deshabilitar[/COLOR] [COLOR {2}]{3}[/COLOR]".format(CONFIG.COLOR2, CONFIG.COLOR1, CONFIG.COLOR1, item))
+                              "[COLOR {0}]You will need to turn off [COLOR {1}]Include All Addons[/COLOR] to disable[/COLOR] [COLOR {2}]{3}[/COLOR]".format(CONFIG.COLOR2, CONFIG.COLOR1, CONFIG.COLOR1, item))
             except:
-                logging.log_notify("[COLOR {0}]Alternar Cache[/COLOR]".format(CONFIG.COLOR1),
-                                   "[COLOR {0}]Invalido Add-on ID: {1}[/COLOR]".format(CONFIG.COLOR2, state))
+                logging.log_notify("[COLOR {0}]Toggle Cache[/COLOR]".format(CONFIG.COLOR1),
+                                   "[COLOR {0}]Invalid Add-on ID: {1}[/COLOR]".format(CONFIG.COLOR2, state))
         else:
             new = 'true' if CONFIG.get_setting(state) == 'false' else 'false'
             CONFIG.set_setting(state, new)
@@ -510,9 +510,9 @@ def total_clean():
     dialog = xbmcgui.Dialog()
 
     if dialog.yesno(CONFIG.ADDONTITLE,
-                        '[COLOR {0}]Le gustaria eliminar la [COLOR darkturquoise][B]Cache, los Paquetes y  Miniaturas[/B][/COLOR] ?'.format(CONFIG.COLOR2),
-                        nolabel='[B][COLOR red]Cancelar Proceso[/COLOR][/B]',
-                        yeslabel='[B][COLOR cyan]Eliminar Todo[/COLOR][/B]'):
+                        '[COLOR {0}]Would you like to clear cache, packages and thumbnails?[/COLOR]'.format(CONFIG.COLOR2),
+                        nolabel='[B][COLOR red]Cancel Process[/COLOR][/B]',
+                        yeslabel='[B][COLOR springgreen]Clean All[/COLOR][/B]'):
         clear_archive()
         clear_cache()
         clear_function_cache(over=True)
@@ -533,19 +533,17 @@ def clear_thumbs(type=None):
     if type is not None:
         choice = 1
     else:
-        choice = dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Le gustaria eliminar [COLOR darkturquoise][B]{1}[/B][/COLOR] y las Carpetas de Miniaturas relacionadas?'.format(CONFIG.COLOR2, latest) + '\n' + "Ellas se repoblarán en la próxima puesta en marcha.[/COLOR]", nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]', yeslabel='[B][COLOR cyan]Eliminar Miniaturas[/COLOR][/B]')
+        choice = dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Would you like to delete the {1} and related thumbnail folders?'.format(CONFIG.COLOR2, latest) + '\n' + "They will repopulate on the next startup[/COLOR]", nolabel='[B][COLOR red]Don\'t Delete[/COLOR][/B]', yeslabel='[B][COLOR springgreen]Delete Thumbs[/COLOR][/B]')
     if choice == 1:
         try:
             tools.remove_file(os.path.join(CONFIG.DATABASE, latest))
         except:
-            logging.log('Error al eliminar, Purgando DB.')
+            logging.log('Failed to delete, Purging DB.')
             db.purge_db_file(latest)
         for i in thumb_locations:
             tools.remove_folder(i)
-        logging.log_notify(CONFIG.ADDONTITLE,
-            '[COLOR {0}][COLOR azure]Miniaturas Borradas![/COLOR]'.format(CONFIG.COLOR2))
     else:
-        logging.log('Eliminar nombres en miniatura cancelados')
+        logging.log('Clear thumbnames cancelled')
 
     tools.redo_thumbs()
 
@@ -560,14 +558,14 @@ def remove_addon(addon, name, over=False, data=True):
         dialog = xbmcgui.Dialog()
         
         yes = dialog.yesno(CONFIG.ADDONTITLE,
-                               '[COLOR {0}]Estas seguro de que quieres eliminar el add-on:'.format(CONFIG.COLOR2)
+                               '[COLOR {0}]Are you sure you want to delete the add-on:'.format(CONFIG.COLOR2)
                                +'\n'+'Name: [COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, name)
                                +'\n'+'ID: [COLOR {0}]{1}[/COLOR][/COLOR]'.format(CONFIG.COLOR1, addon),
-                               yeslabel='[B][COLOR cyan]Eliminar Add-on[/COLOR][/B]',
-                               nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]')
+                               yeslabel='[B][COLOR springgreen]Remove Add-on[/COLOR][/B]',
+                               nolabel='[B][COLOR red]Don\'t Remove[/COLOR][/B]')
     if yes == 1:
         folder = os.path.join(CONFIG.ADDONS, addon)
-        logging.log("Eliminando Add-on: {0}".format(addon))
+        logging.log("Removing Add-on: {0}".format(addon))
 
         from resources.libs.common import tools
         tools.clean_house(folder)
@@ -585,7 +583,7 @@ def remove_addon(addon, name, over=False, data=True):
         try:
             shutil.rmtree(folder)
         except Exception as e:
-            logging.log("Error al eliminar {0}: {1}".format(addon, str(e)))
+            logging.log("Error removing {0}: {1}".format(addon, str(e)))
         
         if data:
             remove_addon_data(addon)
@@ -594,7 +592,7 @@ def remove_addon(addon, name, over=False, data=True):
             
     if not over:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]{1} Eliminando[/COLOR]".format(CONFIG.COLOR2, name))
+                           "[COLOR {0}]{1} Removed[/COLOR]".format(CONFIG.COLOR2, name))
 
 
 def remove_addon_data(addon):
@@ -602,18 +600,18 @@ def remove_addon_data(addon):
 
     if addon == 'all':  # clear ALL addon data
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar [COLOR {1}]TODOS[/COLOR] los datos de los addons almacenados en su carpeta de datos de usuario para los addons desinstalados?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
-                            yeslabel='[B][COLOR cyan]Eliminar Datos[/COLOR][/B]',
-                            nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]'):
+                            '[COLOR {0}]Would you like to remove [COLOR {1}]ALL[/COLOR] addon data stored in your userdata folder?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
+                            yeslabel='[B][COLOR springgreen]Remove Data[/COLOR][/B]',
+                            nolabel='[B][COLOR red]Don\'t Remove[/COLOR][/B]'):
             tools.clean_house(CONFIG.ADDON_DATA)
         else:
-            logging.log_notify('[COLOR {0}]Eliminar Datos de Addons[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]Cancelado![/COLOR]'.format(CONFIG.COLOR2))
-    elif addon == 'desinstalado':  # clear addon data for uninstalled addons
+            logging.log_notify('[COLOR {0}]Remove Addon Data[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]Cancelled![/COLOR]'.format(CONFIG.COLOR2))
+    elif addon == 'uninstalled':  # clear addon data for uninstalled addons
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaría eliminar [COLOR {1}]TODOS[/COLOR] los datos de los addons almacenados en su carpeta de datos de usuario para los addons desinstalados?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
-                            yeslabel='[B][COLOR cyan]Eliminar Datos[/COLOR][/B]',
-                            nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]'):
+                            '[COLOR {0}]Would you like to remove [COLOR {1}]ALL[/COLOR] addon data stored in your userdata folder for uninstalled addons?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
+                            yeslabel='[B][COLOR springgreen]Remove Data[/COLOR][/B]',
+                            nolabel='[B][COLOR red]Don\'t Remove[/COLOR][/B]'):
                             
             total = 0
             
@@ -628,36 +626,36 @@ def remove_addon_data(addon):
                     total += 1
                     logging.log(folder)
                     shutil.rmtree(folder)
-            logging.log_notify('[COLOR {0}]Limpiar Desinstalado[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]{1} Carpetas(s) Eliminada[/COLOR]'.format(CONFIG.COLOR2, total))
+            logging.log_notify('[COLOR {0}]Clean up Uninstalled[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]{1} Folders(s) Removed[/COLOR]'.format(CONFIG.COLOR2, total))
         else:
-            logging.log_notify('[COLOR {0}]Eliminar Datos de Add-ons[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]Cancelado![/COLOR]'.format(CONFIG.COLOR2))
+            logging.log_notify('[COLOR {0}]Remove Add-on Data[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]Cancelled![/COLOR]'.format(CONFIG.COLOR2))
     elif addon == 'empty':  # clear empty folders from addon_data
         if dialog.yesno(CONFIG.ADDONTITLE,
-                            '[COLOR {0}]Le gustaria eliminar [COLOR {1}] TODAS [/COLOR] las carpetas de datos de addons vacias en su carpeta de datos de usuario?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
-                            yeslabel='[B][COLOR cyan]Eliminar Datos[/COLOR][/B]',
-                            nolabel='[B][COLOR red]No Eliminar[/COLOR][/B]'):
+                            '[COLOR {0}]Would you like to remove [COLOR {1}]ALL[/COLOR] empty addon data folders in your userdata folder?[/COLOR]'.format(CONFIG.COLOR2, CONFIG.COLOR1),
+                            yeslabel='[B][COLOR springgreen]Remove Data[/COLOR][/B]',
+                            nolabel='[B][COLOR red]Don\'t Remove[/COLOR][/B]'):
             total = tools.empty_folder(CONFIG.ADDON_DATA)
-            logging.log_notify('[COLOR {0}]Eliminar Carpetas Vacias[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]{1} Carpeta(s) Eliminada[/COLOR]'.format(CONFIG.COLOR2, total))
+            logging.log_notify('[COLOR {0}]Remove Empty Folders[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]{1} Folders(s) Removed[/COLOR]'.format(CONFIG.COLOR2, total))
         else:
-            logging.log_notify('[COLOR {0}]Eliminar Carpetas Vacias[/COLOR]'.format(CONFIG.COLOR1),
-                               '[COLOR {0}]Cancelado![/COLOR]'.format(CONFIG.COLOR2))
+            logging.log_notify('[COLOR {0}]Remove Empty Folders[/COLOR]'.format(CONFIG.COLOR1),
+                               '[COLOR {0}]Cancelled![/COLOR]'.format(CONFIG.COLOR2))
     else:  # clear addon data for a specific addon
         addon_data = os.path.join(CONFIG.ADDON_DATA, addon)
         if addon in CONFIG.EXCLUDES:
-            logging.log_notify("[COLOR {0}]Plugin Protegido[/COLOR]".format(CONFIG.COLOR1),
-                               "[COLOR {0}]No se permite eliminar datos de los add-ons[/COLOR]".format(CONFIG.COLOR2))
+            logging.log_notify("[COLOR {0}]Protected Plugin[/COLOR]".format(CONFIG.COLOR1),
+                               "[COLOR {0}]Not allowed to remove add-on data[/COLOR]".format(CONFIG.COLOR2))
         elif os.path.exists(addon_data):
-            if dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Tambien le gustaria eliminar los datos de los add-ons para:[/COLOR]'.format(CONFIG.COLOR2) + '\n' + '[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, addon), yeslabel='[B][COLOR cyan]Quitar datos[/COLOR][/B]', nolabel='[B][COLOR red]No Quitar[/COLOR][/B]'):
+            if dialog.yesno(CONFIG.ADDONTITLE, '[COLOR {0}]Would you also like to remove the add-on data for:[/COLOR]'.format(CONFIG.COLOR2) + '\n' + '[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, addon), yeslabel='[B][COLOR springgreen]Remove Data[/COLOR][/B]', nolabel='[B][COLOR red]Don\'t Remove[/COLOR][/B]'):
                 tools.clean_house(addon_data)
                 try:
                     shutil.rmtree(addon_data)
                 except:
-                    logging.log("Error al eliminar: {0}".format(addon_data))
+                    logging.log("Error deleting: {0}".format(addon_data))
             else:
-                logging.log('No se eliminaron los datos {0} Add-ons para'.format(addon))
+                logging.log('Add-on data for {0} was not removed'.format(addon))
     xbmc.executebuiltin('Container.Refresh()')
 
     
@@ -699,9 +697,9 @@ def remove_addon_menu():
                 
     if len(addonnames) == 0:
         logging.log_notify(CONFIG.ADDONTITLE,
-                           "[COLOR {0}]No hay Addons Para Eliminar[/COLOR]".format(CONFIG.COLOR2))
+                           "[COLOR {0}]No Addons To Remove[/COLOR]".format(CONFIG.COLOR2))
         return
-    selected = dialog.multiselect("{0}: [COLOR red]Seleccione los Addons[/COLOR]".format(CONFIG.ADDONTITLE), addonnames)
+    selected = dialog.multiselect("{0}: Select the addons you wish to remove.".format(CONFIG.ADDONTITLE), addonnames)
     if not selected:
         return
     if len(selected) > 0:
@@ -711,7 +709,7 @@ def remove_addon_menu():
 
         xbmc.sleep(500)
 
-        dialog.ok(CONFIG.ADDONTITLE, "[COLOR {0}]Para guardar los cambios, ahora necesita Forzar el Cierre de Kodi, Presione OK para Forzar el Cierre de Kodi[/COLOR]".format(CONFIG.COLOR2))
+        dialog.ok(CONFIG.ADDONTITLE, "[COLOR {0}]To save changes you now need to force close Kodi, Press OK to force close Kodi[/COLOR]".format(CONFIG.COLOR2))
         
         update.addon_updates('reset')
         tools.kill_kodi(over=True)

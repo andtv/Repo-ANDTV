@@ -64,8 +64,7 @@ SPACER = '<->'
 # THEME's so it grabs the text from the menu item
 #COLOR1 = 'limegreen'
 #COLOR1 = 'blueviolet'
-#COLOR1 = 'orchid'ndigo
-COLOR1 = 'darkorchid'
+COLOR1 = 'orchid'
 COLOR2 = 'white'
 COLOR3 = 'dodgerblue'
 COLOR4 = 'turquoise'
