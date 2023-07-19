@@ -56,7 +56,7 @@ def highlight_text(msg):
     for item in matches:
         string = '-->Python callback/script returned the following error<--{0}-->End of Python script error report<--'.format(item)
         msg = msg.replace(string, '[COLOR red]{0}[/COLOR]'.format(string))
-    msg = msg.replace('WARNING', '[COLOR yellow]WARNING[/COLOR]').replace('ERROR', '[COLOR red]ERROR[/COLOR]').replace('[NL]', '\n').replace(': EXCEPTION Thrown (PythonToCppException) :', '[COLOR red]: EXCEPTION Thrown (PythonToCppException) :[/COLOR]')
+    msg = msg.replace('WARNING', '[COLOR yellow]ADVERTENCIA[/COLOR]').replace('ERROR', '[COLOR red]ERROR[/COLOR]').replace('[NL]', '\n').replace(': EXCEPCIÓN Lanzado (PythonToCppException) :', '[COLOR red]: EXCEPCIÓN Lanzado (PythonToCppException) :[/COLOR]')
     msg = msg.replace('\\\\', '\\').replace(CONFIG.HOME, '')
     return msg
 
@@ -207,7 +207,7 @@ def show_apk_warning(apk):
             xbmc.sleep(400)
             self.close()
 
-    xbmc.executebuiltin('Skin.SetString(apkinstaller, Now that {0} has been downloaded[CR]Click install on the next window!)'.format(apk))
+    xbmc.executebuiltin('Skin.SetString(apkinstaller, Ahora que se ha descargado {0} [CR]Haga clic en instalar en la siguiente ventana!)'.format(apk))
     popup = APKInstaller('APK.xml', CONFIG.ADDON_PATH, 'Default', close_time=34)
     popup.doModal()
     del popup
@@ -314,7 +314,7 @@ def show_build_prompt():
 
         def __init__(self, *args, **kwargs):
             self.title = CONFIG.THEME3.format(CONFIG.ADDONTITLE)
-            self.msg = "Currently no build installed from {0}.\n\nSelect 'Build Menu' to install a Community Build from us or 'Ignore' to never see this message again.\n\nThank you for choosing {1}.".format(CONFIG.ADDONTITLE, CONFIG.ADDONTITLE)
+            self.msg = "[B][COLOR azure]\nActualmente no hay ninguna[/COLOR][/B] [B][COLOR lime]Build[/COLOR][/B] [B][COLOR azure]instalada en[/COLOR][/B] {0}[B][COLOR azure].[/COLOR][/B][COLOR azure]\n\n\n[B]Seleccione[/B] [/COLOR][COLOR FF62e44f][B]'Build Menu'[/B][/COLOR] [COLOR azure][B]para instalar la [COLOR azure]Build[/COLOR][COLOR azure]. Seleccione[/B] [/COLOR][COLOR FF12B2E7][B]'Ignorar'[/B][/COLOR] [COLOR azure][B]para Cerrar esta ventana.[/COLOR][/B][COLOR azure]\n\n\n[B]Gracias por escoger:[/B][/COLOR]  {1}[COLOR azure].[/COLOR]".format(CONFIG.ADDONTITLE, CONFIG.ADDONTITLE)
             self.msg = CONFIG.THEME2.format(self.msg)
 
         def onInit(self):
@@ -333,10 +333,10 @@ def show_build_prompt():
             self.setFocusId(self.buildmenu)
 
         def do_build_menu(self):
-            logging.log("[Current Build Check] [User Selected: Open Build Menu] [Next Check: {0}]".format(CONFIG.BUILDCHECK),
+            logging.log("[Verificación Build Actual] [Usuario Seleccionado: Abrir Menu Build] [Siguiente Verificación: {0}]".format(CONFIG.BUILDCHECK),
                         level=xbmc.LOGINFO)
             CONFIG.set_setting('nextbuildcheck', tools.get_date(days=CONFIG.UPDATECHECK, formatted=True))
-            CONFIG.set_setting('installed', 'ignored')
+            CONFIG.set_setting('instalado', 'ignorado')
             
             url = 'plugin://{0}/?mode=builds'.format(CONFIG.ADDON_ID)
             
@@ -345,10 +345,10 @@ def show_build_prompt():
             xbmc.executebuiltin('ActivateWindow(Programs, {0}, return)'.format(url))
 
         def do_ignore(self):
-            logging.log("[Current Build Check] [User Selected: Ignore Build Menu] [Next Check: {0}]".format(CONFIG.BUILDCHECK),
+            logging.log("[Verificación Build Actual] [Usuario seleccionado: Ignorar Build Menu] [Siguiente Verificación: {0}]".format(CONFIG.BUILDCHECK),
                         level=xbmc.LOGINFO)
             CONFIG.set_setting('nextbuildcheck', tools.get_date(days=CONFIG.UPDATECHECK, formatted=True))
-            CONFIG.set_setting('installed', 'ignored')
+            CONFIG.set_setting('instalado', 'ignorado')
             
             self.close()
 
@@ -372,12 +372,12 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
 
         def __init__(self, *args, **kwargs):
             self.name = CONFIG.THEME3.format(kwargs['name'])
-            self.current = kwargs['current']
-            self.new = kwargs['new']
+            self.current = kwargs['actual']
+            self.new = kwargs['nuevo']
             self.icon = kwargs['icon']
             self.fanart = kwargs['fanart']
-            self.msgupdate = "Update avaliable for installed build:\n[COLOR {0}]{1}[/COLOR]\n\nCurrent Version: v[COLOR {2}]{3}[/COLOR]\nLatest Version: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommened: Fresh install[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
-            self.msgcurrent = "Running latest version of installed build:\n[COLOR {0}]{1}[/COLOR]\n\nCurrent Version: v[COLOR {2}]{3}[/COLOR]\nLatest Version: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommended: Fresh install[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
+            self.msgupdate = "[B][COLOR white]Actualización disponible para instalar la Build:[/B]\n[COLOR {0}]{1}[/COLOR]\n\n[COLOR white]Versión Actual: v[COLOR {2}]{3}[/COLOR]\n[COLOR white]Ultima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
+            self.msgcurrent = "[COLOR white]Ejecutando la última versión de la Build instalada:\n[COLOR {0}]{1}[/COLOR]\n\n[COLOR white]Versión Actual: v[COLOR {2}]{3}[/COLOR]\n[COLOR white]Ultima Versión: v[COLOR {4}]{5}[/COLOR]\n\n[COLOR {6}]*Recommendado: Nueva instalación[/COLOR]".format(CONFIG.COLOR1, self.name, CONFIG.COLOR1, self.current, CONFIG.COLOR1, self.new, CONFIG.COLOR1)
 
         def onInit(self):
             self.imagefanart = 101
@@ -395,22 +395,22 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
             self.setProperty('dialog.imageicon', self.icon)
 
         def do_fresh_install(self):
-            logging.log("[Check Updates] [Installed Version: {0}] [Current Version: {1}] [User Selected: Fresh Install build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
-            logging.log("[Check Updates] [Next Check: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
+            logging.log("[Revisa Actualizaciones] [[COLOR white]Versión Instalada:[/COLOR] {0}] [[COLOR white]Version Actual:[/COLOR]  {1}] [Usuario Seleccionado: Instalación de la Nueva Build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
+            logging.log("[Revisa Actualizaciones] [Siguiente    Verificación: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
             url = 'plugin://{0}/?mode=install&name={1}&action=fresh'.format(CONFIG.ADDON_ID, quote_plus(CONFIG.BUILDNAME))
             xbmc.executebuiltin('RunPlugin({0})'.format(url))
             self.close()
 
         def do_normal_install(self):
-            logging.log("[Check Updates] [Installed Version: {0}] [Current Version: {1}] [User Selected: Normal Install build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
-            logging.log("[Check Updates] [Next Check: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
+            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] [Usuario Seleccionado: Instalación de la Nueva Build]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST))
+            logging.log("[Revisa Actualizaciones] [Nueva: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
             url = 'plugin://{0}/?mode=install&name={1}&action=normal'.format(CONFIG.ADDON_ID, quote_plus(CONFIG.BUILDNAME))
             xbmc.executebuiltin('RunPlugin({0})'.format(url))
             self.close()
 
         def do_ignore(self):
-            logging.log("[Check Updates] [Installed Version: {0}] [Current Version: {1}] [User Selected: Ignore {2} Days]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST, CONFIG.UPDATECHECK))
-            logging.log("[Check Updates] [Next Check: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
+            logging.log("[Revisa Actualizaciones] [Versión Instalada: {0}] [Versión Actual: {1}] [Usuario Seleccionado: Ignorar {2} Dias]".format(CONFIG.BUILDVERSION, CONFIG.BUILDLATEST, CONFIG.UPDATECHECK))
+            logging.log("[Revisa Actualizaciones] [Siguiente Verificación: {0}]".format(tools.get_date(days=CONFIG.UPDATECHECK, formatted=True)))
             self.close()
 
         def onAction(self, action):
@@ -429,17 +429,17 @@ def show_update_window(name='Testing Window', current='1.0', new='1.1', icon=CON
     # update = UpdateWindow("build_update_prompt.xml", CONFIG.ADDON_PATH, 'Default', name=name, current=current, new=new, icon=icon, fanart=fanart)
     # update.doModal()
     # del update
-    msgcurrent = 'Running latest version of installed build: '
-    msgupdate = 'Update available for installed build: '
+    msgcurrent = 'Ejecutando la última versión de la Build instalada: '
+    msgupdate = '[B][COLOR white]Actualización disponible para instalar la Build:[/COLOR][/B] '
     build_name = '[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, name)
-    current_version = 'Current Version: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, current)
-    latest_version = 'Latest Version: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, new)
+    current_version = '[COLOR white]Versión Actual: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, current)
+    latest_version = '[COLOR white]Ultima Versión: v[COLOR {0}]{1}[/COLOR]'.format(CONFIG.COLOR1, new)
     
     final_msg = '{0}{1}\n{2}\n{3}\n'.format(msgcurrent if current >= new else msgupdate,
                                         build_name, current_version, latest_version)
     
     install = xbmcgui.Dialog().yesno(CONFIG.ADDONTITLE, final_msg,
-                                     yeslabel='Install', nolabel='Ignore')
+                                     yeslabel='Instalar', nolabel='Ignorar')
     if install:
         from resources.libs.wizard import Wizard
         Wizard().build(CONFIG.BUILDNAME)    
@@ -502,13 +502,13 @@ def show_notification(msg, test=False):
         def do_remind(self):
             if not test:
                 CONFIG.set_setting('notedismiss', 'false')
-            logging.log('[Notifications] Notification {0} Remind Me Later'.format(CONFIG.get_setting('noteid')))
+            logging.log('[Notificationes] Notificación {0} Recuérdame más Tarde'.format(CONFIG.get_setting('noteid')))
             self.close()
 
         def do_dismiss(self):
             if not test:
                 CONFIG.set_setting('notedismiss', 'true')
-            logging.log('[Notifications] Notification {0} Dismissed'.format(CONFIG.get_setting('noteid')))
+            logging.log('[Notificationes] Notificación {0} Despedida'.format(CONFIG.get_setting('noteid')))
             self.close()
 
         def onAction(self, action):
@@ -528,7 +528,7 @@ def show_notification(msg, test=False):
     del notify
 
 
-def show_log_viewer(window_title="Viewing Log File", window_msg=None, log_file=None, ext_buttons=False):
+def show_log_viewer(window_title="[B][COLOR azure]Ver Archivo de Registro[/COLOR][/B]", window_msg=None, log_file=None, ext_buttons=False):
     class LogViewer(xbmcgui.WindowXMLDialog):
         def __init__(self, *args, **kwargs):
             self.log_file = kwargs['log_file']
@@ -576,8 +576,8 @@ def show_log_viewer(window_title="Viewing Log File", window_msg=None, log_file=N
                     filename = logging.grab_log(file=True, wizard=True)
                 
                 if not newmsg:
-                    self.setProperty('message.title', "Error Viewing Log File")
-                    self.setProperty('message.logmsg', "File does not exist or could not be read.")
+                    self.setProperty('message.title', "Error al Ver el Archivo de Registro")
+                    self.setProperty('message.logmsg', "El Archivo no existe o no se pudo leer.")
                 else:
                     self.logmsg = newmsg
                     self.logfile = os.path.basename(filename)
