@@ -116,7 +116,7 @@ class BuildMenu:
             else:
                 if count20 > 0:
                     state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
-                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS [COLOR azure]- [COLOR dodgerblue]PARCHES:[/COLOR][/B][COLOR azure][B] TVBAN[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
                                        'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
@@ -181,7 +181,7 @@ class BuildMenu:
                     '[I][COLOR powderblue]Build diseñado para Kodi v{0}[/COLOR] [COLOR azure]( instalado: [COLOR gold]v{1}[/COLOR] )[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
                     fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
                 directory.add_file(
-                    '[I][COLOR azure]Soporte[/COLOR] [COLOR dodgerblue]TELEGRAM:[/COLOR] [I][COLOR azure]https://t.me/+andTvban[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
+                    '[I][COLOR azure]Soporte[/COLOR] [COLOR dodgerblue]TELEGRAM:[/COLOR] [I][COLOR azure]t.me/+andTvban[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
                     fanart=fanart, icon=icon, themeit=CONFIG.THEME3)    
             directory.add_separator('[B]INSTALACION BUILD[/B]')
             directory.add_file('[B][COLOR azure]• INSTALAR TVBAN[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
@@ -192,7 +192,7 @@ class BuildMenu:
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon, themeit=CONFIG.THEME2)
 
                 response = tools.open_url(themefile)
                 theme = response.text

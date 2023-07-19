@@ -80,6 +80,7 @@ class Config:
         self.THEME4 = uservar.THEME4
         self.THEME5 = uservar.THEME5
         self.THEME6 = uservar.THEME6
+        self.THEME7 = uservar.THEME7
         self.HIDECONTACT = uservar.HIDECONTACT
         self.CONTACT = uservar.CONTACT
         self.CONTACTICON = uservar.CONTACTICON if not uservar.CONTACTICON.endswith('://') else self.ADDON_ICON
