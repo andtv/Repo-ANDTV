@@ -43,8 +43,9 @@ class BuildMenu:
 
             if not kodiv or kodiv == int(float(kodi)):
                 menu = self.create_install_menu(name)
-                directory.add_dir('[{0}] {1} (v{2})'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
-
+                directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {1} - [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
+               #directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - {v{1}}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2)
+               #directory.add_dir('[B][COLOR azure]•[/COLOR][COLOR yellowgreen] {0} - [COLOR khaki]v{2}[/COLOR][/B]'.format(float(kodi), name, version), {'mode': 'viewbuild', 'name': name}, description=description, fanart=fanart, icon=icon, menu=menu, themeit=CONFIG.THEME2) 
     def theme_count(self, name, count=True):
         from resources.libs import check
         from resources.libs.common import tools
@@ -83,11 +84,11 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('Kodi Version: {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
+            directory.add_file('[B]Kodi Version:[/B] [COLOR azure]{0}[/COLOR] {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
-            directory.add_dir('Save Data Menu', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
+            directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
             directory.add_separator()
-            directory.add_file('URL for txt file not valid', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+            directory.add_file('URL para archivo txt no válido', icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
             return
 
@@ -105,8 +106,8 @@ class BuildMenu:
                 self.view_build(match[0][0])
                 return
 
-        directory.add_file('Kodi Version: {0}'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
-        directory.add_dir('Save Data Menu', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
+        directory.add_file('[B]Kodi Version: [/B] [COLOR azure]{0}[/COLOR]'.format(CONFIG.KODIV), icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
+        directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
         directory.add_separator()
 
         if len(match) >= 1:
@@ -114,23 +115,23 @@ class BuildMenu:
                 self._list_all(match)
             else:
                 if count20 > 0:
-                    state = '+' if CONFIG.SHOW20 == 'false' else '-'
-                    directory.add_file('[B]{0} Nexus Builds ({1})[/B]'.format(state, count20), {'mode': 'togglesetting',
+                    state = '[COLOR azure]+[/COLOR]' if CONFIG.SHOW20 == 'false' else '[COLOR azure]-[/COLOR]'
+                    directory.add_file('[B][COLOR dodgerblue]{0} BUILDS:[/COLOR][/B][COLOR azure][B] ANDTV[/COLOR] [COLOR blueviolet]NEXUS[/B][/COLOR]'.format(state, count20), {'mode': 'togglesetting',
                                        'name': 'show20'}, themeit=CONFIG.THEME3)
                     if CONFIG.SHOW20 == 'true':
                         self._list_all(match, kodiv=20)
 
         elif hidden > 0:
             if adultcount > 0:
-                directory.add_file('There is currently only Adult builds', icon=CONFIG.ICONBUILDS,
+                directory.add_file('[COLOR azure]Actualmente Solo hay Builds para Adultos[COLOR]', icon=CONFIG.ICONBUILDS,
                                    themeit=CONFIG.THEME3)
-                directory.add_file('Enable Show Adults in Addon Settings > Misc', icon=CONFIG.ICONBUILDS,
+                directory.add_file('[COLOR azure]Habilitar Mostrar Adultos en los Ajustes de Addon[COLOR] > Misc', icon=CONFIG.ICONBUILDS,
                                    themeit=CONFIG.THEME3)
             else:
-                directory.add_file('Currently No Builds Offered from {0}'.format(CONFIG.ADDONTITLE),
+                directory.add_file('[COLOR azure]Actualmente No Se Ofrecen Builds de[COLOR] {0}'.format(CONFIG.ADDONTITLE),
                                    icon=CONFIG.ICONBUILDS, themeit=CONFIG.THEME3)
         else:
-            directory.add_file('Text file for builds not formatted correctly.', icon=CONFIG.ICONBUILDS,
+            directory.add_file('[COLOR azure]El archivo de texto para la Build no tiene el formato correcto.[COLOR]', icon=CONFIG.ICONBUILDS,
                                themeit=CONFIG.THEME3)
 
     def view_build(self, name):
@@ -140,13 +141,13 @@ class BuildMenu:
         if response:
             link = tools.clean_text(response.text)
         else:
-            directory.add_file('URL for txt file not valid', themeit=CONFIG.THEME3)
+            directory.add_file('[COLOR azure]URL para archivo txt no válido', themeit=CONFIG.THEME3)
             directory.add_file('{0}'.format(CONFIG.BUILDFILE), themeit=CONFIG.THEME3)
             return
 
         if not check.check_build(name, 'version'):
-            directory.add_file('Error reading the txt file.', themeit=CONFIG.THEME3)
-            directory.add_file('{0} was not found in the builds list.'.format(name), themeit=CONFIG.THEME3)
+            directory.add_file('[COLOR azure]Error al leer el archivo txt.[COLOR]', themeit=CONFIG.THEME3)
+            directory.add_file('{0} [COLOR azure]no se encontró en la lista de builds.[COLOR]'.format(name), themeit=CONFIG.THEME3)
             return
 
         match = re.compile(
@@ -154,7 +155,7 @@ class BuildMenu:
             link)
             
         for version, url, gui, kodi, themefile, icon, fanart, preview, adult, info, description in match:
-            build = '{0} (v{1})'.format(name, version)
+            build = '[COLOR azure]{0}[/COLOR] [COLOR white]- v{1}[/COLOR]'.format(name, version)
             
             updatecheck = CONFIG.BUILDNAME == name and version > CONFIG.BUILDVERSION
             versioncheck = True if float(CONFIG.KODIV) == float(kodi) else False
@@ -163,33 +164,35 @@ class BuildMenu:
             themecheck = tools.open_url(themefile, check=True)
             
             if updatecheck:
-                build = '{0} [COLOR red][CURRENT v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
+                build = '{0} [COLOR red][ACTUAL v{1}][/COLOR]'.format(build, CONFIG.BUILDVERSION)
                 
             directory.add_file(build, description=description, fanart=fanart, icon=icon, themeit=CONFIG.THEME4)
             directory.add_separator()
-            directory.add_dir('Save Data Menu', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
-            directory.add_file('Build Information', {'mode': 'buildinfo', 'name': name}, description=description, fanart=fanart,
+            directory.add_dir('[B][COLOR azure]MENU GUARDAR DATOS[/COLOR][/B]', {'mode': 'savedata'}, icon=CONFIG.ICONSAVE, themeit=CONFIG.THEME3)
+            directory.add_file('[B][COLOR azure]BUILD INFORMACION[/COLOR][/B]', {'mode': 'buildinfo', 'name': name}, description=description, fanart=fanart,
                                icon=icon, themeit=CONFIG.THEME3)
                                
             if previewcheck:
-                directory.add_file('View Video Preview', {'mode': 'buildpreview', 'name': name}, description=description, fanart=fanart,
+                directory.add_file('Ver Vista Previa de Video', {'mode': 'buildpreview', 'name': name}, description=description, fanart=fanart,
                                    icon=icon, themeit=CONFIG.THEME3)
             
             if versioncheck:
                 directory.add_file(
-                    '[I]Build designed for Kodi v{0} (installed: v{1})[/I]'.format(str(kodi), str(CONFIG.KODIV)),
+                    '[I][COLOR powderblue]Build diseñado para Kodi v{0}[/COLOR] [COLOR azure]( instalado: [COLOR gold]v{1}[/COLOR] )[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
                     fanart=fanart, icon=icon, themeit=CONFIG.THEME3)
-                    
-            directory.add_separator('INSTALL')
-            directory.add_file('Install', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
+                directory.add_file(
+                    '[I][COLOR azure]Soporte[/COLOR] [COLOR dodgerblue]TELEGRAM:[/COLOR] [I][COLOR azure]https://t.me/+andTvban[/COLOR][/I]'.format(str(kodi), str(CONFIG.KODIV)),
+                    fanart=fanart, icon=icon, themeit=CONFIG.THEME3)    
+            directory.add_separator('[B]INSTALACION BUILD[/B]')
+            directory.add_file('[B][COLOR azure]• INSTALAR TVBAN[/COLOR][/B]', {'mode': 'install', 'action': 'build', 'name': name}, description=description, fanart=fanart,
                                icon=icon, themeit=CONFIG.THEME1)
                                
             if guicheck:
-                directory.add_file('Apply guiFix', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
+                directory.add_file('Aplicar Corrección guiFix', {'mode': 'install', 'action': 'gui', 'name': name}, description=description, fanart=fanart,
                                    icon=icon, themeit=CONFIG.THEME1)
                                    
             if themecheck:
-                directory.add_separator('THEMES', fanart=fanart, icon=icon)
+                directory.add_separator('[B]PARCHES BUILD TVBAN[/B]', fanart=fanart, icon=icon)
 
                 response = tools.open_url(themefile)
                 theme = response.text
@@ -201,7 +204,7 @@ class BuildMenu:
                     if adultcheck:
                         continue
                         
-                    themetitle = themename if not themename == CONFIG.BUILDTHEME else "[B]{0} (Installed)[/B]".format(themename)
+                    themetitle = themename if not themename == CONFIG.BUILDTHEME else "{0} [COLOR powderblue]- Instalado[/COLOR]".format(themename)
                     themeicon = themeicon if tools.open_url(themeicon, check=True) else icon
                     themefanart = themefanart if tools.open_url(themefanart, check=True) else fanart
                     
@@ -234,32 +237,32 @@ class BuildMenu:
 
                 themes = self.theme_count(name, count=False)
 
-                msg = "[COLOR {0}]Build Name:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, name)
+                msg = "[COLOR {0}]Nombre Build:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, name)
                 msg += "[COLOR {0}]Build Version:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, version)
                 if themes:
-                    msg += "[COLOR {0}]Build Theme(s):[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, ', '.join(themes))
+                    msg += "[COLOR {0}]Build Parche(s):[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, ', '.join(themes))
                 msg += "[COLOR {0}]Kodi Version:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, kodi)
-                msg += "[COLOR {0}]Adult Content:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, adult)
-                msg += "[COLOR {0}]Description:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, description)
+                msg += "[COLOR {0}]Contenido para Adultos:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, adult)
+                msg += "[COLOR {0}]Descripción:[/COLOR] [COLOR {1}]{2}[/COLOR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, description)
 
                 if extend:
-                    msg += "[COLOR {0}]Latest Update:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, created)
-                    msg += "[COLOR {0}]Extracted Size:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, tools.convert_size(int(float(extracted))))
-                    msg += "[COLOR {0}]Zip Size:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, tools.convert_size(int(float(zipsize))))
-                    msg += "[COLOR {0}]Skin Name:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, skin)
-                    msg += "[COLOR {0}]Programs:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, programs)
+                    msg += "[COLOR {0}]Ultima Actualización:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, created)
+                    msg += "[COLOR {0}]Tamaño Extraido:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, tools.convert_size(int(float(extracted))))
+                    msg += "[COLOR {0}]Tamaño Zip:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, tools.convert_size(int(float(zipsize))))
+                    msg += "[COLOR {0}]Nombre Skin:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, skin)
+                    msg += "[COLOR {0}]Programas:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, programs)
                     msg += "[COLOR {0}]Video:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, video)
-                    msg += "[COLOR {0}]Music:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, music)
-                    msg += "[COLOR {0}]Pictures:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, picture)
-                    msg += "[COLOR {0}]Repositories:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, repos)
+                    msg += "[COLOR {0}]Música:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, music)
+                    msg += "[COLOR {0}]Fotos:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, picture)
+                    msg += "[COLOR {0}]Repositorios:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, repos)
                     msg += "[COLOR {0}]Scripts:[/COLOR] [COLOR {1}]{2}[/COLOR][CR][CR]".format(CONFIG.COLOR2, CONFIG.COLOR1, scripts)
-                    msg += "[COLOR {0}]Binaries:[/COLOR] [COLOR {1}]{2}[/COLOR]".format(CONFIG.COLOR2, CONFIG.COLOR1, binaries)
+                    msg += "[COLOR {0}]Binarios:[/COLOR] [COLOR {1}]{2}[/COLOR]".format(CONFIG.COLOR2, CONFIG.COLOR1, binaries)
 
-                window.show_text_box("Viewing Build Info: {0}".format(name), msg)
+                window.show_text_box("[B][COLOR azure]Ver Información de la Build:[/COLOR][/B] [COLOR darkcyan][B]{0}[/B][/COLOR]: {0}".format(name), msg)
             else:
-                logging.log("Invalid Build Name!")
+                logging.log("Nombre Inválido de la Build!")
         else:
-            logging.log("Build text file not working: {0}".format(CONFIG.BUILDFILE))
+            logging.log("[B][COLOR azure]La Build del archivo de texto no funciona:[/COLOR][/B] [COLOR darkcyan][B]{0}[//B][/COLOR]".format(CONFIG.BUILDFILE))
 
     def build_video(self, name):
         from resources.libs import check
@@ -274,9 +277,9 @@ class BuildMenu:
             if tools.open_url(videofile, check=True):
                 yt.play_video(videofile)
             else:
-                logging.log("[{0}]Unable to find url for video preview".format(name))
+                logging.log("[{0}]No se puede encontrar la URL para la vista previa del video".format(name))
         else:
-            logging.log("Build text file not working: {0}".format(CONFIG.BUILDFILE))
+            logging.log("[B][COLOR azure]La Build del archivo de texto no funciona:[/COLOR][/B] [COLOR blue]{0}[/COLOR]".format(CONFIG.BUILDFILE))
 
     def create_install_menu(self, name):
         menu_items = []
