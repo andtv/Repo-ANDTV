@@ -14,8 +14,8 @@ ART = os.path.join(PATH, 'resources', 'media')
 #########################################################
 #        User Edit Variables                            #
 #########################################################
-ADDONTITLE = '[COLOR azure][B]Andtv[/B][/COLOR] [COLOR blueviolet][B]Nexus[/B][/COLOR]'
-BUILDERNAME = 'JoseAndTEBA & Andtv'
+ADDONTITLE = '[COLOR azure][B]Tvban[/B][/COLOR] [COLOR blueviolet][B]Nexus[/B][/COLOR]'
+BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
 # Text File with build info in it.
 BUILDFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/builds.txt'
@@ -128,7 +128,7 @@ NOTIFICATION = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildf
 HEADERTYPE = 'Image'
 # Font size of header
 FONTHEADER = ''
-HEADERMESSAGE = '[COLOR azure][B]ANDTV[/B][/COLOR] [COLOR blueviolet][B]NEXUS[/B][/COLOR]'
+HEADERMESSAGE = '[COLOR azure][B]TVBAN[/B][/COLOR] [COLOR blueviolet][B]NEXUS[/B][/COLOR]'
 # url to image if using Image 424x180
 HEADERIMAGE = 'https://i.imgur.com/TipaCbZ.png'
 # Font for Notification Window
