@@ -361,7 +361,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="15.1.22" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="50.6.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
     <requires>
         <import addon="xbmc.python" version="3.0.0" />
         <import addon="script.module.requests" />
@@ -424,7 +424,7 @@
     </extension>
 </addon>
 
-<addon id="plugin.video.alfa" name="Alfa" version="3.8.11" provider-name="Alfa Addon">
+<addon id="plugin.video.alfa" name="Alfa" version="3.9.3" provider-name="Alfa Addon">
 	<requires>
 		<import addon="script.module.requests"></import>
 		<import addon="script.module.beautifulsoup4" version="4.5.3"></import>
@@ -456,10 +456,11 @@
 		<news>[B]Estos son los cambios para esta versión:[/B]
 
       [COLOR green][B]Arreglos[/B][/COLOR]
-      ¤ Cuevana3video                   ¤ Newpct1                        ¤ +18
+      ¤ Cuevana3video                       ¤ Dontorrent                        ¤ Ennovelas
+      ¤ Pelisplus                                  ¤ +18
 
       [COLOR green][B]Novedades y Remasterizaciones[/B][/COLOR]
-      ¤ Dontorrent                          ¤ Rarbg                             ¤ Ennovelas
+      ¤ +18                                           ¤ Mejortorrent
 
         </news>
 		<assets>
@@ -1465,7 +1466,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.101" provider-name="gujal">
+<addon id="script.module.resolveurl" name="ResolveURL" version="5.1.102" provider-name="gujal">
     <requires>
         <!-- <import addon="xbmc.python" version="3.0.0" /> -->
         <import addon="script.module.six" />

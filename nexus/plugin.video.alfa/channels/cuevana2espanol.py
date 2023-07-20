@@ -35,8 +35,8 @@ forced_proxy_opt = 'ProxySSL'
 canonical = {
              'channel': 'cuevana2espanol', 
              'host': config.get_setting("current_host", 'cuevana2espanol', default=''), 
-             'host_alt': ["https://cuevana2espanol.com/"], 
-             'host_black_list': [], 
+             'host_alt': ["https://www.cuevana2espanol.icu/"], 
+             'host_black_list': ["https://cuevana2espanol.com/"], 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt,  
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
@@ -51,7 +51,7 @@ language = []
 url_replace = []
 
 finds = {'find': dict([('find', [{'tag': ['div'], 'class': ['row row-cols-xl-5 row-cols-lg-4 row-cols-3']}]), 
-                       ('find_all', ['article'])]),
+                       ('find_all', [{'tag': ['article']}])]),
          'categories': {}, 
          'search': {}, 
          'get_language': {}, 
@@ -69,7 +69,8 @@ finds = {'find': dict([('find', [{'tag': ['div'], 'class': ['row row-cols-xl-5 r
          'season_episode': dict([('find', [{'tag': ['div'], 'class': ['EpisodeItem_data__jsvqZ']}, 
                                            {'tag': ['span']}]), 
                                  ('get_text', [{'tag': '', '@STRIP': True}])]), 
-         'seasons': {'find': [{'tag': ['div'], 'class': ['serieBlockListEpisodes_selector__RwIbM']}], 'find_all': ['option']}, 
+         'seasons': dict([('find', [{'tag': ['div'], 'class': ['serieBlockListEpisodes_selector__RwIbM']}]), 
+                          ('find_all', [{'tag': ['option']}])]),
          'season_num': {}, 
          'seasons_search_num_rgx': '', 
          'seasons_search_qty_rgx': '', 

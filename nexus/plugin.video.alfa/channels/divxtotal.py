@@ -32,8 +32,8 @@ forced_proxy_opt = 'ProxyWeb'
 canonical = {
              'channel': 'divxtotal', 
              'host': config.get_setting("current_host", 'divxtotal', default=''), 
-             'host_alt': ["https://www.divxtotal.wf/"], 
-             'host_black_list': ["https://www.divxtotal.pl/", "https://www.divxtotal.cat/", 
+             'host_alt': ["https://www.divxtotal.win/"], 
+             'host_black_list': ["https://www.divxtotal.wf/", "https://www.divxtotal.pl/", "https://www.divxtotal.cat/", 
                                  "https://www.divxtotal.fi/", "https://www.divxtotal.dev/", "https://www.divxtotal.ac/", 
                                  "https://www.divxtotal.re/", "https://www.divxtotal.pm/", "https://www.divxtotal.nl/"], 
              'pattern': '<li>\s*<a\s*href="([^"]+)"\s*>\S*\/a><\/li>', 
@@ -270,6 +270,8 @@ def list_all_matches(item, matches_int, **AHkwargs):
                 elem_json['title'] = elem.find('p', class_="seccontnom").a.get('title', '')
                 elem_json['thumbnail'] = elem.find('p', class_="secconimagen").img.get("src", "")
                 #elem_json['year'] = scrapertools.find_single_match(elem.find('p', class_="seccontfetam").get_text(strip=True), '\d{4}')
+
+            elem_json['quality'] = elem_json.get('quality', '') or 'HDTV' if tv_path in elem_json['url'] else ''
 
         except:
             logger.error(elem)

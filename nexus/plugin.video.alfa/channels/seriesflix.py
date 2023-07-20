@@ -33,6 +33,7 @@ canonical = {
              'host': config.get_setting("current_host", 'seriesflix', default=''), 
              'host_alt': ["https://seriesflix.video/"], 
              'host_black_list': [], 
+             'status': 'Caído 31-5-2023', 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
@@ -61,7 +62,7 @@ finds = {'find': dict([('find', [{'tag': ['ul'], 'class': ['MovieList']}]),
                             ('find_previous', [{'tag': ['a'], 'class': ['page-link']}]), 
                             ('get_text', [{'tag': '', '@STRIP': True}])]), 
          'year': dict([('find', [{'tag': ['span'], 'class': ['Date']}]), 
-                                 'get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]), 
+                                 ('get_text', [{'tag': '', '@STRIP': True, '@TEXT': '(\d+)'}])]), 
          'season_episode': {}, 
          'seasons': {'find_all': [{'tag': ['section'], 'class': ['SeasonBx AACrdn']}]}, 
          'season_num': dict([('find', [{'tag': ['a']}]), 

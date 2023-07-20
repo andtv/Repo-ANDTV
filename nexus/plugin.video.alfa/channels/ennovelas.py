@@ -26,13 +26,14 @@ list_quality = []
 list_quality_movies = []
 list_quality_tvshow = ['HDTV', 'HDTV-720p', 'WEB-DL 1080p', '4KWebRip']
 list_servers = ['fembed', 'mega', 'yourupload', 'streamsb', 'mp4upload', 'mixdrop', 'uqload']
-forced_proxy_opt = 'ProxySSL'
+forced_proxy_opt = 'ProxyCF'
 
 canonical = {
              'channel': 'ennovelas', 
              'host': config.get_setting("current_host", 'ennovelas', default=''), 
-             'host_alt': ["https://w.ennovelas.net/"], 
-             'host_black_list': ["https://www.zonevipz.com/", "https://www.ennovelas.com/"], 
+             'host_alt': ["https://b.ennovelas.net/"], 
+             'host_black_list': ["https://a.ennovelas.net/", "https://e.ennovelas.net/", "https://ww.ennovelas.net/", 
+                                 "https://w.ennovelas.net/", "https://www.zonevipz.com/", "https://www.ennovelas.com/"], 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
              'CF': False, 'CF_test': False, 'alfa_s': True
             }
@@ -69,7 +70,7 @@ finds = {'find': {'find_all': [{'tag': ['article'], 'class': 'post'}]},
          'episode_clean': [], 
          'plot': {}, 
          'findvideos': dict([('find', [{'tag': ['div'], 'id': ['btnServers']}]), 
-                             ('find_all', [{'tag': ['form']}])]), 
+                             ('find_all', [{'tag': ['form', 'div']}])]), 
          'title_clean': [['(?i)TV|Online|(4k-hdr)|(fullbluray)|4k| - 4k|(3d)|miniserie|\s*\(\d{4}\)', ''],
                          ['[\(|\[]\s*[\)|\]]', ''], ['(?i)\s*(?:\s*–|-)?\s+(\d+)\s+(?:temp\w*\s+-*\s+)?cap.\w+\s+(\d+)', ''], 
                          ['(?i)(?:\s*–|-)?\s+cap.\w+\s+(\d+)', ''], ['(?i)(?:\s+\d+)?\s+temp\w*(?:\s+\d+)?', ''], 
@@ -100,7 +101,7 @@ def mainlist(item):
     itemlist.append(Item(channel=item.channel, title="Novelas", action="list_all", 
                          url=host + "telenovelas/", c_type='series', thumbnail=get_thumb("tvshows", auto=True)))
     itemlist.append(Item(channel=item.channel, title=" - [COLOR paleturquoise]Nuevos Episodios[/COLOR]" , action="list_all", 
-                         url= host + "capitulos-n1/", c_type='episodios', thumbnail=get_thumb('new_episodes', auto=True)))
+                         url= host + "capitulos-n2/", c_type='episodios', thumbnail=get_thumb('new_episodes', auto=True)))
     itemlist.append(Item(channel=item.channel, title=" - [COLOR paleturquoise]Por Países[/COLOR]" , action="section", 
                          url= host, c_type='series', thumbnail=get_thumb('country', auto=True)))
 
@@ -152,6 +153,7 @@ def list_all_matches(item, matches_int, **AHkwargs):
         try:
             elem_json['url'] = elem.find('a').get("href", "")
             elem_json['title'] = elem.find('a', title=True).get('title', '')
+            if 'en vivo' in elem_json['title'].lower(): continue
             elem_json['thumbnail'] = elem.find("img", class_='imgLoaded').get("data-img", "")
             
             if item.c_type == 'episodios':
@@ -254,6 +256,7 @@ def findvideos(item):
 
 def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
     logger.info()
+    import base64
 
     matches = []
     findS = AHkwargs.get('finds', finds)
@@ -263,19 +266,42 @@ def findvideos_matches(item, matches_int, langs, response, **AHkwargs):
     for elem_ini in matches_int:
         #logger.error(elem_ini)
 
-        if elem_ini.input.get('name', '') != 'watch': continue
-        url = elem_ini.get('action', '')
-        post = 'watch=%s&submit=' % elem_ini.input.get('value', '')
+        if elem_ini.a and elem_ini.a.get('id', '') != 'btnWatch': continue
+        elif elem_ini.input and elem_ini.input.get('name', '') != 'watch': continue
+        url = elem_ini.get('action', '') or elem_ini.a.get('href', '')
+        post = 'watch=%s' % elem_ini.input.get('value', '') if elem_ini.input else None
+        matches_alt = []
+        soup = AlfaChannel.create_soup(url, post=post, **kwargs)
 
-        for elem in AlfaChannel.create_soup(url, post=post, **kwargs).find('ul', class_="serversList").find_all('li'):
+        if soup.find('div', id="btnServers"):
+            try:
+                bs4 = base64.b64decode(soup.find('div', id="btnServers").find('form').find('input').get('value', '')).decode('utf-8')
+                matches_alt = jsontools.load(bs4).values()
+            except:
+                pass
+        
+        if not matches_alt:
+            matches_alt = soup.find('div', class_="watch").find_all('iframe') or soup.find('ul', class_="serversList").find_all('li')
+
+        for elem in matches_alt:
             elem_json = {}
             #logger.error(elem)
 
-            elem_json['url'] = elem.get('data-server', '')
-            elem_json['url'] = scrapertools.find_single_match(elem_json['url'], "src='([^']+)'")
+            if isinstance(elem, str):
+                elem_json['url'] = elem
+                if elem_json['url'] in str(matches): continue
+
+            else:
+                if elem.get('data-server', ''):
+                    elem_json['url'] = elem.get('data-server', '')
+                    elem_json['url'] = scrapertools.find_single_match(elem_json['url'], "src='([^']+)'")
+                else:
+                    elem_json['url'] = elem.get('src', '')
+
             if not elem_json.get('url', ''): continue
             if 'ennovelas' in elem_json['url'] or 'lvturbo' in elem_json['url'] or 'vidmoly' in elem_json['url'] \
                                                or 'sbface' in elem_json['url']:
+                logger.debug('Servidor no soportado: %s' % elem_json['url'])
                 continue
 
             elem_json['title'] = '%s'

@@ -32,8 +32,8 @@ forced_proxy_opt = 'ProxySSL'
 canonical = {
              'channel': 'grantorrent', 
              'host': config.get_setting("current_host", 'grantorrent', default=''), 
-             'host_alt': ['https://grantorrent.fi/'], 
-             'host_black_list': ['https://grantorrent.si/', 
+             'host_alt': ["https://grantorrent.zip/"], 
+             'host_black_list': ['https://grantorrent.bz/', 'https://grantorrent.fi/', 'https://grantorrent.si/', 
                                  'https://grantorrent.re/', 'https://grantorrent.ac/', 'https://grantorrent.ch/'], 
              'pattern': '<div\s*class="flex[^>]*>\s*<a\s*href="([^"]+)"[^>]*>\s*.nicio\s*<', 
              'set_tls': True, 'set_tls_min': True, 'retries_cloudflare': 1, 'forced_proxy_ifnot_assistant': forced_proxy_opt, 
@@ -375,6 +375,13 @@ def actualizar_titulos(item):
     return AlfaChannel.do_actualizar_titulos(item)
 
 
+def get_page_num(item):
+    logger.info()
+    # Llamamos al método que salta al nº de página seleccionado
+
+    return AlfaChannel.get_page_num(item)
+
+
 def search(item, texto, **AHkwargs):
     logger.info()
     kwargs.update(AHkwargs)
@@ -421,9 +428,6 @@ def newest(categoria, **AHkwargs):
             if cat != categoria: continue
                 
             item.extra = cat
-            if cat == '4k': 
-                item.c_type = 'peliculas'
-                item.url = host + 'tag/4k/'
             if cat == 'peliculas': 
                 item.c_type = 'peliculas'
                 item.url = host + movies_sufix
