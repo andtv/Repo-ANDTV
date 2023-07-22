@@ -1,0 +1,29 @@
+2
+|||
+
+[COLOR greenyellow][B]¡¡¡BIENVENIDOS A LA BUILD TVBAN NEXUS !!![B][/COLOR]
+
+[COLOR aquamarine][B]INSTALACIÓN:[B][/COLOR]
+
+[COLOR deepskyblue]* Para realizar la instalación correctamente deberás pulsar en la opción [COLOR white][B]"Build Menu"[/B][/COLOR] en la ventana que aparece después de instalar el plugin instalador (Wizard).
+
+En ésta ventana de Notificación, damos a [COLOR white][B]"Cerrar"[/B][/COLOR]
+Seleccionamos la Build que deseas instalar, por ejemplo [COLOR yellowgreen][B]TVBan E.ARM[/B][/COLOR] - [COLOR white][B]Instalar Build[/B][/COLOR]. 
+Cuando termine de instalar, nos saldrá una ventana [COLOR white][B]"Necesita Forzar el Cierre de Kodi"[/B][/COLOR]. Pulsaremos en [COLOR white][B]"OK"[/B][/COLOR].
+Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minutos para que cargue el menú correctamente.
+
+[COLOR gold][B]10/06/2023 ¡¡¡ACTUALIZADOR PARCHE TVBAN NEXUS!!![/B][/COLOR]
+
+[COLOR red][B]* Corregido y agregado HULU en las Plataofrmas dentro de SERIES[/B][/COLOR]
+
+
+[COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
+
+Para instalar un parche, deberemos seleccionar la Build correspondiente que tengamos instalada por ejemplo [COLOR yellowgreen][B]TVBan E.ARM[/B][/COLOR] y dentro nos saldrá el PARCHE con la FECHA a instalar.
+
+
+[COLOR red]                   ****** JOSEATEBA, ANDTV_TVBAN******                 [/COLOR] 
+  
+[COLOR dodgerblue]https://t.me/+lC4ECITUPH43NTE0[/COLOR]
+
+[COLOR white][B]GRACIAS POR UTILIZAR [COLOR dodgerblue]TVBAN [COLOR lime]NEXUS![/B][/COLOR]
