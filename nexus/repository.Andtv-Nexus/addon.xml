@@ -2,11 +2,11 @@
 <addon id="repository.Andtv-Nexus" name="[COLOR steelblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR limegreen]MAT[COLOR blueviolet]NEX[/COLOR]" version="12.5.23" provider-name="andtv_tvban, JoseAnd">
     <extension point="xbmc.addon.repository" name="[COLOR dodgerblue][B]Repo[/B][/COLOR] [COLOR azure][B]ANDTV[/B] [COLOR blueviolet][B]NEXUS[/B][/COLOR]">
 		<dir minversion="20.0" maxversion="20.9.0">
-            <info compressed="false">https://raw.githubusercontent.com/tvba/Repo-Teb/master/nexus/zips/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/tvba/Repo-Teb/master/nexus/zips/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/tvba/Repo-Teb/master/nexus/zips</datadir>
+            <info compressed="false">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips</datadir>
         </dir>
-        <dir minversion="20.9.0"> <!--maxversion="21.9.0">-->
+        <dir minversion="20.9.0">
             <info>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml</info>
             <checksum>https://raw.githubusercontent.com/Palantiraddon/Repo/master/Palantir/addons.xml.md5</checksum>
             <datadir zip="true">https://raw.githubusercontent.com/Palantiraddon/repo/master/Palantir/</datadir>
@@ -23,7 +23,7 @@
             <icon>icon.png</icon>
             <fanart>fanart.jpg</fanart>
         </assets>
-		<source>https://</source>
+		<source></source>
     </extension>
 </addon>
 
