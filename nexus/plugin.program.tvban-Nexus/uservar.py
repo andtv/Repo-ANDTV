@@ -18,15 +18,15 @@ ADDONTITLE = '[COLOR azure][B]Tvban[/B][/COLOR] [COLOR blueviolet][B]Nexus[/B][/
 BUILDERNAME = 'JoseAndTEBA & AndTVban'
 EXCLUDES = [ADDON_ID, 'repository.Andtv-Nexus']
 # Text File with build info in it.
-BUILDFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/builds.txt'
+BUILDFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/builds.txt'
 # How often you would like it to check for build updates in days
 # 0 being every startup of kodi
 UPDATECHECK = 0
 # Text File with apk info in it.  Leave as 'http://' to ignore
-APKFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/apks.txt'
+APKFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/apks.txt'
 # Text File with Youtube Videos urls.  Leave as 'http://' to ignore
 YOUTUBETITLE = '[B]Conciertos ANDTV[/B]'
-YOUTUBEFILE = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/youtube.txt'
+YOUTUBEFILE = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/youtube.txt'
 # Text File for addon installer.  Leave as 'http://' to ignore
 ADDONFILE = 'http://'
 # Text File for advanced settings.  Leave as 'http://' to ignore
@@ -101,7 +101,7 @@ CONTACTFANART = 'http://'
 # Enable Auto Update 'Yes' or 'No'
 AUTOUPDATE = 'Yes'
 # Url to wizard version
-buildfiles = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/builds.txt' 
+buildfiles = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/builds.txt' 
 #########################################################
 
 #########################################################
@@ -112,9 +112,9 @@ AUTOINSTALL = 'Yes'
 # Addon ID for the repository
 REPOID = 'repository.Andtv-Nexus'
 # Url to Addons.xml file in your repo folder(this is so we can get the latest version)
-REPOADDONXML = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/addons.xml'
+REPOADDONXML = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/addons.xml'
 # Url to folder zip is located in
-REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zips/repository.Andtv-Nexus/'
+REPOZIPURL = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/nexus/zips/repository.Andtv-Nexus/'
 #########################################################
 
 #########################################################
@@ -123,7 +123,7 @@ REPOZIPURL = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/nexus/zi
 # Enable Notification screen Yes or No
 ENABLE = 'Yes'
 # Url to notification file
-NOTIFICATION = 'https://raw.githubusercontent.com/andtv/Repo-ANDTV/master/buildfiles/ANDTV/Notify.txt'
+NOTIFICATION = 'https://raw.githubusercontent.com/andtvban/repositorio.andtvban/master/buildfiles/ANDTV/Notify.txt'
 # Use either 'Text' or 'Image'
 HEADERTYPE = 'Image'
 # Font size of header
