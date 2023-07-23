@@ -14,7 +14,7 @@ Se cerrará Kodi y ya sólo nos quedará iniciar de nuevo Kodi, darle unos minut
 
 [COLOR gold][B]                          ¡¡¡PARCHE BUILD TVBAN!!![/B][/COLOR]
 
-[COLOR red][B]* Corregido y agregado HULU en las Plataofrmas dentro de SERIES[/B][/COLOR][COLOR gold][B]17.7.23[/B][/COLOR]
+[COLOR red][B]* Corregido y agregado HULU en las Plataofrmas dentro de SERIES[/B][/COLOR] [COLOR gold][B]17.7.23[/B][/COLOR]
 
 
 [COLOR aquamarine][B]INSTALACIÓN DEL PARCHE:[/B][/COLOR]
