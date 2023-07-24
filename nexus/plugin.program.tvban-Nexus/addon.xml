@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.tvban-Nexus" name="[B][COLOR azure]TVBAN[/COLOR] [COLOR darkviolet]NEXUS[/COLOR][/B]" version="20.7.23" provider-name="[B][COLOR azure]andTVban, JoseAnd[/COLOR][/B]">
+    <requires>
+        <import addon="xbmc.python" version="3.0.0" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.six" />
+    </requires>
+    
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    
+    <extension point="xbmc.service" library="startup.py" start="startup" />
+    
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">
+	[COLOR azure]andtv[/COLOR] [COLOR blueviolet]tvban[/COLOR], 
+	tu [COLOR lime]Wizard[/COLOR] para [COLOR teal]KODI 20[/COLOR] [COLOR blueviolet]Nexus[/COLOR]	
+	    </summary>
+    	<description lang="en">
+[COLOR lime][B]CREDITOS:[/COLOR][/B] 
+[COLOR white][B]• Developers:[/B]      [COLOR darkorange]JoseAnd[/COLOR]
+[COLOR white][B]• Testers:[/B]             [COLOR darkorange]JoseAnd, [COLOR tan]AndTVban[/COLOR]
+[COLOR white][B]• Telegram:[/B]         [COLOR dodgerblue]t.me/+andTvban[/COLOR]</description>
+        <disclaimer>[COLOR tan][B]Está Prohibida su distribución, cedido por su autor, editado por AndTVban y Protegidos por los Derechos del Autor y Editor.[/B][/COLOR]</disclaimer>
+		<platform>all</platform>
+		<reuselanguageinvoker>false</reuselanguageinvoker>
+        <source>https://andtv.github.io/tvban/</source>
+		<news>
+• [COLOR darkorange]20/07/2023[/COLOR]	
+- Corregido la Notificación al iniciar la instalación.
+		
+• [COLOR darkorange]15/07/2023[/COLOR]	
+- Corregido Wizard para Kodi 20 Nexus
+	
+• [COLOR darkorange]10/06/2023[/COLOR]
+- Editado nuevo png para Nexus.		
+		
+• [COLOR darkorange]04/06/2023[/COLOR]
+- Actualizados los scripts.
+- Editar nuevos textos.
+		
+• [COLOR darkorange]22/05/2023[/COLOR]
+- Editar nuevos textos.			
+		
+• [COLOR darkorange]07/05/2023[/COLOR]
+- Añadido nuevos arreglos.		
+		
+• [COLOR darkorange]05/02/2023[/COLOR]
+- Inciada la compatibilidad con Versiones de Kodi.
+- Nuevo Instalador a la versión  5.2.23
+- Añadido nuevos arreglos:
+¤ Limpieza de Miniaturas.     ¤ Color en Notificaciones.
+</news>
+	<assets>
+	    <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+	</assets>
+	<license>GNU GENERAL PUBLIC LICENSE Version 20</license>
+		<email></email>
+		<website></website>
+    </extension>
+</addon>
+		
